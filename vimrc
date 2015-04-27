@@ -33,6 +33,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'vim-scripts/upAndDown'
+Plugin 'embear/vim-localvimrc'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -42,6 +43,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 
 
 " taglist.vim needs exuberant-ctags package installed
@@ -84,6 +86,12 @@ let g:Powerline_symbols = 'unicode'
 let g:indentLine_color_term = 239
 
 " ------------------------------------------------
+" localvimrc, auto source localvim file
+
+let g:localvimrc_ask = 0 
+
+
+" ------------------------------------------------
 " keymap
 "nnoremap <F3> :NumbersToggle<CR>
 "nnoremap <F4> :NumbersOnOff<CR>
@@ -116,20 +124,39 @@ map <F4> :TlistToggle<cr>
 
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
-autocmd FileType javascript,css,html,smarty setl sw=2 sts=2 et
+autocmd FileType javascript,css,html,smarty setl sw=4 sts=4 et
+autocmd FileType coffee setl sw=2 sts=2 et
+
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 
 " ------------------------------------------------
-" syntastic for php
+" syntastic (php, jshint, coffeelint)
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=1
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+let g:syntastic_coffee_checkers=['coffeelint']
+let g:syntastic_coffee_coffeelint_exec='coffeelint'
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_jshint_exec='jshint'
+
+" ------------------------------------------------
+" vim-coffee-script, auto compile *.coffee to *.js on buffer written
+
+autocmd BufWritePost *.coffee silent make!
 
 " ------------------------------------------------
 " nerdtree options
 
 set autochdir
-let NERDTreeShowHidden=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 nnoremap <leader>n :NERDTree .<CR>
 
 
@@ -141,6 +168,15 @@ if has("autocmd")
     au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
     au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
+
+" ------------------------------------------------
+" auto reload $MYVIMRC on change 
+
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
 
 " ------------------------------------------------
 
