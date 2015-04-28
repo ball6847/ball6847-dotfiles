@@ -124,7 +124,7 @@ map <F4> :TlistToggle<cr>
 
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
-autocmd FileType javascript,css,html,smarty setl sw=4 sts=4 et
+autocmd FileType html,smarty setl sw=4 sts=4 et
 autocmd FileType coffee,javascript,css setl sw=2 sts=2 et
 
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
