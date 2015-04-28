@@ -125,7 +125,7 @@ map <F4> :TlistToggle<cr>
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType javascript,css,html,smarty setl sw=4 sts=4 et
-autocmd FileType coffee setl sw=2 sts=2 et
+autocmd FileType coffee,javascript,css setl sw=2 sts=2 et
 
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
@@ -158,7 +158,9 @@ set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 nnoremap <leader>n :NERDTree .<CR>
-
+" open nerdtree right after vim startup
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
 
 " ------------------------------------------------
 " auto change cursor shape based on current mode
@@ -168,15 +170,6 @@ if has("autocmd")
     au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
     au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
-
-" ------------------------------------------------
-" auto reload $MYVIMRC on change 
-
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
 
 " ------------------------------------------------
 

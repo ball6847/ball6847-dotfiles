@@ -80,7 +80,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -laX --color --group-directories-first"
-alias vim="gvim"
+alias vim="~/dotfiles/scripts/start_gvim_maximized"
+alias gvim="~/dotfiles/scripts/start_gvim_maximized"
 
 
 
