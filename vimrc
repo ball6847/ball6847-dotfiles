@@ -158,9 +158,7 @@ set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 nnoremap <leader>n :NERDTree .<CR>
-" open nerdtree right after vim startup
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+
 
 " ------------------------------------------------
 " auto change cursor shape based on current mode
