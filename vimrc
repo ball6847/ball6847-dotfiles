@@ -38,6 +38,7 @@ Plugin 'embear/vim-localvimrc'
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'digitaltoad/vim-jade'
 
 " snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
