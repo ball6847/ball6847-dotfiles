@@ -1,5 +1,12 @@
+# we link this file to multiple user's home, and many resource sharing located on our user's home
+if [ $SUDO_USER ] ; then
+    SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
+else
+    SUDO_HOME=$HOME
+fi
+
 # Path to your oh-my-zsh installation.
-export ZSH=/home/ball6847/.oh-my-zsh
+export ZSH=$SUDO_HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,10 +57,11 @@ plugins=(git nvm)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/ball6847/.composer/vendor/bin:/home/ball6847/.nvm/versions/node/v0.12.1/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/.nvm/versions/node/v0.12.1/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+source $SUDO_HOME/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
@@ -80,8 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -laX --color --group-directories-first"
-alias vim="~/dotfiles/scripts/start_gvim_maximized"
-alias gvim="~/dotfiles/scripts/start_gvim_maximized"
+alias vim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
+alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 
 
+export APACHE_LOG_DIR=/var/log/apache2
+export APACHE_WWW_DIR=${SUDO_HOME}/www/
+export PYTHONPATH=/usr/bin/python
 
