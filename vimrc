@@ -125,7 +125,7 @@ map <F4> :TlistToggle<cr>
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=4 sts=4 et
-autocmd FileType coffee,javascript,css setl sw=2 sts=2 et
+autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
@@ -149,7 +149,7 @@ let g:syntastic_javascript_jshint_exec='jshint'
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
-autocmd BufWritePost *.coffee silent make!
+autocmd BufWritePost *.coffee silent make! --no-header 
 
 " ------------------------------------------------
 " nerdtree options
