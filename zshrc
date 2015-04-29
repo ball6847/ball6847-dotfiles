@@ -96,3 +96,11 @@ export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
 export PYTHONPATH=/usr/bin/python
 
+
+
+# load local zsh script
+# keep this at bottom of this file
+if [ -f $SUDO_HOME/.lzshrc ]; then
+    source $SUDO_HOME/.lzshrc
+fi
+
