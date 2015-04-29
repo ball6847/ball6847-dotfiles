@@ -150,7 +150,7 @@ let g:syntastic_javascript_jshint_exec='jshint'
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
-autocmd BufWritePost *.coffee silent make! --no-header 
+"autocmd BufWritePost *.coffee silent make! --no-header 
 
 " ------------------------------------------------
 " nerdtree options
