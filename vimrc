@@ -125,7 +125,7 @@ map <F4> :TlistToggle<cr>
 
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
-autocmd FileType html,smarty setl sw=4 sts=4 et
+autocmd FileType html,smarty setl sw=2 sts=2 et
 autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -181,9 +181,13 @@ if has("gui_running")
         set guifont=Monaco\ 10
         colorscheme molokai
         " map ctrl+v ctrl+c
-        nmap <C-V> "+gP
-        imap <C-V> <ESC><C-V>i
-        vmap <C-C> "+y
+        "nmap <C-V> "+gP
+        "imap <C-V> <ESC><C-V>i
+        "vmap <C-C> "+y
+        vmap <C-c> "+yi
+        vmap <C-x> "+c
+        vmap <C-v> c<ESC>"+p
+        imap <C-v> <C-r><C-o>+
     endif
 endif
 " -------------------------------------------------
