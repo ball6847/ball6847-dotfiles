@@ -34,6 +34,7 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'vim-scripts/upAndDown'
 Plugin 'embear/vim-localvimrc'
+Plugin 'godlygeek/tabular'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -73,6 +74,8 @@ colorscheme Monokai
 "set list
 "set listchars=tab:┊,trail:·,eol:,extends:>,precedes:<
 filetype plugin on
+
+let mapleader=','
 
 " ------------------------------------------------
 " powerline options
@@ -130,6 +133,11 @@ autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
+" Tabular Customization
+nnoremap <leader>a= :Tabularize /=<CR>
+vnoremap <leader>a= :Tabularize /=<CR>
+nnoremap <leader>a: :Tabularize /:<CR>
+vnoremap <leader>a: :Tabularize /:<CR>
 
 " ------------------------------------------------
 " syntastic (php, jshint, coffeelint)
