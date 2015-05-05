@@ -19,6 +19,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -35,6 +36,11 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'vim-scripts/upAndDown'
 Plugin 'embear/vim-localvimrc'
 Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'jszakmeister/vim-togglecursor'
+Plugin 'haya14busa/incsearch.vim'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -94,6 +100,18 @@ let g:indentLine_color_term = 239
 
 let g:localvimrc_ask = 0 
 
+" ------------------------------------------------
+" Toggle tagbar using F8
+
+nmap <F8> :TagbarToggle<CR>
+
+" ------------------------------------------------
+" Vim incsearch plugin
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
 
 " ------------------------------------------------
 " keymap
@@ -113,13 +131,15 @@ nnoremap <silent> <PageDown> <C-D>
 vnoremap <silent> <PageDown> <C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D>
 
+nnoremap <silent> <C-Right> W
+nnoremap <silent> <C-Left> B
+
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
-nmap <silent> <C-n> :NERDTreeToggle<CR>
 imap <Home> <ESC>^i
-map <F4> :TlistToggle<cr>
+"map <F4> :TlistToggle<cr>
 
 :command WQ wq
 :command Wq wq
@@ -131,6 +151,7 @@ autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaO
 autocmd FileType html,smarty setl sw=2 sts=2 et
 autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 
+" highlight words while we are moving cursor
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Tabular Customization
@@ -166,17 +187,14 @@ let g:syntastic_javascript_jshint_exec='jshint'
 set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
-nnoremap <leader>n :NERDTree .<CR>
-
+let g:nerdtree_tabs_open_on_console_startup=1
+nmap <silent> <C-n> :NERDTreeTabToggle<CR>
+nnoremap <leader>n :NERDTreeTabOpen .<CR>
 
 " ------------------------------------------------
-" auto change cursor shape based on current mode
+" tagbar options , open tagbar on startup
+autocmd VimEnter * nested :TagbarOpen
 
-if has("autocmd")
-    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-endif
 
 " ------------------------------------------------
 
