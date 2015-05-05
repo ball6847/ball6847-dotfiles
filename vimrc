@@ -41,6 +41,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
+Plugin 'gregsexton/MatchTag'
+Plugin 'tmhedberg/matchit'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -188,8 +191,8 @@ set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 let g:nerdtree_tabs_open_on_console_startup=1
-nmap <silent> <C-n> :NERDTreeTabToggle<CR>
-nnoremap <leader>n :NERDTreeTabOpen .<CR>
+nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
+nnoremap <leader>n :NERDTreeTabsOpen .<CR>
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
@@ -204,7 +207,6 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Monaco\ 10
         colorscheme molokai
         " map ctrl+v ctrl+c
         "nmap <C-V> "+gP
