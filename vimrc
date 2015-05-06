@@ -234,7 +234,8 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme molokai
+        "colorscheme molokai
+        colorscheme cake16
         " map ctrl+v ctrl+c
         "nmap <C-V> "+gP
         "imap <C-V> <ESC><C-V>i
