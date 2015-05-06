@@ -95,10 +95,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme Monokai
-"set list lcs=tab:\┊\
-"set list
-"set listchars=tab:┊,trail:·,eol:,extends:>,precedes:<
+colorscheme monokai
 filetype plugin on
 
 let mapleader=','
@@ -235,7 +232,8 @@ endif
 if has("gui_running")
     if has("gui_gtk2")
         "colorscheme molokai
-        colorscheme cake16
+        "colorscheme cake16
+        colorscheme sexy-railscasts
         " map ctrl+v ctrl+c
         "nmap <C-V> "+gP
         "imap <C-V> <ESC><C-V>i
