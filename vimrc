@@ -1,3 +1,19 @@
+" ------------------------------------------------
+" External programs you may need to install
+"
+" ================================================================================================
+" PACKAGE         | DESCRIPTION                            | INSTALL COMMAND
+" =================================================================================================
+" python-autopep8 | formatter for python                   | sudo apt-get install python-autopep8
+" js-beautify     | formatter fot javascript,json,css,html | npm install -g js-beautify
+" tidy            | formatter for xhtml,xml                | sudo apt-get install tidy
+" ack-grep        | find in files using :Ack command       | sudo apt-get install ack-grep
+" coffee-script   | coffee script compiler                 | npm install -g coffee-script
+" coffeelint      | coffee script linter                   | npm install -g coffeelint
+" jshint          | javascript linter                      | npm install -g jshint
+" ================================================================================================
+
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -44,6 +60,7 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
 Plugin 'gregsexton/MatchTag'
 Plugin 'tmhedberg/matchit'
+Plugin 'Chiel92/vim-autoformat'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -59,7 +76,7 @@ Plugin 'honza/vim-snippets'
 
 " taglist.vim needs exuberant-ctags package installed
 " run (sudo apt-get install exuberant-ctags) to install the package
-Plugin 'vim-scripts/taglist.vim'
+"Plugin 'vim-scripts/taglist.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -154,6 +171,12 @@ autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaO
 autocmd FileType html,smarty setl sw=2 sts=2 et
 autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 
+let g:formatprg_smarty = "html-beautify"
+let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
+noremap <F3> :Autoformat<CR><CR>
+
+
+
 " highlight words while we are moving cursor
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
@@ -178,6 +201,10 @@ let g:syntastic_coffee_checkers=['coffeelint']
 let g:syntastic_coffee_coffeelint_exec='coffeelint'
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_javascript_jshint_exec='jshint'
+
+
+
+
 
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
