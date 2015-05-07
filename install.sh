@@ -29,3 +29,12 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+# link any files in ~/dotfiles/.vim/ to $HOME/.vim/
+mkdir -p $olddir/.vim/
+
+for d in $dir/.vim/*; do
+    dirname=$(basename $d)
+    mv $HOME/.vim/$dirname $olddir/.vim/
+    ln -s $d $HOME/.vim/$dirname
+done

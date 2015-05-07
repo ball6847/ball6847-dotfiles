@@ -61,6 +61,7 @@ Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `
 Plugin 'gregsexton/MatchTag'
 Plugin 'tmhedberg/matchit'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'Lokaltog/vim-easymotion'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -167,6 +168,7 @@ autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColo
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
 autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
+"autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 
 let g:formatprg_smarty = "html-beautify"
 let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
@@ -192,8 +194,6 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
-let g:syntastic_check_on_wq=1
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 let g:syntastic_coffee_checkers=['coffeelint']
 let g:syntastic_coffee_coffeelint_exec='coffeelint'
 let g:syntastic_javascript_checkers=['jshint']
@@ -205,12 +205,17 @@ let g:syntastic_javascript_jshint_exec='jshint'
 "autocmd BufWritePost *.coffee silent make! --no-header 
 
 " ------------------------------------------------
+"  ctrlp configuration
+let g:ctrlp_working_path_mode = 'r'
+
+" ------------------------------------------------
 " nerdtree options
 
-set autochdir
+"set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
-"let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+let g:nerdtree_tabs_open_on_console_startup=0
 nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
 nnoremap <leader>n :NERDTreeTabsOpen .<CR>
 
