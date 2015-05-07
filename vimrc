@@ -74,6 +74,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+" additional colorscheme
+Plugin 'stulzer/heroku-colorscheme'
+
 
 " taglist.vim needs exuberant-ctags package installed
 " run (sudo apt-get install exuberant-ctags) to install the package
@@ -96,7 +99,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme badwolf
+colorscheme heroku
 filetype plugin on
 
 let mapleader=','
@@ -137,8 +140,8 @@ map g/ <Plug>(incsearch-stay)
 "nnoremap <F4> :NumbersOnOff<CR>
 
 "nnoremap <silent> <Plug>Sneak_f :<c-u>call sneak#wrap('', 3, 0, 1, 0)<cr>
-nnoremap <silent> s   :call sneak#wrap('', 3, 0, 1, 0)<cr>
-nnoremap <silent> S   :call sneak#wrap('', 3, 1, 1, 0)<cr>
+"nnoremap <silent> s   :call sneak#wrap('', 3, 0, 1, 0)<cr>
+"nnoremap <silent> S   :call sneak#wrap('', 3, 1, 1, 0)<cr>
 "onoremap <silent> F   :call sneak#wrap(v:operator, 1, 1, 1)<cr>
 
 nnoremap <silent> <PageUp> <C-U>
@@ -169,6 +172,9 @@ autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaO
 autocmd FileType html,smarty setl sw=2 sts=2 et
 autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
+"autocmd BufEnter * colorscheme heroku
+"autocmd BufEnter *.tpl colorscheme molokai
+"autocmd BufEnter *.html colorscheme molokai
 
 let g:formatprg_smarty = "html-beautify"
 let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
@@ -234,7 +240,7 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme badwolf
+        "colorscheme cake16
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p
