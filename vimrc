@@ -95,7 +95,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme monokai
+colorscheme badwolf
 filetype plugin on
 
 let mapleader=','
@@ -199,10 +199,6 @@ let g:syntastic_coffee_coffeelint_exec='coffeelint'
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_javascript_jshint_exec='jshint'
 
-
-
-
-
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
@@ -214,14 +210,16 @@ let g:syntastic_javascript_jshint_exec='jshint'
 set autochdir
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
-let g:nerdtree_tabs_open_on_console_startup=1
+"let g:nerdtree_tabs_open_on_console_startup=1
 nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
 nnoremap <leader>n :NERDTreeTabsOpen .<CR>
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
-autocmd VimEnter * nested :TagbarOpen
 
+" use this on .lvimrc to make it more ide taste
+"autocmd VimEnter * nested :TagbarOpen
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 " ------------------------------------------------
 
@@ -231,13 +229,7 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        "colorscheme molokai
-        "colorscheme cake16
-        colorscheme sexy-railscasts
-        " map ctrl+v ctrl+c
-        "nmap <C-V> "+gP
-        "imap <C-V> <ESC><C-V>i
-        "vmap <C-C> "+y
+        colorscheme badwolf
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p
