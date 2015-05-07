@@ -162,6 +162,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 imap <Home> <ESC>^i
 "map <F4> :TlistToggle<cr>
 
+" emmet
+let g:user_emmet_expandabbr_key = '<C-E>'
+
 :command WQ wq
 :command Wq wq
 :command W w
@@ -170,7 +173,7 @@ imap <Home> <ESC>^i
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,javascript,css,less setl sw=2 sts=2 et
+autocmd FileType coffee,javascript,css,less,json,jade setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
