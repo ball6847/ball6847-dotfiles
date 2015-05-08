@@ -43,7 +43,7 @@ Plugin 'chrisbra/improvedft'
 Plugin 'vim-scripts/L9'
 Plugin 'othree/vim-autocomplpop'
 Plugin 'lfilho/cosco.vim'
-Plugin 'justinmk/vim-sneak'
+"Plugin 'justinmk/vim-sneak'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'scrooloose/syntastic'
@@ -161,6 +161,9 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 imap <Home> <ESC>^i
 "map <F4> :TlistToggle<cr>
+"
+nmap s <Plug>(easymotion-s)
+nmap <leader></leader> <Plug>(easymotion-s)
 
 " emmet
 let g:user_emmet_expandabbr_key = '<C-E>'
@@ -186,7 +189,7 @@ noremap <F3> :Autoformat<CR><CR>
 
 
 " highlight words while we are moving cursor
-"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Tabular Customization
 nnoremap <leader>a= :Tabularize /=<CR>
