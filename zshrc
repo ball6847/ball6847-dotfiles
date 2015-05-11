@@ -7,6 +7,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
+export ZSHH_CUSTOM=$SUDO_HOME/dotfiles/zsh_custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,16 +54,17 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm virtualenv)
+plugins=(git nvm virtualenv-prompt)
+
+# i dont know why, but zsh-syntax-highlighting need to activate here
+source $SUDO_HOME/dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/Application/google_appengine/"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-
 source $ZSH/oh-my-zsh.sh
-source $SUDO_HOME/dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
 # activate nvm silently
 nvm use stable > /dev/null

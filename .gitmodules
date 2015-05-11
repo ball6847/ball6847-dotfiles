@@ -1,3 +1,6 @@
-[submodule "plugins/zsh-syntax-highlighting"]
-	path = plugins/zsh-syntax-highlighting
+[submodule "zsh_custom/plugins/virtualenv-prompt"]
+	path = zsh_custom/plugins/virtualenv-prompt
+	url = https://github.com/tonyseek/oh-my-zsh-virtualenv-prompt.git
+[submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
+	path = zsh_custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

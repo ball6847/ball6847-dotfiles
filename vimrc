@@ -99,7 +99,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme heroku
+colorscheme molokai
 filetype plugin on
 
 let mapleader=','
@@ -176,7 +176,7 @@ let g:user_emmet_expandabbr_key = '<C-E>'
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,javascript,css,less,json,jade setl sw=2 sts=2 et
+autocmd FileType coffee,css,less,json,jade setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
