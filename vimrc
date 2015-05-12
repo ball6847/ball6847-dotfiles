@@ -62,6 +62,7 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'tmhedberg/matchit'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'elzr/vim-json'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -76,6 +77,8 @@ Plugin 'honza/vim-snippets'
 
 " additional colorscheme
 Plugin 'stulzer/heroku-colorscheme'
+
+
 
 
 " taglist.vim needs exuberant-ctags package installed
@@ -103,6 +106,7 @@ colorscheme molokai
 filetype plugin on
 
 let mapleader=','
+let g:vim_json_syntax_conceal = 0
 
 " ------------------------------------------------
 " powerline options
