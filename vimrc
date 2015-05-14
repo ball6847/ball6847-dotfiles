@@ -102,7 +102,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme molokai
+colorscheme heroku
 filetype plugin on
 
 let mapleader=','
@@ -193,7 +193,7 @@ noremap <F3> :Autoformat<CR><CR>
 
 
 " highlight words while we are moving cursor
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+"autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " Tabular Customization
 nnoremap <leader>a= :Tabularize /=<CR>
