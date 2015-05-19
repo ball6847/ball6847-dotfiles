@@ -123,7 +123,8 @@ let g:indentLine_color_term = 239
 " ------------------------------------------------
 " localvimrc, auto source localvim file
 
-let g:localvimrc_ask = 0 
+let g:localvimrc_ask = 0
+let g:localvimrc_sandbox = 0
 
 " ------------------------------------------------
 " Toggle tagbar using F8
@@ -212,13 +213,14 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
 let g:syntastic_coffee_checkers=['coffeelint']
 let g:syntastic_coffee_coffeelint_exec='coffeelint'
+let g:syntastic_coffee_coffeelint_args='-f ~/.coffeelint.json'
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_javascript_jshint_exec='jshint'
 
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
-"autocmd BufWritePost *.coffee silent make! --no-header 
+autocmd BufWritePost *.coffee silent make! --no-header 
 
 " ------------------------------------------------
 "  ctrlp configuration
