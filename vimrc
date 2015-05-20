@@ -35,7 +35,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -63,6 +63,8 @@ Plugin 'tmhedberg/matchit'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'elzr/vim-json'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'terryma/vim-expand-region'
 
 " Syntax Plugins
 Plugin 'evanmiller/nginx-vim-syntax'
@@ -77,9 +79,6 @@ Plugin 'honza/vim-snippets'
 
 " additional colorscheme
 Plugin 'stulzer/heroku-colorscheme'
-
-
-
 
 " taglist.vim needs exuberant-ctags package installed
 " run (sudo apt-get install exuberant-ctags) to install the package
@@ -102,7 +101,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme heroku
+colorscheme railscasts
 filetype plugin on
 
 let mapleader=','
@@ -173,6 +172,16 @@ nmap <leader></leader> <Plug>(easymotion-s)
 " emmet
 let g:user_emmet_expandabbr_key = '<C-E>'
 
+" indenting maintain previous visual range, also map to TAB key
+vnoremap > >gv
+vnoremap < <gv
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+
 :command WQ wq
 :command Wq wq
 :command W w
@@ -191,6 +200,9 @@ let g:formatprg_smarty = "html-beautify"
 let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
 noremap <F3> :Autoformat<CR><CR>
 
+
+
+vnoremap <C-3> <leader>cl
 
 
 " highlight words while we are moving cursor
@@ -220,7 +232,7 @@ let g:syntastic_javascript_jshint_exec='jshint'
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
-autocmd BufWritePost *.coffee silent make! --no-header 
+autocmd BufWritePost *.coffee silent make! --no-header
 
 " ------------------------------------------------
 "  ctrlp configuration
@@ -234,8 +246,10 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_console_startup=0
-nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
-nnoremap <leader>n :NERDTreeTabsOpen .<CR>
+"nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
+"nnoremap <leader>n :NERDTreeTabsOpen .<CR>
+nmap <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeOpen .<CR>
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
@@ -252,7 +266,8 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        "colorscheme cake16
+        colorscheme railscasts
+        set guifont=Monaco\ 11
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p
