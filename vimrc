@@ -159,6 +159,13 @@ inoremap <silent> <PageDown> <C-\><C-O><C-D>
 nnoremap <silent> <C-Right> W
 nnoremap <silent> <C-Left> B
 
+" ctrl+s to save current buffer
+" this only work in gui mode
+if has("gui_running")
+    nmap <c-s> :w<cr>
+    imap <c-s> <esc>:w<cr>a
+endif
+
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
