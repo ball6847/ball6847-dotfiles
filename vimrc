@@ -274,7 +274,7 @@ endif
 if has("gui_running")
     if has("gui_gtk2")
         colorscheme railscasts
-        set guifont=Monaco\ 11
+        set guifont=Monaco\ 10
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p
