@@ -203,6 +203,9 @@ autocmd FileType coffee,css,less,json,jade setl sw=2 sts=2 et
 "autocmd BufEnter *.tpl colorscheme molokai
 "autocmd BufEnter *.html colorscheme molokai
 
+" auto remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 let g:formatprg_smarty = "html-beautify"
 let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
 noremap <F3> :Autoformat<CR><CR>
