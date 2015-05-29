@@ -35,7 +35,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -101,7 +101,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme railscasts
+colorscheme badwolf
 filetype plugin on
 
 let mapleader=','
@@ -256,10 +256,10 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_console_startup=0
-"nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
-"nnoremap <leader>n :NERDTreeTabsOpen .<CR>
-nmap <silent> <C-n> :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeOpen .<CR>
+nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
+nnoremap <leader>n :NERDTreeTabsOpen .<CR>
+"nmap <silent> <C-n> :NERDTreeToggle<CR>
+"nnoremap <leader>n :NERDTreeOpen .<CR>
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
@@ -276,8 +276,8 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme railscasts
-        set guifont=Monaco\ 10
+        colorscheme badwolf
+        "set guifont=Monaco\ 10
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p
