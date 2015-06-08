@@ -105,7 +105,9 @@ export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
 export PYTHONPATH=/usr/bin/python
 
-
+# Setup wine prefix, use win32
+export WINEARCH=win32
+export WINEPREFIX=${SUDO_HOME}/.wine
 
 # load local zsh script
 # keep this at bottom of this file
