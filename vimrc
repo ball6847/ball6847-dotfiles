@@ -197,7 +197,7 @@ vnoremap <S-Tab> <gv
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,css,less,json,jade setl sw=2 sts=2 et
+autocmd FileType coffee,css,less,json,jade,javascript setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
@@ -242,7 +242,7 @@ let g:syntastic_javascript_jshint_exec='jshint'
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
 
-autocmd BufWritePost *.coffee silent make! --no-header
+"autocmd BufWritePost *.coffee silent make! --no-header
 
 " ------------------------------------------------
 "  ctrlp configuration
