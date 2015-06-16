@@ -101,7 +101,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
-colorscheme badwolf
+colorscheme molokai
 filetype plugin on
 
 let mapleader=','
@@ -276,7 +276,7 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme badwolf
+        "colorscheme badwolf
         "set guifont=Monaco\ 10
         vmap <C-c> "+yi
         vmap <C-x> "+c
