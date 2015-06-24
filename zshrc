@@ -109,6 +109,9 @@ export PYTHONPATH=/usr/bin/python
 export WINEARCH=win32
 export WINEPREFIX=${SUDO_HOME}/.wine
 
+# Node environment = development by default
+export NODE_ENV=development
+
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
