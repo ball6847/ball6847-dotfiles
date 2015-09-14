@@ -100,6 +100,7 @@ alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo 
 alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 alias a2reload="sudo service apache2 reload"
 alias a2restart="sudo service apache2 restart"
+alias maildump="${SUDO_HOME}/Apps/maildump/.venv/bin/maildump"
 
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
@@ -111,6 +112,9 @@ export WINEPREFIX=${SUDO_HOME}/.wine
 
 # Node environment = development by default
 export NODE_ENV=development
+
+#export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
+export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
 # load local zsh script
 # keep this at bottom of this file
