@@ -55,7 +55,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'jszakmeister/vim-togglecursor'
+"Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
 Plugin 'gregsexton/MatchTag'
