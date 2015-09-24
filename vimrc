@@ -94,6 +94,7 @@ filetype plugin indent on    " required
 syntax on
 
 set tabstop=4
+set bs=2 " enable backspace key for windows
 set shiftwidth=4
 set expandtab
 set smartindent
