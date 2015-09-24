@@ -70,6 +70,7 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
