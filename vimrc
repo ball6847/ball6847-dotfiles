@@ -256,10 +256,10 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.swp$', '\.sublime-project$', '\.sublime-workspace', '\.komodo-project$']
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_console_startup=0
-nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
-nnoremap <leader>n :NERDTreeTabsOpen .<CR>
-"nmap <silent> <C-n> :NERDTreeToggle<CR>
-"nnoremap <leader>n :NERDTreeOpen .<CR>
+"nmap <silent> <C-n> :NERDTreeTabsToggle<CR>
+"nnoremap <leader>n :NERDTreeTabsOpen .<CR>
+nmap <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeOpen .<CR>
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
