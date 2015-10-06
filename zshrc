@@ -54,7 +54,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm virtualenv-prompt)
+plugins=(git nvm virtualenv-prompt docker)
 
 # i dont know why, but zsh-syntax-highlighting need to activate here
 source $SUDO_HOME/dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
