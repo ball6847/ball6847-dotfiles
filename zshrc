@@ -101,6 +101,10 @@ alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 alias a2reload="sudo service apache2 reload"
 alias a2restart="sudo service apache2 restart"
 alias maildump="${SUDO_HOME}/Apps/maildump/.venv/bin/maildump"
+alias gs="git status"
+alias ga="git add -A"
+alias gcm="git commit -am"
+alias gp="git push"
 alias x="docker exec -it"
 
 export APACHE_LOG_DIR=/var/log/apache2
