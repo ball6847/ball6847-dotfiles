@@ -35,7 +35,7 @@ Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -55,7 +55,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'jszakmeister/vim-togglecursor'
+"Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
 Plugin 'gregsexton/MatchTag'
@@ -70,6 +70,7 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -94,6 +95,7 @@ filetype plugin indent on    " required
 syntax on
 
 set tabstop=4
+set bs=2 " enable backspace key for windows
 set shiftwidth=4
 set expandtab
 set smartindent
@@ -277,7 +279,7 @@ endif
 if has("gui_running")
     if has("gui_gtk2")
         "colorscheme badwolf
-        "set guifont=Monaco\ 10
+        set guifont=Monaco\ 10
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+p

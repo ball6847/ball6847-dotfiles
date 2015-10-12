@@ -54,7 +54,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm virtualenv-prompt)
+plugins=(git nvm virtualenv-prompt docker)
 
 # i dont know why, but zsh-syntax-highlighting need to activate here
 source $SUDO_HOME/dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -67,18 +67,18 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 source $ZSH/oh-my-zsh.sh
 
 # activate nvm silently
-nvm use stable > /dev/null
+nvm use stable &> /dev/null
 
 # You may need to manually set your language environment
- export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='mvim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -100,6 +100,8 @@ alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo 
 alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 alias a2reload="sudo service apache2 reload"
 alias a2restart="sudo service apache2 restart"
+alias maildump="${SUDO_HOME}/Apps/maildump/.venv/bin/maildump"
+alias x="docker exec -it"
 
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
@@ -111,6 +113,12 @@ export WINEPREFIX=${SUDO_HOME}/.wine
 
 # Node environment = development by default
 export NODE_ENV=development
+
+#export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
+export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
+
+#use docker on tcp
+export DOCKER_HOST="tcp://127.0.0.1:2375"
 
 # load local zsh script
 # keep this at bottom of this file
