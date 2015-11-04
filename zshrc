@@ -94,7 +94,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="ls -laX --color --group-directories-first"
+#alias ls="ls -lX --color --group-directories-first"
+alias ls="ls --color --group-directories-first"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 #alias vim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
@@ -122,7 +123,7 @@ export NODE_ENV=development
 export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
 #use docker on tcp
-export DOCKER_HOST="tcp://127.0.0.1:2375"
+#export DOCKER_HOST="tcp://127.0.0.1:2375"
 
 # load local zsh script
 # keep this at bottom of this file
