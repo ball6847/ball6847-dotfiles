@@ -107,6 +107,7 @@ alias ga="git add -A"
 alias gcm="git commit -am"
 alias gp="git push"
 alias x="docker exec -it"
+alias tm="tmux new-session -A -s main"
 
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
@@ -131,3 +132,6 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
 
+
+export NVM_DIR="/home/ball6847/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
