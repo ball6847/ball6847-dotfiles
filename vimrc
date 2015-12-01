@@ -103,6 +103,7 @@ set number
 set t_Co=256
 set cursorline
 set modeline
+set backupcopy=yes
 colorscheme molokai
 filetype plugin on
 
