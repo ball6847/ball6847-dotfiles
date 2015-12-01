@@ -132,6 +132,5 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
 
-
-export NVM_DIR="/home/ball6847/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="/home/ball6847/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
