@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+USER=`whoami`
+
+echo "Hello, $USER."
+echo "This script will do several things on your computer, so take a cup of coffee and chill."
+echo "Updating system."
+
+sudo apt-get update  > /dev/null && sudo apt-get upgrade -y > /dev/null
+
+# update ssh
+echo "Updating ssh keys and configurations"
+
+git -C ~/.ssh pull origin master > /dev/null
+
+echo "Updating dotfiles"
+
+git -C ~/dotfiles pull origin master > /dev/null
