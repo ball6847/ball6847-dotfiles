@@ -8,13 +8,13 @@ echo "Hello, $USER."
 echo "This script will do several things on your computer, so take a cup of coffee and chill."
 echo "Updating system."
 
-sudo apt-get update  > /dev/null && sudo apt-get upgrade -y > /dev/null
+sudo apt-get update && sudo apt-get upgrade -y
 
 # update ssh
 echo "Updating ssh keys and configurations"
 
-git -C ~/.ssh pull origin master > /dev/null
+git -C ~/.ssh pull origin master
 
 echo "Updating dotfiles"
 
-git -C ~/dotfiles pull origin master > /dev/null
+git -C ~/dotfiles pull origin master
