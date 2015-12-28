@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="profile bashrc vimrc zshrc bang tmux.conf eslintrc.json"    # list of files/folders to symlink in homedir
+files="profile bashrc vimrc zshrc bang tmux.conf eslintrc.json pip/pip.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -24,10 +24,21 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
+    basedir="$(dirname $file)"
+
+    if [[ "$basedir" != "." ]]; then
+        [ ! -d $olddir/$basedir ] && mkdir -p $olddir/$basedir
+        [ ! -d ~/.$basedir ] && mkdir -p ~/.$basedir
+    fi
+
+    # backup to $olddir if neccessary
     echo "Moving any existing dotfiles from ~ to $olddir"
-    mv ~/.$file ~/dotfiles_old/
+
+    [ -f ~/.$file ] && mv -f ~/.$file $olddir/$file
+
+    # create link at home directory
     echo "Creating symlink to $file in home directory."
-    ln -s $dir/$file ~/.$file
+    ln -sf $dir/$file ~/.$file
 done
 
 # link any files in ~/dotfiles/.vim/ to $HOME/.vim/
@@ -35,6 +46,6 @@ mkdir -p $olddir/.vim/
 
 for d in $dir/.vim/*; do
     dirname=$(basename $d)
-    mv $HOME/.vim/$dirname $olddir/.vim/
-    ln -s $d $HOME/.vim/$dirname
+    mv -f $HOME/.vim/$dirname $olddir/.vim/
+    ln -sf $d $HOME/.vim/$dirname
 done
