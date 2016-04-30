@@ -7,7 +7,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
-export ZSHH_CUSTOM=$SUDO_HOME/dotfiles/zsh_custom
+export ZSHH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -57,7 +57,7 @@ ZSH_THEME="bira"
 plugins=(git nvm virtualenv-prompt docker screen)
 
 # i dont know why, but zsh-syntax-highlighting need to activate here
-source $SUDO_HOME/dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $SUDO_HOME/.dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -74,11 +74,7 @@ export LANG=en_US.UTF-8
 
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-else
-    export EDITOR='gvim'
-fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
