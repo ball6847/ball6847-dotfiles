@@ -106,6 +106,7 @@ alias x="docker exec -it"
 alias tm="tmux new-session -A -s main"
 alias nginx-proxy-reload="docker exec -it nginx-proxy /generate.sh"
 alias clipboard="xsel --clipboard"
+alias software-update="sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y"
 
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
