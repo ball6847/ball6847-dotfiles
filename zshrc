@@ -121,6 +121,13 @@ export NODE_ENV=development
 #export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
 export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
+
+
+# to hear sound from input device
+# sudo apt-get install linux-kernel-lowlatency to reduce latency
+pactl load-module module-loopback latency_msec=1 > /dev/null 2&>1
+
+
 #use docker on tcp
 #export DOCKER_HOST="tcp://127.0.0.1:2375"
 
