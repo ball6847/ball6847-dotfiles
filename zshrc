@@ -127,7 +127,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
-pactl load-module module-loopback latency_msec=1 > /dev/null 2&>1
+pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1
 
 
 #use docker on tcp
