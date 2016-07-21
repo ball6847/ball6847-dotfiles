@@ -58,6 +58,7 @@ plugins=(git nvm virtualenv-prompt docker screen)
 
 # i dont know why, but zsh-syntax-highlighting need to activate here
 source $SUDO_HOME/.dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $SUDO_HOME/.dotfiles/zsh_custom/plugins/autoenv/autoenv.plugin.zsh
 
 # User configuration
 
