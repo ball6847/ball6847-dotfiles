@@ -200,7 +200,7 @@ vnoremap <S-Tab> <gv
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,css,less,json,jade,javascript setl sw=4 sts=4 et
+autocmd FileType coffee,css,less,json,jade,javascript,yml,yaml setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
