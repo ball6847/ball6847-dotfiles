@@ -108,6 +108,7 @@ alias nginx-proxy-reload="docker exec -it nginx-proxy /generate.sh"
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
+alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
 
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
