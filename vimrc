@@ -30,8 +30,9 @@ Plugin 'gmarik/Vundle.vim'
 " other bundles
 
 Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-git'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'tpope/vim-git'
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'itchyny/lightline.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -48,7 +49,7 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'scrooloose/syntastic'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'dkprice/vim-easygrep'
+"Plugin 'dkprice/vim-easygrep'
 Plugin 'vim-scripts/upAndDown'
 Plugin 'embear/vim-localvimrc'
 Plugin 'godlygeek/tabular'
@@ -57,7 +58,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
 "Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
+"Plugin 'mileszs/ack.vim' " make sure you have ack installed on your system use `sudo apt-get install ack-grep` to install it
 Plugin 'gregsexton/MatchTag'
 Plugin 'tmhedberg/matchit'
 Plugin 'Chiel92/vim-autoformat'
@@ -79,7 +80,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
 " additional colorscheme
-Plugin 'stulzer/heroku-colorscheme'
+"Plugin 'stulzer/heroku-colorscheme'
 
 " taglist.vim needs exuberant-ctags package installed
 " run (sudo apt-get install exuberant-ctags) to install the package
@@ -200,7 +201,7 @@ vnoremap <S-Tab> <gv
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,css,less,json,jade,javascript,yml,yaml setl sw=2 sts=2 et
+autocmd FileType coffee,css,less,jade,javascript,yml,yaml setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
