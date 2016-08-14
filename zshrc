@@ -112,6 +112,8 @@ alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
 alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
 
+
+export TERM=xterm-256color
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
 export PYTHONPATH=/usr/bin/python
