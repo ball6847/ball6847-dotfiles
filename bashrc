@@ -121,6 +121,3 @@ export NVM_DIR="/home/ball6847/.nvm"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-if [ $SHELL == "/bin/bash" ]; then
-    tmux new-session -A -s main
-fi
