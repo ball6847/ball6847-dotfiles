@@ -7,14 +7,16 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
-export ZSHH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
+export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="bira"
+#ZSH_THEME="bira"
+ZSH_THEME="dst"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,21 +56,17 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm virtualenv-prompt docker screen)
-
-# i dont know why, but zsh-syntax-highlighting need to activate here
-source $SUDO_HOME/.dotfiles/zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $SUDO_HOME/.dotfiles/zsh_custom/plugins/autoenv/autoenv.plugin.zsh
+plugins=(zsh-syntax-highlighting autoenv docker-compose)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/Application/google_appengine/:${SUDO_HOME}/.local/bin"
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/Application/google_appengine/:${SUDO_HOME}/.local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # activate nvm silently
-nvm use stable &> /dev/null
+#nvm use stable &> /dev/null
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -132,7 +130,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
-pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1
+#pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1
 
 
 #use docker on tcp
@@ -147,4 +145,4 @@ fi
 #export NVM_DIR="/home/ball6847/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
