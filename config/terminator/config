@@ -1,0 +1,22 @@
+[global_config]
+  title_font = Monaco 11
+  title_use_system_font = False
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#300a24"
+    background_darkness = 1.03
+    background_image = None
+    font = Monaco 11
+    foreground_color = "#ffffff"
+    split_to_group = True
+    use_system_font = False
