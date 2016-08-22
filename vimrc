@@ -105,7 +105,7 @@ set t_Co=256
 set cursorline
 set modeline
 set backupcopy=yes
-colorscheme molokai
+"colorscheme molokai
 filetype plugin on
 
 let mapleader=','
