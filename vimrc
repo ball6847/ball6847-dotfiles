@@ -36,6 +36,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
@@ -265,6 +266,20 @@ let g:nerdtree_tabs_open_on_console_startup=0
 nmap <silent> <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>n :NERDTreeOpen .<CR>
 
+" nerdtree git
+set shell=sh
+let g:NERDTreeIndicatorMapCustom = {
+\ "Modified"  : "✹",
+\ "Staged"    : "✚",
+\ "Untracked" : "✭",
+\ "Renamed"   : "➜",
+\ "Unmerged"  : "═",
+\ "Deleted"   : "✖",
+\ "Dirty"     : "✗",
+\ "Clean"     : "✔︎",
+\ "Unknown"   : "?"
+\}
+
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
 
@@ -282,10 +297,10 @@ if has("gui_running")
     if has("gui_gtk2")
         "colorscheme badwolf
         set guifont=Monaco\ 11
-        vmap <C-c> "+yi
-        vmap <C-x> "+c
-        vmap <C-v> c<ESC>"+p
-        imap <C-v> <C-r><C-o>+
+        "vmap <C-c> "+yi
+        "vmap <C-x> "+c
+        "vmap <C-v> c<ESC>"+p
+        "imap <C-v> <C-r><C-o>+
     endif
 endif
 " -------------------------------------------------
