@@ -295,12 +295,12 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        "colorscheme badwolf
+        colorscheme badwolf
         set guifont=Monaco\ 11
-        "vmap <C-c> "+yi
-        "vmap <C-x> "+c
-        "vmap <C-v> c<ESC>"+p
-        "imap <C-v> <C-r><C-o>+
+        vmap <C-c> "+yi
+        vmap <C-x> "+c
+        vmap <C-v> c<ESC>"+gP
+        imap <C-v> <C-r><C-o>+
     endif
 endif
 " -------------------------------------------------
