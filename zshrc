@@ -125,6 +125,8 @@ export NODE_ENV=development
 #export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
 export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 
+export GOPATH=$HOME/go
+
 
 
 # to hear sound from input device
