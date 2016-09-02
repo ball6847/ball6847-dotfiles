@@ -199,6 +199,9 @@ vnoremap <S-Tab> <gv
 :command W w
 :command Q q
 
+
+
+autocmd BufRead,BufNewFile *.cnf set filetype=dosini " treat .cnf as dosini, eg my.cnf
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
