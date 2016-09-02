@@ -124,7 +124,7 @@ export NODE_ENV=development
 
 #export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
 export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
-export ANSIBLE_INVENTORY=~/ansible_hosts
+export ANSIBLE_INVENTORY=~/.ansible/hosts
 
 
 
