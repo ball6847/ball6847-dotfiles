@@ -8,7 +8,7 @@
     use_system_font = False
     split_to_group = True
     foreground_color = "#ffffff"
-    font = DejaVu Sans Mono 11
+    font = Consolas 11
     background_color = "#300a24"
 [layouts]
   [[default]]
