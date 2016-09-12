@@ -1,1 +1,2 @@
 export DISPLAY=:0
+export BASH_ON_WINDOWS=1

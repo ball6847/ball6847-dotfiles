@@ -91,6 +91,10 @@ Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+" import useful environment variables
+let bash_on_windows=$BASH_ON_WINDOWS
+
 " ------------------------------------------------
 " general options
 
@@ -305,7 +309,15 @@ if has("gui_running")
         vmap <C-v> c<ESC>"+gP
         imap <C-v> <C-r><C-o>+
     endif
+
+    if bash_on_windows == '1'
+        set guifont=Consolas\ 11
+    endif
 endif
+
+
+
+
 " -------------------------------------------------
 " vdebug - dbgp server configuration
 

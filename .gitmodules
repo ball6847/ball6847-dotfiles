@@ -7,3 +7,9 @@
 [submodule "zsh_custom/plugins/autoenv"]
 	path = zsh_custom/plugins/autoenv
 	url = https://github.com/horosgrisa/autoenv
+[submodule "zsh_custom/completions/ansible-zsh-completion"]
+	path = zsh_custom/completions/ansible-zsh-completion
+	url = https://github.com/nojanath/ansible-zsh-completion.git
+[submodule "zsh_custom/plugins/ansible-zsh-completion"]
+	path = zsh_custom/plugins/ansible-zsh-completion
+	url = https://github.com/nojanath/ansible-zsh-completion.git
