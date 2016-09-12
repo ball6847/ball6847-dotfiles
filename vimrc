@@ -110,6 +110,7 @@ set t_Co=256
 set cursorline
 set modeline
 set backupcopy=yes
+set noswapfile
 "colorscheme molokai
 filetype plugin on
 
