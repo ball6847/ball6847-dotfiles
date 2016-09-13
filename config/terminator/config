@@ -8,6 +8,7 @@
     use_system_font = False
     split_to_group = True
     font = Consolas 11
+    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
