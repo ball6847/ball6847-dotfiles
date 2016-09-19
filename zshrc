@@ -109,6 +109,7 @@ alias clipboard="xsel --clipboard"
 alias software-update="sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
+alias ap="ansible-playbook"
 alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
 
 
