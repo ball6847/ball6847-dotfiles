@@ -311,9 +311,9 @@ if has("gui_running")
         imap <C-v> <C-r><C-o>+
     endif
 
-    if bash_on_windows == '1'
-        set guifont=Consolas\ 11
-    endif
+    "if bash_on_windows == '1'
+        "set guifont=Consolas\ 11
+    "endif
 endif
 
 

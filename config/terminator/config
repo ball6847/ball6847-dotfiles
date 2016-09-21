@@ -6,11 +6,12 @@
 [profiles]
   [[default]]
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
-    background_image = None
-    background_darkness = 0.06
     use_system_font = False
+    background_darkness = 0.06
+    active_encodings = TIS-620, UTF-8, ISO-8859-1
     split_to_group = True
-    font = Consolas 11
+    background_image = None
+    font = DejaVu Sans Mono 11
     scrollback_infinite = True
 [layouts]
   [[default]]
