@@ -1,4 +1,5 @@
 [global_config]
+  always_split_with_profile = True
 [keybindings]
 [layouts]
   [[default]]
