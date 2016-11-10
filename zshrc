@@ -62,6 +62,7 @@ plugins=(zsh-syntax-highlighting autoenv docker-compose)
 # User configuration
 
 #export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/Application/google_appengine/:${SUDO_HOME}/.local/bin"
+export PATH="$SUDO_HOME/.local/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -106,7 +107,7 @@ alias x="docker-compose exec"
 alias tm="tmux new-session -A -s main"
 alias nginx-proxy-reload="docker exec -it nginx-proxy /generate.sh"
 alias clipboard="xsel --clipboard"
-alias software-update="sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y"
+alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
 alias ap="ansible-playbook"
