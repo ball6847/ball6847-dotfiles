@@ -73,6 +73,11 @@ Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'isRuslan/vim-es6'
+Plugin 'maxbrunsfeld/typescript-vim'
+
+" custom colorscheme
+Plugin 'crusoexia/vim-monokai'
 
 " snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -210,7 +215,7 @@ autocmd BufRead,BufNewFile *.cnf set filetype=dosini " treat .cnf as dosini, eg 
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType coffee,css,less,jade,javascript,yml,yaml setl sw=2 sts=2 et
+autocmd FileType coffee,css,less,jade,javascript,typescript,yml,yaml setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
@@ -303,8 +308,8 @@ endif
 
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme badwolf
-        "set guifont=Courier\ New\ 11
+        colorscheme molokai
+        set guifont=Monospace\ 13
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+gP
