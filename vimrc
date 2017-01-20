@@ -257,6 +257,7 @@ let g:syntastic_coffee_coffeelint_exec='coffeelint'
 let g:syntastic_coffee_coffeelint_args='-f ~/.coffeelint.json'
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_javascript_jshint_exec='jshint'
+let g:syntastic_mode_map = { 'passive_filetypes': ['typescript']  }
 
 " ------------------------------------------------
 " vim-coffee-script, auto compile *.coffee to *.js on buffer written
