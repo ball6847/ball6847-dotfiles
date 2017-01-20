@@ -13,10 +13,12 @@
 [profiles]
   [[default]]
     active_encodings = TIS-620, UTF-8, ISO-8859-1
-    background_darkness = 0.06
+    background_color = "#1a1a1a"
+    background_darkness = 0.78
     background_image = None
     font = DejaVu Sans Mono 11
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
+    foreground_color = "#cacaca"
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     scrollback_infinite = True
     split_to_group = True
     use_system_font = False

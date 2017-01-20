@@ -29,6 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 " ------------------------------------------------
 " other bundles
 
+Plugin 'mhinz/vim-hugefile'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'tpope/vim-git'
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -309,7 +310,7 @@ endif
 if has("gui_running")
     if has("gui_gtk2")
         colorscheme molokai
-        set guifont=Monospace\ 13
+        set guifont=Monospace\ 12
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+gP
