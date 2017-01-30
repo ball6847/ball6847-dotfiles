@@ -29,6 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 " ------------------------------------------------
 " other bundles
 
+Plugin 'mhinz/vim-hugefile'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'tpope/vim-git'
 "Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
