@@ -310,7 +310,7 @@ endif
 if has("gui_running")
     if has("gui_gtk2")
         colorscheme molokai
-        set guifont=Monospace\ 13
+        set guifont=Monospace\ 11
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+gP
