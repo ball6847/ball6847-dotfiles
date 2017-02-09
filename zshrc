@@ -96,23 +96,19 @@ alias ls="ls --color --group-directories-first"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 #alias vim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 #alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
-alias a2reload="sudo service apache2 reload"
-alias a2restart="sudo service apache2 restart"
-alias maildump="${SUDO_HOME}/Apps/maildump/.venv/bin/maildump"
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
 alias gp="git push"
 alias x="docker-compose exec"
 alias tm="tmux new-session -A -s main"
-alias nginx-proxy-reload="docker exec -it nginx-proxy /generate.sh"
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
 alias ap="ansible-playbook"
 alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
-
+alias connect-iphone="sudo usbmuxd -u -U usbmux"
 
 export TERM=xterm-256color
 export APACHE_LOG_DIR=/var/log/apache2
