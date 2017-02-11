@@ -67,9 +67,6 @@ export PATH="$SUDO_HOME/.local/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# activate nvm silently
-#nvm use stable &> /dev/null
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -154,5 +151,8 @@ fi
 
 export NVM_DIR="$SUDO_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# activate nvm silently
+nvm use stable > /dev/null
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
