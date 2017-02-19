@@ -1,6 +1,7 @@
 umask 022
 
 # Link for nana/flat themes - https://github.com/nana-4/Flat-Plat
+# Link for Roboto Web Fonts (including Thai) - https://www.thaitux.info/node/751
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
