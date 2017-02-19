@@ -1,16 +1,6 @@
 [global_config]
   always_split_with_profile = True
 [keybindings]
-[profiles]
-  [[default]]
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
-    use_system_font = False
-    background_darkness = 0.06
-    active_encodings = TIS-620, UTF-8, ISO-8859-1
-    split_to_group = True
-    background_image = None
-    font = DejaVu Sans Mono 11
-    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -20,3 +10,14 @@
       parent = ""
       type = Window
 [plugins]
+[profiles]
+  [[default]]
+    active_encodings = TIS-620, UTF-8, ISO-8859-1
+    background_color = "#002b36"
+    background_darkness = 0.06
+    background_image = None
+    font = Monaco 10
+    foreground_color = "#839496"
+    login_shell = True
+    scrollback_infinite = True
+    split_to_group = True

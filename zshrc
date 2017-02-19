@@ -1,5 +1,7 @@
 umask 022
 
+# Link for nana/flat themes - https://github.com/nana-4/Flat-Plat
+
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
     SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
