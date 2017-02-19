@@ -107,6 +107,10 @@ alias ap="ansible-playbook"
 alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
 alias connect-iphone="sudo usbmuxd -u -U usbmux"
 
+# to hear sound from input device
+# sudo apt-get install linux-kernel-lowlatency to reduce latency
+alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1"
+
 export TERM=xterm-256color
 export APACHE_LOG_DIR=/var/log/apache2
 export APACHE_WWW_DIR=${SUDO_HOME}/www/
@@ -123,8 +127,8 @@ export NODE_ENV=development
 export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 export ANSIBLE_INVENTORY=~/.ansible/hosts
 
+# GOLANG
 export GOPATH=$HOME/go
-
 
 # set git common configuration
 git config --global user.email "ball6847@gmail.com"
@@ -135,10 +139,11 @@ git config --global push.default simple
 
 
 
-# to hear sound from input device
-# sudo apt-get install linux-kernel-lowlatency to reduce latency
-#pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1
+export NVM_DIR="$SUDO_HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# activate nvm silently
+nvm use stable > /dev/null
 
 #use docker on tcp
 #export DOCKER_HOST="tcp://127.0.0.1:2375"
@@ -148,11 +153,3 @@ git config --global push.default simple
 if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
-
-export NVM_DIR="$SUDO_HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# activate nvm silently
-nvm use stable > /dev/null
-
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
