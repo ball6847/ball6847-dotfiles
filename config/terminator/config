@@ -1,9 +1,14 @@
 [global_config]
   always_split_with_profile = True
+  enabled_plugins = ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
   scroll_tabbar = True
   title_font = Roboto Web 11
   title_hide_sizetext = True
 [keybindings]
+  group_all = None
+  group_all_toggle = <Super>g
+  group_tab = None
+  group_tab_toggle = <Super>t
 [layouts]
   [[default]]
     [[[child1]]]
