@@ -5,9 +5,9 @@ umask 022
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
-    SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
+  SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
 else
-    SUDO_HOME=$HOME
+  SUDO_HOME=$HOME
 fi
 
 # Path to your oh-my-zsh installation.
@@ -154,5 +154,5 @@ nvm use stable > /dev/null
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
-    source $SUDO_HOME/.lzshrc
+  source $SUDO_HOME/.lzshrc
 fi
