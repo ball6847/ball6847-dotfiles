@@ -13,6 +13,7 @@
   [[default]]
     [[[child1]]]
       parent = window0
+      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
@@ -30,6 +31,7 @@
     login_shell = True
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
     scrollback_infinite = True
+    show_titlebar = False
     split_to_group = True
     urgent_bell = True
     use_system_font = False
