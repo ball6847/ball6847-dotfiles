@@ -91,11 +91,11 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#alias ls="ls -lX --color --group-directories-first"
-alias ls="ls --color --group-directories-first"
-alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
+
 #alias vim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
 #alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
+alias ls="ls --color --group-directories-first"
+alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
