@@ -4,3 +4,4 @@
 [core]
 	autocrlf = false
 	fileMode = true
+	eol = lf
