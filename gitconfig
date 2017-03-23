@@ -1,7 +1,13 @@
 [user]
 	email = ball6847@gmail.com
-	name = Porawit Poboonma555
+	name = Porawit Poboonma
 [core]
 	autocrlf = false
 	fileMode = true
 	eol = lf
+[merge]
+	tool = meld
+[mergetool]
+	keepBackup = false
+[push]
+	default = simple
