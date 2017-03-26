@@ -1,0 +1,10 @@
+# For the benefit of emacs users: -*- shell-script -*-
+
+"xbindkeys_show" 
+  control+shift + q
+
+"xdotool set_desktop --relative -- 1"
+  b:9
+
+"xdotool set_desktop --relative -- -1"
+  b:8

@@ -19,6 +19,7 @@ files="
     yarnrc
     bang
     gitconfig
+    xbindkeysrc
     tmux.conf
     eslintrc.json
     pip/pip.conf
