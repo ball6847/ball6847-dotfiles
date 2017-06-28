@@ -132,7 +132,9 @@ export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
 export ANSIBLE_INVENTORY=~/.ansible/hosts
 
 # GOLANG
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
+
+export PATH="$GOPATH/bin:$PATH"
 
 # set git common configuration
 git config --global user.email "ball6847@gmail.com"
