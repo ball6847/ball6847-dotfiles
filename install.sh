@@ -16,7 +16,6 @@ files="
     bash_aliases
     vimrc
     zshrc
-    yarnrc
     bang
     gitconfig
     xbindkeysrc
