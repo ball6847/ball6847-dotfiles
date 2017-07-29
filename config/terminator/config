@@ -11,13 +11,23 @@
   group_tab_toggle = <Super>t
 [layouts]
   [[default]]
-    [[[child1]]]
-      parent = window0
-      profile = default
-      type = Terminal
-    [[[window0]]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 9a5a8527-36b7-4244-b443-8f55c36b2c6f
+      last_active_window = True
+      maximised = True
+      order = 0
       parent = ""
+      position = 0:27
+      size = 1920, 953
+      title = ball6847@ubuntu: ~
       type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = Monokai Vivid
+      type = Terminal
+      uuid = 9a5a8527-36b7-4244-b443-8f55c36b2c6f
 [plugins]
 [profiles]
   [[default]]
@@ -26,7 +36,7 @@
     background_color = "#002b36"
     background_darkness = 0.94
     background_image = None
-    font = DejaVu Sans Mono 11
+    font = DejaVu Sans Mono 10
     foreground_color = "#839496"
     login_shell = True
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
@@ -40,5 +50,6 @@
     background_color = "#121212"
     background_image = None
     cursor_color = "#fb0007"
+    font = DejaVu Sans Mono 10
     foreground_color = "#f9f9f9"
     palette = "#121212:#fa2934:#98e123:#fff30a:#0443ff:#f800f8:#01b6ed:#ffffff:#838383:#f6669d:#b1e05f:#fff26d:#0443ff:#f200f6:#51ceff:#ffffff"
