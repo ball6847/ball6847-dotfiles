@@ -149,7 +149,7 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # activate nvm silently
-nvm use stable > /dev/null
+$(nvm use stable > /dev/null&);
 
 #use docker on tcp
 #export DOCKER_HOST="tcp://127.0.0.1:2375"
