@@ -108,8 +108,8 @@ alias software-update="sudo apt update && sudo apt upgrade -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
 alias ap="ansible-playbook"
-alias update-coke="ssh laamped.com -t bash -c \"~/www/cocacola/bin/update\""
 alias connect-iphone="sudo usbmuxd -u -U usbmux"
+alias dig="dig +nocmd +multiline +noall +answer"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
