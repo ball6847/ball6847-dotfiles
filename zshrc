@@ -61,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting autoenv docker-compose)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions autoenv docker-compose)
 
 # User configuration
 
@@ -143,6 +143,8 @@ git config --global merge.tool meld
 git config --global mergetool.keepBackup false
 git config --global push.default simple
 
+# use ctrl+space to accept suggesstion (zsh-autosuggestions)
+bindkey '^ ' autosuggest-accept
 
 
 export NVM_DIR="$SUDO_HOME/.nvm"
