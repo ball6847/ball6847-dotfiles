@@ -50,7 +50,7 @@
     background_color = "#121212"
     background_image = None
     cursor_color = "#fb0007"
-    font = Liberation Mono 13
+    font = Liberation Mono 11
     foreground_color = "#f9f9f9"
     palette = "#121212:#fa2934:#98e123:#fff30a:#0443ff:#f800f8:#01b6ed:#ffffff:#838383:#f6669d:#b1e05f:#fff26d:#0443ff:#f200f6:#51ceff:#ffffff"
     use_system_font = False
