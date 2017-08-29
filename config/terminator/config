@@ -43,7 +43,6 @@
     scrollback_infinite = True
     show_titlebar = False
     split_to_group = True
-    urgent_bell = True
     use_system_font = False
     visible_bell = True
   [[Monokai Vivid]]
@@ -54,6 +53,4 @@
     font = Consolas 12
     foreground_color = "#f9f9f9"
     palette = "#121212:#fa2934:#98e123:#fff30a:#0443ff:#f800f8:#01b6ed:#ffffff:#838383:#f6669d:#b1e05f:#fff26d:#0443ff:#f200f6:#51ceff:#ffffff"
-    urgent_bell = True
     use_system_font = False
-    visible_bell = True
