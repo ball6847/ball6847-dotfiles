@@ -19,7 +19,6 @@ ZSH_THEME="robbyrussell"
 #ZSH_THEME="bira"
 #ZSH_THEME="avit"
 
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -101,13 +100,6 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 
 # Finalize executable path
 export PATH="$SUDO_HOME/.local/bin:$GOPATH/bin:$PATH"
-
-# set git common configuration
-git config --global user.email "ball6847@gmail.com"
-git config --global user.name "Porawit Poboonma"
-git config --global merge.tool meld
-git config --global mergetool.keepBackup false
-git config --global push.default simple
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
