@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# install common softwares used by this suite
+sudo apt install direnv
+
+which npm | npm install -g bang
