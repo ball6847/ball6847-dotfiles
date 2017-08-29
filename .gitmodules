@@ -19,3 +19,6 @@
 [submodule "zsh_custom/plugins/zsh-autosuggestions"]
 	path = zsh_custom/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule "zsh_custom/plugins/zsh-wakatime"]
+	path = zsh_custom/plugins/zsh-wakatime
+	url = git@github.com:wbinglee/zsh-wakatime.git
