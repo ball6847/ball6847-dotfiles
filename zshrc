@@ -1,8 +1,5 @@
 umask 022
 
-# Link for nana/flat themes - https://github.com/nana-4/Flat-Plat
-# Link for Roboto Web Fonts (including Thai) - https://www.thaitux.info/node/751
-
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
   SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
@@ -64,37 +61,10 @@ ZSH_THEME="robbyrussell"
 plugins=(zsh-syntax-highlighting zsh-autosuggestions autoenv docker-compose zsh-wakatime)
 
 # User configuration
-
-#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${SUDO_HOME}/.composer/vendor/bin:${SUDO_HOME}/Application/google_appengine/:${SUDO_HOME}/.local/bin"
-export PATH="$SUDO_HOME/.local/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-
-
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#alias vim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
-#alias gvim="${SUDO_HOME}/dotfiles/scripts/start_gvim_maximized"
+alias vim="$SUDO_HOME/.dotfiles/scripts/start_gvim_maximized"
+alias gvim="$SUDO_HOME/.dotfiles/scripts/start_gvim_maximized"
 alias ls="ls --color --group-directories-first"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias gs="git status"
@@ -115,26 +85,22 @@ alias dig="dig +nocmd +multiline +noall +answer"
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
 alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1"
 
+# General environment variable
+export LANG=en_US.UTF-8
+export EDITOR='vim'
 export TERM=xterm-256color
-export APACHE_LOG_DIR=/var/log/apache2
-export APACHE_WWW_DIR=${SUDO_HOME}/www/
-export PYTHONPATH=/usr/bin/python
 
 # Setup wine prefix, use win32
 export WINEARCH=win32
-export WINEPREFIX=${SUDO_HOME}/.wine
+export WINEPREFIX=$SUDO_HOME/.wine
 
-# Node environment = development by default
+# Specific programming language environment
+export GOPATH=$SUDO_HOME/.go
 export NODE_ENV=development
+export NVM_DIR="$SUDO_HOME/.nvm"
 
-#export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_25/
-export JAVA_HOME=/usr/lib/jvm/jdk-8u5-tuxjdk-b08/
-export ANSIBLE_INVENTORY=~/.ansible/hosts
-
-# GOLANG
-export GOPATH=$HOME/.go
-
-export PATH="$GOPATH/bin:$PATH"
+# Finalize executable path
+export PATH="$SUDO_HOME/.local/bin:$GOPATH/bin:$PATH"
 
 # set git common configuration
 git config --global user.email "ball6847@gmail.com"
@@ -146,15 +112,10 @@ git config --global push.default simple
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
 
+# ================================================
 
-export NVM_DIR="$SUDO_HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# activate nvm silently
-$(nvm use stable > /dev/null&);
-
-#use docker on tcp
-#export DOCKER_HOST="tcp://127.0.0.1:2375"
+# activate nvm and use stable by version by default
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && $(nvm use stable > /dev/null&);
 
 # load local zsh script
 # keep this at bottom of this file
