@@ -57,13 +57,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions autoenv docker-compose zsh-wakatime)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime)
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
 
-alias vim="$SUDO_HOME/.dotfiles/scripts/start_gvim_maximized"
-alias gvim="$SUDO_HOME/.dotfiles/scripts/start_gvim_maximized"
+alias vim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
+alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias ls="ls --color --group-directories-first"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias gs="git status"
@@ -93,21 +93,17 @@ export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 
-# Specific programming language environment
-export GOPATH=$SUDO_HOME/.go
-export NODE_ENV=development
-export NVM_DIR="$SUDO_HOME/.nvm"
-
-# Finalize executable path
-export PATH="$SUDO_HOME/.local/bin:$GOPATH/bin:$PATH"
-
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
 
 # ================================================
 
 # activate nvm and use stable by version by default
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && $(nvm use stable > /dev/null&);
+export NVM_DIR="$SUDO_HOME/.nvm"
+alias load-nvm=". $NVM_DIR/nvm.sh"
+
+# direnv hook for zsh
+which direnv > /dev/null && eval "$(direnv hook zsh)"
 
 # load local zsh script
 # keep this at bottom of this file

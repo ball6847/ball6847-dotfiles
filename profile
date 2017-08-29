@@ -1,4 +1,3 @@
-
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -24,22 +23,10 @@ fi
 
 # start customization
 
-alias ls='ls -h --color --group-directories-first'
-alias install="sudo apt-get install"
-alias search="apt-cache search"
-
-alias ga="git add -A"
-alias gcm="git commit -am"
-alias gp="git push origin master"
-
-export NVM_DIR="/home/ball6847/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads NVM_DIR
 
-export PATH="$PATH:$HOME/.composer/vendor/bin"
+export GOPATH=$HOME/.go
+export PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
 
 export DOTPROFILE_LOADED=1
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
