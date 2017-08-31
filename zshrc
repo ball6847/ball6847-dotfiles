@@ -80,6 +80,10 @@ alias ap="ansible-playbook"
 alias connect-iphone="sudo usbmuxd -u -U usbmux"
 alias dig="dig +nocmd +multiline +noall +answer"
 
+ssh-tmux() {
+  ssh "$@" tmux new-session -A -s main
+}
+
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
 alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1"
