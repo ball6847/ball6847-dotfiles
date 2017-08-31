@@ -81,7 +81,7 @@ alias connect-iphone="sudo usbmuxd -u -U usbmux"
 alias dig="dig +nocmd +multiline +noall +answer"
 
 ssh-tmux() {
-  ssh "$@" tmux new-session -A -s main
+  ssh -t "$@" tmux new-session -A -s main
 }
 
 # to hear sound from input device
