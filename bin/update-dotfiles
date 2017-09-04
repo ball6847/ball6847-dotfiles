@@ -14,7 +14,7 @@ run_on_dirty() {
   if [ -n "$(git -C "$1" status --porcelain)" ]; then 
     "${@:2}"
   else 
-    echo "nothing changes";
+    echo "no changes";
   fi
 }
 
