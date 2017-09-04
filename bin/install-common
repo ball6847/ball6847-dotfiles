@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # install common softwares used by this suite
-sudo apt install direnv xdotool xbindkeys
+sudo apt install direnv xdotool xbindkeys wmctrl
 
 which npm | npm install -g bang yarn eslint@3.x babel-eslint@7
