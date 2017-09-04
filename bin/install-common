@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # install common softwares used by this suite
-sudo apt install direnv
+sudo apt install direnv xdotool xbindkeys
 
-which npm | npm install -g bang
+which npm | npm install -g bang yarn eslint@3.x babel-eslint@7
