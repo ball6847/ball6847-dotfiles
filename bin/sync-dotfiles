@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+COLOR='\033[0;32m'
+NC='\033[0m' # No Color
+
+print_color_ln() {
+  printf "${COLOR}${1}:${NC}\n"
+}
+
+run_on_dirty() {
+  if [ -n "$(git -C "$1" status --porcelain)" ]; then 
+    "${@:2}"
+  else 
+    echo "no changes";
+  fi
+}
+
+git_push() {
+  git -C "$1" add -A
+  git -C "$1" commit -m "update `date`"
+  git -C "$1" push origin master
+}
+
+# start, pull update first, then push
+print_color_ln "~/.ssh"
+git -C ~/.ssh pull origin master
+run_on_dirty ~/.ssh git_push ~/.ssh
+
+print_color_ln "~/.fonts"
+git -C ~/.fonts pull origin master
+run_on_dirty ~/.fonts git_push ~/.fonts
+
+print_color_ln "~/.dotfiles"
+git -C ~/.dotfiles pull origin master
+git -C ~/.dotfiles submodule update --init
+git -C ~/.dotfiles submodule sync
+run_on_dirty ~/.dotfiles git_push ~/.dotfiles
