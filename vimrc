@@ -308,10 +308,11 @@ if has('unix')
     cnoremap w!! %!sudo tee > /dev/null %
 endif
 
+colorscheme molokai
+set guifont=Consolas\ 12
+
 if has("gui_running")
     if has("gui_gtk2")
-        colorscheme molokai
-        set guifont=Consolas\ 12
         vmap <C-c> "+yi
         vmap <C-x> "+c
         vmap <C-v> c<ESC>"+gP

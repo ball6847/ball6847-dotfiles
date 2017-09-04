@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# install common softwares used by this suite
+sudo apt install \
+    direnv \
+    xdotool \
+    xbindkeys \
+    wmctrl \
+    python-dev \
+    python-pip
+
+which npm | npm install -g \
+    bang \
+    yarn \
+    eslint@3.x \
+    babel-eslint@7 \
+    http-server
+
+sudo pip install -U \
+    pip \
+    virtualenv \
+    httpie \
+    docker-compose
+
+# please note that ansible and its dependencies should be used in virtualenv
+# since its syntax is highly depends on ansible specific version

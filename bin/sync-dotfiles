@@ -11,14 +11,16 @@ print_red_ln() {
   printf "${RED}${1}:${NC}\n"
 }
 
+# run command only when working directory contain changes
 run_on_dirty() {
-  if [ -n "$(git -C "$1" status --porcelain)" ]; then 
+  if [ -n "$(git -C "$1" status --porcelain)" ]; then
     "${@:2}"
-  else 
+  else
     print_red_ln "(no changes)";
   fi
 }
 
+# add all changes files, commit with current time and push to remote
 git_push() {
   git -C "$1" add -A
   git -C "$1" commit -m "update `date`"
