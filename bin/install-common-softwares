@@ -27,3 +27,7 @@ sudo pip install -U \
 
 # please note that ansible and its dependencies should be used in virtualenv
 # since its syntax is highly depends on ansible specific version
+
+
+wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.5.0/php-cs-fixer.phar -O ~/.local/bin/php-cs-fixer
+chmod +x ~/.local/bin/php-cs-fixer
