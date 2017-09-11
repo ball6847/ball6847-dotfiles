@@ -58,7 +58,14 @@ ZSH_THEME="cloud"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime zsh_reload)
+
+# the zsh-completions.plugin.zsh seems not working
+# so, we manually add plugin to $fpath to enable completions the plugin provides
+fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
+
+# init zsh-completions
+autoload -U compinit && compinit
 
 # User configuration
 source $ZSH/oh-my-zsh.sh

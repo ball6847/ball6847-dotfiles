@@ -22,3 +22,6 @@
 [submodule "zsh_custom/plugins/zsh-wakatime"]
 	path = zsh_custom/plugins/zsh-wakatime
 	url = git@github.com:wbinglee/zsh-wakatime.git
+[submodule "zsh_custom/plugins/zsh-completions"]
+	path = zsh_custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
