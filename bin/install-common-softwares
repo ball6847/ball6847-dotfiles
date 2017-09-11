@@ -18,7 +18,8 @@ which npm | npm install -g \
     yarn \
     eslint@3.x \
     babel-eslint@7 \
-    http-server
+    http-server \
+    leasot
 
 sudo pip install -U \
     pip \
