@@ -116,6 +116,17 @@ alias load-nvm=". $NVM_DIR/nvm.sh"
 # direnv hook for zsh
 which direnv > /dev/null && eval "$(direnv hook zsh)"
 
+# show virtualenv if available
+show_virtual_env() {
+  if [ -n "$VIRTUAL_ENV" ]; then
+    echo "($(basename $VIRTUAL_ENV))"
+  fi
+}
+
+PS1='$(show_virtual_env)'$PS1
+
+
+
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
