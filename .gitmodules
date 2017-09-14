@@ -15,13 +15,13 @@
 	url = https://github.com/nojanath/ansible-zsh-completion.git
 [submodule "base16-gnome-terminal"]
 	path = base16-gnome-terminal
-	url = git@github.com:chriskempson/base16-gnome-terminal.git
+    url = https://github.com/chriskempson/base16-gnome-terminal.git
 [submodule "zsh_custom/plugins/zsh-autosuggestions"]
 	path = zsh_custom/plugins/zsh-autosuggestions
-	url = git@github.com:zsh-users/zsh-autosuggestions.git
+    url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "zsh_custom/plugins/zsh-wakatime"]
 	path = zsh_custom/plugins/zsh-wakatime
-	url = git@github.com:wbinglee/zsh-wakatime.git
+    url = https://github.com/wbinglee/zsh-wakatime.git
 [submodule "zsh_custom/plugins/zsh-completions"]
 	path = zsh_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
