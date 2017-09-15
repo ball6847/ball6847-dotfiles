@@ -126,6 +126,9 @@ show_virtual_env() {
 PS1='$(show_virtual_env)'$PS1
 
 
+export GOPATH=$HOME/.go
+export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
+
 
 # load local zsh script
 # keep this at bottom of this file
