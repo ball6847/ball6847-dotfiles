@@ -15,9 +15,9 @@ else
 fi
 
 TARGET_DIR=$PWD
-#TMPDIR=$(mktemp -d)
+TMPDIR=$(mktemp -d)
 
 
-#cd $TMPDIR
-#wget -qO- "https://github.com/$GITHUB_REPO/archive/master.tar.gz" | tar -zx --strip-components=1
-#mv $TMPDIR $TARGET_DIR/$TARGET_NAME
+cd $TMPDIR
+wget -qO- "https://github.com/$GITHUB_REPO/archive/master.tar.gz" | tar -zx --strip-components=1
+mv $TMPDIR $TARGET_DIR/$TARGET_NAME
