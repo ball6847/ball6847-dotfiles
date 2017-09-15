@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+if [ -z $1 ]; then
+    echo "skel-hub - download and extract github tarball
+Usage: $0 user/repo [project]"
+    exit 1
+fi
+
+GITHUB_REPO=$1
+
+if [ -z $2 ]; then
+    TARGET_NAME=$(basename $GITHUB_REPO)
+else
+    TARGET_NAME="$2"
+fi
+
+TARGET_DIR=$PWD
+#TMPDIR=$(mktemp -d)
+
+
+#cd $TMPDIR
+#wget -qO- "https://github.com/$GITHUB_REPO/archive/master.tar.gz" | tar -zx --strip-components=1
+#mv $TMPDIR $TARGET_DIR/$TARGET_NAME
