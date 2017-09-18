@@ -116,6 +116,8 @@ alias load-nvm=". $NVM_DIR/nvm.sh"
 # direnv hook for zsh
 which direnv > /dev/null && eval "$(direnv hook zsh)"
 
+
+
 # show virtualenv if available
 show_virtual_env() {
   if [ -n "$VIRTUAL_ENV" ]; then
@@ -123,7 +125,8 @@ show_virtual_env() {
   fi
 }
 
-PS1='$(show_virtual_env)'$PS1
+#PS1='$(show_virtual_env)'$PS1
+PS1='$(show_virtual_env) $FG[154]$USER@%M%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
 
 export GOPATH=$HOME/.go
