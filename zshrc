@@ -125,8 +125,8 @@ show_virtual_env() {
   fi
 }
 
-#PS1='$(show_virtual_env)'$PS1
-PS1='$(show_virtual_env) $FG[154]$USER@%M%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+PS_USER_MACHINE=$FG[154]$USER'@%M'
+PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
 
 export GOPATH=$HOME/.go
