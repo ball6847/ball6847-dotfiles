@@ -57,3 +57,8 @@ for d in $dir/.vim/*; do
     mv -f $HOME/.vim/$dirname $olddir/.vim/
     ln -sf $d $HOME/.vim/$dirname
 done
+
+
+
+# add dns for development
+sudo ln -s $HOME/.dotfiles/dev-dns /etc/NetworkManager/dnsmasq.d/dev-dns
