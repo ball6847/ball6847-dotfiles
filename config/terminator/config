@@ -52,4 +52,5 @@
     cursor_color = "#fb0007"
     font = Consolas 12
     foreground_color = "#f9f9f9"
+    scrollback_infinite = True
     use_system_font = False
