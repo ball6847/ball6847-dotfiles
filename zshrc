@@ -20,6 +20,11 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 #ZSH_THEME="avit"
 ZSH_THEME="cloud"
 
+if [[ "$VSCODE_CLI" == "1" ]]; then
+    ZSH_THEME="bira"
+fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -126,9 +131,10 @@ show_virtual_env() {
   fi
 }
 
-PS_USER_MACHINE=$FG[154]$USER'@%M'
-PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-
+if [[ "$VSCODE_CLI" != "1" ]]; then
+    PS_USER_MACHINE=$FG[154]$USER'@%M'
+    PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+fi
 
 export GOPATH=$HOME/.go
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
