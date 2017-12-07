@@ -50,7 +50,7 @@
     background_color = "#121212"
     background_image = None
     cursor_color = "#fb0007"
-    font = Consolas 12
+    font = Liberation Mono 10
     foreground_color = "#f9f9f9"
     scrollback_infinite = True
     use_system_font = False
