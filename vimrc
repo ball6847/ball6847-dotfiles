@@ -309,7 +309,8 @@ if has('unix')
 endif
 
 colorscheme molokai
-set guifont=Consolas\ 12
+"set guifont=Consolas\ 12
+set guifont=Liberation\ Mono\ 10
 
 if has("gui_running")
     if has("gui_gtk2")
