@@ -76,22 +76,28 @@ autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
-alias ls="ls --color --group-directories-first"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
+alias clipboard="xsel --clipboard"
+alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
+alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
+alias connect-iphone="sudo usbmuxd -u -U usbmux"
+alias dig="dig +nocmd +multiline +noall +answer"
+alias ls="ls --color --group-directories-first"
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
 alias gco="git checkout"
 alias gp="git push -u"
-alias x="docker-compose exec"
 alias tm="tmux new-session -A -s main"
-alias clipboard="xsel --clipboard"
-alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
-alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias dc="docker-compose"
+alias x="docker-compose exec"
 alias ap="ansible-playbook"
-alias connect-iphone="sudo usbmuxd -u -U usbmux"
-alias dig="dig +nocmd +multiline +noall +answer"
+alias li="npx lerna init --independent && npm install && echo node_modules > .gitignore"
+alias lb="npx lerna bootstrap --hoist"
+alias la="npx lerna add --hoist"
+alias lr="npx lerna run --stream"
+alias lx="npx lerna exec --stream"
+alias lu="lpx lerna updated"
 
 ssh-tmux() {
   ssh -t "$@" tmux new-session -A -s main
