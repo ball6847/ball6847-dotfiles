@@ -8,7 +8,7 @@ mplayer -ao null $1 -vo jpeg:outdir=/tmp/ogv_to_gif
 
 # Convert images to animated gif
 echo "Converting images folder to gif..."
-convert -loop 1 /tmp/ogv_to_gif/* /tmp/ogv_to_gif.gif
+convert -loop 0 /tmp/ogv_to_gif/* /tmp/ogv_to_gif.gif
 
 # Final filename
 original_filename=$1
