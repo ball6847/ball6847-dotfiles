@@ -145,9 +145,12 @@ fi
 export GOPATH=$HOME/.go
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
 
+# set up gvm
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
   source $SUDO_HOME/.lzshrc
 fi
+
