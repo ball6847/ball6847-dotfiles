@@ -98,6 +98,7 @@ alias la="npx lerna add --hoist"
 alias lr="npx lerna run --stream"
 alias lx="npx lerna exec --stream"
 alias lu="npx lerna updated"
+alias t="tusk"
 
 ssh-tmux() {
   ssh -t "$@" tmux new-session -A -s main
