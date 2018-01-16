@@ -99,6 +99,7 @@ alias lr="npx lerna run --stream"
 alias lx="npx lerna exec --stream"
 alias lu="npx lerna updated"
 alias t="tusk"
+alias run="runner"
 
 ssh-tmux() {
   ssh -t "$@" tmux new-session -A -s main
