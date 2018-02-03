@@ -145,10 +145,11 @@ if [[ "$VSCODE_CLI" != "1" ]]; then
     PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 fi
 
-export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
-
-# set up gvm
+# set up gvm, will move ~/.profile later
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+export GOPATH="$GOPATH:$HOME/www/__gopath__"
+export PATH="$HOME/www/__gopath__/bin:$HOME/.dotfiles/bin:$HOME/.local/bin:$HOME/.composer/vendor/bin:$PATH"
 
 # load local zsh script
 # keep this at bottom of this file
