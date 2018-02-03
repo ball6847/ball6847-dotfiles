@@ -146,6 +146,7 @@ if [[ "$VSCODE_CLI" != "1" ]]; then
 fi
 
 export GOPATH=$HOME/.go
+export GOBIN=$GOPATH/bin
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
 
 # set up gvm
