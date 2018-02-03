@@ -145,8 +145,6 @@ if [[ "$VSCODE_CLI" != "1" ]]; then
     PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 fi
 
-export GOPATH=$HOME/.go
-export GOBIN=$GOPATH/bin
 export PATH="$HOME/.dotfiles/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/.composer/vendor/bin:$PATH"
 
 # set up gvm
