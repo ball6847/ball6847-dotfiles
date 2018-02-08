@@ -16,13 +16,13 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="random"
-#ZSH_THEME="bira"
+ZSH_THEME="bira"
 #ZSH_THEME="avit"
-ZSH_THEME="cloud"
+# ZSH_THEME="cloud"
 
-if [[ "$VSCODE_CLI" == "1" ]]; then
-    ZSH_THEME="bira"
-fi
+# if [[ -n "$VSCODE_PID" ]]; then
+#     ZSH_THEME="bira"
+# fi
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -140,10 +140,10 @@ show_virtual_env() {
   fi
 }
 
-if [[ "$VSCODE_CLI" != "1" ]]; then
-    PS_USER_MACHINE=$FG[154]$USER'@%M'
-    PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-fi
+# if [[ -z "$VSCODE_PID" ]]; then
+#     PS_USER_MACHINE=$FG[154]$USER'@%M'
+#     PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+# fi
 
 # set up gvm, will move ~/.profile later
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
