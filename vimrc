@@ -117,6 +117,7 @@ set cursorline
 set modeline
 set backupcopy=yes
 set noswapfile
+set t_ut=
 "colorscheme molokai
 filetype plugin on
 
@@ -216,7 +217,7 @@ autocmd BufRead,BufNewFile *.cnf set filetype=dosini " treat .cnf as dosini, eg 
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css,php inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 autocmd FileType html,smarty setl sw=2 sts=2 et
-autocmd FileType ruby,coffee,css,less,jade,javascript,typescript,yml,yaml setl sw=2 sts=2 et
+autocmd FileType ruby,coffee,css,less,jade,javascript,typescript,yml,yaml,json setl sw=2 sts=2 et
 "autocmd FileType smarty so /home/ball6847/.vim/bundle/MatchTag/ftplugin/html.vim
 "autocmd BufEnter * colorscheme heroku
 "autocmd BufEnter *.tpl colorscheme molokai
