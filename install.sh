@@ -10,7 +10,6 @@ files="
     bash_aliases
     vimrc
     zshrc
-    bang
     gitconfig
     xbindkeysrc
     tmux.conf
