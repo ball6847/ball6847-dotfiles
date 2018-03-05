@@ -118,6 +118,7 @@ export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 
+export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
 
