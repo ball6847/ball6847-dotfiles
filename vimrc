@@ -39,7 +39,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 "Plugin 'jistr/vim-nerdtree-tabs'
-"Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'chrisbra/improvedft'
@@ -80,6 +80,7 @@ Plugin 'maxbrunsfeld/typescript-vim'
 " custom colorscheme
 Plugin 'crusoexia/vim-monokai'
 
+Plugin 'prettier/vim-prettier'
 " snipmate
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -123,6 +124,11 @@ filetype plugin on
 
 let mapleader=','
 let g:vim_json_syntax_conceal = 0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
 
 " ------------------------------------------------
 " powerline options
@@ -310,8 +316,8 @@ if has('unix')
 endif
 
 colorscheme molokai
-"set guifont=Consolas\ 12
-set guifont=Liberation\ Mono\ 10
+set guifont=Consolas\ 12
+"set guifont=Fira\ Code\ 10
 
 if has("gui_running")
     if has("gui_gtk2")
