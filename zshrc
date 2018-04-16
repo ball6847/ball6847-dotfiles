@@ -15,15 +15,7 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="random"
 ZSH_THEME="bira"
-#ZSH_THEME="avit"
-# ZSH_THEME="cloud"
-
-# if [[ -n "$VSCODE_PID" ]]; then
-#     ZSH_THEME="bira"
-# fi
-
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -75,6 +67,19 @@ autoload -U compinit && compinit
 # User configuration
 source $ZSH/oh-my-zsh.sh
 
+# ================================================
+# activate various command line tool
+
+# nvm
+[[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
+
+# direnv
+which direnv > /dev/null && eval "$(direnv hook zsh)"
+
+# gvm
+[[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
+
+# set up bash alias
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias clipboard="xsel --clipboard"
@@ -92,14 +97,13 @@ alias tm="tmux new-session -A -s main"
 alias dc="docker-compose"
 alias x="docker-compose exec"
 alias ap="ansible-playbook"
-alias li="npx lerna init --independent && npm install && echo node_modules > .gitignore"
-alias lb="npx lerna bootstrap"
-alias la="npx lerna add"
-alias lr="npx lerna run --stream"
-alias lx="npx lerna exec --stream"
-alias lu="npx lerna updated"
+alias li="lerna init --independent && npm install && echo node_modules > .gitignore"
+alias lb="lerna bootstrap"
+alias la="lerna add"
+alias lr="lerna run --stream"
+alias lx="lerna exec --stream"
+alias lu="lerna updated"
 alias r="runner"
-alias run="runner"
 alias k="kubectl"
 alias kl="kubectl logs"
 alias kg="kubectl get"
@@ -116,37 +120,29 @@ alias kdf="kubectl delete -f"
 alias kc="kubectl create -f"
 alias ka="kubectl apployy -f"
 
-ssh-tmux() {
-  ssh -t "$@" tmux new-session -A -s main
-}
-
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
 alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1"
+
+ssh-tmux() {
+  ssh -t "$@" tmux new-session -A -s main
+}
 
 # General environment variable
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 export TERM=xterm-256color
-
-# Setup wine prefix, use win32
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
+export GOPATH="$GOPATH:$SUDO_HOME/www/__gopath__"
+export PATH="$SUDO_HOME/www/__gopath__/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
+export NVM_DIR="$SUDO_HOME/.nvm"
+
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
 
 # ================================================
-
-# activate nvm and use stable by version by default
-export NVM_DIR="$SUDO_HOME/.nvm"
-alias load-nvm=". $NVM_DIR/nvm.sh"
-
-# direnv hook for zsh
-which direnv > /dev/null && eval "$(direnv hook zsh)"
-
-
 
 # show virtualenv if available
 show_virtual_env() {
@@ -155,20 +151,10 @@ show_virtual_env() {
   fi
 }
 
-# if [[ -z "$VSCODE_PID" ]]; then
-#     PS_USER_MACHINE=$FG[154]$USER'@%M'
-#     PS1='$(show_virtual_env) $PS_USER_MACHINE%{$fg_bold[green]%}%p %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
-# fi
-
-# set up gvm, will move ~/.profile later
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-export GOPATH="$GOPATH:$HOME/www/__gopath__"
-export PATH="$HOME/www/__gopath__/bin:$HOME/.dotfiles/bin:$HOME/.local/bin:$HOME/.composer/vendor/bin:$PATH"
+# ================================================
 
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
   source $SUDO_HOME/.lzshrc
 fi
-
