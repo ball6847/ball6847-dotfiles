@@ -13,15 +13,12 @@
 " jshint          | javascript linter                      | npm install -g jshint
 " ================================================================================================
 
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -64,7 +61,7 @@ Plugin 'haya14busa/incsearch.vim'
 "Plugin 'gregsexton/MatchTag'
 "Plugin 'tmhedberg/matchit'
 "Plugin 'Chiel92/vim-autoformat'
-"Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 Plugin 'elzr/vim-json'
 "Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'terryma/vim-expand-region'
@@ -211,13 +208,10 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
-
-
 
 autocmd BufRead,BufNewFile *.cnf set filetype=dosini " treat .cnf as dosini, eg my.cnf
 autocmd FileType javascript,css,php nmap <silent> ,; :call cosco#commaOrSemiColon()<CR>
@@ -236,10 +230,7 @@ let g:formatprg_smarty = "html-beautify"
 let g:formatprg_args_expr_smarty = '"-f - -s ".&shiftwidth'
 noremap <F3> :Autoformat<CR><CR>
 
-
-
 vnoremap <C-3> <leader>cl
-
 
 " highlight words while we are moving cursor
 "autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -315,9 +306,10 @@ if has('unix')
     cnoremap w!! %!sudo tee > /dev/null %
 endif
 
-colorscheme molokai
-set guifont=Consolas\ 12
-"set guifont=Fira\ Code\ 10
+"colorscheme molokai
+colorscheme dracula
+" set guifont=Consolas\ 12
+set guifont=Fira\ Code\ 10
 
 if has("gui_running")
     if has("gui_gtk2")
@@ -331,9 +323,6 @@ if has("gui_running")
         "set guifont=Consolas\ 11
     "endif
 endif
-
-
-
 
 " -------------------------------------------------
 " vdebug - dbgp server configuration
