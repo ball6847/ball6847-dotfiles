@@ -81,6 +81,7 @@ which direnv > /dev/null && eval "$(direnv hook zsh)"
 
 # set up bash alias
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
+alias vim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
