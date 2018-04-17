@@ -78,6 +78,7 @@ Plugin 'maxbrunsfeld/typescript-vim'
 Plugin 'crusoexia/vim-monokai'
 
 Plugin 'prettier/vim-prettier'
+
 " snipmate
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -90,6 +91,12 @@ Plugin 'prettier/vim-prettier'
 " taglist.vim needs exuberant-ctags package installed
 " run (sudo apt-get install exuberant-ctags) to install the package
 "Plugin 'vim-scripts/taglist.vim'
+
+" typescript plugins
+Plugin 'Quramy/tsuquyomi'
+
+
+" ------------------------------------------------
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -309,7 +316,7 @@ endif
 "colorscheme molokai
 colorscheme dracula
 " set guifont=Consolas\ 12
-set guifont=Fira\ Code\ 10
+set guifont=Fira\ Code\ 11
 
 if has("gui_running")
     if has("gui_gtk2")
