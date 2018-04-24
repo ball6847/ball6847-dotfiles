@@ -55,7 +55,7 @@ ZSH_THEME="bira"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime zsh_reload)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime zsh_reload alias-tips)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -80,6 +80,7 @@ which direnv > /dev/null && eval "$(direnv hook zsh)"
 [[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
 
 # set up bash alias
+alias c="clear"
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 #alias vim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
@@ -142,6 +143,7 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
+#bindkey '^@' autosuggest-toggle
 
 # ================================================
 
