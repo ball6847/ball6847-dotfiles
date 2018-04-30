@@ -154,6 +154,10 @@ show_virtual_env() {
   fi
 }
 
+# make sure you correctly set /etc/security/limits.conf
+# @see: https://askubuntu.com/questions/162229/how-do-i-increase-the-open-files-limit-for-a-non-root-user
+ulimit -Sn 4096
+
 # ================================================
 
 # load local zsh script
