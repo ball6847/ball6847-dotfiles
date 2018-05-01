@@ -70,16 +70,24 @@ source $ZSH/oh-my-zsh.sh
 # ================================================
 # activate various command line tool
 
-# nvm
-[[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
+# loaded nvm if neccessary
+if ! which node > /dev/null; then
+    [[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
+fi
 
-# direnv
-which direnv > /dev/null && eval "$(direnv hook zsh)"
+# set direnv hooks if it already installed
+if which direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
 
-# gvm
-[[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
+# load gvm if neccessary
+if ! which go > /dev/null; then
+    [[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
+fi
 
+# ================================================
 # set up bash alias
+
 alias c="clear"
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 #alias vim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
@@ -145,6 +153,9 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 bindkey '^ ' autosuggest-accept
 #bindkey '^@' autosuggest-toggle
 
+# 10ms for key sequences
+KEYTIMEOUT=1
+
 # ================================================
 
 # show virtualenv if available
@@ -154,6 +165,7 @@ show_virtual_env() {
   fi
 }
 
+# in large project tslint requires a lot of ulimit
 # make sure you correctly set /etc/security/limits.conf
 # @see: https://askubuntu.com/questions/162229/how-do-i-increase-the-open-files-limit-for-a-non-root-user
 ulimit -Sn 4096

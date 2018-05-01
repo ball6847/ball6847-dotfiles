@@ -123,6 +123,7 @@ set modeline
 set backupcopy=yes
 set noswapfile
 set t_ut=
+set timeoutlen=1000 ttimeoutlen=0 " remove deday on esc key
 "colorscheme molokai
 filetype plugin on
 
