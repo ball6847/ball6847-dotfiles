@@ -315,21 +315,17 @@ if has('unix')
 endif
 
 "colorscheme molokai
-colorscheme dracula
 " set guifont=Consolas\ 12
-set guifont=Fira\ Code\ 11
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+gP
+imap <C-v> <C-r><C-o>+
 
 if has("gui_running")
     if has("gui_gtk2")
-        vmap <C-c> "+yi
-        vmap <C-x> "+c
-        vmap <C-v> c<ESC>"+gP
-        imap <C-v> <C-r><C-o>+
+        colorscheme dracula
+        set guifont=Fira\ Code\ 11
     endif
-
-    "if bash_on_windows == '1'
-        "set guifont=Consolas\ 11
-    "endif
 endif
 
 " -------------------------------------------------

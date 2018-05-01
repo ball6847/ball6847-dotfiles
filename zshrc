@@ -89,6 +89,8 @@ fi
 # set up bash alias
 
 alias c="clear"
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 #alias vim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
@@ -152,6 +154,11 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
 #bindkey '^@' autosuggest-toggle
+
+# fix up/down broken in tmux
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 
 # 10ms for key sequences
 KEYTIMEOUT=1
