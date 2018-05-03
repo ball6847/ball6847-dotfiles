@@ -50,7 +50,9 @@
     background_color = "#121212"
     background_image = None
     cursor_color = "#fb0007"
+    custom_command = /usr/bin/tmux
     font = Fira Code 11
     foreground_color = "#f9f9f9"
     scrollback_infinite = True
+    use_custom_command = True
     use_system_font = False
