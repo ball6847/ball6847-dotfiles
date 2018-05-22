@@ -1,30 +1,34 @@
 [submodule "zsh_custom/plugins/virtualenv-prompt"]
-	path = zsh_custom/plugins/virtualenv-prompt
-	url = https://github.com/tonyseek/oh-my-zsh-virtualenv-prompt.git
+    path = zsh_custom/plugins/virtualenv-prompt
+    url = https://github.com/tonyseek/oh-my-zsh-virtualenv-prompt.git
 [submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
-	path = zsh_custom/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+    path = zsh_custom/plugins/zsh-syntax-highlighting
+    url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh_custom/plugins/autoenv"]
-	path = zsh_custom/plugins/autoenv
-	url = https://github.com/horosgrisa/autoenv
+    path = zsh_custom/plugins/autoenv
+    url = https://github.com/horosgrisa/autoenv
 [submodule "zsh_custom/completions/ansible-zsh-completion"]
-	path = zsh_custom/completions/ansible-zsh-completion
-	url = https://github.com/nojanath/ansible-zsh-completion.git
+    path = zsh_custom/completions/ansible-zsh-completion
+    url = https://github.com/nojanath/ansible-zsh-completion.git
 [submodule "zsh_custom/plugins/ansible-zsh-completion"]
-	path = zsh_custom/plugins/ansible-zsh-completion
-	url = https://github.com/nojanath/ansible-zsh-completion.git
+    path = zsh_custom/plugins/ansible-zsh-completion
+    url = https://github.com/nojanath/ansible-zsh-completion.git
 [submodule "base16-gnome-terminal"]
-	path = base16-gnome-terminal
+    path = base16-gnome-terminal
     url = https://github.com/chriskempson/base16-gnome-terminal.git
 [submodule "zsh_custom/plugins/zsh-autosuggestions"]
-	path = zsh_custom/plugins/zsh-autosuggestions
+    path = zsh_custom/plugins/zsh-autosuggestions
     url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "zsh_custom/plugins/zsh-wakatime"]
-	path = zsh_custom/plugins/zsh-wakatime
+    path = zsh_custom/plugins/zsh-wakatime
     url = https://github.com/wbinglee/zsh-wakatime.git
 [submodule "zsh_custom/plugins/zsh-completions"]
-	path = zsh_custom/plugins/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
+    path = zsh_custom/plugins/zsh-completions
+    url = https://github.com/zsh-users/zsh-completions.git
 [submodule "zsh_custom/plugins/alias-tips"]
-	path = zsh_custom/plugins/alias-tips
-	url = https://github.com/djui/alias-tips.git
+    path = zsh_custom/plugins/alias-tips
+    url = https://github.com/djui/alias-tips.git
+[submodule "gnome-shell-extensions/workspaces-to-dock"]
+    path = gnome-shell-extensions/workspaces-to-dock
+    url = https://github.com/passingthru67/workspaces-to-dock.git
+    branch = ubuntu-18.04

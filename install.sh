@@ -57,7 +57,9 @@ for d in $dir/.vim/*; do
     ln -sf $d $HOME/.vim/$dirname
 done
 
-
+# temp fix for workspaces2dock
+# TODO: always stay tune for extensions update on ubuntu 18.04
+ln -sf $dir/gnome-shell-extensions/workspaces-to-dock/workspaces-to-dock@passingthru67.gmail.com $HOME/.local/share/gnome-shell/extensions/workspaces-to-dock@passingthru67.gmail.com
 
 # add dns for development
 sudo ln -s $HOME/.dotfiles/dev-dns /etc/NetworkManager/dnsmasq.d/dev-dns
