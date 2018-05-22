@@ -131,6 +131,8 @@ alias kdd="kubectl describe deployment"
 alias kdf="kubectl delete -f"
 alias kc="kubectl create -f"
 alias ka="kubectl apply -f"
+alias webcam-enable="sudo modprobe -a uvcvideo"
+alias webcam-disable="sudo modprobe -r uvcvideo"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
