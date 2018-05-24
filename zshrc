@@ -2,9 +2,9 @@ umask 022
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
-  SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
+    SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
 else
-  SUDO_HOME=$HOME
+    SUDO_HOME=$HOME
 fi
 
 # Path to your oh-my-zsh installation.
@@ -86,6 +86,19 @@ if ! which go > /dev/null; then
 fi
 
 # ================================================
+
+# General environment variable
+export LANG=en_US.UTF-8
+export EDITOR='vim'
+export TERM=xterm-256color
+export WINEARCH=win32
+export WINEPREFIX=$SUDO_HOME/.wine
+export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
+export GOPATH="$GOPATH:$SUDO_HOME/www/__gopath__"
+export PATH="$SUDO_HOME/www/__gopath__/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
+export NVM_DIR="$SUDO_HOME/.nvm"
+
+# ================================================
 # set up bash alias
 
 alias c="clear"
@@ -134,35 +147,15 @@ alias kc="kubectl create -f"
 alias ka="kubectl apply -f"
 alias webcam-enable="sudo modprobe -a uvcvideo"
 alias webcam-disable="sudo modprobe -r uvcvideo"
+alias direnv-init-node="(echo \"layout node\" > .envrc) && direnv allow"
+alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
+alias load-nvm="source $NVM_DIR/nvm.sh"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
 alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/null 2>&1"
 
-ssh-tmux() {
-  ssh -t "$@" tmux new-session -A -s main
-}
-
-envrc-node() {
-  echo "layout node" > .envrc
-  direnv allow
-}
-
-envrc-python() {
-  echo "layout python" > .envrc
-  direnv allow
-}
-
-# General environment variable
-export LANG=en_US.UTF-8
-export EDITOR='vim'
-export TERM=xterm-256color
-export WINEARCH=win32
-export WINEPREFIX=$SUDO_HOME/.wine
-export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
-export GOPATH="$GOPATH:$SUDO_HOME/www/__gopath__"
-export PATH="$SUDO_HOME/www/__gopath__/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
-export NVM_DIR="$SUDO_HOME/.nvm"
+# ================================================
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
@@ -172,18 +165,10 @@ bindkey '^ ' autosuggest-accept
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-
 # 10ms for key sequences
 KEYTIMEOUT=1
 
 # ================================================
-
-# show virtualenv if available
-show_virtual_env() {
-  if [ -n "$VIRTUAL_ENV" ]; then
-    echo "($(basename $VIRTUAL_ENV))"
-  fi
-}
 
 # in large project tslint requires a lot of ulimit
 # make sure you correctly set /etc/security/limits.conf
@@ -192,8 +177,21 @@ ulimit -Sn 4096
 
 # ================================================
 
+# show virtualenv if available
+show_virtual_env() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        echo "($(basename $VIRTUAL_ENV))"
+    fi
+}
+
+ssh-tmux() {
+    ssh -t "$@" tmux new-session -A -s main
+}
+
+# ================================================
+
 # load local zsh script
 # keep this at bottom of this file
 if [ -f $SUDO_HOME/.lzshrc ]; then
-  source $SUDO_HOME/.lzshrc
+    source $SUDO_HOME/.lzshrc
 fi
