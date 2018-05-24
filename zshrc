@@ -98,6 +98,7 @@ alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
 alias connect-iphone="sudo usbmuxd -u -U usbmux"
+alias fix-mic-noise="wget -qO - https://bit.ly/2mBJSJo | sudo bash && pulseaudio -k"
 alias dig="dig +nocmd +multiline +noall +answer"
 alias ls="ls --color --group-directories-first"
 alias gs="git status"
@@ -140,6 +141,16 @@ alias load-loopback="pactl load-module module-loopback latency_msec=1 > /dev/nul
 
 ssh-tmux() {
   ssh -t "$@" tmux new-session -A -s main
+}
+
+envrc-node() {
+  echo "layout node" > .envrc
+  direnv allow
+}
+
+envrc-python() {
+  echo "layout python" > .envrc
+  direnv allow
 }
 
 # General environment variable
