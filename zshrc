@@ -87,6 +87,14 @@ fi
 
 # ================================================
 
+
+# You must manually link gopath from gvm to generic path
+#
+# mkdir $HOME/.go
+# ln -s $HOME/.gvm/gos/go1.10.2/bin $HOME/.go/gobin
+# ln -s $HOME/.gvm/pkgsets/go1.10.2/global $HOME/.go/gopath
+
+
 # General environment variable
 export LANG=en_US.UTF-8
 export EDITOR='vim'
@@ -94,8 +102,8 @@ export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
-export GOPATH="$GOPATH:$SUDO_HOME/www/__gopath__"
-export PATH="$SUDO_HOME/www/__gopath__/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
+export GOPATH="$GOPATH:$SUDO_HOME/www/__gopath__:$SUDO_HOME/.go/gopath"
+export PATH="$SUDO_HOME/www/__gopath__/bin:$SUDO_HOME/.go/gobin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
 export NVM_DIR="$SUDO_HOME/.nvm"
 
 # ================================================
