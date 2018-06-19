@@ -15,7 +15,9 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+#ZSH_THEME="bira"
+#ZSH_THEME="random"
+ZSH_THEME="intheloop"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -105,6 +107,7 @@ alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
+alias rmpy='find . | grep -E "(__pycache__|\.pyc$)" | xargs rm -rf'
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
 alias docker-rm-all="sh -c 'docker rm -f \$(docker ps -aq)'"
