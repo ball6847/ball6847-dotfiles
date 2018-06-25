@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# it will be truely natural scroll if it set to 0
+xinput set-prop 10 280 0

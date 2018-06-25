@@ -1,6 +1,6 @@
 # For the benefit of emacs users: -*- shell-script -*-
 
-"xbindkeys_show" 
+"xbindkeys_show"
   control+shift + q
 
 "xdotool set_desktop --relative -- 1"
@@ -8,3 +8,24 @@
 
 "xdotool set_desktop --relative -- -1"
   b:8
+
+# Lenovo Wireless Touchpad K5923
+
+# - 3 swipe left > go to next workspace
+"xdotool set_desktop --relative -- 1"
+  m:0x18 + c:113
+
+# - 3 swipe right > go to prev workspace
+"xdotool set_desktop --relative -- -1"
+  m:0x18 + c:114
+
+# - 3 swipe down > show activity
+#"xdotool key super"
+#  m:0x50 + c:133
+
+#"xdotool key super"
+#  m:0x10 + c:117
+
+# - 3 swipe up > show all application
+#"xdotool key super+a"
+#  m:0x10 + c:112
