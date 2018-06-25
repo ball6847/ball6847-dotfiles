@@ -105,7 +105,7 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 alias c="clear"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
-alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
+#alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias rmpy='find . | grep -E "(__pycache__|\.pyc$)" | xargs rm -rf'
 alias clipboard="xsel --clipboard"
@@ -154,6 +154,7 @@ alias direnv-init-node="(echo \"layout node\" > .envrc) && direnv allow"
 alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
 alias load-nvm="source $NVM_DIR/nvm.sh"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
+alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
