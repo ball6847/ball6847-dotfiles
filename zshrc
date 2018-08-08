@@ -199,3 +199,4 @@ ssh-tmux() {
 if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
+export AWS_VAULT_BACKEND=secret-service
