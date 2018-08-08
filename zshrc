@@ -103,6 +103,7 @@ export NVM_DIR="$SUDO_HOME/.nvm"
 # set up bash alias
 
 alias c="clear"
+alias f="thefuck"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 #alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
