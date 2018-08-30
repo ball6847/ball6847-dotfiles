@@ -1,58 +1,36 @@
 [global_config]
-  always_split_with_profile = True
-  enabled_plugins = ActivityWatch, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
-  scroll_tabbar = True
-  title_font = Roboto Web 11
-  title_hide_sizetext = True
+  enabled_plugins = TerminatorThemes, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
-  group_all = None
-  group_all_toggle = <Super>g
-  group_tab = None
-  group_tab_toggle = <Super>t
 [layouts]
   [[default]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 9a5a8527-36b7-4244-b443-8f55c36b2c6f
-      last_active_window = True
-      maximised = True
-      order = 0
-      parent = ""
-      position = 0:27
-      size = 1920, 953
-      title = ball6847@ubuntu: ~
-      type = Window
-    [[[terminal1]]]
-      order = 0
-      parent = child0
-      profile = Monokai Vivid
+    [[[child1]]]
+      parent = window0
+      profile = Argonaut
       type = Terminal
-      uuid = 9a5a8527-36b7-4244-b443-8f55c36b2c6f
+    [[[window0]]]
+      parent = ""
+      type = Window
 [plugins]
 [profiles]
   [[default]]
-    active_encodings = TIS-620, UTF-8, ISO-8859-1
-    audible_bell = True
-    background_color = "#002b36"
-    background_darkness = 0.94
-    background_image = None
-    font = DejaVu Sans Mono 10
-    foreground_color = "#839496"
-    login_shell = True
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
-    scrollback_infinite = True
-    show_titlebar = False
-    split_to_group = True
-    use_system_font = False
-    visible_bell = True
-  [[Monokai Vivid]]
-    audible_bell = True
-    background_color = "#121212"
-    background_image = None
-    cursor_color = "#fb0007"
-    custom_command = /usr/bin/tmux
-    font = Fira Code 11
-    foreground_color = "#f9f9f9"
-    scrollback_infinite = True
-    use_custom_command = True
-    use_system_font = False
+    cursor_color = "#aaaaaa"
+  [[Afterglow]]
+    background_color = "#212121"
+    cursor_color = "#d0d0d0"
+    foreground_color = "#d0d0d0"
+    palette = "#151515:#ac4142:#7e8e50:#e5b567:#6c99bb:#9f4e85:#7dd6cf:#d0d0d0:#505050:#ac4142:#7e8e50:#e5b567:#6c99bb:#9f4e85:#7dd6cf:#f5f5f5"
+  [[Argonaut]]
+    background_color = "#0e1019"
+    cursor_color = "#ff0018"
+    foreground_color = "#fffaf4"
+    palette = "#232323:#ff000f:#8ce10b:#ffb900:#008df8:#6d43a6:#00d8eb:#ffffff:#444444:#ff2740:#abe15b:#ffd242:#0092ff:#9a5feb:#67fff0:#ffffff"
+  [[AtomOneLight]]
+    background_color = "#f9f9f9"
+    cursor_color = "#bbbbbb"
+    foreground_color = "#2a2c33"
+    palette = "#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#950095:#3f953a:#bbbbbb:#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#a00095:#3f953a:#ffffff"
+  [[Azu]]
+    background_color = "#09111a"
+    cursor_color = "#d2e8fc"
+    foreground_color = "#d9e6f2"
+    palette = "#000000:#ac6d74:#74ac6d:#aca46d:#6d74ac:#a46dac:#6daca4:#e6e6e6:#262626:#d6b8bc:#bcd6b8:#d6d3b8:#b8bcd6:#d3b8d6:#b8d6d3:#ffffff"

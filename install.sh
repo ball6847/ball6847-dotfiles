@@ -15,7 +15,7 @@ files="
     tmux.conf
     eslintrc.json
     pip/pip.conf
-    config/terminator/config
+    config/terminator
     ansible.cfg
     coffeelint.json"
 
