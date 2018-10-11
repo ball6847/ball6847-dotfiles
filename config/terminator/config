@@ -1,6 +1,10 @@
 [global_config]
   enabled_plugins = TerminatorThemes, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
 [keybindings]
+  go_down = <Shift><Alt>Down
+  go_left = <Shift><Alt>Left
+  go_right = <Shift><Alt>Right
+  go_up = <Shift><Alt>Up
 [layouts]
   [[default]]
     [[[child1]]]
@@ -21,11 +25,15 @@
     palette = "#151515:#ac4142:#7e8e50:#e5b567:#6c99bb:#9f4e85:#7dd6cf:#d0d0d0:#505050:#ac4142:#7e8e50:#e5b567:#6c99bb:#9f4e85:#7dd6cf:#f5f5f5"
   [[Argonaut]]
     background_color = "#0e1019"
+    background_darkness = 0.9
+    background_type = transparent
     cursor_color = "#ff0018"
     foreground_color = "#fffaf4"
     palette = "#232323:#ff000f:#8ce10b:#ffb900:#008df8:#6d43a6:#00d8eb:#ffffff:#444444:#ff2740:#abe15b:#ffd242:#0092ff:#9a5feb:#67fff0:#ffffff"
   [[AtomOneLight]]
     background_color = "#f9f9f9"
+    background_darkness = 0.9
+    background_type = transparent
     cursor_color = "#bbbbbb"
     foreground_color = "#2a2c33"
     palette = "#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#950095:#3f953a:#bbbbbb:#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#a00095:#3f953a:#ffffff"

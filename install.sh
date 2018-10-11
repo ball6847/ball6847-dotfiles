@@ -8,6 +8,7 @@ files="
     profile
     bashrc
     bash_aliases
+    envrc
     vimrc
     zshrc
     gitconfig

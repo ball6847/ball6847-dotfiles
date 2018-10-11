@@ -96,7 +96,7 @@ export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
-export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$PATH"
+export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:$PATH"
 export NVM_DIR="$SUDO_HOME/.nvm"
 
 # ================================================
