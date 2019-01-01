@@ -156,6 +156,7 @@ alias load-nvm="source $NVM_DIR/nvm.sh"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias ngrok-angular="ngrok http 4200 -region=ap --host-header=rewrite"
+alias copy-mobi="mkdir -p ~/Documents/mobi/ && find . -name '*.mobi' -exec cp -f {} ~/Documents/mobi \\;"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
