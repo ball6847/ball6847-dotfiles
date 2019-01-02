@@ -98,6 +98,10 @@ export WINEPREFIX=$SUDO_HOME/.wine
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
 export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:$PATH"
 export NVM_DIR="$SUDO_HOME/.nvm"
+export GIT_AUTHOR_NAME="Porawit Poboonma"
+export GIT_AUTHOR_EMAIL="ball6847@gmail.com"
+export GIT_COMMITTER_NAME="Porawit Poboonma"
+export GIT_COMMITTER_EMAIL="ball6847@gmail.com"
 
 # ================================================
 # set up bash alias
