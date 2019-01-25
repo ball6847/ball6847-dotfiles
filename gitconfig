@@ -8,3 +8,5 @@
 	keepBackup = false
 [push]
 	default = current
+[alias]
+    untag = "!sh -c 'git tag -d $0 && git push origin :refs/tags/$0'"
