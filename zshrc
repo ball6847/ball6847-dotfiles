@@ -107,7 +107,8 @@ export GIT_COMMITTER_EMAIL="ball6847@gmail.com"
 # set up bash alias
 
 alias c="clear"
-alias f="thefuck"
+alias f='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 #alias gvim="$SUDO_HOME/.dotfiles/bin/start-gvim-maximized"
