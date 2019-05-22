@@ -164,6 +164,7 @@ alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyou
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias ngrok-angular="ngrok http 4200 -region=ap --host-header=rewrite"
 alias copy-mobi="mkdir -p ~/Documents/mobi/ && find . -name '*.mobi' -exec cp -f {} ~/Documents/mobi \\;"
+alias start-ng-clean="docker ps -aq --filter 'ancestor=ball6847/angular-dev-base:latest' --filter 'status=exited' | xargs --no-run-if-empty docker rm"
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
