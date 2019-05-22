@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  ng:
+    image: ball6847/angular-dev-base:latest
+    ports:
+      - 4200:4200
+    command: ng serve --host 0.0.0.0
