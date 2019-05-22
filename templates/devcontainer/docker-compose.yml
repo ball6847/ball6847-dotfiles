@@ -3,6 +3,14 @@ version: '3'
 services:
   ng:
     image: ball6847/angular-dev-base:latest
+    environment:
+      GIT_AUTHOR_NAME: Porawit Poboonma
+      GIT_AUTHOR_EMAIL: ball6847@gmail.com
+      GIT_COMMITTER_NAME_NAME: Porawit Poboonma
+      GIT_COMMITTER_EMAIL: ball6847@gmail.com
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/root/.gitconfig:ro
     ports:
       - 4200:4200
     command: ng serve --host 0.0.0.0
