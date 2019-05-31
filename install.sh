@@ -11,6 +11,7 @@ files="
     envrc
     vimrc
     zshrc
+    npmrc
     gitconfig
     xbindkeysrc
     tmux.conf
