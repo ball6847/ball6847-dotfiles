@@ -74,11 +74,6 @@ source $ZSH/oh-my-zsh.sh
 # ================================================
 # activate various command line tool
 
-# loaded nvm if neccessary
-if ! which node > /dev/null; then
-    [[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
-fi
-
 # set direnv hooks if it already installed
 if which direnv > /dev/null; then
     eval "$(direnv hook zsh)"
@@ -88,6 +83,17 @@ fi
 if ! which go > /dev/null; then
     [[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
 fi
+
+# load local zsh script
+if [ -f $SUDO_HOME/.lzshrc ]; then
+    source $SUDO_HOME/.lzshrc
+fi
+
+# loaded nvm if neccessary
+if ! which node > /dev/null; then
+    [[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
+fi
+
 
 # ================================================
 
@@ -205,9 +211,4 @@ ssh-tmux() {
 
 # ================================================
 
-# load local zsh script
-# keep this at bottom of this file
-if [ -f $SUDO_HOME/.lzshrc ]; then
-    source $SUDO_HOME/.lzshrc
-fi
 export AWS_VAULT_BACKEND=secret-service
