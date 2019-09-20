@@ -209,8 +209,6 @@ ssh-tmux() {
     ssh -t "$@" tmux new-session -A -s main
 }
 
-load-nvm
-
 # ================================================
 
 export AWS_VAULT_BACKEND=secret-service
