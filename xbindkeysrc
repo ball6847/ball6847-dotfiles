@@ -4,20 +4,20 @@
   control+shift + q
 
 "xdotool set_desktop --relative -- 1"
-  b:9
+  b:8
 
 "xdotool set_desktop --relative -- -1"
-  b:8
+  b:9
 
 # Lenovo Wireless Touchpad K5923
 
 # - 3 swipe left > go to next workspace
 "xdotool set_desktop --relative -- 1"
-  m:0x18 + c:113
+  m:0x18 + c:114
 
 # - 3 swipe right > go to prev workspace
 "xdotool set_desktop --relative -- -1"
-  m:0x18 + c:114
+  m:0x18 + c:113
 
 # - 3 swipe down > show activity
 #"xdotool key super"
