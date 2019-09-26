@@ -9,7 +9,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
-export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
+#export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -59,7 +59,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose zsh-wakatime zsh_reload alias-tips)
+#plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose)
+plugins=(docker-compose)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
