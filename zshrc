@@ -9,7 +9,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
-#export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
+export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -59,15 +59,20 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose)
-plugins=(docker-compose)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
 fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
 
 # init zsh-completions
-autoload -U compinit && compinit
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
@@ -91,9 +96,9 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
 fi
 
 # loaded nvm if neccessary
-if ! which node > /dev/null; then
-    [[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
-fi
+#if ! which node > /dev/null; then
+    #[[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
+#fi
 
 
 # ================================================
@@ -208,6 +213,35 @@ show_virtual_env() {
 
 ssh-tmux() {
     ssh -t "$@" tmux new-session -A -s main
+}
+
+lazynvm() {
+  unset -f nvm node npm npx
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+  if [ -f "$NVM_DIR/bash_completion" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+  fi
+}
+
+nvm() {
+  lazynvm
+  nvm $@
+}
+
+node() {
+  lazynvm
+  node $@
+}
+
+npm() {
+  lazynvm
+  npm $@
+}
+
+npx() {
+  lazynvm
+  npx $@
 }
 
 # ================================================

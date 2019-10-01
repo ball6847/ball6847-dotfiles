@@ -22,8 +22,3 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # start customization
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads NVM_DIR
-
-export DOTPROFILE_LOADED=1
