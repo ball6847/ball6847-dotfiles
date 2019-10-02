@@ -100,6 +100,13 @@ fi
     #[[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
 #fi
 
+if [ -f $SUDO_HOME/.nvm/alias/default ]; then
+    export PATH="$PATH:$SUDO_HOME/.nvm/versions/node/`cat $SUDO_HOME/.nvm/alias/default`/bin"
+fi
+
+
+#/home/ball6847/.nvm/versions/node/v10.16.3/bin
+
 
 # ================================================
 
@@ -227,21 +234,6 @@ lazynvm() {
 nvm() {
   lazynvm
   nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
-
-npx() {
-  lazynvm
-  npx $@
 }
 
 # ================================================
