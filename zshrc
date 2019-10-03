@@ -95,11 +95,8 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
 
-# loaded nvm if neccessary
-#if ! which node > /dev/null; then
-    #[[ -s "$SUDO_HOME/.nvm" ]] && source "$SUDO_HOME/.nvm/nvm.sh"
-#fi
-
+# auto load nvm default node version if any.
+# you can create alias for default using `nvm alias default v12.11.0`
 if [ -f $SUDO_HOME/.nvm/alias/default ]; then
     export PATH="$PATH:$SUDO_HOME/.nvm/versions/node/`cat $SUDO_HOME/.nvm/alias/default`/bin"
 fi
