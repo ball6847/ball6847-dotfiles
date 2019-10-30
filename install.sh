@@ -15,7 +15,6 @@ files="
     gitconfig
     xbindkeysrc
     tmux.conf
-    eslintrc.json
     pip/pip.conf
     config/terminator
     ansible.cfg
