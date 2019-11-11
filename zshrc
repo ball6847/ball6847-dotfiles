@@ -7,6 +7,8 @@ else
     SUDO_HOME=$HOME
 fi
 
+export DOTFILES=$SUDO_HOME/.dotfiles
+
 # Path to your oh-my-zsh installation.
 export ZSH=$SUDO_HOME/.oh-my-zsh
 export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
@@ -64,6 +66,7 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose)
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
 fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
+fpath=($DOTFILES/desk/shell_plugins/zsh $fpath)
 
 # init zsh-completions
 autoload -Uz compinit

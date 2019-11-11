@@ -10,3 +10,6 @@
 [submodule "zsh_custom/plugins/zsh-completions"]
     path = zsh_custom/plugins/zsh-completions
     url = https://github.com/zsh-users/zsh-completions.git
+[submodule "desk"]
+	path = desk
+	url = git@github.com:jamesob/desk.git
