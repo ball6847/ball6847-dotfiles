@@ -184,6 +184,11 @@ alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias ngrok-angular="ngrok http 4200 -region=ap --host-header=rewrite"
 alias copy-mobi="mkdir -p ~/Documents/mobi/ && find . -name '*.mobi' -exec cp -f {} ~/Documents/mobi \\;"
 alias start-ng-clean="docker ps -aq --filter 'ancestor=ball6847/angular-dev-base:latest' --filter 'status=exited' | xargs --no-run-if-empty docker rm"
+alias term="nohup terminator"
+
+curla() {
+    curl -H "Content-Type: application/json" -H "Authorization: Bearer $JWT_AUTH_TOKEN" "$@" | jq
+}
 
 # to hear sound from input device
 # sudo apt-get install linux-kernel-lowlatency to reduce latency
