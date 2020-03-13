@@ -9,6 +9,9 @@
 "xdotool set_desktop --relative -- -1"
   b:9
 
+"nautilus"
+  release+Mod2+Mod4 + e
+
 # Lenovo Wireless Touchpad K5923
 
 # - 3 swipe left > go to next workspace
