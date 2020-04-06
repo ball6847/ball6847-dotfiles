@@ -107,7 +107,6 @@ fi
 
 #/home/ball6847/.nvm/versions/node/v10.16.3/bin
 
-
 # ================================================
 
 # General environment variable
@@ -117,7 +116,7 @@ export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
-export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:$SUDO_HOME/.dotnet:$PATH"
+export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:$SUDO_HOME/.dotnet:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 export NVM_DIR="$SUDO_HOME/.nvm"
 export GIT_AUTHOR_NAME="Porawit Poboonma"
 export GIT_AUTHOR_EMAIL="ball6847@gmail.com"
