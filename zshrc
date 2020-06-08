@@ -241,6 +241,10 @@ nvm() {
   nvm $@
 }
 
+if which phpbrew > /dev/null; then
+    [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+fi
+
 # ================================================
 
 export AWS_VAULT_BACKEND=secret-service
