@@ -17,9 +17,9 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-ZSH_THEME="bira"
+#ZSH_THEME="bira"
 #ZSH_THEME="random"
 #ZSH_THEME="intheloop"
 
@@ -185,6 +185,7 @@ alias ngrok-angular="ngrok http 4200 -region=ap --host-header=rewrite"
 alias copy-mobi="mkdir -p ~/Documents/mobi/ && find . -name '*.mobi' -exec cp -f {} ~/Documents/mobi \\;"
 alias start-ng-clean="docker ps -aq --filter 'ancestor=ball6847/angular-dev-base:latest' --filter 'status=exited' | xargs --no-run-if-empty docker rm"
 alias term="nohup terminator"
+alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
 
 curla() {
     curl -H "Content-Type: application/json" -H "Authorization: Bearer $JWT_AUTH_TOKEN" "$@" | jq
