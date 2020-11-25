@@ -1,0 +1,4 @@
+nvm_use() {
+    type nvm >/dev/null 2>&1 || . ~/.nvm/nvm.sh
+    nvm use
+}

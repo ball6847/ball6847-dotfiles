@@ -248,3 +248,9 @@ fi
 # ================================================
 
 export AWS_VAULT_BACKEND=secret-service
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
