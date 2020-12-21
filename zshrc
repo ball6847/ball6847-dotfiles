@@ -186,6 +186,7 @@ alias copy-mobi="mkdir -p ~/Documents/mobi/ && find . -name '*.mobi' -exec cp -f
 alias start-ng-clean="docker ps -aq --filter 'ancestor=ball6847/angular-dev-base:latest' --filter 'status=exited' | xargs --no-run-if-empty docker rm"
 alias term="nohup terminator"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
+alias tf="terraform"
 
 curla() {
     curl -H "Content-Type: application/json" -H "Authorization: Bearer $JWT_AUTH_TOKEN" "$@" | jq
