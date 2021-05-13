@@ -289,17 +289,6 @@ nnoremap <leader>n :NERDTreeOpen .<CR>
 
 " nerdtree git
 set shell=sh
-let g:NERDTreeIndicatorMapCustom = {
-\ "Modified"  : "✹",
-\ "Staged"    : "✚",
-\ "Untracked" : "✭",
-\ "Renamed"   : "➜",
-\ "Unmerged"  : "═",
-\ "Deleted"   : "✖",
-\ "Dirty"     : "✗",
-\ "Clean"     : "✔︎",
-\ "Unknown"   : "?"
-\}
 
 " ------------------------------------------------
 " tagbar options , open tagbar on startup
