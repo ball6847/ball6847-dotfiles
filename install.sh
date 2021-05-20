@@ -50,18 +50,3 @@ for file in $files; do
     ln -sf $dir/$file ~/.$file
 done
 
-# link any files in ~/dotfiles/.vim/ to $HOME/.vim/
-mkdir -p $olddir/.vim/
-
-for d in $dir/.vim/*; do
-    dirname=$(basename $d)
-    mv -f $HOME/.vim/$dirname $olddir/.vim/
-    ln -sf $d $HOME/.vim/$dirname
-done
-
-# temp fix for workspaces2dock
-# TODO: always stay tune for extensions update on ubuntu 18.04
-ln -sf $dir/gnome-shell-extensions/workspaces-to-dock/workspaces-to-dock@passingthru67.gmail.com $HOME/.local/share/gnome-shell/extensions/workspaces-to-dock@passingthru67.gmail.com
-
-# add dns for development
-# sudo ln -s $HOME/.dotfiles/dev-dns /etc/NetworkManager/dnsmasq.d/dev-dns
