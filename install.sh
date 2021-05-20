@@ -64,4 +64,4 @@ done
 ln -sf $dir/gnome-shell-extensions/workspaces-to-dock/workspaces-to-dock@passingthru67.gmail.com $HOME/.local/share/gnome-shell/extensions/workspaces-to-dock@passingthru67.gmail.com
 
 # add dns for development
-sudo ln -s $HOME/.dotfiles/dev-dns /etc/NetworkManager/dnsmasq.d/dev-dns
+# sudo ln -s $HOME/.dotfiles/dev-dns /etc/NetworkManager/dnsmasq.d/dev-dns
