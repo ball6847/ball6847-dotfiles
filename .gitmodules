@@ -13,3 +13,6 @@
 [submodule "desk"]
 	path = desk
 	url = https://github.com/jamesob/desk.git
+[submodule "zsh_custom/plugins/zsh-lerna"]
+	path = zsh_custom/plugins/zsh-lerna
+	url = https://github.com/favware/zsh-lerna.git
