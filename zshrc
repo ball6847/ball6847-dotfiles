@@ -61,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose ansible zsh-lerna)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -151,6 +151,7 @@ alias git-clean="git for-each-ref --format '%(refname:short)' refs/heads | grep 
 alias tm="tmux new-session -A -s main"
 alias dc="docker-compose"
 alias x="docker-compose exec"
+alias a="ansible-playbook"
 alias ap="ansible-playbook"
 alias li="lerna init --independent && npm install && echo node_modules > .gitignore"
 alias lb="lerna bootstrap"
@@ -243,3 +244,8 @@ if [ -f "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${SUDO_HOME}/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
+
+export DENO_INSTALL="/home/ball6847/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export DVM_DIR="/home/ball6847/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
