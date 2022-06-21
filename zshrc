@@ -98,10 +98,16 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
 
+if [ -d "$SUDO_HOME/.config/nvm" ]; then
+    export NVM_DIR=$SUDO_HOME/.config/nvm
+else
+    export NVM_DIR=$SUDO_HOME/.nvm
+fi
+
 # auto load nvm default node version if any.
 # you can create alias for default using `nvm alias default v12.11.0`
-if [ -f $SUDO_HOME/.nvm/alias/default ]; then
-    export PATH="$PATH:$SUDO_HOME/.nvm/versions/node/`cat $SUDO_HOME/.nvm/alias/default`/bin"
+if [ -f $NVM_DIR/alias/default ]; then
+    export PATH="$PATH:$NVM_DIR/versions/node/`cat $NVM_DIR/alias/default`/bin"
 fi
 
 
@@ -117,7 +123,6 @@ export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
 export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
 export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:$SUDO_HOME/.dotnet:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-export NVM_DIR="$SUDO_HOME/.nvm"
 export GIT_AUTHOR_NAME="Porawit Poboonma"
 export GIT_AUTHOR_EMAIL="ball6847@gmail.com"
 export GIT_COMMITTER_NAME="Porawit Poboonma"
@@ -219,7 +224,6 @@ ssh-tmux() {
 
 lazynvm() {
   unset -f nvm node npm npx &> /dev/null
-  export NVM_DIR=~/.nvm
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
   if [ -f "$NVM_DIR/bash_completion" ]; then
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
