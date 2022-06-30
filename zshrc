@@ -61,7 +61,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose ansible zsh-lerna)
+plugins=(zsh-syntax-highlighting zsh-autosuggestions docker-compose ansible zsh-lerna kubectl)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
