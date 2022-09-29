@@ -253,3 +253,5 @@ export DENO_INSTALL="/home/ball6847/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export DVM_DIR="/home/ball6847/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
+
+export PATH=$PATH:$SUDO_HOME/.exo/bin
