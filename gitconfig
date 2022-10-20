@@ -13,3 +13,5 @@
 [user]
 	name = Porawit Poboonma
 	email = ball@7peakssoftware.com
+[init]
+	defaultBranch = master

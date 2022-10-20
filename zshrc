@@ -254,3 +254,4 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export DVM_DIR="/home/ball6847/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
 export PATH="$PATH:$SUDO_HOME/.yarn/bin"
+export PATH=$PATH:$SUDO_HOME/.exo/bin

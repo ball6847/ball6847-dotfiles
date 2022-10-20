@@ -67,7 +67,7 @@ Plugin 'elzr/vim-json'
 "Plugin 'terryma/vim-expand-region'
 
 " Syntax Plugins
-Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'rhowardiv/nginx-vim-syntax'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'ekalinin/Dockerfile.vim'
