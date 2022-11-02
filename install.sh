@@ -18,6 +18,7 @@ files="
     tmux.conf
     pip/pip.conf
     config/terminator
+    config/kitty
     ansible.cfg
     coffeelint.json"
 
