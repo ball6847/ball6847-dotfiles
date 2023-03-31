@@ -18,8 +18,8 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="af-magic"
-ZSH_THEME="amuse"
-#ZSH_THEME="robbyrussell"
+#ZSH_THEME="amuse"
+ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="bira"
 #ZSH_THEME="random"
@@ -112,12 +112,10 @@ if [ -f $NVM_DIR/alias/default ]; then
     export PATH="$PATH:$NVM_DIR/versions/node/`cat $NVM_DIR/alias/default`/bin"
 fi
 
-
-#/home/ball6847/.nvm/versions/node/v10.16.3/bin
-
 # ================================================
 
 # General environment variable
+export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
 export EDITOR='vim'
 export TERM=xterm-256color
@@ -250,6 +248,16 @@ if [ -f "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${SUDO_HOME}/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
+
+#
+# Allow parent to initialize shell
+#
+# This is awesome for opening terminals in VSCode.
+#
+if [[ -n $ZSH_INIT_COMMAND ]]; then
+    echo "Running: $ZSH_INIT_COMMAND"
+    eval "$ZSH_INIT_COMMAND"
+fi
 
 export DENO_INSTALL="/home/ball6847/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
