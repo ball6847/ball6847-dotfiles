@@ -14,6 +14,9 @@ import { configure } from "../deno-libs/xinput.ts";
  *
  * To set a property of a device
  * $ xinput --set-prop <device-id> <property-id> <value>
+ *
+ * To automatically activate this script on startup, add this to ~/.xsessionrc
+ * $ echo "$HOME/.dotfiles/bin/configure-touchpad.ts" >> ~/.xsessionrc
  */
 
 await configure([
@@ -23,6 +26,10 @@ await configure([
       {
         name: "Drag Lock Enabled",
         value: 1,
+      },
+      {
+        name: "Scrolling Pixel Distance",
+        value: 30,
       },
     ],
   },

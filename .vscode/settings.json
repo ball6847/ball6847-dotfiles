@@ -4,9 +4,11 @@
 	"deno.lint": true,
 	"deno.enablePaths": [
 		"./deno-libs",
-		"./bin/enable-locked-drags.ts"
+		"./bin/configure-touchpad.ts"
 	],
 	"cSpell.words": [
-		"Touchpad"
+		"dotfiles",
+		"Touchpad",
+		"xsessionrc"
 	]
 }
