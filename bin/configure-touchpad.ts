@@ -21,6 +21,15 @@ import { configure } from "../deno-libs/xinput.ts";
 
 await configure([
   {
+    name: "ELAN1200:00 04F3:3022 Touchpad",
+    props: [
+      {
+        name: "Drag Lock Enabled",
+        value: 1,
+      },
+    ],
+  },
+  {
     name: "ELAN0E03:00 04F3:3121 Touchpad",
     props: [
       {
