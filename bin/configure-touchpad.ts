@@ -30,6 +30,19 @@ await configure([
     ],
   },
   {
+    name: "Apple Inc. Magic Trackpad 2",
+    props: [
+      {
+        name: "Drag Lock Enabled",
+        value: 1,
+      },
+      {
+        name: "Scrolling Pixel Distance",
+        value: 40,
+      },
+    ],
+  },
+  {
     name: "ELAN0E03:00 04F3:3121 Touchpad",
     props: [
       {
