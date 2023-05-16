@@ -29,7 +29,7 @@ await configure([
       },
       {
         name: "Scrolling Pixel Distance",
-        value: 30,
+        value: 40,
       },
     ],
   },
