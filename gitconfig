@@ -8,10 +8,7 @@
 	keepBackup = false
 [push]
 	default = current
-[alias]
-    untag = !sh -c 'git tag -d $0 && git push origin :refs/tags/$0'
-[user]
-	name = Porawit Poboonma
-	email = ball@7peakssoftware.com
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[include]
+    path = .config/.gitconfig
