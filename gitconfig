@@ -2,6 +2,9 @@
 	autocrlf = false
 	fileMode = true
 	eol = lf
+[user]
+    name = Porawit Poboonma
+    email = ball6847@gmail.com
 [merge]
 	tool = meld
 [mergetool]
@@ -10,5 +13,6 @@
 	default = current
 [init]
 	defaultBranch = main
+
 [include]
     path = .config/.gitconfig
