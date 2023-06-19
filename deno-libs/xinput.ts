@@ -3,12 +3,15 @@ import { run } from "./run.ts";
 
 export async function findDeviceId(name: string) {
   const output = await run("xinput", ["--list"]);
-  const pattern = new RegExp(escapeStringRegexp(name) + "\\s+id=(\\d+)");
-  const parts = output.match(pattern);
-  if (!parts || !parts[1]) {
-    return null;
+  const pattern = new RegExp(escapeStringRegexp(name) + "\\s+id=(\\d+)", "g");
+  const results = output.matchAll(pattern);
+  const deviceIds: number[] = [];
+  for (const parts of results) {
+    if (parts[1]) {
+      deviceIds.push(Number(parts[1]));
+    }
   }
-  return Number(parts[1]);
+  return deviceIds;
 }
 
 export async function findPropId(deviceId: number, name: string) {
@@ -44,19 +47,17 @@ export type Device = {
 
 export async function configure(devices: Device[]) {
   for (const device of devices) {
-    const deviceId = await findDeviceId(device.name);
-    if (!deviceId) {
-      console.warn(`Device(${device.name}) not found`);
-      continue;
-    }
-    for (const prop of device.props) {
-      const propId = await findPropId(deviceId, prop.name);
-      if (!propId) {
-        console.warn(`Property(${prop.name}) not found`);
-        continue;
+    const deviceIds = await findDeviceId(device.name);
+    for await (const prop of device.props) {
+      for await (const deviceId of deviceIds) {
+        const propId = await findPropId(deviceId, prop.name);
+        if (!propId) {
+          console.warn(`Property(${prop.name}) not found`);
+          continue;
+        }
+        console.log(`Setting ${device.name} [${prop.name}] to ${prop.value}`);
+        await setPropValue(deviceId, propId, prop.value);
       }
-      console.log(`Setting ${device.name} [${prop.name}] to ${prop.value}`);
-      await setPropValue(deviceId, propId, prop.value);
     }
   }
 }
