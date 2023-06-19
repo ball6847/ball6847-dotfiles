@@ -61,11 +61,7 @@ await configure([
       {
         name: "Drag Lock Enabled",
         value: 1,
-      },
-      {
-        name: "Scrolling Pixel Distance",
-        value: 30,
-      },
+      }
     ],
   },
 ]);
