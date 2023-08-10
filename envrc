@@ -1,6 +1,0 @@
-# vi: ft=sh
-# NOTE: no longer need as we will use conditional gitconfig include instead
-#export GIT_AUTHOR_NAME="Porawit Poboonma"
-#export GIT_AUTHOR_EMAIL="ball6847@gmail.com"
-#export GIT_COMMITTER_NAME_NAME="Porawit Poboonma"
-#export GIT_COMMITTER_EMAIL="ball6847@gmail.com"
