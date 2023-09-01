@@ -210,12 +210,6 @@ fi
 
 # ================================================
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${SUDO_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
-
 #
 # Allow parent to initialize shell
 #
@@ -228,3 +222,9 @@ fi
 
 export PATH="$PATH:$SUDO_HOME/.yarn/bin"
 export PATH="$SUDO_HOME/.deno/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc' ]; then . $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f $SUDO_HOME'/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . $SUDO_HOME'/Applications/google-cloud-sdk/completion.zsh.inc'; fi
