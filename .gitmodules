@@ -13,3 +13,6 @@
 [submodule "zsh_custom/plugins/zsh-lerna"]
 	path = zsh_custom/plugins/zsh-lerna
 	url = https://github.com/favware/zsh-lerna.git
+[submodule "go-task"]
+	path = go-task
+	url = https://github.com/go-task/task.git
