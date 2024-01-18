@@ -112,6 +112,11 @@ if [ -f $NVM_DIR/alias/default ]; then
     export PATH="$PATH:$NVM_DIR/versions/node/`cat $NVM_DIR/alias/default`/bin"
 fi
 
+# add go bin to path
+if [ -d "$SUDO_HOME/go/bin" ]; then
+    export PATH=$SUDO_HOME/go/bin:$PATH
+fi
+
 # ================================================
 
 # General environment variable
