@@ -90,8 +90,8 @@ if which direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
-# load gvm if neccessary
-if ! which go > /dev/null; then
+# load gvm if installed
+if [ -d "$SUDO_HOME/.gvm" ]; then
     [[ -s "$SUDO_HOME/.gvm/scripts/gvm" ]] && source "$SUDO_HOME/.gvm/scripts/gvm"
 fi
 
@@ -113,9 +113,11 @@ if [ -f $NVM_DIR/alias/default ]; then
 fi
 
 # add go bin to path
-if [ -d "$SUDO_HOME/go/bin" ]; then
-    export PATH=$SUDO_HOME/go/bin:$PATH
-fi
+# this need to be updated to detect go from gvm instead
+# NOTE: gvm already take care of this
+# if [ -d "$SUDO_HOME/go/bin" ]; then
+#    export PATH=$SUDO_HOME/go/bin:$PATH
+# fi
 
 # ================================================
 
