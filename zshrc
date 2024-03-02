@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions ansible kubectl)
+plugins=(zsh-autosuggestions ansible kubectl asdf)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -229,7 +229,7 @@ if [[ -n $ZSH_INIT_COMMAND ]]; then
 fi
 
 export PATH="$PATH:$SUDO_HOME/.yarn/bin"
-export PATH="$SUDO_HOME/.deno/bin:$PATH"
+# export PATH="$SUDO_HOME/.deno/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc' ]; then . $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc'; fi
