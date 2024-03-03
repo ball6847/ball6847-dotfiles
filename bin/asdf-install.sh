@@ -1,8 +1,16 @@
 #!/bin/bash
 
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+# This script installs asdf and plugins I personally use
+# For more information, visit https://asdf-vm.com/
+
+# NOTE: this script assumes you have git and curl installed on your system, if not, just do `apt install curl git`. And asdf should be enabled in your shell
+
+if [ ! -d ~/.asdf ]; then
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+fi
 
 asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
 asdf plugin add k3d https://github.com/spencergilbert/asdf-k3d.git
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
+
 # TODO: bun, node, go, rust
