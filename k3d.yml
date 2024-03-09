@@ -4,3 +4,12 @@ metadata:
   name: default
 servers: 1
 agents: 2
+ports:
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+registries:
+  create:
+    name: registry.localhost
+    host: "0.0.0.0"
+    hostPort: "5000"
