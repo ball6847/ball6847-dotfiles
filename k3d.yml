@@ -13,3 +13,5 @@ registries:
     name: registry.localhost
     host: "0.0.0.0"
     hostPort: "5555"
+
+# TODO: mount /etc/machine-id to all nodes as some tools need it, see https://github.com/grafana/tns/blob/main/create-k3d-cluster
