@@ -1,4 +1,4 @@
-#!/bin/bash
+g!/bin/bash
 
 # This script installs asdf and plugins I personally use
 # For more information, visit https://asdf-vm.com/
@@ -13,5 +13,6 @@ asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
 asdf plugin add k3d https://github.com/spencergilbert/asdf-k3d.git
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
+asdf plugin add kubecm https://github.com/samhvw8/asdf-kubecm.git
 
 # TODO: bun, node, go, rust
