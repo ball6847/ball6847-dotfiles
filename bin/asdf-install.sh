@@ -1,4 +1,4 @@
-g!/bin/bash
+#!/bin/bash
 
 # This script installs asdf and plugins I personally use
 # For more information, visit https://asdf-vm.com/
