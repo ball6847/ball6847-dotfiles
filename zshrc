@@ -1,4 +1,4 @@
-# gmask 022
+#mask 022
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then

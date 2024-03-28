@@ -8,7 +8,6 @@ files="
     profile
     bashrc
     bash_aliases
-    vimrc
     zshrc
     npmrc
     direnvrc
