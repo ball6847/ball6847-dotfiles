@@ -124,7 +124,7 @@ fi
 # General environment variable
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
-export EDITOR='vim'
+export EDITOR='nvim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
@@ -137,8 +137,8 @@ export PATH="$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer
 alias c="clear"
 alias f='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias vimrc="vim ~/.vimrc"
-alias zshrc="vim ~/.zshrc"
+alias vimrc="nvim ~/.vimrc"
+alias zshrc="nvim ~/.zshrc"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
@@ -161,6 +161,8 @@ alias load-nvm="source $NVM_DIR/nvm.sh"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
+alias v="nvim"
+alias vim="nvim"
 
 curla() {
     curl -H "Content-Type: application/json" -H "Authorization: Bearer $JWT_AUTH_TOKEN" "$@" | jq
