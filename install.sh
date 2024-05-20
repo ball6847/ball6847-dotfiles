@@ -17,6 +17,7 @@ files="
     pip/pip.conf
     config/terminator
     config/kitty
+    config/nvim
     ansible.cfg
     tool-versions"
 
