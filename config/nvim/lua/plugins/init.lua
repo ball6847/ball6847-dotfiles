@@ -12,7 +12,8 @@ return {
     'smoka7/hop.nvim',
     version = "*",
     opts = {
-      keys = 'etovxqpdygfblzhckisuran'
+      keys = 'etovxqpdygfblzhckisuran',
+      multi_windows = true,
     },
     keys = {
       {
