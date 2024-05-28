@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "tokyonight",
+  theme = "chadracula-evondev",
   nvdash = {
     load_on_startup = true,
   },
