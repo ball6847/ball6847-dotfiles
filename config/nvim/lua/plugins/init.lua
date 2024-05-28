@@ -86,6 +86,7 @@ return {
       },
     },
   },
+
   --
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
@@ -115,5 +116,5 @@ return {
     config = function()
       require "configs.noice"
     end,
-  }
+  },
 }

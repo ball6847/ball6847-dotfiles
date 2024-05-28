@@ -1,4 +1,6 @@
 -- EXAMPLE 
+require "configs.cmp"
+
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").nn_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
