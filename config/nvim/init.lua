@@ -1,7 +1,8 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+
 vim.g.mapleader = " "
 vim.g.markdown_fenced_languages = {
-  "ts=typescript"
+  "ts=typescript",
 }
 
 -- bootstrap lazy and all plugins

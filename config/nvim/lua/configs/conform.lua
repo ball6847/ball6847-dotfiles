@@ -1,4 +1,4 @@
-local conform = require('conform')
+local conform = require "conform"
 
 local options = {
   formatters_by_ft = {
@@ -29,15 +29,15 @@ local options = {
     lsp_fallback = true,
     async = false,
     timeout_ms = 1000,
-  }
+  },
 }
 
 vim.keymap.set({ "n", "v" }, "<leader>l", function()
-  conform.format({
+  conform.format {
     lsp_fallback = true,
     async = false,
     timeout_ms = 1000,
-  })
+  }
 end, { desc = "Format file or range (in visual mode)" })
 
 conform.setup(options)
