@@ -49,6 +49,7 @@ return {
         "prettier",
         "deno",
         "intelephense",
+        "gopls",
       },
     },
   },

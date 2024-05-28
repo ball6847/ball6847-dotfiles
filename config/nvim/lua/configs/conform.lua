@@ -25,6 +25,7 @@ local options = {
     scss = { { "prettierd", "prettier" } },
     sh = { { "shellcheck" } },
     php = { "lsp" },
+    go = { "lsp" },
   },
   format_on_save = {
     lsp_fallback = true,
