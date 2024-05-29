@@ -20,3 +20,7 @@ end, {
   expr = true,
   noremap = true,
 })
+
+-- keep visual mode after indent
+map("v", "<", "<gv")
+map("v", ">", ">gv")
