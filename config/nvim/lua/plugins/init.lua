@@ -1,4 +1,5 @@
 return {
+  -- conform - code formatter engine (actual config in lua/configs/conform.lua)
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" }, -- uncomment for format on save
@@ -7,7 +8,8 @@ return {
     end,
   },
 
-  -- https://www.youtube.com/watch?v=Irm2WELYSps&ab_channel=Dispatch
+  -- hop - easymotion easy alternatives
+  -- taken from: https://www.youtube.com/watch?v=Irm2WELYSps&ab_channel=Dispatch
   {
     "smoka7/hop.nvim",
     version = "*",
@@ -55,6 +57,7 @@ return {
     },
   },
 
+  -- nvim-treesitter - syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -69,7 +72,7 @@ return {
     },
   },
 
-  -- noice
+  -- noice - notification
   {
     "folke/noice.nvim",
     event = "VeryLazy",
