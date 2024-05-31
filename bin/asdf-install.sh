@@ -15,5 +15,12 @@ asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf plugin add kubecm https://github.com/samhvw8/asdf-kubecm.git
 asdf plugin add neovim
+asdf plugin add golang
 
-# TODO: bun, node, go, rust
+# golang
+# `asdf reshim golang` is required after `go get` or `go install`
+
+# deno
+# `asdf reshim deno` is required after `deno install`
+
+# TODO: bun, node, rust
