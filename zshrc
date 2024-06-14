@@ -95,18 +95,6 @@ if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
 fi
 
-if [ -d "$SUDO_HOME/.config/nvm" ]; then
-    export NVM_DIR=$SUDO_HOME/.config/nvm
-else
-    export NVM_DIR=$SUDO_HOME/.nvm
-fi
-
-# auto load nvm default node version if any.
-# you can create alias for default using `nvm alias default v12.11.0`
-if [ -f $NVM_DIR/alias/default ]; then
-    export PATH="$PATH:$NVM_DIR/versions/node/`cat $NVM_DIR/alias/default`/bin"
-fi
-
 # ================================================
 
 # General environment variable
@@ -145,7 +133,6 @@ alias a="ansible-playbook"
 alias ap="ansible-playbook"
 alias direnv-init-node="(echo \"layout node\" > .envrc) && direnv allow"
 alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
-alias load-nvm="source $NVM_DIR/nvm.sh"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
@@ -186,19 +173,6 @@ show_virtual_env() {
 
 ssh-tmux() {
     ssh -t "$@" tmux new-session -A -s main
-}
-
-lazynvm() {
-  unset -f nvm node npm npx &> /dev/null
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-  if [ -f "$NVM_DIR/bash_completion" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-  fi
-}
-
-nvm() {
-  lazynvm
-  nvm $@
 }
 
 if which phpbrew > /dev/null; then

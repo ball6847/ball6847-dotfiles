@@ -16,6 +16,7 @@ asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf plugin add kubecm https://github.com/samhvw8/asdf-kubecm.git
 asdf plugin add neovim
 asdf plugin add golang
+asdf plugin add nodejs
 
 # golang
 # `asdf reshim golang` is required after `go get` or `go install`
