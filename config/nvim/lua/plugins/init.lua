@@ -68,6 +68,13 @@ return {
         "html",
         "css",
         "svelte",
+        "typescript",
+        "javascript",
+        "go",
+        "php",
+      },
+      highlight = {
+        enable = true,
       },
     },
   },
