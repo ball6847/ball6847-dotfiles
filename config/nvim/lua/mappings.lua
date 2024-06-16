@@ -24,3 +24,4 @@ end, {
 -- keep visual mode after indent
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+map("n", "<F5>", ":checktime<CR>", { desc = "Reload file" })
