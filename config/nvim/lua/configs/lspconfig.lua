@@ -6,7 +6,7 @@ local on_init = require("nvchad.configs.lspconfig").nn_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls", "svelte" }
+local servers = { "html", "cssls", "gopls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -38,6 +38,23 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
   -- root_dir = lspconfig.util.root_pattern("package.json"),
   -- single_file_support = false
+}
+
+-- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
+-- see - https://github.com/neovim/nvim-lspconfig/issues/725#issuecomment-1837509673
+lspconfig.svelte.setup {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      pattern = { "*.js", "*.ts" },
+      callback = function(ctx)
+        -- Here use ctx.match instead of ctx.file
+        client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+      end,
+    })
+  end,
+  on_init = on_init,
+  capabilities = capabilities,
 }
 
 -- intelephense (php)
