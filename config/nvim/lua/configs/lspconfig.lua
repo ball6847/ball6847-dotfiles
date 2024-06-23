@@ -19,6 +19,8 @@ end
 
 -- deno (typescript)
 -- see https://docs.deno.com/runtime/manual/getting_started/setup_your_environment#vimneovim-via-plugins
+-- note: denols will only enabled if the project root contains deno.json or deno.jsonc
+--       and if your project also contains package.json as well, tsserver will be enabled as well and this will be mess. Make sure you don't have both deno.json and package.json in the same project
 lspconfig.denols.setup {
   on_attach = on_attach,
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -32,12 +34,13 @@ lspconfig.denols.setup {
 }
 
 -- typescript
+-- note: tsserver will only enabled if the project contains package.json at the root of the project
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
-  -- root_dir = lspconfig.util.root_pattern("package.json"),
-  -- single_file_support = false
+  root_dir = lspconfig.util.root_pattern "package.json",
+  -- single_file_support = false,
 }
 
 -- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
