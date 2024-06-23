@@ -17,31 +17,43 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Function to check for the existence of deno.json
+local function has_deno_json()
+  local current_dir = vim.fn.getcwd()
+  local deno_json = current_dir .. "/deno.json"
+  local deno_json_exists = vim.fn.filereadable(deno_json) == 1
+  return deno_json_exists
+end
+
 -- deno (typescript)
 -- see https://docs.deno.com/runtime/manual/getting_started/setup_your_environment#vimneovim-via-plugins
 -- note: denols will only enabled if the project root contains deno.json or deno.jsonc
 --       and if your project also contains package.json as well, tsserver will be enabled as well and this will be mess. Make sure you don't have both deno.json and package.json in the same project
-lspconfig.denols.setup {
-  on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-  settings = {
-    deno = {
-      enable = true,
-      lint = true,
-      config = "deno.json",
+if has_deno_json() then
+  lspconfig.denols.setup {
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+    settings = {
+      deno = {
+        enable = true,
+        lint = true,
+        config = "deno.json",
+      },
     },
-  },
-}
+  }
+end
 
 -- typescript
 -- note: tsserver will only enabled if the project contains package.json at the root of the project
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern "package.json",
-  -- single_file_support = false,
-}
+if not has_deno_json() then
+  lspconfig.tsserver.setup {
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern "package.json",
+    -- single_file_support = false,
+  }
+end
 
 -- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
 -- see - https://github.com/neovim/nvim-lspconfig/issues/725#issuecomment-1837509673
