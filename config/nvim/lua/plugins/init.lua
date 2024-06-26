@@ -115,4 +115,8 @@ return {
       -- or run <leader>ch to see copilot mapping section
     end,
   },
+  -- nvim-spectre
+  {
+    "nvim-pack/nvim-spectre",
+  },
 }
