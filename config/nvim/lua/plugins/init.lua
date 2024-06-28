@@ -53,6 +53,7 @@ return {
         "intelephense",
         "gopls",
         "svelte-language-server",
+        "bash-language-server",
       },
     },
   },
