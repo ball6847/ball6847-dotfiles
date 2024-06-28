@@ -73,6 +73,7 @@ return {
         "javascript",
         "go",
         "php",
+        "yaml",
       },
       highlight = {
         enable = true,
