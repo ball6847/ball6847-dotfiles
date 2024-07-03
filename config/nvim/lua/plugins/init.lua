@@ -94,7 +94,7 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
     config = function()
       require "configs.noice"
@@ -117,6 +117,7 @@ return {
       -- or run <leader>ch to see copilot mapping section
     end,
   },
+
   -- nvim-spectre
   {
     "nvim-pack/nvim-spectre",
