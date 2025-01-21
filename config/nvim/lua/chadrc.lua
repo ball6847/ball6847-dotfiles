@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-  theme = "onedark",
+  theme = "vscode_dark",
   nvdash = {
     load_on_startup = true,
   },
