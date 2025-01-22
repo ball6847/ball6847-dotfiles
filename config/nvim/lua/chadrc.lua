@@ -5,7 +5,6 @@
 local M = {}
 
 M.ui = {
-  theme = "vscode_dark",
   nvdash = {
     load_on_startup = true,
   },
@@ -14,6 +13,15 @@ M.ui = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
+}
+
+M.base46 = {
+  theme = "doomchad",
+  transparent = false,
+  hl_add = {},
+  hl_override = {},
+  integrations = {},
+  theme_toggle = { "doomchad", "one_light" },
 }
 
 return M
