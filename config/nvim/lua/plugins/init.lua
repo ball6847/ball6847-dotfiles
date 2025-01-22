@@ -3,9 +3,10 @@ return {
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" }, -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    -- config = function()
+    --   require "configs.conform"
+    -- end,
+    opts = require "configs.conform",
   },
 
   -- hop - easymotion easy alternatives
@@ -36,7 +37,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
+      -- require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
   },
@@ -82,24 +83,24 @@ return {
   },
 
   -- noice - notification
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      -- "rcarriga/nvim-notify",
-    },
-    config = function()
-      require "configs.noice"
-    end,
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     -- "rcarriga/nvim-notify",
+  --   },
+  --   config = function()
+  --     require "configs.noice"
+  --   end,
+  -- },
 
   -- github colilot
   -- installation guide from https://www.reddit.com/r/neovim/comments/12vcybk/comment/jxjrdn5/

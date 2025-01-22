@@ -45,7 +45,7 @@ lspconfig.denols.setup {
 -- typescript
 -- note: tsserver will be disabled if the project root contains deno.json or deno.jsonc
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(vim.api.nvim_buf_get_name(bufnr)) then
       client.stop()
