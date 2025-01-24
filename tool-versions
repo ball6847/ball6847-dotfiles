@@ -6,3 +6,4 @@ neovim 0.10.3
 golang 1.23.4
 nodejs 22.5.1
 deno 2.1.5
+helix 25.01.1
