@@ -21,3 +21,27 @@ asdf reshim
 ```
 
 I might need to run this command from time to time to update the LSP servers and formatters
+
+## Mapping worth remembering
+
+- `<C-N>` to toggle NvimTree
+- `<leader>e` to focus on NvimTree
+- `<leader>ff` to find files
+- `<leader>fw` to find word across files
+- `<leader>S` to trigger Spectre (search and replace)
+- `<leader>fg` to trigger hop (jump to any word)
+- `<leader>ca` to trigger code action (actionable item for the current file)
+- `<leader>cai` to trigger organize import
+- `<leader>ra` to trigger rename symbol
+- `<leader>gd` to trigger go to definition
+- `<leader>gr` to trigger go to references
+- `<leader>gi` to trigger go to implementation
+- `<leader>ds` to open diagnostic list
+- `<C-L>` to accept github copilot suggestion
+- `<C-X>` on nvim-tree to open file in horizontal split
+- `<C-V>` on nvim-tree to open file in vertical split
+- `W` on nvim-tree to collapse all folders
+
+## Windows terminal user
+
+You might need to remove `C-V` binding in Windows Terminal for pasting to allow `C-V` to open file in vertical split in NvimTree (You still can use Ctrl+Shift+V to paste)
