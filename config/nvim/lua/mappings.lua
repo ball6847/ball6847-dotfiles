@@ -27,7 +27,6 @@ map("v", ">", ">gv")
 
 -- if buffer doesn't get updated after saving externally, use F5 to reload
 map("n", "<F5>", ":checktime<CR>", { desc = "Reload file" })
-map("n", "<F6>", ":%s/\\r/\\r/g<CR>", { desc = "Remove ^M" })
 
 -- mapping spectre
 map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
