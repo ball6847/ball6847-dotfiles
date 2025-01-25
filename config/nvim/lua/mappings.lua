@@ -42,3 +42,41 @@ map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
 map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
   desc = "Search on current file",
 })
+
+-- organize imports
+local function organize_imports()
+  local params = vim.lsp.util.make_range_params()
+  params.context = { only = { "source.organizeImports" } }
+
+  local clients = vim.lsp.get_active_clients()
+  for _, client in pairs(clients) do
+    if client.supports_method "textDocument/codeAction" then
+      client.request("textDocument/codeAction", params, function(err, res)
+        if err then
+          vim.notify("Error organizing imports: " .. err.message, vim.log.levels.ERROR)
+          return
+        end
+
+        if res and res[1] then
+          local action = res[1]
+
+          -- If the action has an `edit` field, apply it
+          if action.edit then
+            vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+          end
+
+          -- If the action has a `command` field, execute it
+          if action.command then
+            vim.lsp.buf.execute_command(action.command)
+          end
+        else
+          vim.notify("No organize imports action available", vim.log.levels.INFO)
+        end
+      end)
+      return
+    end
+  end
+end
+
+-- Mapping to trigger the function
+vim.keymap.set("n", "<leader>cai", organize_imports, { desc = "Organize Imports" })
