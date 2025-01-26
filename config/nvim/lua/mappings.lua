@@ -42,6 +42,25 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
   desc = "Search on current file",
 })
 
+-- toggle nvim-tree width between 40 and 60
+local function toggle_nvim_tree_width()
+  local view = require "nvim-tree.view"
+  local api = require "nvim-tree.api"
+
+  -- Close nvim-tree if open
+  if view.is_visible() then
+    api.tree.close()
+  end
+
+  -- Update the width dynamically
+  view.View.width = view.View.width == 30 and 40 or 30
+
+  -- Reopen nvim-tree with the new width
+  api.tree.open()
+end
+
+map("n", "<leader>tw", toggle_nvim_tree_width, { desc = "Toggle nvim-tree width" })
+
 -- organize imports
 local function organize_imports()
   local params = vim.lsp.util.make_range_params()
