@@ -27,7 +27,7 @@ I might need to run this command from time to time to update the LSP servers and
 - `<C-N>` to toggle NvimTree
 - `<leader>e` to focus on NvimTree
 - `<leader>ff` to find files
-- `<leader>fw` to find word across files
+- `<leader>fw` to find word across files (requires ripgrep, `apt install ripgrep` if you use ubuntu)
 - `<leader>S` to trigger Spectre (search and replace)
 - `<leader>fg` to trigger hop (jump to any word)
 - `<leader>ca` to trigger code action (actionable item for the current file)
@@ -41,6 +41,10 @@ I might need to run this command from time to time to update the LSP servers and
 - `<C-X>` on nvim-tree to open file in horizontal split
 - `<C-V>` on nvim-tree to open file in vertical split
 - `W` on nvim-tree to collapse all folders
+
+## Github Copilot
+
+Run `:Copilot setup` to setup github copilot and follow the instructions. Use `<C-L>` to accept the suggestion
 
 ## Windows terminal user
 
