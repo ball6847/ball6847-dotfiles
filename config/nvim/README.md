@@ -13,14 +13,27 @@ After linking the `nvim` folder to `~/.config`, open nvim and run the following 
 
 The following command install all dependencies for the LSP servers and formatters
 
-Note that, `npm` and `go` are required to install the LSP servers and formatters
+Note that, `npm`, `go` and `gem` are required to install the LSP servers and formatters.
+
+> My dotfiles has `asdf` installed, so I can install `nodejs`, `ruby` and `golang` using `asdf install`
+
+If you have everything installed, you can run the following command to install the LSP servers and formatters.
+I might need to run this command from time to time to update the LSP servers and formatters
 
 ```bash
 npm install -g typescript typescript-language-server svelte-language-server @fsouza/prettierd nodemon
 asdf reshim
 ```
 
-I might need to run this command from time to time to update the LSP servers and formatters
+Note about ruby, some dev dependencies is required to install ruby using asdf. You can install the dependencies using the following command
+
+```bash
+sudo apt update
+sudo apt install -y build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev libncurses5-dev libffi-dev libgdbm-dev
+
+# my dotfiles has asdf installed, so I can install ruby using asdf
+asdf install ruby
+```
 
 ## Mapping worth remembering
 

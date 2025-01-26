@@ -15,6 +15,7 @@ asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 asdf plugin add kubecm https://github.com/samhvw8/asdf-kubecm.git
 asdf plugin add helix https://github.com/CSergienko/asdf-helix.git
+asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin add neovim
 asdf plugin add golang
 asdf plugin add nodejs
