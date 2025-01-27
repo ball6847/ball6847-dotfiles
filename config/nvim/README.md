@@ -51,6 +51,7 @@ asdf install ruby
 - `<leader>gi` to trigger go to implementation
 - `<leader>ds` to open diagnostic list
 - `<leader>tw` to toggle nvim-tree width between 30 and 40 as sometimes the width is too small (adjust the width in `lua/mappings.lua`)
+- `<leader>ba` to close all buffers except nvim-tree
 - `<C-L>` to accept github copilot suggestion
 - `<C-X>` on nvim-tree to open file in horizontal split
 - `<C-V>` on nvim-tree to open file in vertical split

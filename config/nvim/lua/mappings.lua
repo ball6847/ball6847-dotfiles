@@ -98,3 +98,21 @@ end
 
 -- Mapping to trigger the function
 vim.keymap.set("n", "<leader>cai", organize_imports, { desc = "Organize Imports" })
+
+-- Close all buffers except nvim-tree
+vim.keymap.set("n", "<leader>ba", function()
+  local api = require "nvim-tree.api"
+
+  -- Close all buffers except nvim-tree
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    local buf_name = vim.api.nvim_buf_get_name(bufnr)
+    if vim.api.nvim_buf_is_loaded(bufnr) and not buf_name:match "NvimTree_" then
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+    end
+  end
+
+  -- Reopen nvim-tree if it was previously visible
+  if not api.tree.is_visible() then
+    api.tree.open()
+  end
+end, { desc = "Close all buffers except NvimTree" })
