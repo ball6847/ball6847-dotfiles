@@ -44,6 +44,9 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
   desc = "Search on current file",
 })
 
+-- replay macro in register a with F3
+map("n", "<F3>", "@a", { noremap = true, silent = true, desc = "Replay macro in register a" })
+
 -- toggle nvim-tree width between 40 and 60
 local function toggle_nvim_tree_width()
   local view = require "nvim-tree.view"
