@@ -10,4 +10,11 @@ require("noice").setup {
       enabled = false,
     },
   },
+  --
+  routes = {
+    {
+      view = "notify",
+      filter = { event = "msg_showmode" },
+    },
+  },
 }
