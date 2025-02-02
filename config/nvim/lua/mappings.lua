@@ -47,6 +47,9 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
 -- replay macro in register q with F3 (so, start recording with `qq`)
 map("n", "<F3>", "@q", { noremap = true, silent = true, desc = "Replay macro in register a" })
 
+-- map Ctrl+Backspace to delete word backward
+map("i", "<C-H>", "<C-W>", { noremap = true, silent = true, desc = "Delete word at cursor backward" })
+
 -- toggle nvim-tree width between 40 and 60
 local function toggle_nvim_tree_width()
   local view = require "nvim-tree.view"
