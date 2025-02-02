@@ -10,11 +10,21 @@ require("noice").setup {
       enabled = false,
     },
   },
-  --
+  -- routing vim messages
   routes = {
+    -- message like @q for macro recording to show in notification, or we won't see it anywhere
     {
       view = "notify",
       filter = { event = "msg_showmode" },
+    },
+    -- skip buffer write notification, as the notificatoin could block our code
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "written",
+      },
+      opts = { skip = true },
     },
   },
 }
