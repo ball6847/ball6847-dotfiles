@@ -38,7 +38,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions ansible kubectl helm asdf)
+plugins=(zsh-autosuggestions ansible kubectl helm asdf z)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -180,6 +180,11 @@ if which phpbrew > /dev/null; then
 fi
 
 # ================================================
+
+# set z integraion, see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+if which zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 #
 # Allow parent to initialize shell
