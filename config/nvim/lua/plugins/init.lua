@@ -13,13 +13,9 @@ return {
   {
     "smoka7/hop.nvim",
     version = "*",
-    opts = {
-      keys = "etovxqpdygfblzhckisuran",
-      multi_windows = true,
-    },
     keys = {
       {
-        "<leader>fg",
+        "<leader><leader>f",
         function()
           require("hop").hint_words()
         end,
@@ -30,6 +26,12 @@ return {
         },
       },
     },
+    config = function()
+      require("hop").setup {
+        keys = "etovxqpdygfblzhckisuran",
+        multi_windows = false,
+      }
+    end,
   },
 
   -- These are some examples, uncomment them if you want to see them work!

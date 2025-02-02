@@ -105,10 +105,10 @@ local function organize_imports()
 end
 
 -- Mapping to trigger the function
-vim.keymap.set("n", "<leader>cai", organize_imports, { desc = "Organize Imports" })
+map("n", "<leader>cai", organize_imports, { desc = "Organize Imports" })
 
 -- Close all buffers except nvim-tree
-vim.keymap.set("n", "<leader>ba", function()
+map("n", "<leader>ba", function()
   local api = require "nvim-tree.api"
 
   -- Close all buffers except nvim-tree
@@ -133,3 +133,23 @@ map("n", "<leader>z", function()
     },
   }
 end, { desc = "Toggle zen mode" })
+
+-- normal mode (easymotion-like)
+map("n", "<Leader><Leader>w", "<cmd>HopWordAC<CR>", { noremap = true })
+map("n", "<Leader><Leader>b", "<cmd>HopWordBC<CR>", { noremap = true })
+map("n", "<Leader><Leader>j", "<cmd>HopLineAC<CR>", { noremap = true })
+map("n", "<Leader><Leader>k", "<cmd>HopLineBC<CR>", { noremap = true })
+
+-- visual mode (easymotion-like)
+map("v", "<Leader><Leader>w", "<cmd>HopWordAC<CR>", { noremap = true })
+map("v", "<Leader><Leader>b", "<cmd>HopWordBC<CR>", { noremap = true })
+map("v", "<Leader><Leader>j", "<cmd>HopLineAC<CR>", { noremap = true })
+map("v", "<Leader><Leader>k", "<cmd>HopLineBC<CR>", { noremap = true })
+
+-- normal mode (sneak-like)
+map("n", "s", "<cmd>HopChar2AC<CR>", { noremap = false })
+map("n", "S", "<cmd>HopChar2BC<CR>", { noremap = false })
+
+-- visual mode (sneak-like)
+map("v", "s", "<cmd>HopChar2AC<CR>", { noremap = false })
+map("v", "S", "<cmd>HopChar2BC<CR>", { noremap = false })
