@@ -124,3 +124,12 @@ vim.keymap.set("n", "<leader>ba", function()
     api.tree.open()
   end
 end, { desc = "Close all buffers except NvimTree" })
+
+-- mapping for toggle zen mode
+map("n", "<leader>z", function()
+  require("zen-mode").toggle {
+    window = {
+      width = 0.70, -- width will be 85% of the editor width
+    },
+  }
+end, { desc = "Toggle zen mode" })
