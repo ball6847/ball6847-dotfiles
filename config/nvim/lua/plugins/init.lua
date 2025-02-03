@@ -10,28 +10,43 @@ return {
 
   -- hop - easymotion easy alternatives
   -- taken from: https://www.youtube.com/watch?v=Irm2WELYSps&ab_channel=Dispatch
+  -- {
+  --   "smoka7/hop.nvim",
+  --   version = "*",
+  --   keys = {
+  --     {
+  --       "<leader><leader>f",
+  --       function()
+  --         require("hop").hint_words()
+  --       end,
+  --       mode = {
+  --         "n",
+  --         "x",
+  --         "o",
+  --       },
+  --     },
+  --   },
+  --   config = function()
+  --     require("hop").setup {
+  --       keys = "etovxqpdygfblzhckisuran",
+  --       multi_windows = false,
+  --     }
+  --   end,
+  -- },
+
   {
-    "smoka7/hop.nvim",
-    version = "*",
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
     keys = {
-      {
-        "<leader><leader>f",
-        function()
-          require("hop").hint_words()
-        end,
-        mode = {
-          "n",
-          "x",
-          "o",
-        },
-      },
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      -- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
-    config = function()
-      require("hop").setup {
-        keys = "etovxqpdygfblzhckisuran",
-        multi_windows = false,
-      }
-    end,
   },
 
   -- These are some examples, uncomment them if you want to see them work!
