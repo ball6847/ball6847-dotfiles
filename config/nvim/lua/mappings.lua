@@ -1,5 +1,5 @@
 require "nvchad.mappings"
-
+--
 -- add yours here
 
 local map = vim.keymap.set
@@ -48,7 +48,8 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
 map("n", "<F3>", "@q", { noremap = true, silent = true, desc = "Replay macro in register a" })
 
 -- map Ctrl+Backspace to delete word backward
-map("i", "<C-H>", "<C-W>", { noremap = true, silent = true, desc = "Delete word at cursor backward" })
+local delete_bw_key = vim.loop.os_uname().sysname == "Darwin" and "<D-BS>" or "<C-H>"
+map("i", delete_bw_key, "<C-W>", { noremap = true, silent = true, desc = "Delete word at cursor backward" })
 
 -- toggle nvim-tree width between 40 and 60
 local function toggle_nvim_tree_width()
