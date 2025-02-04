@@ -157,4 +157,9 @@ return {
       -- refer to the configuration section below
     },
   },
+  {
+    "ravibrock/spellwarn.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
 }
