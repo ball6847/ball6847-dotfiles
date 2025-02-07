@@ -106,7 +106,7 @@ local function organize_imports()
 end
 
 -- Mapping to trigger the function
-map("n", "<leader>cai", organize_imports, { desc = "Organize Imports" })
+map("n", "<leader>ci", organize_imports, { desc = "Organize Imports" })
 
 -- Close all buffers except nvim-tree
 map("n", "<leader>ba", function()

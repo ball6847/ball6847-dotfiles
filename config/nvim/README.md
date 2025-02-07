@@ -44,7 +44,7 @@ asdf install ruby
 - `<leader>S` to trigger Spectre (search and replace)
 - `<leader>fg` to trigger hop (jump to any word)
 - `<leader>ca` to trigger code action (actionable item for the current file)
-- `<leader>cai` to trigger organize import
+- `<leader>ci` to trigger organize import
 - `<leader>ra` to trigger rename symbol
 - `<leader>gd` to trigger go to definition
 - `<leader>gr` to trigger go to references
