@@ -135,7 +135,7 @@ map("n", "<leader>z", function()
   }
 end, { desc = "Toggle zen mode" })
 
-vim.keymap.set("n", "<leader>ts", function()
+map("n", "<leader>ts", function()
   if vim.opt.spell:get() then
     require("spellwarn").disable()
     vim.opt.spell = false
