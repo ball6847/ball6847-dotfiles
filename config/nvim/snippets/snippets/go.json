@@ -3,5 +3,10 @@
     "prefix": "wi",
     "body": "//go:build wireinject\n// +build wireinject\n",
     "description": "Add wireinject tag"
+  },
+  "if error panic": {
+    "prefix": "iferr",
+    "body": ["if err != nil {", "    ${1:panic(err)}", "}"],
+    "description": "Checks if err is not nil and panics"
   }
 }
