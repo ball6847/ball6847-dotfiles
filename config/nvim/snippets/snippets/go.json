@@ -1,0 +1,7 @@
+{
+  "wire inject": {
+    "prefix": "wi",
+    "body": "//go:build wireinject\n// +build wireinject\n",
+    "description": "Add wireinject tag"
+  }
+}
