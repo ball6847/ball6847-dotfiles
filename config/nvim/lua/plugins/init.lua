@@ -158,9 +158,16 @@ return {
   --     -- refer to the configuration section below
   --   },
   -- },
+  -- {
+  --   "ravibrock/spellwarn.nvim",
+  --   event = "VeryLazy",
+  --   config = true,
+  -- },
   {
-    "ravibrock/spellwarn.nvim",
-    event = "VeryLazy",
-    config = true,
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require "configs.lint"
+    end,
   },
 }
