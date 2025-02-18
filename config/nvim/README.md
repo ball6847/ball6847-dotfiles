@@ -23,6 +23,10 @@ I might need to run this command from time to time to update the LSP servers and
 ```bash
 npm install -g typescript typescript-language-server svelte-language-server @fsouza/prettierd nodemon
 asdf reshim
+
+// optional for codespell, use pip3 or brew to install codespell
+// pip3 install codespell
+// brew install codespell
 ```
 
 Note about ruby, some dev dependencies is required to install ruby using asdf. You can install the dependencies using the following command
@@ -51,7 +55,7 @@ asdf install ruby
 - `<leader>gi` to trigger go to implementation
 - `<leader>ds` to open diagnostic list
 - `<leader>tw` to toggle nvim-tree width between 30 and 40 as sometimes the width is too small (adjust the width in `lua/mappings.lua`)
-- `<leader>ba` to close all buffers except nvim-tree
+- `<leader>ll` to trigger linting manually on current file
 - `<C-L>` to accept github copilot suggestion
 - `<C-X>` on nvim-tree to open file in horizontal split
 - `<C-V>` on nvim-tree to open file in vertical split
