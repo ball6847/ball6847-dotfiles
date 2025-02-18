@@ -97,6 +97,8 @@ fi
 
 # ================================================
 
+export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
+
 # General environment variable
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
@@ -104,8 +106,7 @@ export EDITOR='nvim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export YARN_CACHE_FOLDER="$SUDO_HOME/.cache/yarn-cache"
-export PATH="/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$PATH"
+export PATH="$ASDF_DATA_DIR/shims:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$PATH"
 
 # ================================================
 # set up bash alias
@@ -138,10 +139,6 @@ alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
 alias v="nvim"
 
-curla() {
-    curl -H "Content-Type: application/json" -H "Authorization: Bearer $JWT_AUTH_TOKEN" "$@" | jq
-}
-
 # ================================================
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
@@ -171,14 +168,6 @@ show_virtual_env() {
     fi
 }
 
-ssh-tmux() {
-    ssh -t "$@" tmux new-session -A -s main
-}
-
-if which phpbrew > /dev/null; then
-    [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
-fi
-
 # ================================================
 
 # set z integraion, see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
@@ -196,11 +185,3 @@ if [[ -n $ZSH_INIT_COMMAND ]]; then
     eval "$ZSH_INIT_COMMAND"
 fi
 
-export PATH="$PATH:$SUDO_HOME/.yarn/bin"
-# export PATH="$SUDO_HOME/.deno/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc' ]; then . $SUDO_HOME'/Applications/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f $SUDO_HOME'/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . $SUDO_HOME'/Applications/google-cloud-sdk/completion.zsh.inc'; fi
