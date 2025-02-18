@@ -4,7 +4,12 @@ lint.linters_by_ft = {
   markdown = { "codespell" },
   text = { "codespell" },
   go = { "codespell" },
-  lua = { "luacheck" }, -- Optional for Lua
+  proto = { "codespell" },
+  typescript = { "codespell" },
+  javascript = { "codespell" },
+  json = { "codespell" },
+  yaml = { "codespell" },
+  lua = { "codespell" }, -- Optional for Lua
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
