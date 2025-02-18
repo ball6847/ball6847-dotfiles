@@ -4,9 +4,9 @@
     "body": "//go:build wireinject\n// +build wireinject\n",
     "description": "Add wireinject tag"
   },
-  "if error panic": {
+  "if error": {
     "prefix": "iferr",
-    "body": ["if err != nil {", "    ${1:panic(err)}", "}"],
-    "description": "Checks if err is not nil and panics"
+    "body": ["if err != nil {", "    ${1:return nil, err}", "}"],
+    "description": "Checks if err then return nil, err"
   }
 }
