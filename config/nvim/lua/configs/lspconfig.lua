@@ -5,7 +5,7 @@ local on_init = require("nvchad.configs.lspconfig").nn_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "lua_ls", "html", "cssls", "gopls", "bashls" }
+local servers = { "lua_ls", "html", "cssls", "gopls", "bashls", "protols" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
