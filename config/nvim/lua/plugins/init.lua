@@ -2,10 +2,20 @@ return {
   -- conform - code formatter engine (actual config in lua/configs/conform.lua)
   {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" }, -- uncomment for format on save
+    event = { "BufWritePre" },
     config = function()
       require "configs.conform"
     end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      filters = {
+        -- show dotfiles by default
+        -- this will not need if this PR get released, https://github.com/NvChad/NvChad/issues/2975 (probably in v2.6)
+        dotfiles = true,
+      },
+    },
   },
 
   -- hop - easymotion easy alternatives
@@ -34,6 +44,7 @@ return {
   --   end,
   -- },
 
+  -- another hop or easymotion alternatives
   {
     "folke/flash.nvim",
     event = "VeryLazy",
