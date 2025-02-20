@@ -149,3 +149,6 @@ end, { desc = "Toggle zen mode" })
 --     vim.opt.spell = true
 --   end
 -- end, { desc = "Toggle SpellWarn" })
+
+map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "20j", { noremap = true, silent = true, desc = "Move next 20 lines" })
+map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "20k", { noremap = true, silent = true, desc = "Move prev 20 lines" })

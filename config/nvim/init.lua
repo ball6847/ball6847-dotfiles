@@ -5,6 +5,7 @@ vim.g.markdown_fenced_languages = {
   "ts=typescript",
 }
 vim.g.vscode_snippets_path = vim.fn.stdpath "config" .. "/snippets"
+vim.g.os_ctrl_key = vim.loop.os_uname().sysname == "Darwin" and "D" or "C"
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
