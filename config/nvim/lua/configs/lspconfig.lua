@@ -1,4 +1,3 @@
--- EXAMPLE
 require "configs.cmp"
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
@@ -6,7 +5,7 @@ local on_init = require("nvchad.configs.lspconfig").nn_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls", "bashls" }
+local servers = { "lua_ls", "html", "cssls", "gopls", "bashls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -18,12 +17,12 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Function to check for the existence of deno.json
-local function has_deno_json()
-  local current_dir = vim.fn.getcwd()
-  local deno_json = current_dir .. "/deno.json"
-  local deno_json_exists = vim.fn.filereadable(deno_json) == 1
-  return deno_json_exists
-end
+-- local function has_deno_json()
+--   local current_dir = vim.fn.getcwd()
+--   local deno_json = current_dir .. "/deno.json"
+--   local deno_json_exists = vim.fn.filereadable(deno_json) == 1
+--   return deno_json_exists
+-- end
 
 -- deno (typescript)
 -- see https://docs.deno.com/runtime/manual/getting_started/setup_your_environment#vimneovim-via-plugins

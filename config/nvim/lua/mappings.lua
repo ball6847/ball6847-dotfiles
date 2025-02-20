@@ -73,7 +73,12 @@ map("n", "<leader>tw", toggle_nvim_tree_width, { desc = "Toggle nvim-tree width"
 -- organize imports
 local function organize_imports()
   local params = vim.lsp.util.make_range_params()
-  params.context = { only = { "source.organizeImports" } }
+  -- TODO: we might need to provide different codeAction name based on specific lsp
+  params.context = {
+    only = {
+      "source.organizeImports",
+    },
+  }
 
   local clients = vim.lsp.get_active_clients()
   for _, client in pairs(clients) do
@@ -135,12 +140,12 @@ map("n", "<leader>z", function()
   }
 end, { desc = "Toggle zen mode" })
 
-map("n", "<leader>ts", function()
-  if vim.opt.spell:get() then
-    require("spellwarn").disable()
-    vim.opt.spell = false
-  else
-    require("spellwarn").enable()
-    vim.opt.spell = true
-  end
-end, { desc = "Toggle SpellWarn" })
+-- map("n", "<leader>ts", function()
+--   if vim.opt.spell:get() then
+--     require("spellwarn").disable()
+--     vim.opt.spell = false
+--   else
+--     require("spellwarn").enable()
+--     vim.opt.spell = true
+--   end
+-- end, { desc = "Toggle SpellWarn" })
