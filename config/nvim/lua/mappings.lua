@@ -140,5 +140,5 @@ map("n", "<leader>z", function()
   }
 end, { desc = "Toggle zen mode" })
 
-map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "20jzz", { noremap = true, silent = true, desc = "Move next 20 lines" })
-map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "20kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
+map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "10jzz", { noremap = true, silent = true, desc = "Move next 20 lines" })
+map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
