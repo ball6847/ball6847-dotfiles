@@ -99,6 +99,9 @@ fi
 
 export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
 
+# asdf rust plugin requires manually PATH setup, we should keep this align with ~/.tool-versions
+export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
+
 # General environment variable
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
@@ -106,7 +109,7 @@ export EDITOR='nvim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export PATH="$ASDF_DATA_DIR/shims:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$PATH"
+export PATH="$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$PATH"
 
 # ================================================
 # set up bash alias

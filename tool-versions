@@ -8,3 +8,4 @@ nodejs 22.5.1
 deno 2.1.10
 helix 25.01.1
 ruby 3.4.1
+rust 1.84.1
