@@ -20,6 +20,7 @@ asdf plugin add rust
 asdf plugin add neovim
 asdf plugin add golang
 asdf plugin add nodejs
+asdf plugin add terraform
 
 # golang
 # `asdf reshim golang` is required after `go get` or `go install`
