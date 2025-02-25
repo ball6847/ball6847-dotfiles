@@ -1,18 +1,31 @@
 [core]
-	autocrlf = false
-	fileMode = true
-	eol = lf
+autocrlf = false
+fileMode = true
+eol = lf
+pager = delta
+
 [user]
-    name = Porawit Poboonma
-    email = ball6847@gmail.com
-[merge]
-	tool = meld
+name = Porawit Poboonma
+email = ball6847@gmail.com
+
 [mergetool]
-	keepBackup = false
+keepBackup = false
+
 [push]
-	default = current
+default = current
+
 [init]
-	defaultBranch = main
+defaultBranch = main
 
 [include]
-    path = .config/.gitconfig
+path = .config/.gitconfig
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+navigate = true  # use n and N to move between diff sections
+dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+conflictstyle = zdiff3
