@@ -147,3 +147,11 @@ map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "10kzz", { noremap = true, silent = 
 
 -- show VGit project diff preview
 map("n", "<leader>df", ":VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
+
+-- telescope - find function or method
+map("n", "<leader>fm", function()
+  require("telescope.builtin").lsp_document_symbols {
+    symbols = { "function", "method" },
+    symbol_width = 100,
+  }
+end, { desc = "Find function or method" })
