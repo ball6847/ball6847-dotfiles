@@ -102,6 +102,7 @@ return {
         "go",
         "php",
         "yaml",
+        "terraform",
       },
       highlight = {
         enable = true,
