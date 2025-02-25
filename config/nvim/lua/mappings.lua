@@ -140,5 +140,10 @@ map("n", "<leader>z", function()
   }
 end, { desc = "Toggle zen mode" })
 
+-- move lines up and down
+-- not sure why, but in mac os, we need cmd+shift+j or cmd+shift+k to move lines (linux works fine with ctrl+j or ctrl+k)
 map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "10jzz", { noremap = true, silent = true, desc = "Move next 20 lines" })
 map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
+
+-- show VGit project diff preview
+map("n", "<leader>df", ":VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
