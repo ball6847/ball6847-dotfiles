@@ -1,4 +1,12 @@
 return {
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+    },
+  },
   -- conform - code formatter engine (actual config in lua/configs/conform.lua)
   {
     "stevearc/conform.nvim",
@@ -112,24 +120,25 @@ return {
 
   -- noice - notification
   -- NOTE: noice currently mess up choice selection at the moment, so we disable it for now
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- add any options here
-  --   },
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     -- "MunifTanjim/nui.nvim",
-  --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     -- "rcarriga/nvim-notify",
-  --   },
-  --   config = function()
-  --     require "configs.noice"
-  --   end,
-  -- },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+      stages = "static",
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      -- "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      -- `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
+    },
+    config = function()
+      require "configs.noice"
+    end,
+  },
 
   -- github colilot
   -- installation guide from https://www.reddit.com/r/neovim/comments/12vcybk/comment/jxjrdn5/
@@ -177,16 +186,16 @@ return {
       require "configs.lint"
     end,
   },
-  -- {
-  --   "tanvirtin/vgit.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   -- Lazy loading on 'VimEnter' event is necessary.
-  --   event = "VimEnter",
-  --   config = function()
-  --     require("vgit").setup()
-  --   end,
-  -- },
+  {
+    "tanvirtin/vgit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- Lazy loading on 'VimEnter' event is necessary.
+    event = "VimEnter",
+    config = function()
+      require("vgit").setup()
+    end,
+  },
 }

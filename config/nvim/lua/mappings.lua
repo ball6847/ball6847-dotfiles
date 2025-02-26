@@ -146,7 +146,7 @@ map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "10jzz", { noremap = true, silent = 
 map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
 
 -- show VGit project diff preview
--- map("n", "<leader>df", ":VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
+map("n", "<leader>df", "<cmd>VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
 
 -- telescope - find function or method
 map("n", "<leader>fm", function()
