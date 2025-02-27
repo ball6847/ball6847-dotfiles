@@ -85,11 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # ================================================
 # activate various command line tool
 
-# set direnv hooks if it already installed
-if which direnv > /dev/null; then
-    eval "$(direnv hook zsh)"
-fi
-
 # load local zsh script
 if [ -f $SUDO_HOME/.lzshrc ]; then
     source $SUDO_HOME/.lzshrc
@@ -157,15 +152,15 @@ bindkey '^[[B' down-line-or-search
 KEYTIMEOUT=1
 
 # ================================================
-
 # in large project tslint requires a lot of ulimit
 # make sure you correctly set /etc/security/limits.conf
 # @see: https://askubuntu.com/questions/162229/how-do-i-increase-the-open-files-limit-for-a-non-root-user
+
 ulimit -Sn 4096
 
 # ================================================
-
 # show virtualenv if available
+
 show_virtual_env() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "($(basename $VIRTUAL_ENV))"
@@ -173,17 +168,24 @@ show_virtual_env() {
 }
 
 # ================================================
+# set direnv hooks if it already installed
 
+if which direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+# ================================================
 # set z integraion, see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+
 if which zoxide > /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
-#
+# ================================================
 # Allow parent to initialize shell
 #
 # This is awesome for opening terminals in VSCode.
-#
+
 if [[ -n $ZSH_INIT_COMMAND ]]; then
     echo "Running: $ZSH_INIT_COMMAND"
     eval "$ZSH_INIT_COMMAND"
