@@ -157,7 +157,7 @@ map("n", "<leader>fn", function()
 end, { desc = "Find function or method" })
 
 -- Move focus in terminal mode using Ctrl + hjkl
-map("t", "<C-h>", "<C-\\><C-n><C-w>h", { noremap = true, silent = true, desc = "Move left from terminal" })
-map("t", "<C-j>", "<C-\\><C-n><C-w>j", { noremap = true, silent = true, desc = "Move down from terminal" })
-map("t", "<C-k>", "<C-\\><C-n><C-w>k", { noremap = true, silent = true, desc = "Move up from terminal" })
-map("t", "<C-l>", "<C-\\><C-n><C-w>l", { noremap = true, silent = true, desc = "Move right from terminal" })
+-- map("t", "<C-h>", "<C-\\><C-n><C-w>h", { noremap = true, silent = true, desc = "Move left from terminal" })
+-- map("t", "<C-j>", "<C-\\><C-n><C-w>j", { noremap = true, silent = true, desc = "Move down from terminal" })
+-- map("t", "<C-k>", "<C-\\><C-n><C-w>k", { noremap = true, silent = true, desc = "Move up from terminal" })
+-- map("t", "<C-l>", "<C-\\><C-n><C-w>l", { noremap = true, silent = true, desc = "Move right from terminal" })
