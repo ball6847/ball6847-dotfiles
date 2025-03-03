@@ -83,6 +83,18 @@ compinit -C
 source $ZSH/oh-my-zsh.sh
 
 # ================================================
+# detect wsl
+# TODO: confirm this return 1 on macos
+
+is_wsl() {
+    if uname -r | grep -q microsoft; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# ================================================
 # activate various command line tool
 
 # load local zsh script
@@ -137,6 +149,12 @@ alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyou
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
 alias v="nvim"
+
+# add custom alias for wsl
+if is_wsl; then
+  alias open="explorer.exe"
+  alias explorer="explorer.exe"
+fi
 
 # ================================================
 
