@@ -161,3 +161,10 @@ end, { desc = "Find function or method" })
 -- map("t", "<C-j>", "<C-\\><C-n><C-w>j", { noremap = true, silent = true, desc = "Move down from terminal" })
 -- map("t", "<C-k>", "<C-\\><C-n><C-w>k", { noremap = true, silent = true, desc = "Move up from terminal" })
 -- map("t", "<C-l>", "<C-\\><C-n><C-w>l", { noremap = true, silent = true, desc = "Move right from terminal" })
+
+map({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+map({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+map("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd [[cab cc CodeCompanion]]
