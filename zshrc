@@ -209,3 +209,7 @@ if [[ -n $ZSH_INIT_COMMAND ]]; then
     eval "$ZSH_INIT_COMMAND"
 fi
 
+# ================================================
+# grc zsh integration (generic colorizer)
+
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
