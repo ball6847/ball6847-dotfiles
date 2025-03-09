@@ -168,3 +168,9 @@ map("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd [[cab cc CodeCompanion]]
+
+map("n", "<leader>tr", ":TestNearest -v<CR>", { noremap = true, silent = true, desc = "Run test nearest" })
+map("n", "<leader>tf", ":TestFile -v<CR>", { noremap = true, silent = true, desc = "Run test file" })
+map("n", "<leader>ts", ":TestSuite<CR>", { noremap = true, silent = true, desc = "Run test suite" })
+map("n", "<leader>tt", ":TestLast<CR>", { noremap = true, silent = true, desc = "Run last test" })
+map("n", "<leader>tv", ":TestVisit<CR>", { noremap = true, silent = true, desc = "Visit test file" })

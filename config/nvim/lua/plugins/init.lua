@@ -218,4 +218,12 @@ return {
       require("vgit").setup()
     end,
   },
+  {
+    "vim-test/vim-test",
+    event = "VimEnter",
+    init = function()
+      vim.g["test#strategy"] = "neovim"
+      vim.g["test#go#runner"] = "gotest"
+    end,
+  },
 }
