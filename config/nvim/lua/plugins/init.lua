@@ -228,4 +228,5 @@ return {
       vim.g["test#go#runner"] = "gotest"
     end,
   },
+  { "wakatime/vim-wakatime", lazy = false },
 }
