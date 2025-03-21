@@ -149,6 +149,9 @@ alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyou
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
 alias v="nvim"
+alias t="task"
+alias m="make"
+
 
 # add custom alias for wsl
 if is_wsl; then
