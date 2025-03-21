@@ -225,8 +225,41 @@ return {
     event = "VimEnter",
     init = function()
       vim.g["test#strategy"] = "neovim"
-      vim.g["test#go#runner"] = "gotest"
+      vim.g["test#go#gotest#options"] = "-coverprofile=cover.out"
     end,
   },
-  { "wakatime/vim-wakatime", lazy = false },
+  {
+    "wakatime/vim-wakatime",
+    lazy = false,
+  },
+  -- :CoverageLoad to load coverage file
+  -- :CoverageShow to show coverage in the buffer
+  -- :CoverageToggle to toggle coverage display
+  {
+    "andythigpen/nvim-coverage",
+    version = "*",
+    lazy = false,
+    config = function()
+      local go_coverage_file = "cover.out"
+      require("coverage").setup {
+        commands = true,
+        auto_reload = true,
+        lang = {
+          go = {
+            coverage_file = go_coverage_file,
+          },
+        },
+      }
+      -- Auto run test and show coverage on entering a Go file
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*.go",
+        callback = function()
+          if vim.fn.filereadable(go_coverage_file) == 1 then
+            require("coverage").load(true)
+            require("coverage").show()
+          end
+        end,
+      })
+    end,
+  },
 }
