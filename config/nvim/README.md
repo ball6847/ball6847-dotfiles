@@ -21,7 +21,7 @@ If you have everything installed, you can run the following command to install t
 I might need to run this command from time to time to update the LSP servers and formatters
 
 ```bash
-npm install -g typescript typescript-language-server svelte-language-server @fsouza/prettierd nodemon
+npm install -g typescript typescript-language-server svelte-language-server @fsouza/prettierd nodemon @bufbuild/buf
 asdf reshim
 
 // optional for codespell, use pip3 or brew to install codespell
@@ -76,4 +76,5 @@ A list of tools I am using in daily work life
 ```sh
 go install github.com/vektra/mockery/v2@latest
 go install github.com/mitranim/gow@latest
+go install golang.org/x/tools/gopls@latest
 ```
