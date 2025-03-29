@@ -6,7 +6,7 @@
 # NOTE: this script assumes you have git and curl installed on your system, if not, just do `apt install curl git`. And asdf should be enabled in your shell
 
 if [ ! -d ~/.asdf ]; then
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.16.7
 fi
 
 asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
@@ -21,11 +21,7 @@ asdf plugin add neovim
 asdf plugin add golang
 asdf plugin add nodejs
 asdf plugin add terraform
-
-# golang
-# `asdf reshim golang` is required after `go get` or `go install`
-
-# deno
-# `asdf reshim deno` is required after `deno install`
+asdf plugin add lua-language-server
+asdf plugin add task
 
 # TODO: bun

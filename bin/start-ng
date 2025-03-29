@@ -1,8 +1,0 @@
-#!/bin/bash -e
-
-SCRIPTDIR="`dirname $0`"
-
-NGTMPDIR=`mktemp -d -t ng-devcontainer-XXXXXXXXXX`
-cp -rf ${SCRIPTDIR}/../templates/.devcontainer "${NGTMPDIR}"
-cd ${NGTMPDIR}
-code-insiders .
