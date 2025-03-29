@@ -203,6 +203,14 @@ if which zoxide > /dev/null; then
 fi
 
 # ================================================
+# set task shell integration
+
+if which task > /dev/null; then
+  eval "$(task --completion zsh)"
+fi
+
+
+# ================================================
 # Allow parent to initialize shell
 #
 # This is awesome for opening terminals in VSCode.
