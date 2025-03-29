@@ -10,7 +10,7 @@ sudo locale-gen en_US.UTF-8
 # install required packages
 
 # common tools
-sudo apt install zsh zip pipx direnv zoxide git curl wget
+sudo apt install zsh zip pipx direnv zoxide git curl wget fzf
 
 # packages needed for building ruby from source
 sudo apt build-essential zlib1g-dev libssl-dev libreadline-dev libyaml-dev libncurses5-dev libffi-dev libgdbm-dev 
@@ -93,3 +93,8 @@ nvim +Copilot setup
 
 # setup waka time api, go to https://wakatime.com/settings/account and copy the api key, run the command then paste the key
 nvim +WakaTimeApiKey
+
+# setup git delta
+cargo install git-delta
+
+asdf reshim
