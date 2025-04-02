@@ -77,4 +77,5 @@ A list of tools I am using in daily work life
 go install github.com/vektra/mockery/v2@latest
 go install github.com/mitranim/gow@latest
 go install golang.org/x/tools/gopls@latest
+go install github.com/google/wire/cmd/wire@latest
 ```
