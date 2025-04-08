@@ -3,7 +3,7 @@ require "nvchad.options"
 -- add yours here!
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.scrolloff = 20
+-- vim.opt.scrolloff = 20
 vim.opt.clipboard = "unnamedplus"
 vim.opt.exrc = true
 vim.opt.spell = false -- toggle using <leader>ts
