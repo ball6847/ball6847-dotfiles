@@ -69,7 +69,7 @@ Run `:Copilot setup` to setup github copilot and follow the instructions. Use `<
 
 You might need to remove `C-V` binding in Windows Terminal for pasting to allow `C-V` to open file in vertical split in NvimTree (You still can use Ctrl+Shift+V to paste)
 
-## Golang Tools
+## Tools installed via Go
 
 A list of tools I am using in daily work life
 
@@ -78,4 +78,11 @@ go install github.com/vektra/mockery/v2@latest
 go install github.com/mitranim/gow@latest
 go install golang.org/x/tools/gopls@latest
 go install github.com/google/wire/cmd/wire@latest
+```
+
+## Tools installed via Cargo
+
+```sh
+cargo install git-delta
+cargo install protols
 ```
