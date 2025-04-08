@@ -5,7 +5,7 @@ local on_init = require("nvchad.configs.lspconfig").nn_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "lua_ls", "html", "cssls", "gopls", "bashls", "protols" }
+local servers = { "lua_ls", "html", "cssls", "gopls", "bashls" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -166,4 +166,10 @@ lspconfig.intelephense.setup {
       },
     },
   },
+}
+
+-- protols: detects the root directory by looking for protols.toml
+
+lspconfig.protols.setup {
+  root_dir = lspconfig.util.root_pattern "protols.toml",
 }
