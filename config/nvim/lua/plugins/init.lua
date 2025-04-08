@@ -103,6 +103,7 @@ return {
         "typescript-language-server",
         "yamlfix",
         "codespell",
+        "protols",
       },
     },
   },
