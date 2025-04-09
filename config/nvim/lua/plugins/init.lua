@@ -91,7 +91,6 @@ return {
         "svelte-language-server",
         "bash-language-server",
         "beautysh",
-        "buf",
         "google-java-format",
         "htmlbeautifier",
         "ktlint",
