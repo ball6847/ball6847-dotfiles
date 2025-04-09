@@ -88,6 +88,8 @@ return {
         "deno",
         "intelephense",
         "gopls",
+        "gofumpt",
+        "golangci-lint",
         "svelte-language-server",
         "bash-language-server",
         "beautysh",
