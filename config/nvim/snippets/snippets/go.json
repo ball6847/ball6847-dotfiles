@@ -10,8 +10,8 @@
     "description": "Checks if err then return nil, err"
   },
   "litter import": {
-    "prefix": "lit",
-    "body": ["import \"github.com/sanity-io/litter\"],
+    "prefix": "litter",
+    "body": ["import \"github.com/sanity-io/litter\""],
     "description": "Import litter package for testing purposes"
   },
   "Go Test Module Template": {
