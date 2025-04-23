@@ -9,6 +9,11 @@
     "body": ["if err != nil {", "    ${1:return nil, err}", "}"],
     "description": "Checks if err then return nil, err"
   },
+  "litter import": {
+    "prefix": "lit",
+    "body": ["import \"github.com/sanity-io/litter\"],
+    "description": "Import litter package for testing purposes"
+  },
   "Go Test Module Template": {
     "prefix": "tm",
     "body": [
