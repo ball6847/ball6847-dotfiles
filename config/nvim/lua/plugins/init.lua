@@ -104,6 +104,7 @@ return {
         "yamlfix",
         "codespell",
         "protols",
+        "golangci-lint-langserver",
       },
     },
   },
