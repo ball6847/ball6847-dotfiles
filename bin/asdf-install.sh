@@ -23,6 +23,7 @@ asdf plugin add nodejs
 asdf plugin add terraform
 asdf plugin add lua-language-server
 asdf plugin add task
+asdf plugin add mockery https://github.com/cabify/asdf-mockery.git
 # asdf plugin add stern
 
 # TODO: bun

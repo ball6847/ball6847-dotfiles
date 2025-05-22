@@ -11,3 +11,5 @@ helm 3.17.3
 terraform 1.11.4
 lua-language-server 3.14
 task 3.43.3
+mockery 3.2.5
+
