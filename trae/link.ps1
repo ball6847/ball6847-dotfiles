@@ -72,7 +72,7 @@ foreach ($backup in $backupFiles) {
         Write-Host "Backing up $($backup.Source) to $($backup.Backup)"
         Copy-Item $backup.Source $backup.Backup -Force
         Remove-Item $backup.Source
-        Write-Host "✓ Backed up $($backup.File)" -ForegroundColor Green
+        Write-Host "Backed up $($backup.File)" -ForegroundColor Green
     } catch {
         $failedLinks += @{
             File = $backup.File
@@ -85,7 +85,7 @@ foreach ($backup in $backupFiles) {
 foreach ($link in $successfulLinks) {
     try {
         New-Item -ItemType HardLink -Path $link.Target -Target $link.Source -ErrorAction Stop
-        Write-Host "✓ Created hard link for $($link.File)" -ForegroundColor Green
+        Write-Host "Created hard link for $($link.File)" -ForegroundColor Green
     } catch {
         $failedLinks += @{
             File = $link.File
@@ -96,7 +96,7 @@ foreach ($link in $successfulLinks) {
 
 # Report results
 foreach ($link in $existingLinks) {
-    Write-Host "✓ Hard link already exists for $link" -ForegroundColor Green
+    Write-Host "Hard link already exists for $link" -ForegroundColor Green
 }
 
 foreach ($failure in $failedLinks) {
@@ -112,8 +112,8 @@ foreach ($failure in $failedLinks) {
 $success = $failedLinks.Count -eq 0
 
 if ($success) {
-    Write-Host "`nTrae configuration sync setup complete!" -ForegroundColor Cyan
+    Write-Host "Trae configuration sync setup complete!" -ForegroundColor Cyan
     Write-Host "Your settings and keybindings will now stay in sync with the source directory." -ForegroundColor Gray
 } else {
-    Write-Host "`nTrae configuration sync completed with errors. Please review the messages above." -ForegroundColor Red
+    Write-Host "Trae configuration sync completed with errors. Please review the messages above." -ForegroundColor Red
 }
