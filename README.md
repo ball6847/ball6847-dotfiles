@@ -2,6 +2,40 @@
 
 This repository contains my personal dotfiles for configuring various development tools and environments. It includes configuration for shells (Bash, Zsh), editors (Neovim), terminal emulators (Kitty, Terminator), Git, and various development tools. The repository is designed to be cross-platform compatible with specific configurations for both Linux and Windows environments. Setup scripts are included for easy installation and automatic updates. Feel free to explore, fork, and adapt these configurations to suit your own workflow needs.
 
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Git
+- Bash (for Linux/macOS)
+- PowerShell (for Windows)
+- Zsh (optional, for enhanced shell experience)
+
+### Clone the Repository
+
+Most scripts in this repository expect the dotfiles to be cloned to `~/.dotfiles` (Linux/macOS) or equivalent location on Windows. It's important to clone to the correct location to ensure all scripts work properly.
+
+```bash
+# Linux/macOS
+git clone https://github.com/ball6847/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+```
+
+```powershell
+# Windows
+git clone https://github.com/ball6847/dotfiles.git "$env:USERPROFILE\.dotfiles"
+cd "$env:USERPROFILE\.dotfiles"
+```
+
+After cloning, initialize the git submodules to get all the required plugins:
+
+```bash
+# Initialize submodules (Zsh plugins, etc.)
+git submodule update --init --recursive
+```
+
 ## Installation
 
 ### Linux/macOS
@@ -66,6 +100,18 @@ These dotfiles are highly customizable. The main configuration files you might w
 - `config/`: Configuration files for various applications
 - `zsh_custom/`: Custom Zsh plugins and themes
 - `assets/`: Additional configuration files and resources
+
+## Troubleshooting
+
+### Common Issues
+
+- **Symlink errors**: Ensure you have the necessary permissions to create symlinks. On Windows, you may need to run PowerShell as Administrator.
+- **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive` again.
+- **Script execution errors**: Make sure scripts have executable permissions (`chmod +x script.sh` on Linux/macOS).
+
+### Getting Help
+
+If you encounter any issues not covered here, please [open an issue](https://github.com/ball6847/dotfiles/issues) on the GitHub repository.
 
 ## License
 
