@@ -20,7 +20,7 @@ if (-not (Test-Path $scriptPath)) {
 $existingTask = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
 
 if ($existingTask) {
-    Write-Host "Task '$taskName' already exists. Removing old task..." -ForegroundColor Yellow
+    Write-Host "Task already exists. Removing old task..." -ForegroundColor Yellow
     Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
 }
 
@@ -39,12 +39,12 @@ $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoi
 # Register the task
 try {
     Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Description "Auto-update dotfiles from git repository on startup"
-    Write-Host "✓ Successfully created scheduled task '$taskName'" -ForegroundColor Green
+    Write-Host "Successfully created scheduled task" -ForegroundColor Green
     Write-Host "The task will run at startup and pull updates from your git repository." -ForegroundColor Gray
 } catch {
     Write-Error "Failed to create scheduled task: $($_.Exception.Message)"
 }
 
 # Show the created task
-Write-Host "`nTask details:" -ForegroundColor Cyan
+Write-Host "Task details:" -ForegroundColor Cyan
 Get-ScheduledTask -TaskName $taskName | Select-Object TaskName, State, LastRunTime, NextRunTime
