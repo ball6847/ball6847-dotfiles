@@ -1,6 +1,7 @@
 # Auto-update dotfiles on startup
 $dotfilesDir = Join-Path $HOME ".dotfiles"
 $logFile = Join-Path $dotfilesDir "auto-update.log"
+$stashCreated = $false
 
 # Validate dotfiles directory exists
 if (-not (Test-Path $dotfilesDir)) {
@@ -32,6 +33,23 @@ if (-not (Test-Path ".git")) {
     exit 1
 }
 
+# Check for uncommitted changes
+try {
+    $status = git status --porcelain 2>&1
+    
+    # If there are uncommitted changes, stash them
+    if ($status) {
+        Write-Log "Uncommitted changes detected, stashing them"
+        $stashOutput = git stash push -m "Auto-update stash" 2>&1
+        Write-Log "Stash output: $stashOutput"
+        $stashCreated = $true
+    } else {
+        Write-Log "No uncommitted changes detected"
+    }
+} catch {
+    Write-Log "ERROR: Failed to check git status: $($_.Exception.Message)"
+}
+
 # Perform git pull
 try {
     $output = git pull 2>&1
@@ -44,6 +62,32 @@ try {
     }
 } catch {
     Write-Log "ERROR: Git pull failed: $($_.Exception.Message)"
+}
+
+# Apply stashed changes if any were stashed
+if ($stashCreated) {
+    try {
+        Write-Log "Applying stashed changes"
+        $stashPopOutput = git stash pop 2>&1
+        Write-Log "Stash pop output: $stashPopOutput"
+    } catch {
+        Write-Log "ERROR: Failed to apply stashed changes: $($_.Exception.Message)"
+    }
+}
+
+# Push changes to repository
+try {
+    Write-Log "Pushing changes to repository"
+    $pushOutput = git push 2>&1
+    Write-Log "Push output: $pushOutput"
+    
+    if ($LASTEXITCODE -eq 0) {
+        Write-Log "SUCCESS: Git push completed successfully"
+    } else {
+        Write-Log "WARNING: Git push returned exit code $LASTEXITCODE"
+    }
+} catch {
+    Write-Log "ERROR: Git push failed: $($_.Exception.Message)"
 }
 
 Write-Log "Auto-update completed"
