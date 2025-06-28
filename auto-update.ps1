@@ -75,19 +75,54 @@ if ($stashCreated) {
     }
 }
 
-# Push changes to repository
+# Add and commit changes
 try {
-    Write-Log "Pushing changes to repository"
-    $pushOutput = git push 2>&1
-    Write-Log "Push output: $pushOutput"
+    Write-Log "Adding and committing changes"
+    
+    # First add all changes
+    $addOutput = git add -A 2>&1
+    Write-Log "Git add output: $addOutput"
+    
+    # Then commit
+    $commitMessage = "Auto-update commit $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $commitOutput = git commit -m $commitMessage 2>&1
+    Write-Log "Commit output: $commitOutput"
     
     if ($LASTEXITCODE -eq 0) {
-        Write-Log "SUCCESS: Git push completed successfully"
+        Write-Log "SUCCESS: Git commit completed successfully"
     } else {
-        Write-Log "WARNING: Git push returned exit code $LASTEXITCODE"
+        # Check if there was nothing to commit
+        if ($commitOutput -match "nothing to commit") {
+            Write-Log "INFO: No changes to commit"
+        } else {
+            Write-Log "WARNING: Git commit returned exit code $LASTEXITCODE"
+        }
     }
 } catch {
-    Write-Log "ERROR: Git push failed: $($_.Exception.Message)"
+    Write-Log "ERROR: Git add/commit failed: $($_.Exception.Message)"
+}
+
+# Check for unpushed commits and push if needed
+try {
+    Write-Log "Checking for unpushed commits"
+    $unpushedCommits = git log @{u}.. --oneline 2>&1
+    
+    if ($unpushedCommits) {
+        Write-Log "Unpushed commits detected: $unpushedCommits"
+        Write-Log "Pushing changes to repository"
+        $pushOutput = git push 2>&1
+        Write-Log "Push output: $pushOutput"
+        
+        if ($LASTEXITCODE -eq 0) {
+            Write-Log "SUCCESS: Git push completed successfully"
+        } else {
+            Write-Log "WARNING: Git push returned exit code $LASTEXITCODE"
+        }
+    } else {
+        Write-Log "No unpushed commits detected, skipping push"
+    }
+} catch {
+    Write-Log "ERROR: Failed during push check/operation: $($_.Exception.Message)"
 }
 
 Write-Log "Auto-update completed"

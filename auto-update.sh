@@ -97,16 +97,60 @@ if [ "$stash_created" = true ]; then
     fi
 fi
 
-# Push changes to repository
-echo -e "${YELLOW}Pushing changes to repository...${NC}"
-write_log "Pushing changes to repository"
-if push_output=$(git push 2>&1); then
-    write_log "Push output: $push_output"
-    echo -e "${GREEN}✓ Changes pushed successfully${NC}"
-    write_log "SUCCESS: Git push completed successfully"
+# Add and commit changes
+echo -e "${YELLOW}Adding and committing changes...${NC}"
+write_log "Adding and committing changes"
+
+# First add all changes
+echo -e "${YELLOW}Adding all changes...${NC}"
+if add_output=$(git add -A 2>&1); then
+    write_log "Git add output: $add_output"
+    echo -e "${GREEN}✓ Changes added successfully${NC}"
 else
-    echo -e "${RED}ERROR: Git push failed${NC}" >&2
-    write_log "ERROR: Git push failed: $push_output"
+    echo -e "${RED}ERROR: Git add failed${NC}" >&2
+    write_log "ERROR: Git add failed: $add_output"
+fi
+
+# Then commit
+echo -e "${YELLOW}Committing changes...${NC}"
+if commit_output=$(git commit -m "Auto-update commit $(date '+%Y-%m-%d %H:%M:%S')" 2>&1); then
+    write_log "Commit output: $commit_output"
+    echo -e "${GREEN}✓ Changes committed successfully${NC}"
+    write_log "SUCCESS: Git commit completed successfully"
+else
+    # Check if there was nothing to commit
+    if echo "$commit_output" | grep -q "nothing to commit"; then
+        echo -e "${GREEN}✓ No changes to commit${NC}"
+        write_log "INFO: No changes to commit"
+    else
+        echo -e "${RED}ERROR: Git commit failed${NC}" >&2
+        write_log "ERROR: Git commit failed: $commit_output"
+    fi
+fi
+
+# Check for unpushed commits and push if needed
+echo -e "${YELLOW}Checking for unpushed commits...${NC}"
+write_log "Checking for unpushed commits"
+if unpushed_commits=$(git log @{u}.. --oneline 2>&1); then
+    if [ -n "$unpushed_commits" ]; then
+        write_log "Unpushed commits detected: $unpushed_commits"
+        echo -e "${YELLOW}Unpushed commits detected, pushing to repository...${NC}"
+        write_log "Pushing changes to repository"
+        if push_output=$(git push 2>&1); then
+            write_log "Push output: $push_output"
+            echo -e "${GREEN}✓ Changes pushed successfully${NC}"
+            write_log "SUCCESS: Git push completed successfully"
+        else
+            echo -e "${RED}ERROR: Git push failed${NC}" >&2
+            write_log "ERROR: Git push failed: $push_output"
+        fi
+    else
+        echo -e "${GREEN}✓ No unpushed commits detected, skipping push${NC}"
+        write_log "No unpushed commits detected, skipping push"
+    fi
+else
+    echo -e "${RED}ERROR: Failed to check for unpushed commits${NC}" >&2
+    write_log "ERROR: Failed to check for unpushed commits"
 fi
 
 write_log "Auto-update completed"
