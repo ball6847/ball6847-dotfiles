@@ -105,7 +105,7 @@ try {
 # Check for unpushed commits and push if needed
 try {
     Write-Log "Checking for unpushed commits"
-    $unpushedCommits = git log @{u}.. --oneline 2>&1
+    $unpushedCommits = git log "@{u}.." --oneline 2>&1
     
     if ($unpushedCommits) {
         Write-Log "Unpushed commits detected: $unpushedCommits"
