@@ -29,21 +29,18 @@ foreach ($file in $files) {
         continue
     }
     
-    # Check if target exists and is already a hard link
+    # Check if target exists and is already a symbolic link
     if (Test-Path $targetPath) {
         $item = Get-Item $targetPath
-        if ($item.LinkType -eq "HardLink") {
-            # Only calculate hashes when the file is a hard link
-            $sourceHash = Get-FileHash -Path $sourcePath -Algorithm SHA256
-            $targetHash = Get-FileHash -Path $targetPath -Algorithm SHA256
-            
-            if ($sourceHash.Hash -eq $targetHash.Hash) {
+        if ($item.LinkType -eq "SymbolicLink") {
+            # Check if symbolic link points to correct location
+            if ($item.Target -eq $sourcePath) {
                 $existingLinks += $file
                 continue
             } else {
                 $failedLinks += @{
                     File = $file
-                    Reason = "Hard link points to incorrect location"
+                    Reason = "Symbolic link points to incorrect location"
                     Current = $item.Target
                     Expected = $sourcePath
                 }
@@ -84,8 +81,8 @@ foreach ($backup in $backupFiles) {
 
 foreach ($link in $successfulLinks) {
     try {
-        New-Item -ItemType HardLink -Path $link.Target -Target $link.Source -ErrorAction Stop
-        Write-Host "Created hard link for $($link.File)" -ForegroundColor Green
+        New-Item -ItemType SymbolicLink -Path $link.Target -Target $link.Source -ErrorAction Stop
+        Write-Host "Created symbolic link for $($link.File)" -ForegroundColor Green
     } catch {
         $failedLinks += @{
             File = $link.File
@@ -96,14 +93,14 @@ foreach ($link in $successfulLinks) {
 
 # Report results
 foreach ($link in $existingLinks) {
-    Write-Host "Hard link already exists for $link" -ForegroundColor Green
+    Write-Host "Symbolic link already exists for $link" -ForegroundColor Green
 }
 
 foreach ($failure in $failedLinks) {
     if ($failure.Current) {
-        Write-Error "Hard link $($failure.File) points to incorrect location: $($failure.Current)"
+        Write-Error "Symbolic link $($failure.File) points to incorrect location: $($failure.Current)"
         Write-Error "Expected location: $($failure.Expected)"
-        Write-Host "Please manually remove the existing hard link and run this script again." -ForegroundColor Yellow
+        Write-Host "Please manually remove the existing symbolic link and run this script again." -ForegroundColor Yellow
     } else {
         Write-Error "Failed to process $($failure.File): $($failure.Reason)"
     }

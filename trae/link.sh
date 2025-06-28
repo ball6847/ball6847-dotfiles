@@ -24,35 +24,17 @@ failed_links=()
 existing_links=()
 backup_files=()
 
-# Function to check if two files are hard linked
-# Function to get inode (works on both macOS and Linux)
-get_inode() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        stat -f "%i" "$1" 2>/dev/null
-    else
-        stat -c "%i" "$1" 2>/dev/null
-    fi
-}
-
-# Function to check if two files are hard linked
-are_hard_linked() {
-    local file1="$1"
-    local file2="$2"
+# Function to check if file is a symbolic link pointing to expected target
+is_correct_symlink() {
+    local target_file="$1"
+    local expected_source="$2"
     
-    if [ ! -f "$file1" ] || [ ! -f "$file2" ]; then
+    if [ -L "$target_file" ]; then
+        local actual_target=$(readlink "$target_file")
+        [ "$actual_target" = "$expected_source" ]
+    else
         return 1
     fi
-    
-    # Get inode numbers
-    local inode1=$(get_inode "$file1")
-    local inode2=$(get_inode "$file2")
-    
-    [ "$inode1" = "$inode2" ] && [ -n "$inode1" ]
-}
-
-# Function to get file hash
-get_file_hash() {
-    shasum -a 256 "$1" | cut -d' ' -f1
 }
 
 # Collect phase
@@ -66,20 +48,15 @@ for file in "${files[@]}"; do
         continue
     fi
     
-    # Check if target exists and is already a hard link
-    if [ -f "$target_path" ]; then
-        if are_hard_linked "$source_path" "$target_path"; then
-            # Verify they point to the same content
-            source_hash=$(get_file_hash "$source_path")
-            target_hash=$(get_file_hash "$target_path")
-            
-            if [ "$source_hash" = "$target_hash" ]; then
-                existing_links+=("$file")
-                continue
-            else
-                failed_links+=("$file:Hard link points to incorrect location:$target_path")
-                continue
-            fi
+    # Check if target exists and is already a symbolic link
+    if [ -e "$target_path" ]; then
+        if is_correct_symlink "$target_path" "$source_path"; then
+            existing_links+=("$file")
+            continue
+        elif [ -L "$target_path" ]; then
+            actual_target=$(readlink "$target_path")
+            failed_links+=("$file:Symbolic link points to incorrect location:$actual_target")
+            continue
         else
             backup_files+=("$file:$target_path:$target_path.backup")
         fi
@@ -101,27 +78,27 @@ for backup_info in "${backup_files[@]}"; do
     fi
 done
 
-# Create hard links
+# Create symbolic links
 for link_info in "${successful_links[@]}"; do
     IFS=':' read -r file source target <<< "$link_info"
-    if error_msg=$(ln "$source" "$target" 2>&1); then
-        echo -e "${GREEN}✓ Created hard link for $file${NC}"
+    if error_msg=$(ln -s "$source" "$target" 2>&1); then
+        echo -e "${GREEN}✓ Created symbolic link for $file${NC}"
     else
-        failed_links+=("$file:Failed to create hard link: $error_msg")
+        failed_links+=("$file:Failed to create symbolic link: $error_msg")
     fi
 done
 
 # Report results
 for link in "${existing_links[@]}"; do
-    echo -e "${GREEN}✓ Hard link already exists for $link${NC}"
+    echo -e "${GREEN}✓ Symbolic link already exists for $link${NC}"
 done
 
 for failure_info in "${failed_links[@]}"; do
     IFS=':' read -r file reason path <<< "$failure_info"
     if [[ "$reason" == *"incorrect location"* ]]; then
-        echo -e "${RED}Hard link $file points to incorrect location: $path${NC}" >&2
+        echo -e "${RED}Symbolic link $file points to incorrect location: $path${NC}" >&2
         echo -e "${RED}Expected location: $source_dir/$file${NC}" >&2
-        echo -e "${YELLOW}Please manually remove the existing hard link and run this script again.${NC}"
+        echo -e "${YELLOW}Please manually remove the existing symbolic link and run this script again.${NC}"
     else
         echo -e "${RED}Failed to process $file: $reason${NC}" >&2
     fi
