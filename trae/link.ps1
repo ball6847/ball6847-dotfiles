@@ -68,9 +68,18 @@ foreach ($file in $files) {
 
 # Save phase
 foreach ($backup in $backupFiles) {
-    Write-Host "Backing up $($backup.Source) to $($backup.Backup)"
-    Copy-Item $backup.Source $backup.Backup -Force
-    Remove-Item $backup.Source
+    try {
+        Write-Host "Backing up $($backup.Source) to $($backup.Backup)"
+        Copy-Item $backup.Source $backup.Backup -Force
+        Remove-Item $backup.Source
+        Write-Host "✓ Backed up $($backup.File)" -ForegroundColor Green
+    } catch {
+        $failedLinks += @{
+            File = $backup.File
+            Reason = "Failed to backup existing file: $($_.Exception.Message)"
+        }
+        continue
+    }
 }
 
 foreach ($link in $successfulLinks) {
