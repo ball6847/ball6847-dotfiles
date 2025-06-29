@@ -187,6 +187,22 @@
             "commands": [
                 "workbench.action.closeActiveEditor"
             ]
+        },
+        {
+            "before": [
+                "<tab>"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": [
+                "<S-tab>"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
         }
     ],
     "vim.leader": "<space>",
