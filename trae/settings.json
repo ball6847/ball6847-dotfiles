@@ -178,8 +178,18 @@
                     "command": "editor.action.showDefinitionPreviewHover"
                 }
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "x"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
         }
     ],
+    "vim.leader": "<space>",
     "vim.showcmd": false,
     "vim.statusBarColorControl": false,
     "vim.useCtrlKeys": false,
