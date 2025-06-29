@@ -243,6 +243,34 @@
             "commands": [
                 "workbench.action.showAllSymbols"
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.explorer.fileView.focus"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "E"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
         }
     ],
     "vim.leader": "<space>",
@@ -266,5 +294,6 @@
     },
     "diffEditor.ignoreTrimWhitespace": false,
     "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "breadcrumbs.enabled": false
 }
