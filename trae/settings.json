@@ -48,6 +48,7 @@
     "terminal.integrated.lineHeight": 1.2,
     "terminal.integrated.fontSize": 12,
     "editor.fontLigatures": true,
+    "editor.lineNumbers": "relative",
     "git.autofetch": true,
     "git.autorefresh": true,
     "git.confirmSync": false,
@@ -317,5 +318,6 @@
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features",
         "editor.formatOnSave": true
-    }
+    },
+    "redhat.telemetry.enabled": false
 }
