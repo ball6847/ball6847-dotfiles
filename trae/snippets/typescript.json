@@ -1,0 +1,17 @@
+{
+	/* need _ to override builtin snippet */
+	"_ Print to console": {
+		"prefix": "l",
+		"body": [
+			"console.log($1)"
+		],
+		"description": "Log output to console"
+	},
+	"Insert comment line": {
+		"prefix": "cc",
+		"body": [
+			"// -------------------------------------------------------------------"
+		],
+		"description": "Use as code block separator"
+	}
+}
