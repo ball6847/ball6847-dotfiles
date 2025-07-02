@@ -319,5 +319,13 @@
         "editor.defaultFormatter": "vscode.json-language-features",
         "editor.formatOnSave": true
     },
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "roo-cline.allowedCommands": [
+        "npm test",
+        "npm install",
+        "tsc",
+        "git log",
+        "git diff",
+        "git show"
+    ]
 }
