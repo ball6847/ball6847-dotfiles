@@ -70,12 +70,12 @@
     },
     {
         "key": "cmd+shift+g",
-        "command": "workbench.view.scm",
+        "command": "workbench.scm.focus",
         "when": "isMac"
     },
     {
         "key": "ctrl+shift+g",
-        "command": "workbench.view.scm",
+        "command": "workbench.scm.focus",
         "when": "!isMac"
     }
 ]
