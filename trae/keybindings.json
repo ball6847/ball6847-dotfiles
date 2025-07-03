@@ -97,5 +97,25 @@
         "key": "cmd+k v",
         "command": "workbench.action.terminal.split",
         "when": "isMac && terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "workbench.action.nextEditor",
+        "when": "!terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+[",
+        "command": "workbench.action.previousEditor",
+        "when": "!terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+[",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus && !isMac"
     }
 ]
