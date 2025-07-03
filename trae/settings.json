@@ -48,7 +48,6 @@
     "terminal.integrated.lineHeight": 1.2,
     "terminal.integrated.fontSize": 12,
     "editor.fontLigatures": true,
-    "editor.lineNumbers": "relative",
     "git.autofetch": true,
     "git.autorefresh": true,
     "git.confirmSync": false,
