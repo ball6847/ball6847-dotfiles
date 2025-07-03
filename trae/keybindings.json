@@ -67,5 +67,15 @@
                 "workbench.action.toggleAuxiliaryBar"
             ]
         }
+    },
+    {
+        "key": "cmd+shift+g",
+        "command": "workbench.view.scm",
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "workbench.view.scm",
+        "when": "!isMac"
     }
 ]
