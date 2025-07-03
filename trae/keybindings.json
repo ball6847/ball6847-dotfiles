@@ -57,5 +57,15 @@
                 "workbench.action.toggleAuxiliaryBar"
             ]
         }
+    },
+    {
+        "key": "cmd+k b",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.toggleAuxiliaryBar"
+            ]
+        }
     }
 ]
