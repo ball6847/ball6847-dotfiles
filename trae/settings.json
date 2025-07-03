@@ -44,6 +44,8 @@
     "editor.fontSize": 12,
     "editor.inlayHints.enabled": "off",
     "editor.fontFamily": "JetBrainsMono NF, MartianMono Nerd Font",
+    "editor.autoIndent": "advanced",
+    "editor.detectIndentation": true,
     "terminal.integrated.fontFamily": "",
     "terminal.integrated.lineHeight": 1.2,
     "terminal.integrated.fontSize": 12,
@@ -288,6 +290,30 @@
             ],
             "commands": [
                 "editor.action.marker.prev"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ],
+            "after": [
+                "gv"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ],
+            "after": [
+                "gv"
             ]
         }
     ],
