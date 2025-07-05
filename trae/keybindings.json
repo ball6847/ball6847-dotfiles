@@ -47,5 +47,75 @@
                 "k"
             ]
         }
+    },
+    {
+        "key": "ctrl+k b",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.toggleAuxiliaryBar"
+            ]
+        }
+    },
+    {
+        "key": "cmd+k b",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.toggleAuxiliaryBar"
+            ]
+        }
+    },
+    {
+        "key": "cmd+shift+g",
+        "command": "workbench.scm.focus",
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "workbench.scm.focus",
+        "when": "!isMac"
+    },
+    {
+        "key": "ctrl+k k",
+        "command": "workbench.action.terminal.new",
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k k",
+        "command": "workbench.action.terminal.new",
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+k v",
+        "command": "workbench.action.terminal.split",
+        "when": "!isMac && terminalFocus"
+    },
+    {
+        "key": "cmd+k v",
+        "command": "workbench.action.terminal.split",
+        "when": "isMac && terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "workbench.action.nextEditor",
+        "when": "!terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+[",
+        "command": "workbench.action.previousEditor",
+        "when": "!terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+]",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && !isMac"
+    },
+    {
+        "key": "ctrl+shift+[",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus && !isMac"
     }
 ]

@@ -136,3 +136,7 @@ fi
 
 ulimit -Sn 4096
 . "$HOME/.cargo/env"
+
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
+

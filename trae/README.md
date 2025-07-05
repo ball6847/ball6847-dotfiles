@@ -1,6 +1,6 @@
 # Trae Configuration Management
 
-This repository manages Trae IDE configuration files (`settings.json` and `keybindings.json`) using Git version control. As Trae does not currently offer built-in configuration synchronization, this manual approach ensures your settings are version-controlled and easily transferable.
+This repository manages Trae IDE configuration files (`settings.json`, `keybindings.json`, and `snippets/`) using Git version control. As Trae does not currently offer built-in configuration synchronization, this manual approach ensures your settings are version-controlled and easily transferable.
 
 ## Why Manage These Files in Git?
 
@@ -33,13 +33,19 @@ chmod +x link.sh
 
 ## How It Works
 
-The installation script creates hard links between:
-- The files in this repository (`settings.json`, `keybindings.json`)
+The installation script creates symbolic links between:
+- The files and directories in this repository (`settings.json`, `keybindings.json`, `snippets/`)
 - Trae's configuration directory:
-  - Windows: `%USERPROFILE%\Library\Application Support\Trae\User`
+  - Windows: `%USERPROFILE%\AppData\Roaming\Trae\User`
   - macOS: `~/Library/Application Support/Trae/User`
 
 This ensures any changes made in either location are automatically synchronized.
+
+### What Gets Synchronized
+
+- **settings.json**: Your IDE preferences, theme settings, and configuration options
+- **keybindings.json**: Custom keyboard shortcuts and key mappings
+- **snippets/**: Code snippets for various programming languages (optional - only linked if directory exists)
 
 ## Troubleshooting
 
