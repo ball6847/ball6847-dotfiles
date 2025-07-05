@@ -13,5 +13,17 @@
 			"// -------------------------------------------------------------------"
 		],
 		"description": "Use as code block separator"
+	},
+	"Deno Test": {
+		"prefix": [
+			"dtest",
+			"denotest"
+		],
+		"body": [
+			"Deno.test(\"${1:test name}\", ${2:opts, }async () => {",
+			"\t$0",
+			"});"
+		],
+		"description": "Generate a Deno test block"
 	}
 }
