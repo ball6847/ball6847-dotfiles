@@ -44,7 +44,7 @@
     "editor.fontSize": 12,
     "editor.inlayHints.enabled": "off",
     "editor.fontFamily": "JetBrainsMono NF, MartianMono Nerd Font",
-    "editor.autoIndent": "advanced",
+    // "editor.autoIndent": "advanced",
     // "editor.detectIndentation": true,
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
