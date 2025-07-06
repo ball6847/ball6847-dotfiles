@@ -2,7 +2,7 @@
 autocrlf = false
 fileMode = true
 eol = lf
-pager = delta
+# pager = delta
 
 [user]
 name = Porawit Poboonma
@@ -20,13 +20,13 @@ defaultBranch = main
 [include]
 path = .config/.gitconfig
 
-[interactive]
-diffFilter = delta --color-only
+# [interactive]
+# diffFilter = delta --color-only
 
-[delta]
-navigate = true  # use n and N to move between diff sections
-dark = true      # or light = true, or omit for auto-detection
-side-by-side = true
+# [delta]
+# navigate = true  # use n and N to move between diff sections
+# dark = true      # or light = true, or omit for auto-detection
+# side-by-side = true
 
 #[merge]
 #conflictstyle = zdiff3
