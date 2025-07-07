@@ -117,5 +117,10 @@
         "key": "ctrl+shift+[",
         "command": "workbench.action.terminal.focusPrevious",
         "when": "terminalFocus && !isMac"
+    },
+    {
+        "key": "shift+w",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "filesExplorerFocus"
     }
 ]
