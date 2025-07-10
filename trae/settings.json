@@ -64,8 +64,12 @@
     "go.toolsManagement.autoUpdate": true,
     "go.vetOnSave": "workspace",
     "protoc": {
+        "path": "/opt/homebrew/bin/protoc",
+        "compile_on_save": false,
         "options": [
-            "--proto_path=./buf-export"
+            "--proto_path=./buf-export",
+            "--proto_path=.",
+            "--proto_path=${workspaceRoot}"
         ]
     },
     "vim.easymotion": true,
@@ -354,5 +358,10 @@
         "git log",
         "git diff",
         "git show"
-    ]
+    ],
+    "clang-format.style": "google",
+    "[proto3]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true
+    },
 }
