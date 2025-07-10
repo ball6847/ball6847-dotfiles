@@ -46,8 +46,6 @@
     "editor.inlayHints.enabled": "off",
     "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
     "breadcrumbs.enabled": false,
-    // "editor.autoIndent": "advanced",
-    // "editor.detectIndentation": true,
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
     "terminal.integrated.lineHeight": 1.5,
@@ -63,15 +61,6 @@
     "go.lintTool": "golangci-lint",
     "go.toolsManagement.autoUpdate": true,
     "go.vetOnSave": "workspace",
-    "protoc": {
-        "path": "/opt/homebrew/bin/protoc",
-        "compile_on_save": false,
-        "options": [
-            "--proto_path=./buf-export",
-            "--proto_path=.",
-            "--proto_path=${workspaceRoot}"
-        ]
-    },
     "vim.easymotion": true,
     "vim.easymotionMarkerBackgroundColor": "black",
     "vim.easymotionMarkerFontWeight": "bold",
@@ -358,10 +347,5 @@
         "git log",
         "git diff",
         "git show"
-    ],
-    "clang-format.style": "google",
-    "[proto3]": {
-        "editor.defaultFormatter": "xaver.clang-format",
-        "editor.formatOnSave": true
-    },
+    ]
 }
