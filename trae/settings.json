@@ -45,6 +45,7 @@
     "editor.lineHeight": 2.0,
     "editor.inlayHints.enabled": "off",
     "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
+    "breadcrumbs.enabled": false,
     // "editor.autoIndent": "advanced",
     // "editor.detectIndentation": true,
     "editor.lineNumbers": "relative",
