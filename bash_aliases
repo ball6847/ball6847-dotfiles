@@ -4,6 +4,7 @@ alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo 
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
+alias gcmm="git-commit-ai"
 alias gp="git push"
 alias x="docker-compose exec"
 alias tm="tmux new-session -A -s main"
