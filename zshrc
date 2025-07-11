@@ -132,6 +132,7 @@ alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autore
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
+alias gcmm="git-commit-ai"
 alias gco="git checkout"
 alias gp="git push -u"
 alias gd="git diff"
