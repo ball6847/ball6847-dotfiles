@@ -12,3 +12,4 @@ alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y"
 alias dc="docker-compose"
 alias ap="ansible-playbook"
+
