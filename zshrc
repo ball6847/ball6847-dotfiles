@@ -152,7 +152,7 @@ alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /pr
 alias v="nvim"
 alias t="task"
 alias m="make"
-alias g="gemini"
+alias g="gemini --model gemini-2.5-flash"
 alias gf="gemini --model gemini-2.5-flash"
 
 # add custom alias for wsl
