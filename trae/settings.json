@@ -347,5 +347,6 @@
         "git log",
         "git diff",
         "git show"
-    ]
+    ],
+    "roo-cline.deniedCommands": []
 }

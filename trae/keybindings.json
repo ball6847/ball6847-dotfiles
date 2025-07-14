@@ -122,5 +122,29 @@
         "key": "shift+w",
         "command": "workbench.files.action.collapseExplorerFolders",
         "when": "filesExplorerFocus"
+    },
+    {
+        "key": "ctrl+k u",
+        "command": "roo-cline.addToContext",
+        "isAIItem": false
+    },
+    {
+        "key": "ctrl+k i",
+        "command": "roo-cline.newTask",
+        "isAIItem": false
+    },
+    {
+        "key": "ctrl+k k",
+        "command": "workbench.view.extension.roo-cline-ActivityBar",
+        "isAIItem": false
+    },
+    {
+        "key": "ctrl+k l",
+        "command": "roo-cline.focusInput",
+        "isAIItem": false
+    },
+    {
+        "key": "ctrl+k n",
+        "command": "roo-cline.openInNewTab"
     }
 ]
