@@ -79,22 +79,22 @@
         "when": "!isMac"
     },
     {
-        "key": "ctrl+k k",
+        "key": "ctrl+n",
         "command": "workbench.action.terminal.new",
-        "when": "!isMac"
+        "when": "!isMac && terminalFocus"
     },
     {
-        "key": "cmd+k k",
+        "key": "cmd+n",
         "command": "workbench.action.terminal.new",
-        "when": "isMac"
+        "when": "isMac && terminalFocus"
     },
     {
-        "key": "ctrl+k v",
+        "key": "ctrl+\\",
         "command": "workbench.action.terminal.split",
         "when": "!isMac && terminalFocus"
     },
     {
-        "key": "cmd+k v",
+        "key": "cmd+\\",
         "command": "workbench.action.terminal.split",
         "when": "isMac && terminalFocus"
     },
