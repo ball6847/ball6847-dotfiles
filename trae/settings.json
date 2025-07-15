@@ -346,7 +346,9 @@
         "tsc",
         "git log",
         "git diff",
-        "git show"
+        "git show",
+        "cd",
+        "go"
     ],
-    "roo-cline.deniedCommands": []
+    "roo-cline.deniedCommands": [],
 }
