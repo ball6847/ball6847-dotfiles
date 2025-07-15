@@ -126,25 +126,60 @@
     {
         "key": "ctrl+k u",
         "command": "roo-cline.addToContext",
-        "isAIItem": false
+        "isAIItem": false,
+        "when": "!isMac"
     },
     {
         "key": "ctrl+k i",
         "command": "roo-cline.newTask",
-        "isAIItem": false
+        "isAIItem": false,
+        "when": "!isMac"
     },
     {
         "key": "ctrl+k k",
         "command": "workbench.view.extension.roo-cline-ActivityBar",
-        "isAIItem": false
+        "isAIItem": false,
+        "when": "!isMac"
     },
     {
         "key": "ctrl+k l",
         "command": "roo-cline.focusInput",
-        "isAIItem": false
+        "isAIItem": false,
+        "when": "!isMac"
     },
     {
         "key": "ctrl+k n",
-        "command": "roo-cline.openInNewTab"
+        "command": "roo-cline.openInNewTab",
+        "when": "!isMac"
+    },
+    // for mac
+    {
+        "key": "cmd+k u",
+        "command": "roo-cline.addToContext",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "cmd+k i",
+        "command": "roo-cline.newTask",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "cmd+k k",
+        "command": "workbench.view.extension.roo-cline-ActivityBar",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "cmd+k l",
+        "command": "roo-cline.focusInput",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "cmd+k n",
+        "command": "roo-cline.openInNewTab",
+        "when": "isMac"
     }
 ]
