@@ -350,5 +350,5 @@
         "cd",
         "go"
     ],
-    "roo-cline.deniedCommands": [],
+    "roo-cline.deniedCommands": []
 }
