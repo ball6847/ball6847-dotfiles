@@ -351,5 +351,6 @@
         "go",
         "deno"
     ],
-    "roo-cline.deniedCommands": []
+    "roo-cline.deniedCommands": [],
+    "files.insertFinalNewline": true
 }
