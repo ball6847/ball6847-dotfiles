@@ -124,6 +124,17 @@
         "when": "filesExplorerFocus"
     },
     {
+        "key": "ctrl+k space",
+        "command": "editor.action.triggerSuggest",
+        "when": "!isMac && editorFocus"
+    },
+    {
+        "key": "cmd+k space",
+        "command": "editor.action.triggerSuggest",
+        "when": "isMac && editorFocus"
+    },
+    // Roo Code related Shortcut
+    {
         "key": "ctrl+k u",
         "command": "roo-cline.addToContext",
         "isAIItem": false,
@@ -136,17 +147,10 @@
         "when": "!isMac"
     },
     {
-        "key": "ctrl+k k",
-        "command": "roo-cline.focusInput",
-        "isAIItem": false,
-        "when": "!isMac"
-    },
-    {
         "key": "ctrl+k n",
         "command": "roo-cline.openInNewTab",
         "when": "!isMac"
     },
-    // for mac
     {
         "key": "cmd+k u",
         "command": "roo-cline.addToContext",
@@ -160,34 +164,35 @@
         "when": "isMac"
     },
     {
-        "key": "cmd+k k",
+        "key": "ctrl+k ctrl+k",
+        "command": "roo-cline.focusInput",
+        "isAIItem": false,
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+k",
         "command": "roo-cline.focusInput",
         "isAIItem": false,
         "when": "isMac"
     },
     {
-        "key": "cmd+k n",
+        "key": "ctrl+k ctrl+n",
+        "command": "roo-cline.openInNewTab",
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+n",
         "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
-        "key": "ctrl+k enter",
+        "key": "ctrl+k ctrl+j",
         "command": "roo-cline.acceptInput",
         "when": "!isMac && roo-cline.SidebarProvider.visible"
     },
     {
-        "key": "cmd+k enter",
+        "key": "cmd+k cmd+j",
         "command": "roo-cline.acceptInput",
         "when": "isMac && roo-cline.SidebarProvider.visible"
     },
-    {
-        "key": "ctrl+k space",
-        "command": "editor.action.triggerSuggest",
-        "when": "!isMac && editorFocus"
-    },
-    {
-        "key": "cmd+k space",
-        "command": "editor.action.triggerSuggest",
-        "when": "isMac && editorFocus"
-    }
 ]
