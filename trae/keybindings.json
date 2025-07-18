@@ -179,5 +179,15 @@
         "key": "cmd+k enter",
         "command": "roo-cline.acceptInput",
         "when": "isMac && roo-cline.SidebarProvider.visible"
+    },
+    {
+        "key": "ctrl+k space",
+        "command": "editor.action.triggerSuggest",
+        "when": "!isMac && editorFocus"
+    },
+    {
+        "key": "cmd+k space",
+        "command": "editor.action.triggerSuggest",
+        "when": "isMac && editorFocus"
     }
 ]
