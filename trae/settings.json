@@ -337,7 +337,7 @@
     "window.zoomLevel": 1,
     "workbench.colorTheme": "Deep Blue",
     "diffEditor.ignoreTrimWhitespace": false,
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "redhat.telemetry.enabled": false,
     "roo-cline.allowedCommands": [
@@ -345,11 +345,10 @@
         "npm install",
         "tsc",
         "git log",
-        "git diff",
-        "git show",
         "cd",
         "go",
-        "deno"
+        "deno",
+        "git"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true

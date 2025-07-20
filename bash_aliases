@@ -1,15 +1,16 @@
 
-#alias ls="ls --color"
+alias ls="ls --color"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
 alias gcmm="git-commit-ai"
-alias gp="git push"
+alias gp="git push -u"
+alias gco="git checkout"
+alias gd="git diff"
 alias x="docker-compose exec"
 alias tm="tmux new-session -A -s main"
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y"
 alias dc="docker-compose"
 alias ap="ansible-playbook"
-
