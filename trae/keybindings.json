@@ -135,32 +135,37 @@
     },
     // Roo Code related Shortcut
     {
-        "key": "ctrl+k u",
+        "key": "ctrl+k ctrl+u",
         "command": "roo-cline.addToContext",
         "isAIItem": false,
         "when": "!isMac"
     },
     {
-        "key": "ctrl+k i",
-        "command": "roo-cline.newTask",
-        "isAIItem": false,
-        "when": "!isMac"
-    },
-    {
-        "key": "ctrl+k n",
-        "command": "roo-cline.openInNewTab",
-        "when": "!isMac"
-    },
-    {
-        "key": "cmd+k u",
+        "key": "cmd+k cmd+u",
         "command": "roo-cline.addToContext",
         "isAIItem": false,
         "when": "isMac"
     },
     {
-        "key": "cmd+k i",
+        "key": "ctrl+k ctrl+i",
         "command": "roo-cline.newTask",
         "isAIItem": false,
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "roo-cline.newTask",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "roo-cline.openInNewTab",
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+n",
+        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
@@ -173,16 +178,6 @@
         "key": "cmd+k cmd+k",
         "command": "roo-cline.focusInput",
         "isAIItem": false,
-        "when": "isMac"
-    },
-    {
-        "key": "ctrl+k ctrl+n",
-        "command": "roo-cline.openInNewTab",
-        "when": "!isMac"
-    },
-    {
-        "key": "cmd+k cmd+n",
-        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
