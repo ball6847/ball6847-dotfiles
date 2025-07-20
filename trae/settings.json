@@ -351,5 +351,8 @@
         "git"
     ],
     "roo-cline.deniedCommands": [],
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
 }
