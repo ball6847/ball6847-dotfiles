@@ -62,7 +62,6 @@
     "editor.lineHeight": 2.0,
     "editor.inlayHints.enabled": "off",
     "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
-    "breadcrumbs.enabled": false,
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
     "terminal.integrated.lineHeight": 1.5,

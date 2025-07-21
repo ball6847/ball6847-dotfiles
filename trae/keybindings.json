@@ -135,13 +135,13 @@
     },
     // Roo Code related Shortcut
     {
-        "key": "ctrl+k ctrl+u",
+        "key": "ctrl+k u", // cannot use ctrl+k ctrl+u as it reserved by trae
         "command": "roo-cline.addToContext",
         "isAIItem": false,
         "when": "!isMac"
     },
     {
-        "key": "cmd+k cmd+u",
+        "key": "cmd+k u",
         "command": "roo-cline.addToContext",
         "isAIItem": false,
         "when": "isMac"
