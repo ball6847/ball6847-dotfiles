@@ -154,6 +154,7 @@ alias t="task"
 alias m="make"
 alias g="gemini --model gemini-2.5-flash"
 alias gf="gemini --model gemini-2.5-flash"
+alias wm="workspace-manager"
 
 # add custom alias for wsl
 if is_wsl; then
