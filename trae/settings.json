@@ -347,7 +347,9 @@
         "cd",
         "go",
         "deno",
-        "git"
+        "git",
+        "git diff",
+        "git show"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true,
