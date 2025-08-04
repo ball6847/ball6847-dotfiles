@@ -349,7 +349,8 @@
         "deno",
         "git",
         "git diff",
-        "git show"
+        "git show",
+        "make lint"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true,
