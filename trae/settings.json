@@ -1,359 +1,237 @@
 {
-    "[go]": {
-        "editor.insertSpaces": false,
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        }
-    },
-    "[typescript]": {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        }
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true
-    },
-    "AI.toolcall.confirmMode": "autoRun",
-    "cSpell.userWords": [
-        "angular",
-        "appendonly",
-        "APPPATH",
-        "bson",
-        "build",
-        "classlist",
-        "codelyzer",
-        "common",
-        "deps",
-        "devkit",
-        "devtools",
-        "endregion",
-        "entrypoint",
-        "envrc",
-        "esnext",
-        "fontawesome",
-        "hmacutil",
-        "injectable",
-        "inversify",
-        "jasminewd",
-        "nestjs",
-        "ng",
-        "ngrx",
-        "nrwl",
-        "pregv",
-        "readpref",
-        "schematics",
-        "scrollable",
-        "Serializers",
-        "signalr",
-        "signalrjs",
-        "store",
-        "stylelint",
-        "subcaption",
-        "tabindex",
-        "types",
-        "utils",
-        "virtuals",
-        "zmotivat"
-    ],
-    "editor.fontSize": 11,
-    "editor.lineHeight": 2.0,
-    "editor.inlayHints.enabled": "off",
-    "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
-    "editor.lineNumbers": "relative",
-    "terminal.integrated.fontFamily": "",
-    "terminal.integrated.lineHeight": 1.5,
-    "terminal.integrated.fontSize": 11,
-    "editor.fontLigatures": true,
-    "git.autofetch": true,
-    "git.autorefresh": true,
-    "git.confirmSync": false,
-    "git.enableSmartCommit": true,
-    "go.coverOnSingleTest": true,
-    "go.coverOnSingleTestFile": true,
-    "go.lintOnSave": "workspace",
-    "go.lintTool": "golangci-lint",
-    "go.toolsManagement.autoUpdate": true,
-    "go.vetOnSave": "workspace",
-    "vim.easymotion": true,
-    "vim.easymotionMarkerBackgroundColor": "black",
-    "vim.easymotionMarkerFontWeight": "bold",
-    "vim.handleKeys": {
-        "<C-d>": false
-    },
-    "vim.hlsearch": false,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "u"
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
-                "s"
-            ],
-            "after": [
-                "leader",
-                "leader",
-                "s"
-            ]
-        },
-        {
-            "before": [
-                "<S-k>"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.showDefinitionPreviewHover"
-                }
-            ]
-        },
-        {
-            "before": [
-                "u"
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
-                "s"
-            ],
-            "after": [
-                "leader",
-                "leader",
-                "s"
-            ]
-        },
-        {
-            "before": [
-                "<S-k>"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.showDefinitionPreviewHover"
-                }
-            ]
-        },
-        {
-            "before": [
-                "u"
-            ],
-            "commands": [
-                "undo"
-            ]
-        },
-        {
-            "before": [
-                "<C-r>"
-            ],
-            "commands": [
-                "redo"
-            ]
-        },
-        {
-            "before": [
-                "s"
-            ],
-            "after": [
-                "leader",
-                "leader",
-                "s"
-            ]
-        },
-        {
-            "before": [
-                "<S-k>"
-            ],
-            "commands": [
-                {
-                    "command": "editor.action.showDefinitionPreviewHover"
-                }
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "x"
-            ],
-            "commands": [
-                "workbench.action.closeActiveEditor"
-            ]
-        },
-        {
-            "before": [
-                "<tab>"
-            ],
-            "commands": [
-                "workbench.action.nextEditor"
-            ]
-        },
-        {
-            "before": [
-                "<S-tab>"
-            ],
-            "commands": [
-                "workbench.action.previousEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "f"
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "r"
-            ],
-            "commands": [
-                "workbench.action.openRecent"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "s"
-            ],
-            "commands": [
-                "workbench.action.findInFiles"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "g"
-            ],
-            "commands": [
-                "workbench.action.showAllSymbols"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e"
-            ],
-            "commands": [
-                "workbench.explorer.fileView.focus"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "E"
-            ],
-            "commands": [
-                "workbench.action.toggleSidebarVisibility"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "t",
-                "e"
-            ],
-            "commands": [
-                "workbench.view.explorer"
-            ]
-        },
-        {
-            "before": [
-                "]",
-                "d"
-            ],
-            "commands": [
-                "editor.action.marker.next"
-            ]
-        },
-        {
-            "before": [
-                "[",
-                "d"
-            ],
-            "commands": [
-                "editor.action.marker.prev"
-            ]
-        }
-    ],
-    "vim.visualModeKeyBindings": [
-        {
-            "before": [
-                ">"
-            ],
-            "commands": [
-                "editor.action.indentLines"
-            ],
-            "after": [
-                "gv"
-            ]
-        },
-        {
-            "before": [
-                "<"
-            ],
-            "commands": [
-                "editor.action.outdentLines"
-            ],
-            "after": [
-                "gv"
-            ]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.showcmd": false,
-    "vim.statusBarColorControl": false,
-    "vim.useCtrlKeys": false,
-    "window.zoomLevel": 1,
-    "workbench.colorTheme": "Deep Blue",
-    "diffEditor.ignoreTrimWhitespace": false,
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-    "redhat.telemetry.enabled": false,
-    "roo-cline.allowedCommands": [
-        "npm test",
-        "npm install",
-        "tsc",
-        "git log",
-        "cd",
-        "go",
-        "deno",
-        "git",
-        "git diff",
-        "git show"
-    ],
-    "roo-cline.deniedCommands": [],
-    "files.insertFinalNewline": true,
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
     }
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.formatOnSave": true
+  },
+  "AI.toolcall.confirmMode": "autoRun",
+  "cSpell.userWords": [
+    "angular",
+    "appendonly",
+    "APPPATH",
+    "bson",
+    "build",
+    "classlist",
+    "codelyzer",
+    "common",
+    "deps",
+    "devkit",
+    "devtools",
+    "endregion",
+    "entrypoint",
+    "envrc",
+    "esnext",
+    "fontawesome",
+    "hmacutil",
+    "injectable",
+    "inversify",
+    "jasminewd",
+    "nestjs",
+    "ng",
+    "ngrx",
+    "nrwl",
+    "pregv",
+    "readpref",
+    "schematics",
+    "scrollable",
+    "Serializers",
+    "signalr",
+    "signalrjs",
+    "store",
+    "stylelint",
+    "subcaption",
+    "tabindex",
+    "types",
+    "utils",
+    "virtuals",
+    "zmotivat"
+  ],
+  "editor.fontSize": 11,
+  "editor.lineHeight": 2.0,
+  "editor.inlayHints.enabled": "off",
+  "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
+  "editor.lineNumbers": "relative",
+  "terminal.integrated.fontFamily": "",
+  "terminal.integrated.lineHeight": 1.5,
+  "terminal.integrated.fontSize": 11,
+  "editor.fontLigatures": true,
+  "git.autofetch": true,
+  "git.autorefresh": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "go.coverOnSingleTest": true,
+  "go.coverOnSingleTestFile": true,
+  "go.lintOnSave": "workspace",
+  "go.lintTool": "golangci-lint",
+  "go.toolsManagement.autoUpdate": true,
+  "go.vetOnSave": "workspace",
+  "vim.easymotion": true,
+  "vim.easymotionMarkerBackgroundColor": "black",
+  "vim.easymotionMarkerFontWeight": "bold",
+  "vim.handleKeys": {
+    "<C-d>": false
+  },
+  "vim.hlsearch": false,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["s"],
+      "after": ["leader", "leader", "s"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": [
+        {
+          "command": "editor.action.showDefinitionPreviewHover"
+        }
+      ]
+    },
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["s"],
+      "after": ["leader", "leader", "s"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": [
+        {
+          "command": "editor.action.showDefinitionPreviewHover"
+        }
+      ]
+    },
+    {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
+      "before": ["s"],
+      "after": ["leader", "leader", "s"]
+    },
+    {
+      "before": ["<S-k>"],
+      "commands": [
+        {
+          "command": "editor.action.showDefinitionPreviewHover"
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<tab>"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<S-tab>"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "f", "s"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.explorer.fileView.focus"]
+    },
+    {
+      "before": ["<leader>", "E"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "t", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"],
+      "after": ["gv"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"],
+      "after": ["gv"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.showcmd": false,
+  "vim.statusBarColorControl": false,
+  "vim.useCtrlKeys": false,
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Deep Blue",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "redhat.telemetry.enabled": false,
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "cd",
+    "go",
+    "deno",
+    "git",
+    "git diff",
+    "git show",
+    "make lint"
+  ],
+  "roo-cline.deniedCommands": [],
+  "files.insertFinalNewline": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
