@@ -119,11 +119,6 @@
         "when": "terminalFocus && !isMac"
     },
     {
-        "key": "shift+w",
-        "command": "workbench.files.action.collapseExplorerFolders",
-        "when": "filesExplorerFocus"
-    },
-    {
         "key": "ctrl+k space",
         "command": "editor.action.triggerSuggest",
         "when": "!isMac && editorFocus"
