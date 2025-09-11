@@ -19,9 +19,9 @@ export ZSH_CUSTOM=$SUDO_HOME/.dotfiles/zsh_custom
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="af-magic"
 #ZSH_THEME="amuse"
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-#ZSH_THEME="bira"
+ZSH_THEME="bira"
 #ZSH_THEME="random"
 #ZSH_THEME="intheloop"
 
