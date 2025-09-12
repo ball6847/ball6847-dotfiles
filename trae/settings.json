@@ -340,9 +340,6 @@
     "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "redhat.telemetry.enabled": false,
     "roo-cline.allowedCommands": [
-        "npm test",
-        "npm install",
-        "tsc",
         "git log",
         "cd",
         "go",
@@ -350,7 +347,10 @@
         "git",
         "git diff",
         "git show",
-        "make lint"
+        "make lint",
+        "npm test",
+        "npm install",
+        "tsc"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true,
