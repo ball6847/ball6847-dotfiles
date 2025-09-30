@@ -341,7 +341,6 @@
     "redhat.telemetry.enabled": false,
     "roo-cline.allowedCommands": [
         "git log",
-        "cd",
         "go",
         "deno",
         "git",
@@ -350,7 +349,14 @@
         "make lint",
         "npm test",
         "npm install",
-        "tsc"
+        "tsc",
+        "make",
+        "cd shared-lib",
+        "cd",
+        "ls -la",
+        "ls",
+        "cd shared-lib/scripts/create-kafka-topics",
+        "mkdir"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true,
@@ -358,5 +364,10 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "markdown.preview.breaks": false,
-    "markdown.preview.scrollEditorWithPreview": false
+    "markdown.preview.scrollEditorWithPreview": false,
+    "gopls": {
+        "ui.diagnostic.analyses": {
+            "shadow": false
+        }
+    }
 }
