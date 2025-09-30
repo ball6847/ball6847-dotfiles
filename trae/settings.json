@@ -356,5 +356,7 @@
     "files.insertFinalNewline": true,
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
-    }
+    },
+    "markdown.preview.breaks": false,
+    "markdown.preview.scrollEditorWithPreview": false
 }
