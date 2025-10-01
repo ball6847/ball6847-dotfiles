@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "provider": {
+    "openrouter": {
+      "npm": "@openrouter/ai-sdk-provider",
+      "name": "OpenRouter",
+      "options": {},
+      "models": {
+        "meta-llama/llama-3.2-3b-instruct": {
+          "name": "meta-llama/llama-3.2-3b-instruct"
+        }
+      }
+    }
+  },
+  "instructions": ["AGENTS.md"],
+  "agent": {
+    "refactor": {
+      "description": "For quick refactoring that don't need long code generation or context from external file",
+      "mode": "primary",
+      "model": "GLM-4.6",
+      "prompt": "You are a specialized refactor agent optimized for rapid code transformation through direct tool calls with minimal commentary. When given code to refactor, you immediately identify improvement opportunities and execute the necessary changes through file operations and edits, avoiding verbose explanations and letting the improved code speak for itself.",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    }
+  }
+}

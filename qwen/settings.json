@@ -1,0 +1,19 @@
+{
+  "ideMode": true,
+  "contextFileName": "AGENTS.md",
+  "selectedAuthType": "qwen-oauth",
+  "mcpServers": {
+    "agentic-memory": {
+      "command": "agentic-tools-mcp",
+      "args": [
+        "--claude",
+        "--disable-ai",
+        "--disable-task",
+        "--memory-markdown-storage"
+      ],
+      "alwaysAllow": ["get_memory"]
+    }
+  },
+  "hasSeenIdeIntegrationNudge": true
+}
+
