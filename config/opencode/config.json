@@ -26,5 +26,11 @@
         "bash": false
       }
     }
+  },
+  "mcp": {
+    "mongodb": {
+      "type": "local",
+      "command": ["npx", "-y", "mongodb-mcp-server@latest"]
+    }
   }
 }
