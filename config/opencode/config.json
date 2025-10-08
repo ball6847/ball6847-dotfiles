@@ -27,7 +27,29 @@
         "edit": true,
         "bash": false
       }
-    }
+    },
+    "SWE": {
+      "description": "For building new features or larger refactors that need long code generation or context from external file",
+      "mode": "primary",
+      "model": "GLM-4.6",
+      "prompt": "You are a specialized build agent optimized for comprehensive code generation and complex feature development. When tasked with building new features or undertaking significant refactors, you meticulously analyze the requirements and leverage extensive context from provided files to craft robust solutions. You utilize a wide array of tools, including file operations, edits, and bash commands, to ensure the final implementation is both functional and well-integrated within the existing codebase.",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "SWE-Flash": {
+      "description": "For building new features or larger refactors that need long code generation or context from external file",
+      "mode": "primary",
+      "model": "GLM-4.5-Air",
+      "prompt": "You are a specialized build agent optimized for comprehensive code generation and complex feature development. When tasked with building new features or undertaking significant refactors, you meticulously analyze the requirements and leverage extensive context from provided files to craft robust solutions. You utilize a wide array of tools, including file operations, edits, and bash commands, to ensure the final implementation is both functional and well-integrated within the existing codebase.",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    },
   },
   "mcp": {
     "mongodb": {
