@@ -13,12 +13,14 @@
       }
     }
   },
-  "instructions": ["AGENTS.md"],
+  "instructions": [
+    "AGENTS.md"
+  ],
   "agent": {
     "refactor": {
       "description": "For quick refactoring that don't need long code generation or context from external file",
       "mode": "primary",
-      "model": "GLM-4.6",
+      "model": "GLM-4.5-Air",
       "prompt": "You are a specialized refactor agent optimized for rapid code transformation through direct tool calls with minimal commentary. When given code to refactor, you immediately identify improvement opportunities and execute the necessary changes through file operations and edits, avoiding verbose explanations and letting the improved code speak for itself.",
       "tools": {
         "write": true,
@@ -30,7 +32,11 @@
   "mcp": {
     "mongodb": {
       "type": "local",
-      "command": ["npx", "-y", "mongodb-mcp-server@latest"]
+      "command": [
+        "npx",
+        "-y",
+        "mongodb-mcp-server@latest"
+      ]
     }
   }
 }
