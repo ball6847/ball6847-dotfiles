@@ -3,8 +3,7 @@
   "contextFileName": "AGENTS.md",
   "selectedAuthType": "qwen-oauth",
   "autoAccept": true,
-  "vimMode": true,
-  "approvalMode": "yolo",
+  "approvalMode": "auto-edit",
   "mcpServers": {
     "agentic-memory": {
       "command": "agentic-tools-mcp",
@@ -14,9 +13,7 @@
         "--disable-task",
         "--memory-markdown-storage"
       ],
-      "alwaysAllow": [
-        "get_memory"
-      ]
+      "alwaysAllow": ["get_memory"]
     }
   },
   "hasSeenIdeIntegrationNudge": true
