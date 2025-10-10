@@ -19,7 +19,10 @@ files="
     config/kitty
     config/nvim
     ansible.cfg
-    tool-versions"
+    tool-versions
+    config/opencode/config.json
+    qwen/settings.json
+    gemini/settings.json"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -43,7 +46,7 @@ for file in $files; do
     # backup to $olddir if neccessary
     echo "Moving any existing dotfiles from ~ to $olddir"
 
-    [ -f ~/."$file" ] && mv -f ~/."$file" $olddir/"$file"
+    [ -e ~/."$file" ] && mv -f ~/."$file" $olddir/"$file"
 
     # create link at home directory
     echo "Creating symlink to $file in home directory."

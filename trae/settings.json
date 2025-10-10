@@ -58,14 +58,14 @@
         "virtuals",
         "zmotivat"
     ],
-    "editor.fontSize": 11,
+    "editor.fontSize": 13,
     "editor.lineHeight": 2.0,
     "editor.inlayHints.enabled": "off",
-    "editor.fontFamily": "MartianMono Nerd Font, JetBrainsMono NF",
+    "editor.fontFamily": "Google Sans Code, MartianMono Nerd Font, JetBrainsMono NF",
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
     "terminal.integrated.lineHeight": 1.5,
-    "terminal.integrated.fontSize": 11,
+    "terminal.integrated.fontSize": 12,
     "editor.fontLigatures": true,
     "git.autofetch": true,
     "git.autorefresh": true,
@@ -340,21 +340,48 @@
     "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "redhat.telemetry.enabled": false,
     "roo-cline.allowedCommands": [
-        "npm test",
-        "npm install",
-        "tsc",
         "git log",
-        "cd",
         "go",
         "deno",
         "git",
         "git diff",
         "git show",
-        "make lint"
+        "make lint",
+        "npm test",
+        "npm install",
+        "tsc",
+        "make",
+        "cd shared-lib",
+        "cd",
+        "ls -la",
+        "ls",
+        "cd shared-lib/scripts/create-kafka-topics",
+        "mkdir"
     ],
     "roo-cline.deniedCommands": [],
     "files.insertFinalNewline": true,
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "markdown.preview.breaks": false,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "gopls": {
+        "ui.diagnostic.analyses": {
+            "shadow": false
+        }
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
     }
 }

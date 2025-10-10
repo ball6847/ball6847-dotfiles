@@ -184,5 +184,18 @@
         "key": "cmd+k cmd+j",
         "command": "roo-cline.acceptInput",
         "when": "isMac && roo-cline.SidebarProvider.visible"
+    },
+    {
+        "key": "shift+enter",
+        "command": "-workbench.action.terminal.runSelectedText",
+        "when": "terminalFocus && !terminalTextSelected"
+    },
+    {
+        "key": "shift+enter",
+        "command": "workbench.action.terminal.sendSequence",
+        "args": {
+            "text": "\\\n"
+        },
+        "when": "terminalFocus"
     }
 ]
