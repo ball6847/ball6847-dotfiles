@@ -5,6 +5,12 @@
 
 # NOTE: this script assumes you have git and curl installed on your system, if not, just do `apt install curl git`. And asdf should be enabled in your shell
 
+# dependencies
+# - ruby (require upon installation, and must have rustc installed): 
+#   $ apt install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev
+# - neovim (require when MasonInstallAll):
+#   $ apt install python3-venv
+
 asdf plugin add neovim
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add golang
