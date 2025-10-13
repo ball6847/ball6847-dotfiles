@@ -203,6 +203,18 @@ fi
 
 # ================================================
 # set z integraion, see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
+# zoxide should be installed via github release
+# $ wget https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.8/zoxide_0.9.8-1_amd64.deb 
+# $ sudo apt install zoxide_0.9.8-1_amd64.deb
+# $ rm zoxide_0.9.8-1_amd64.deb
+#
+# fzf latest should be installed as well
+# $ cd ~/.local/bin
+# $ wget https://github.com/junegunn/fzf/releases/download/v0.66.0/fzf-0.66.0-linux_amd64.tar.gz
+# $ tar zxf fzf-0.66.0-linux_amd64.tar.gz
+# $ rm fzf-0.66.0-linux_amd64.tar.gz
+
+
 
 if which zoxide > /dev/null; then
   eval "$(zoxide init zsh)"
