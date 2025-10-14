@@ -16,7 +16,7 @@ files="
     tmux.conf
     pip/pip.conf
     config/terminator
-    config/kitty
+    config/kitty/kitty.conf
     config/nvim
     ansible.cfg
     tool-versions

@@ -1,2 +1,6 @@
 # Auto-update log files
 auto-update.log
+
+# Config directories
+config/nvim/
+config/terminator/
