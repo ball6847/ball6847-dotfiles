@@ -4,7 +4,7 @@ require "nvchad.options"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus" -- requires: sudo apt install wl-clipboard (for Wayland/Ubuntu)
 vim.opt.exrc = true
 vim.opt.spell = false -- toggle using <leader>ts
 vim.opt.spelllang = "en"
