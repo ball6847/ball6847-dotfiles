@@ -119,6 +119,11 @@
         "when": "terminalFocus && !isMac"
     },
     {
+        "key": "shift+w",
+        "command": "workbench.files.action.collapseExplorerFolders",
+        "when": "filesExplorerFocus"
+    },
+    {
         "key": "ctrl+k space",
         "command": "editor.action.triggerSuggest",
         "when": "!isMac && editorFocus"
@@ -130,9 +135,20 @@
     },
     // Roo Code related Shortcut
     {
-        "key": "ctrl+k u", // cannot use ctrl+k ctrl+u as it reserved by trae
+        "key": "ctrl+k u",
         "command": "roo-cline.addToContext",
         "isAIItem": false,
+        "when": "!isMac"
+    },
+    {
+        "key": "ctrl+k i",
+        "command": "roo-cline.newTask",
+        "isAIItem": false,
+        "when": "!isMac"
+    },
+    {
+        "key": "ctrl+k n",
+        "command": "roo-cline.openInNewTab",
         "when": "!isMac"
     },
     {
@@ -142,25 +158,9 @@
         "when": "isMac"
     },
     {
-        "key": "ctrl+k ctrl+i",
+        "key": "cmd+k i",
         "command": "roo-cline.newTask",
         "isAIItem": false,
-        "when": "!isMac"
-    },
-    {
-        "key": "cmd+k cmd+i",
-        "command": "roo-cline.newTask",
-        "isAIItem": false,
-        "when": "isMac"
-    },
-    {
-        "key": "ctrl+k ctrl+n",
-        "command": "roo-cline.openInNewTab",
-        "when": "!isMac"
-    },
-    {
-        "key": "cmd+k cmd+n",
-        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
@@ -173,6 +173,16 @@
         "key": "cmd+k cmd+k",
         "command": "roo-cline.focusInput",
         "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "roo-cline.openInNewTab",
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+n",
+        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
@@ -197,5 +207,13 @@
             "text": "\\\n"
         },
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+k ctrl+o",
+        "command": "opencode.openNewTerminal"
+    },
+    {
+        "key": "ctrl+shift+escape",
+        "command": "-opencode.openNewTerminal"
     }
 ]
