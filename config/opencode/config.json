@@ -60,7 +60,7 @@
     }
   },
   "mcp": {
-    "jina-mcp-server": {
+    "jina": {
       "type": "remote",
       "url": "https://mcp.jina.ai/sse",
       "enabled": true,
