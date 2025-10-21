@@ -58,5 +58,15 @@
         }
       }
     }
+  },
+  "mcp": {
+    "jina-mcp-server": {
+      "type": "remote",
+      "url": "https://mcp.jina.ai/sse",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {env:JINA_API_KEY}"
+      }
+    }
   }
 }
