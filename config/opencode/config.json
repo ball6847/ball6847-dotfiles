@@ -60,12 +60,23 @@
     }
   },
   "mcp": {
-    "jina-mcp-server": {
+    "jina": {
       "type": "remote",
       "url": "https://mcp.jina.ai/sse",
       "enabled": true,
       "headers": {
         "Authorization": "Bearer {env:JINA_API_KEY}"
+      }
+    }
+  },
+  "agent": {
+    "explore": {
+      "description": "Explore project context for PLAN agent analysis",
+      "mode": "primary",
+      "prompt": "You are an EXPLORE agent that specializes in understanding project context. Your role is to investigate the codebase structure, identify relevant files, and gather information that will help the PLAN agent make informed decisions. Focus on reading files, understanding directory structure, and identifying key components. You can use all available tools to explore the project but cannot make any changes to files. Your output should summarize findings relevant to the user's request.",
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
       }
     }
   }
