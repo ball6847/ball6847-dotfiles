@@ -32,6 +32,7 @@ npm install -g mongodb-mcp-server@latest
 
 # reshim golang to make sure newly installed go binaries are available
 asdf reshim golang
+asdf reshim nodejs
 
 # Check if ripgrep is installed
 if ! command -v rg &> /dev/null; then
