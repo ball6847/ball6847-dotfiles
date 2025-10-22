@@ -21,8 +21,12 @@ npm install -g opencode-ai@latest
 echo "Installing MCP Language Server..."
 go install github.com/isaacphi/mcp-language-server@latest
 
-echo "Installing MCP gRPCurl..."
-go install github.com/wricardo/mcp-grpcurl@latest
+# echo "Installing MCP gRPCurl..."
+# go install github.com/wricardo/mcp-grpcurl@latest
+# grpcurl-mcp cannot be isntalled via `go install`
+# need to clone, build and add to PATH
+# git clone https://github.com/wricardo/grpcurl-mcp.git && cd grpcurl-mcp && go build -o ~/.local/bin/grpcurl-mcp ./main.go
+# TODO: make this idempotent so we can run multiple times without issues
 
 echo "Installing MCP Kafka Server..."
 go install github.com/kanapuli/mcp-kafka@latest
