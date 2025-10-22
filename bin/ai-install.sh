@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: we might need to move away from node(and npm) and run these ai agent via deno or bun instead
+
 echo "Installing AI tools..."
 
 echo "Installing Qwen Code..."
