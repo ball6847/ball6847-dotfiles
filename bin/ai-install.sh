@@ -16,11 +16,16 @@ npm install -g @anthropic-ai/claude-code@latest
 echo "Installing OpenCode AI..."
 npm install -g opencode-ai@latest
 
+# MCP Servers
+
 echo "Installing MCP Language Server..."
 go install github.com/isaacphi/mcp-language-server@latest
 
 echo "Installing MCP gRPCurl..."
 go install github.com/wricardo/mcp-grpcurl@latest
+
+echo "Installing MCP MongoDB Server..."
+npm install -g mongodb-mcp-server@latest
 
 # reshim golang to make sure newly installed go binaries are available
 asdf reshim golang
