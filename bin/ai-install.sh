@@ -34,6 +34,9 @@ go install github.com/kanapuli/mcp-kafka@latest
 echo "Installing MCP MongoDB Server..."
 npm install -g mongodb-mcp-server@latest
 
+echo "Installing MCP Wait Tool..."
+npm install -g @automation-ai-labs/mcp-wait@latest
+
 # reshim golang to make sure newly installed go binaries are available
 asdf reshim golang
 asdf reshim nodejs

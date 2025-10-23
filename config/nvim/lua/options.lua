@@ -4,11 +4,11 @@ require "nvchad.options"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.clipboard = "unnamedplus" -- requires: sudo apt install wl-clipboard (for Wayland/Ubuntu)
 vim.opt.exrc = true
 vim.opt.spell = false -- toggle using <leader>ts
 vim.opt.spelllang = "en"
 -- vim.opt.winborder = "rounded" -- this really helps for lsp hover (K) visibility as it add a border to floating windows, but this get conflicted with some plugins especially with telescope
+vim.opt.clipboard = "unnamedplus"
 
 -- configure diagnostics
 vim.diagnostic.config {

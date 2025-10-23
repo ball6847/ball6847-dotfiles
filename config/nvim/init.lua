@@ -46,3 +46,4 @@ vim.schedule(function()
 end)
 
 require "configs.wsl"
+require "configs.autoread"
