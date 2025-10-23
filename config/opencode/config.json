@@ -67,6 +67,14 @@
       "headers": {
         "Authorization": "Bearer {env:JINA_API_KEY}"
       }
+    },
+    "wait": {
+      "type": "local",
+      "command": ["mcp-wait"],
+      "environment": {
+        "TRANSPORT_TYPE": "stdio"
+      },
+      "enabled": true
     }
   },
   "agent": {
