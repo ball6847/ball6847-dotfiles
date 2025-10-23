@@ -171,28 +171,6 @@ return {
       -- or run <leader>ch to see copilot mapping section
     end,
   },
-  {
-    "olimorris/codecompanion.nvim",
-    lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("codecompanion").setup {
-        strategies = {
-          chat = {
-            adapter = "copilot",
-          },
-          inline = {
-            adapter = "copilot",
-          },
-        },
-      }
-      -- Expand 'cc' into 'CodeCompanion' in the command line
-      vim.cmd [[cab cc CodeCompanion]]
-    end,
-  },
 
   -- nvim-spectre
   {

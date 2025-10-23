@@ -156,10 +156,6 @@ map("n", "<leader>fn", function()
   }
 end, { desc = "Find function or method" })
 
-map({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-map({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-map("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
-
 map("n", "<leader>tr", ":TestNearest -v<CR>", { noremap = true, silent = true, desc = "Run test nearest" })
 map("n", "<leader>tf", ":TestFile -v<CR>", { noremap = true, silent = true, desc = "Run test file" })
 map("n", "<leader>ts", ":TestSuite<CR>", { noremap = true, silent = true, desc = "Run test suite" })
