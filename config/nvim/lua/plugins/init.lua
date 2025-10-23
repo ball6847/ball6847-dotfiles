@@ -279,6 +279,7 @@ return {
   },
   {
     "NickvanDyke/opencode.nvim",
+    lazy = false,
     dependencies = {
       -- Recommended for `ask()` and `select()`.
       -- Required for `toggle()`.
