@@ -2,7 +2,7 @@ golang 1.25.0
 nodejs 23.11.0
 deno 2.4.0
 ruby 3.4.1
-rust 1.86.0
+rust 1.90.0
 neovim 0.11.1
 kubectl 1.33.0
 kubecm 0.33.0
