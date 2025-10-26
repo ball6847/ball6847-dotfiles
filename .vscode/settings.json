@@ -13,5 +13,6 @@
 		"Touchpad",
 		"unpushed",
 		"xsessionrc"
-	]
+	],
+	"dish-ai-commit.features.codeAnalysis.diffTarget": "auto"
 }
