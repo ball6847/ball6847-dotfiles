@@ -5,16 +5,16 @@
 echo "Installing AI tools..."
 
 echo "Installing Qwen Code..."
-npm install -g @qwen-code/qwen-code@latest
+bun install --global @qwen-code/qwen-code@latest
 
-echo "Installing Gemini CLI..."
-npm install -g @google/gemini-cli@latest
+echo "uninstalling Gemini CLI..."
+bun install --global @google/gemini-cli@latest
 
-echo "Installing Claude Code..."
-npm install -g @anthropic-ai/claude-code@latest
+echo "uninstalling Claude Code..."
+bun install --global @anthropic-ai/claude-code@latest
 
-echo "Installing OpenCode AI..."
-npm install -g opencode-ai@latest
+echo "uninstalling OpenCode AI..."
+bun install --global opencode-ai@latest
 
 # MCP Servers
 
@@ -32,15 +32,11 @@ echo "Installing MCP Kafka Server..."
 go install github.com/kanapuli/mcp-kafka@latest
 
 echo "Installing MCP MongoDB Server..."
-npm install -g mongodb-mcp-server@latest
-
-# TODO: consider removing this, as we can use `sleep` command in most systems
-echo "Installing MCP Wait Tool..."
-npm install -g @automation-ai-labs/mcp-wait@latest
+bun install --global mongodb-mcp-server@latest
 
 # reshim golang to make sure newly installed go binaries are available
 asdf reshim golang
-asdf reshim nodejs
+asdf reshim bun
 
 # Check if ripgrep is installed
 if ! command -v rg &> /dev/null; then
