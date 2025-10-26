@@ -34,6 +34,7 @@ go install github.com/kanapuli/mcp-kafka@latest
 echo "Installing MCP MongoDB Server..."
 npm install -g mongodb-mcp-server@latest
 
+# TODO: consider removing this, as we can use `sleep` command in most systems
 echo "Installing MCP Wait Tool..."
 npm install -g @automation-ai-labs/mcp-wait@latest
 

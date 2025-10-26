@@ -15,6 +15,7 @@ asdf plugin add neovim
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add golang
 asdf plugin add nodejs
+asdf plugin add bun
 asdf plugin add rust
 asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
@@ -26,5 +27,3 @@ asdf plugin add lua-language-server
 asdf plugin add task
 asdf plugin add mockery https://github.com/cabify/asdf-mockery.git
 asdf plugin add golangci-lint https://github.com/hypnoglow/asdf-golangci-lint.git
-
-# TODO: bun
