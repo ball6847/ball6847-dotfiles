@@ -135,20 +135,9 @@
     },
     // Roo Code related Shortcut
     {
-        "key": "ctrl+k u",
+        "key": "ctrl+k u", // cannot use ctrl+k ctrl+u as it reserved by trae
         "command": "roo-cline.addToContext",
         "isAIItem": false,
-        "when": "!isMac"
-    },
-    {
-        "key": "ctrl+k i",
-        "command": "roo-cline.newTask",
-        "isAIItem": false,
-        "when": "!isMac"
-    },
-    {
-        "key": "ctrl+k n",
-        "command": "roo-cline.openInNewTab",
         "when": "!isMac"
     },
     {
@@ -158,9 +147,25 @@
         "when": "isMac"
     },
     {
-        "key": "cmd+k i",
+        "key": "ctrl+k ctrl+i",
         "command": "roo-cline.newTask",
         "isAIItem": false,
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "roo-cline.newTask",
+        "isAIItem": false,
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+k ctrl+n",
+        "command": "roo-cline.openInNewTab",
+        "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+n",
+        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
@@ -173,16 +178,6 @@
         "key": "cmd+k cmd+k",
         "command": "roo-cline.focusInput",
         "isAIItem": false,
-        "when": "isMac"
-    },
-    {
-        "key": "ctrl+k ctrl+n",
-        "command": "roo-cline.openInNewTab",
-        "when": "!isMac"
-    },
-    {
-        "key": "cmd+k cmd+n",
-        "command": "roo-cline.openInNewTab",
         "when": "isMac"
     },
     {
@@ -209,11 +204,11 @@
         "when": "terminalFocus"
     },
     {
-        "key": "ctrl+k ctrl+o",
+        "key": "cmd+k cmd+o",
         "command": "opencode.openNewTerminal"
     },
     {
-        "key": "ctrl+shift+escape",
+        "key": "shift+cmd+escape",
         "command": "-opencode.openNewTerminal"
     }
 ]

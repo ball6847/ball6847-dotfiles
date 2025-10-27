@@ -64,7 +64,7 @@
     "editor.lineHeight": 1.7,
     "terminal.integrated.lineHeight": 1.5,
     "editor.inlayHints.enabled": "off",
-    "editor.fontFamily": "JetBrainsMono Nerd Font, Google Sans Code, MartianMono Nerd Font, Dank Mono",
+    "editor.fontFamily": "Dank Mono, JetBrainsMono Nerd Font, Google Sans Code, MartianMono Nerd Font",
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
     "editor.fontLigatures": true,
