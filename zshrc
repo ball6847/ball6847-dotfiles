@@ -116,7 +116,7 @@ export EDITOR='nvim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export PATH="$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$PATH"
+export PATH="$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
 
 # ================================================
 # set up bash alias
@@ -207,7 +207,7 @@ fi
 # ================================================
 # set z integraion, see https://github.com/ajeetdsouza/zoxide?tab=readme-ov-file#installation
 # zoxide should be installed via github release
-# $ wget https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.8/zoxide_0.9.8-1_amd64.deb 
+# $ wget https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.8/zoxide_0.9.8-1_amd64.deb
 # $ sudo apt install zoxide_0.9.8-1_amd64.deb
 # $ rm zoxide_0.9.8-1_amd64.deb
 #
