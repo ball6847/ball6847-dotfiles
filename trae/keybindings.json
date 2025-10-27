@@ -206,12 +206,12 @@
     {
         "key": "cmd+k cmd+o",
         "command": "opencode.openNewTerminal",
-        "when": "!isMac"
+        "when": "isMac"
     },
     {
         "key": "shift+cmd+escape",
         "command": "-opencode.openNewTerminal",
-        "when": "!isMac"
+        "when": "isMac"
     },
     {
         "key": "ctrl+k ctrl+o",
