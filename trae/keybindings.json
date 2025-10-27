@@ -205,10 +205,22 @@
     },
     {
         "key": "cmd+k cmd+o",
-        "command": "opencode.openNewTerminal"
+        "command": "opencode.openNewTerminal",
+        "when": "!isMac"
     },
     {
         "key": "shift+cmd+escape",
-        "command": "-opencode.openNewTerminal"
+        "command": "-opencode.openNewTerminal",
+        "when": "!isMac"
+    },
+    {
+        "key": "ctrl+k ctrl+o",
+        "command": "opencode.openNewTerminal",
+        "when": "!isMac"
+    },
+    {
+        "key": "shift+ctrl+escape",
+        "command": "-opencode.openNewTerminal",
+        "when": "!isMac"
     }
 ]
