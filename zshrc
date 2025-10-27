@@ -175,9 +175,6 @@ bindkey '^ ' autosuggest-accept
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# disable ctrl+w as it can be useful for something else
-bindkey "^W" undefined-key
-
 # 10ms for key sequences
 KEYTIMEOUT=1
 
