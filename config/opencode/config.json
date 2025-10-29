@@ -56,7 +56,7 @@
             "output": 198000
           }
         },
-        "minimax-m2:cloud": {
+        "minimax-m2": {
           "name": "MiniMax-M2",
           "limit": {
             "context": 200000,
