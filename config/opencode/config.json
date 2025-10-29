@@ -55,6 +55,13 @@
             "context": 198000,
             "output": 198000
           }
+        },
+        "minimax-m2:cloud": {
+          "name": "MiniMax-M2",
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          }
         }
       }
     }
