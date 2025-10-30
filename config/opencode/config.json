@@ -3,6 +3,9 @@
   "theme": "opencode",
   "autoupdate": false,
   "instructions": ["AGENTS.md"],
+  "keybinds": {
+    "leader": "ctrl+k"
+  },
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
