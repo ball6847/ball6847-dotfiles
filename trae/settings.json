@@ -59,8 +59,8 @@
         "virtuals",
         "zmotivat"
     ],
-    "editor.fontSize": 14,
-    "terminal.integrated.fontSize": 14,
+    "editor.fontSize": 13,
+    "terminal.integrated.fontSize": 13,
     "editor.lineHeight": 1.7,
     "terminal.integrated.lineHeight": 1.5,
     "editor.inlayHints.enabled": "off",
