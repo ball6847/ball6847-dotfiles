@@ -222,5 +222,13 @@
         "key": "shift+ctrl+escape",
         "command": "-opencode.openNewTerminal",
         "when": "!isMac"
+    },
+    {
+        "key": "cmd+k cmd+p",
+        "command": "opencode.addFilepathToTerminal"
+    },
+    {
+        "key": "alt+cmd+k",
+        "command": "-opencode.addFilepathToTerminal"
     }
 ]
