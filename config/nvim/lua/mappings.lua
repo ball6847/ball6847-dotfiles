@@ -185,3 +185,6 @@ end
 vim.keymap.set("t", "<Esc>", double_esc, { desc = "Double Esc to exit terminal mode" })
 
 -- For opencode.nvim keymappings please check https://github.com/NickvanDyke/opencode.nvim?tab=readme-ov-file#-setup
+
+-- Remap Ctrl+W to <leader>w for window operations
+map("n", "<leader>w", "<C-w>", { noremap = true, silent = true, desc = "Window operations prefix" })
