@@ -67,6 +67,67 @@
           }
         }
       }
+    },
+    "ollama-v2": {
+      "npm": "ollama-ai-provider-v2",
+      "name": "Ollama Cloud v2",
+      "options": {
+        "baseURL": "https://ollama.com/api",
+        "headers": {
+          "Authorization": "Bearer {env:OLLAMA_API_KEY}"
+        }
+      },
+      "models": {
+        "deepseek-v3.1:671b": {
+          "name": "DeepSeek-V3.1-671B",
+          "limit": {
+            "context": 160000,
+            "output": 160000
+          }
+        },
+        "gpt-oss:20b": {
+          "name": "GPT-OSS-20B",
+          "limit": {
+            "context": 128000,
+            "output": 128000
+          }
+        },
+        "gpt-oss:120b": {
+          "name": "GPT-OSS-120B",
+          "limit": {
+            "context": 128000,
+            "output": 128000
+          }
+        },
+        "kimi-k2:1t": {
+          "name": "Kimi-K2-1T",
+          "limit": {
+            "context": 256000,
+            "output": 256000
+          }
+        },
+        "qwen3-coder:480b": {
+          "name": "Qwen3-Coder-480B",
+          "limit": {
+            "context": 256000,
+            "output": 256000
+          }
+        },
+        "glm-4.6": {
+          "name": "GLM-4.6",
+          "limit": {
+            "context": 198000,
+            "output": 198000
+          }
+        },
+        "minimax-m2": {
+          "name": "MiniMax-M2",
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          }
+        }
+      }
     }
   },
   "mcp": {
@@ -84,7 +145,7 @@
       "environment": {
         "TRANSPORT_TYPE": "stdio"
       },
-      "enabled": true
+      "enabled": false
     }
   }
 }
