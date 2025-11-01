@@ -24,8 +24,9 @@ bun install --global @google/gemini-cli@latest
 # echo "Installing Claude Code..."
 # bun install --global @anthropic-ai/claude-code@latest
 
+# Stick to 0.x version as 1.x is still not yet stable
 echo "Installing OpenCode AI..."
-bun install --global opencode-ai@latest
+bun install --global opencode-ai@~0
 
 # MCP Servers
 
