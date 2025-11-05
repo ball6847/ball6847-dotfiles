@@ -258,18 +258,18 @@ return {
   -- Opencode integration, setup snippet copied from https://github.com/NickvanDyke/opencode.nvim?tab=readme-ov-file#-setup
   {
     "NickvanDyke/opencode.nvim",
-    lazy = false,
     dependencies = {
       -- Recommended for `ask()` and `select()`.
-      -- Required for `toggle()`.
-      { "folke/snacks.nvim", opts = { input = {}, picker = {} } },
+      -- Required for default `toggle()` implementation.
+      { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
     },
     config = function()
+      ---@type opencode.Opts
       vim.g.opencode_opts = {
-        -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on `opencode_opts`.
+        -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition".
       }
 
-      -- Required for `vim.g.opencode_opts.auto_reload`.
+      -- Required for `opts.auto_reload`.
       vim.o.autoread = true
 
       -- Recommended/example keymaps.
