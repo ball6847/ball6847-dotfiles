@@ -225,10 +225,22 @@
     },
     {
         "key": "cmd+k cmd+p",
-        "command": "opencode.addFilepathToTerminal"
+        "command": "opencode.addFilepathToTerminal",
+        "when": "isMac"
+    },
+    {
+        "key": "ctrl+k ctrl+p",
+        "command": "opencode.addFilepathToTerminal",
+        "when": "!isMac"
     },
     {
         "key": "alt+cmd+k",
-        "command": "-opencode.addFilepathToTerminal"
+        "command": "-opencode.addFilepathToTerminal",
+        "when": "isMac"
+    },
+    {
+        "key": "alt+ctrl+k",
+        "command": "-opencode.addFilepathToTerminal",
+        "when": "!isMac"
     }
 ]
