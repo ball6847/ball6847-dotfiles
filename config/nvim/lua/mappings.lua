@@ -185,6 +185,46 @@ end
 vim.keymap.set("t", "<Esc>", double_esc, { desc = "Double Esc to exit terminal mode" })
 
 -- For opencode.nvim keymappings please check https://github.com/NickvanDyke/opencode.nvim?tab=readme-ov-file#-setup
+-- Opencode keymaps (moved from plugin config for better organization)
+map({ "n", "x" }, "<leader>oa", function()
+  require("opencode").ask("@this: ", { submit = true })
+end, { desc = "Ask about this" })
+
+map({ "n", "x" }, "<leader>os", function()
+  require("opencode").select()
+end, { desc = "Select prompt" })
+
+map({ "n", "x" }, "<leader>o+", function()
+  require("opencode").prompt "@this"
+end, { desc = "Add this" })
+
+map("n", "<leader>ot", function()
+  require("opencode").toggle()
+end, { desc = "Toggle embedded" })
+
+map("n", "<leader>oc", function()
+  require("opencode").command()
+end, { desc = "Select command" })
+
+map("n", "<leader>on", function()
+  require("opencode").command "session_new"
+end, { desc = "New session" })
+
+map("n", "<leader>oi", function()
+  require("opencode").command "session_interrupt"
+end, { desc = "Interrupt session" })
+
+map("n", "<leader>oA", function()
+  require("opencode").command "agent_cycle"
+end, { desc = "Cycle selected agent" })
+
+map("n", "<S-C-u>", function()
+  require("opencode").command "messages_half_page_up"
+end, { desc = "Messages half page up" })
+
+map("n", "<S-C-d>", function()
+  require("opencode").command "messages_half_page_down"
+end, { desc = "Messages half page down" })
 
 -- Remap Ctrl+W to <leader>w for window operations
 map("n", "<leader>w", "<C-w>", { noremap = true, silent = true, desc = "Window operations prefix" })
