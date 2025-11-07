@@ -385,5 +385,7 @@
     },
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
-    }
+    },
+    "AI.toolcall.v2.ide.mcp.autoRun": "alwaysRun",
+    "AI.toolcall.v2.ide.command.mode": "blacklist"
 }
