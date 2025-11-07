@@ -59,12 +59,12 @@
         "virtuals",
         "zmotivat"
     ],
-    "editor.fontSize": 13,
-    "terminal.integrated.fontSize": 13,
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
     "editor.lineHeight": 1.7,
     "terminal.integrated.lineHeight": 1.5,
     "editor.inlayHints.enabled": "off",
-    "editor.fontFamily": "Dank Mono, JetBrainsMono Nerd Font, Google Sans Code, MartianMono Nerd Font",
+    "editor.fontFamily": "Dank Mono,RobotoMono Nerd Font, Google Sans Code, JetBrainsMono Nerd Font, MartianMono Nerd Font",
     "editor.lineNumbers": "relative",
     "terminal.integrated.fontFamily": "",
     "editor.fontLigatures": true,
@@ -386,6 +386,8 @@
     "[github-actions-workflow]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "trae.tab.enableSummaryAutoDisplay": true,
+    "remote.autoForwardPortsSource": "hybrid",
     "AI.toolcall.v2.ide.mcp.autoRun": "alwaysRun",
     "AI.toolcall.v2.ide.command.mode": "blacklist"
 }
