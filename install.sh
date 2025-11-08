@@ -21,6 +21,7 @@ files="
     ansible.cfg
     tool-versions
     config/opencode/config.json
+    config/opencode/command
     qwen/settings.json
     gemini/settings.json"
 
