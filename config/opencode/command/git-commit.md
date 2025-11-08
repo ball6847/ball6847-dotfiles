@@ -2,11 +2,14 @@
 description: Review unstagged changes and commit them
 ---
 
-Here are the current changes:!`git status`
+Here are the current changes:
+!`git status`
 
-Here are the detailed changes:!`git diff`
+Here are the detailed changes:
+!`git diff`
 
-Recent commit history:!`git log --oneline -5`
+Recent commit history:
+!`git log --oneline -5`
 
 Based on the above information, analyze the changes and create an appropriate commit message following these guidelines:
 
