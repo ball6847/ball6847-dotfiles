@@ -1,6 +1,6 @@
 ---
 description: Flash agent, for quick and simple task
-mode: primary
+mode: subagent
 model: openrouter/google/gemini-2.0-flash-exp:free
 tools:
   write: true
