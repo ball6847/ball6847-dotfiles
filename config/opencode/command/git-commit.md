@@ -1,12 +1,17 @@
 ---
 description: Review unstagged changes and commit them
-agent: flash
 ---
 
-Follow these steps to create high-quality commits:
+Here are the current changes:!`git status`
 
-1. **Analyze Changes**: Run `git status` and `git diff` to understand what changes will be committed
-2. **Review Context**: Examine recent commit history with `git log --oneline -5` to understand commit message style
+Here are the detailed changes:!`git diff`
+
+Recent commit history:!`git log --oneline -5`
+
+Based on the above information, analyze the changes and create an appropriate commit message following these guidelines:
+
+1. **Analyze Changes**: Understand what changes will be committed from the git status and diff output
+2. **Review Context**: Examine recent commit history to understand commit message style
 3. **Stage Appropriately**: Only stage relevant files for this commit using `git add`
 4. **Craft Commit Message**:
    - Use present tense ("add feature" not "added feature")
