@@ -40,8 +40,10 @@ vim.lsp.enable("lua_ls")
 -- note: denols will only enabled if the project root contains deno.json or deno.jsonc
 --       and if your project also contains package.json as well, tsserver will be enabled as well and this will be mess. Make sure you don't have both deno.json and package.json in the same project
 
-vim.lsp.config("denols", {
-  root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+-- denols using traditional lspconfig
+local lspconfig = require("lspconfig")
+lspconfig.denols.setup({
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
   settings = {
     deno = {
       enable = true,
@@ -50,22 +52,21 @@ vim.lsp.config("denols", {
     },
   },
 })
-vim.lsp.enable("denols")
 
 -- typescript
 -- note: tsserver will be disabled if the project root contains deno.json or deno.jsonc
 
-vim.lsp.config("ts_ls", {
-  root_dir = require("lspconfig.util").root_pattern "package.json",
+-- ts_ls using traditional lspconfig
+lspconfig.ts_ls.setup({
+  root_dir = lspconfig.util.root_pattern("package.json"),
   on_attach = function(client, bufnr)
-    if require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")(vim.api.nvim_buf_get_name(bufnr)) then
+    if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(vim.api.nvim_buf_get_name(bufnr)) then
       client.stop()
     else
       on_attach(client, bufnr)
     end
   end,
 })
-vim.lsp.enable("ts_ls")
 
 -- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
 -- see - https://github.com/neovim/nvim-lspconfig/issues/725#issuecomment-1837509673

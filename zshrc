@@ -112,7 +112,7 @@ export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
 # General environment variable
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
-export EDITOR='nvim'
+export EDITOR='vim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
