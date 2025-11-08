@@ -2,9 +2,11 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "opencode",
   "autoupdate": false,
-  "instructions": ["AGENTS.md"],
+  "instructions": [
+    "AGENTS.md"
+  ],
   "keybinds": {
-    "leader": "ctrl+k"
+    "leader": "ctrl+o"
   },
   "provider": {
     "ollama": {
@@ -141,7 +143,9 @@
     },
     "wait": {
       "type": "local",
-      "command": ["mcp-wait"],
+      "command": [
+        "mcp-wait"
+      ],
       "environment": {
         "TRANSPORT_TYPE": "stdio"
       },

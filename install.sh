@@ -22,6 +22,7 @@ files="
     tool-versions
     config/opencode/config.json
     config/opencode/command
+    config/opencode/agent
     qwen/settings.json
     gemini/settings.json"
 
