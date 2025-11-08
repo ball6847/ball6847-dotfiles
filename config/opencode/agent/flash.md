@@ -1,7 +1,7 @@
 ---
 description: Flash agent, for quick and simple task
 mode: primary
-model: openrouter/openai/gpt-oss-20b:free
+model: openrouter/google/gemini-2.0-flash-exp:free
 tools:
   write: true
   edit: true

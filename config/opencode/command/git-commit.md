@@ -1,6 +1,6 @@
 ---
 description: Review unstagged changes and commit them
-agent: build
+agent: flash
 ---
 
 Follow these steps to create high-quality commits:
