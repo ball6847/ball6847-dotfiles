@@ -36,9 +36,8 @@
           "temperature": true,
           "tool_call": true,
           "options": {
-            "reasoning": {
-              "enabled": false
-            }
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
           },
           "limit": {
             "context": 128000,
@@ -47,9 +46,13 @@
         },
         "gpt-oss:120b": {
           "name": "GPT-OSS-120B",
-          "reasoning": false,
+          "reasoning": true,
           "temperature": true,
           "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 128000,
             "output": 128000
