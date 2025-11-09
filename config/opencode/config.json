@@ -138,6 +138,13 @@
       "models": {
         "deepseek-v3.1:671b": {
           "name": "DeepSeek-V3.1-671B",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 160000,
             "output": 160000
@@ -145,6 +152,13 @@
         },
         "gpt-oss:20b": {
           "name": "GPT-OSS-20B",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 128000,
             "output": 128000
@@ -152,6 +166,13 @@
         },
         "gpt-oss:120b": {
           "name": "GPT-OSS-120B",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 128000,
             "output": 128000
