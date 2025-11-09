@@ -180,6 +180,13 @@
         },
         "kimi-k2:1t": {
           "name": "Kimi-K2-1T",
+          "reasoning": false,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 256000,
             "output": 256000
@@ -187,6 +194,13 @@
         },
         "qwen3-coder:480b": {
           "name": "Qwen3-Coder-480B",
+          "reasoning": false,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 256000,
             "output": 256000
@@ -194,6 +208,13 @@
         },
         "glm-4.6": {
           "name": "GLM-4.6",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 198000,
             "output": 198000
@@ -201,6 +222,13 @@
         },
         "minimax-m2": {
           "name": "MiniMax-M2",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 200000,
             "output": 200000
@@ -208,6 +236,13 @@
         },
         "kimi-k2-thinking": {
           "name": "Kimi K2 Thinking",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 262144,
             "output": 262144
