@@ -25,6 +25,10 @@
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 160000,
             "output": 160000
@@ -83,6 +87,10 @@
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 198000,
             "output": 198000
@@ -93,6 +101,10 @@
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 200000,
             "output": 200000
@@ -103,6 +115,10 @@
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 262144,
             "output": 262144
