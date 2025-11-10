@@ -8,7 +8,7 @@
   "keybinds": {
     "leader": "ctrl+o"
   },
-  "small_model": "ollama/gpt-oss:20b",
+  "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
