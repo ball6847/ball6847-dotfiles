@@ -227,4 +227,5 @@ map("n", "<S-C-d>", function()
 end, { desc = "Messages half page down" })
 
 -- Remap Ctrl+W to <leader>w for window operations
+-- Also support Cmd+W on Mac
 map("n", "<leader>w", "<C-w>", { noremap = true, silent = true, desc = "Window operations prefix" })
