@@ -3,13 +3,19 @@ description: Review unstagged changes and commit them
 ---
 
 Here are the current changes:
+<status-output>
 !`git status`
+</status-output>
 
 Here are the detailed changes:
+<diff-output>
 !`git diff`
+</diff-output>
 
 Recent commit history:
+<log-output>
 !`git log --oneline -5`
+</log-output>
 
 Based on the above information, analyze the changes and create an appropriate commit message following these guidelines:
 
@@ -23,6 +29,5 @@ Based on the above information, analyze the changes and create an appropriate co
    - Explain what and why, not how
    - Reference issue numbers if applicable
 5. **Create Commit**: Use `git commit -m` with the crafted message
-6. **Verify**: Run `git status` to confirm commit succeeded
 
 Focus on creating atomic, well-described commits that follow conventional commit standards when appropriate.
