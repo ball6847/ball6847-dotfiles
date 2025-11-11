@@ -114,7 +114,7 @@
           "temperature": true,
           "tool_call": true,
           "options": {
-            "reasoningEffort": "low",
+            "reasoningEffort": "none",
             "textVerbosity": "low"
           },
           "limit": {
