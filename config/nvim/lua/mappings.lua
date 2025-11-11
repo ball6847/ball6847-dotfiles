@@ -162,27 +162,16 @@ map("n", "<leader>ts", ":TestSuite<CR>", { noremap = true, silent = true, desc =
 map("n", "<leader>tt", ":TestLast<CR>", { noremap = true, silent = true, desc = "Run last test" })
 map("n", "<leader>tv", ":TestVisit<CR>", { noremap = true, silent = true, desc = "Visit test file" })
 
--- Double ESC to exit terminal mode
-local last_esc_time = 0
-local esc_timer = vim.loop.new_timer()
-
-local function double_esc()
-  local current_time = vim.loop.hrtime()
-  if current_time - last_esc_time < 500000000 then -- 500ms
-    esc_timer:stop()
-    last_esc_time = 0
-    -- Exit terminal mode
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true), "n", true)
-  else
-    last_esc_time = current_time
-    esc_timer:start(500, 0, function()
-      last_esc_time = 0
-    end)
-  end
+-- Shift+ESC to exit terminal mode
+local function exit_terminal_mode()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true), "n", true)
 end
 
--- Map double Esc in terminal mode
-vim.keymap.set("t", "<Esc>", double_esc, { desc = "Double Esc to exit terminal mode" })
+-- Map Shift+Esc in terminal mode
+vim.keymap.set("t", "<S-Esc>", exit_terminal_mode, { desc = "Shift+Esc to exit terminal mode" })
+
+-- Map Shift+Esc in insert mode to exit insert mode
+vim.keymap.set("i", "<S-Esc>", "<Esc>", { desc = "Shift+Esc to exit insert mode" })
 
 -- For opencode.nvim keymappings please check https://github.com/NickvanDyke/opencode.nvim?tab=readme-ov-file#-setup
 -- Opencode keymaps (moved from plugin config for better organization)
