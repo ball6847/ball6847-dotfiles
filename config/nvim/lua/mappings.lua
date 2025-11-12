@@ -173,6 +173,33 @@ vim.keymap.set("t", "<S-Esc>", exit_terminal_mode, { desc = "Shift+Esc to exit t
 -- Map Shift+Esc in insert mode to exit insert mode
 vim.keymap.set("i", "<S-Esc>", "<Esc>", { desc = "Shift+Esc to exit insert mode" })
 
+-- Shift+arrow key navigation for windows (exits terminal mode first)
+vim.keymap.set("t", "<S-Left>", function()
+  vim.cmd "stopinsert"
+  vim.cmd "wincmd h"
+end, { desc = "Navigate to left window" })
+
+vim.keymap.set("t", "<S-Right>", function()
+  vim.cmd "stopinsert"
+  vim.cmd "wincmd l"
+end, { desc = "Navigate to right window" })
+
+vim.keymap.set("t", "<S-Up>", function()
+  vim.cmd "stopinsert"
+  vim.cmd "wincmd k"
+end, { desc = "Navigate to upper window" })
+
+vim.keymap.set("t", "<S-Down>", function()
+  vim.cmd "stopinsert"
+  vim.cmd "wincmd j"
+end, { desc = "Navigate to lower window" })
+
+-- Also enable shift+arrow navigation in normal mode
+vim.keymap.set("n", "<S-Left>", "<C-w>h", { desc = "Navigate to left window" })
+vim.keymap.set("n", "<S-Right>", "<C-w>l", { desc = "Navigate to right window" })
+vim.keymap.set("n", "<S-Up>", "<C-w>k", { desc = "Navigate to upper window" })
+vim.keymap.set("n", "<S-Down>", "<C-w>j", { desc = "Navigate to lower window" })
+
 -- For opencode.nvim keymappings please check https://github.com/NickvanDyke/opencode.nvim?tab=readme-ov-file#-setup
 -- Opencode keymaps (moved from plugin config for better organization)
 map({ "n", "x" }, "<leader>oa", function()
