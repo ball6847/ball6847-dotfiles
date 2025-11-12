@@ -12,7 +12,12 @@ vim.lsp.config("*", {
 })
 
 -- Enable LSP servers with default config
-local servers = { "html", "cssls", "bashls", "golangci_lint_ls" }
+local servers = {
+  "html",
+  "cssls",
+  "bashls",
+  -- "golangci_lint_ls",
+}
 for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
@@ -31,9 +36,9 @@ vim.lsp.config("lua_ls", {
         },
       },
     },
-  }
+  },
 })
-vim.lsp.enable("lua_ls")
+vim.lsp.enable "lua_ls"
 
 -- deno (typescript)
 -- see https://docs.deno.com/runtime/manual/getting_started/setup_your_environment#vimneovim-via-plugins
@@ -41,8 +46,8 @@ vim.lsp.enable("lua_ls")
 --       and if your project also contains package.json as well, tsserver will be enabled as well and this will be mess. Make sure you don't have both deno.json and package.json in the same project
 
 -- denols using traditional lspconfig
-local lspconfig = require("lspconfig")
-lspconfig.denols.setup({
+local lspconfig = require "lspconfig"
+lspconfig.denols.setup {
   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
   settings = {
     deno = {
@@ -51,14 +56,14 @@ lspconfig.denols.setup({
       config = "deno.json",
     },
   },
-})
+}
 
 -- typescript
 -- note: tsserver will be disabled if the project root contains deno.json or deno.jsonc
 
 -- ts_ls using traditional lspconfig
-lspconfig.ts_ls.setup({
-  root_dir = lspconfig.util.root_pattern("package.json"),
+lspconfig.ts_ls.setup {
+  root_dir = lspconfig.util.root_pattern "package.json",
   on_attach = function(client, bufnr)
     if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(vim.api.nvim_buf_get_name(bufnr)) then
       client.stop()
@@ -66,7 +71,7 @@ lspconfig.ts_ls.setup({
       on_attach(client, bufnr)
     end
   end,
-})
+}
 
 -- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
 -- see - https://github.com/neovim/nvim-lspconfig/issues/725#issuecomment-1837509673
@@ -82,7 +87,7 @@ vim.lsp.config("svelte", {
     })
   end,
 })
-vim.lsp.enable("svelte")
+vim.lsp.enable "svelte"
 
 -- intelephense (php)
 vim.lsp.config("intelephense", {
@@ -173,13 +178,13 @@ vim.lsp.config("intelephense", {
     },
   },
 })
-vim.lsp.enable("intelephense")
+vim.lsp.enable "intelephense"
 
 -- protols: detects the root directory by looking for protols.toml
 vim.lsp.config("protols", {
   root_dir = require("lspconfig.util").root_pattern "protols.toml",
 })
-vim.lsp.enable("protols")
+vim.lsp.enable "protols"
 
 -- gopls, setup integration with gofumpt and auto organize imports on save
 -- see: https://github.com/golang/tools/blob/master/gopls/doc/vim.md
@@ -194,4 +199,5 @@ vim.lsp.config("gopls", {
     },
   },
 })
-vim.lsp.enable("gopls")
+vim.lsp.enable "gopls"
+
