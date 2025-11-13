@@ -23,6 +23,9 @@ return {
         -- this will not need if this PR get released, https://github.com/NvChad/NvChad/issues/2975 (probably in v2.6)
         dotfiles = true,
       },
+      view = {
+        width = 40,
+      },
     },
   },
 
