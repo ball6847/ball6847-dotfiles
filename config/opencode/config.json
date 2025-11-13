@@ -6,6 +6,7 @@
   "keybinds": {
     "leader": "ctrl+o"
   },
+  "plugin": ["opencode-gemini-auth"],
   "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
   "provider": {
     "ollama": {

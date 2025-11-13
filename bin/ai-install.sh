@@ -61,3 +61,5 @@ fi
 if ! command -v grpcurl &> /dev/null; then
     echo "Warning: grpcurl is not installed. This may be needed for gRPC testing and debugging. Consider installing it with your package manager (e.g., 'sudo apt install grpcurl' on Ubuntu)."
 fi
+
+sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"Plugin update script finished successfully.\")"
