@@ -313,6 +313,10 @@
       "models": {
         "volcengine/doubao-seed-code": {
           "name": "Doubao-Seed-Code",
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
           "limit": {
             "context": 256000,
             "output": 32000
