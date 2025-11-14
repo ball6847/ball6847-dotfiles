@@ -27,7 +27,7 @@ bun install --global @google/gemini-cli@latest
 # Stick to 0.x version as 1.x is still not yet stable
 echo "Installing OpenCode AI..."
 # bun install --global opencode-ai@~0
-bun install --global opencode-ai@~1
+bun install --global opencode-ai@latest
 
 # MCP Servers
 
