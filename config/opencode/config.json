@@ -300,6 +300,25 @@
           }
         }
       }
+    },
+    "zenmux-custom": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "zenmux-custom",
+      "options": {
+        "baseURL": "https://zenmux.ai/api/v1",
+        "headers": {
+          "Authorization": "Bearer {env:ZENMUX_API_KEY}"
+        }
+      },
+      "models": {
+        "volcengine/doubao-seed-code": {
+          "name": "Doubao-Seed-Code",
+          "limit": {
+            "context": 256000,
+            "output": 32000
+          }
+        }
+      }
     }
   },
   "mcp": {
