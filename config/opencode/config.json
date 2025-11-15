@@ -125,130 +125,6 @@
         }
       }
     },
-    "ollama-v2": {
-      "npm": "ollama-ai-provider-v2",
-      "name": "Ollama Cloud v2",
-      "options": {
-        "baseURL": "https://ollama.com/api",
-        "headers": {
-          "Authorization": "Bearer {env:OLLAMA_API_KEY}"
-        }
-      },
-      "models": {
-        "deepseek-v3.1:671b": {
-          "name": "DeepSeek-V3.1-671B",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 160000,
-            "output": 160000
-          }
-        },
-        "gpt-oss:20b": {
-          "name": "GPT-OSS-20B",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 128000,
-            "output": 128000
-          }
-        },
-        "gpt-oss:120b": {
-          "name": "GPT-OSS-120B",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 128000,
-            "output": 128000
-          }
-        },
-        "kimi-k2:1t": {
-          "name": "Kimi-K2-1T",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 256000,
-            "output": 256000
-          }
-        },
-        "qwen3-coder:480b": {
-          "name": "Qwen3-Coder-480B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 256000,
-            "output": 256000
-          }
-        },
-        "glm-4.6": {
-          "name": "GLM-4.6",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 198000,
-            "output": 198000
-          }
-        },
-        "minimax-m2": {
-          "name": "MiniMax-M2",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 200000,
-            "output": 200000
-          }
-        },
-        "kimi-k2-thinking": {
-          "name": "Kimi K2 Thinking",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
-        }
-      }
-    },
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
       "name": "Kimi For Coding",
@@ -311,6 +187,17 @@
         }
       },
       "models": {
+        "deepseek/deepseek-reasoner": {
+          "name": "DeepSeek-V3.2-Exp (Thinking Mode)",
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          }
+        },
         "volcengine/doubao-seed-code": {
           "name": "Doubao-Seed-Code",
           "options": {
