@@ -63,4 +63,8 @@ if ! command -v grpcurl &> /dev/null; then
 fi
 
 # update opencode-gemini-auth plugin https://github.com/jenslys/opencode-gemini-auth
-sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"Plugin update script finished successfully.\")"
+sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"[Plugin] opencode-gemini-auth - update script finished successfully.\")"
+
+# update opencode-alibaba-qwen3-auth plugin https://github.com/geoh/opencode-alibaba-qwen3-auth
+sh -c "(cd ~ && sed -i.bak '/\"opencode-alibaba-qwen3-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-alibaba-qwen3-auth && echo \"[Plugin] opencode-alibaba-qwen3-auth - update script finished successfully.\")"
+
