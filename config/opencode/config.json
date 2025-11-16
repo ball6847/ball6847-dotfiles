@@ -6,7 +6,6 @@
   "keybinds": {
     "leader": "ctrl+o"
   },
-  "model": "alibaba/coder-model",
   "plugin": ["opencode-gemini-auth", "opencode-alibaba-qwen3-auth"],
   "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
   "provider": {
