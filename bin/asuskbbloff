@@ -1,6 +1,0 @@
-#!/bin/bash
-
-KBBL="/sys/class/leds/asus::kbd_backlight"
-
-# $KBBL may a directory or a symlink as of ubuntu 16.04
-[ -d $KBBL -o -f $KBBL ] && echo 0 > $KBBL/brightness || echo "$KBBL does not exist!"
