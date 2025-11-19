@@ -6,9 +6,11 @@
   "keybinds": {
     "leader": "ctrl+o"
   },
-  "scroll_speed": 3,
   "plugin": ["opencode-gemini-auth", "opencode-alibaba-qwen3-auth"],
   "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
+  "tui": {
+    "scroll_speed": 5
+  },
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
