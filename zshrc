@@ -245,3 +245,6 @@ fi
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
+
+# Added by Antigravity
+export PATH="/Users/ball6847/.antigravity/antigravity/bin:$PATH"
