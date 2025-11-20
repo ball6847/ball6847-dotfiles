@@ -156,7 +156,6 @@ alias t="task"
 alias m="make"
 alias g="gemini"
 alias oc="opencode"
-alias q="qwen"
 alias qw="qwen"
 alias cc="claude"
 alias wm="workspace-manager"
@@ -166,6 +165,14 @@ if is_wsl; then
   alias open="explorer.exe"
   alias explorer="explorer.exe"
 fi
+
+q() {
+    if is_wsl; then
+        qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        qoder . "$@"
+    fi
+}
 
 # ================================================
 
