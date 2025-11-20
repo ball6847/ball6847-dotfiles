@@ -247,4 +247,4 @@ fi
 
 
 # Added by Antigravity
-export PATH="/Users/ball6847/.antigravity/antigravity/bin:$PATH"
+# export PATH="/Users/ball6847/.antigravity/antigravity/bin:$PATH"
