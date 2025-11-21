@@ -245,3 +245,8 @@ end, { desc = "Messages half page down" })
 -- Remap Ctrl+W to <leader>w for window operations
 -- Also support Cmd+W on Mac
 map("n", "<leader>w", "<C-w>", { noremap = true, silent = true, desc = "Window operations prefix" })
+
+-- nvim-scrollbar keybindings
+map("n", "<leader>sc", function()
+  require("scrollbar").clear()
+end, { desc = "Clear scrollbar marks" })

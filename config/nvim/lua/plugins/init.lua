@@ -278,4 +278,83 @@ return {
       -- Keymaps moved to lua/mappings.lua for better organization
     end,
   },
+  -- nvim-scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    event = "VeryLazy",
+    config = function()
+      -- Load custom highlights first
+      require "configs.scrollbar"
+
+      require("scrollbar").setup {
+        handle = {
+          text = "█", -- Changed from " " to "█" for better visibility
+          blend = 0, -- Changed from 30 to 0 for full opacity
+          highlight = "ScrollbarHandle",
+        },
+        marks = {
+          Cursor = {
+            text = "█", -- Changed from "•" to "█" for better visibility
+            priority = 0,
+            highlight = "ScrollbarCursor",
+          },
+          Search = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 1,
+            highlight = "ScrollbarSearch",
+          },
+          Error = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 2,
+            highlight = "ScrollbarError",
+          },
+          Warn = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 3,
+            highlight = "ScrollbarWarn",
+          },
+          Info = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 4,
+            highlight = "ScrollbarInfo",
+          },
+          Hint = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 5,
+            highlight = "ScrollbarHint",
+          },
+          Misc = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 6,
+            highlight = "ScrollbarMisc",
+          },
+          GitAdd = {
+            text = "█", -- Changed from "┆" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitAdd",
+          },
+          GitChange = {
+            text = "█", -- Changed from "┆" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitChange",
+          },
+          GitDelete = {
+            text = "█", -- Changed from "▁" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitDelete",
+          },
+        },
+        handlers = {
+          cursor = true,
+          diagnostic = true,
+          gitsigns = true, -- Enable git signs if you have gitsigns
+          handle = true,
+          search = true, -- Enable search marks if you have nvim-hlslens
+          ale = false,
+        },
+        set_highlights = false, -- We'll set our own highlights
+      }
+    end,
+  },
 }
+
