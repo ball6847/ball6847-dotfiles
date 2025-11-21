@@ -184,9 +184,9 @@ tt() {
 
 aa() {
     if is_wsl; then
-        agy --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+        antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
-        agy . "$@"
+        antigravity . "$@"
     fi
 }
 
