@@ -174,6 +174,14 @@ q() {
     fi
 }
 
+tr() {
+    if is_wsl; then
+        trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        trae . "$@"
+    fi
+}
+
 # ================================================
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
