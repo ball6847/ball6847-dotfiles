@@ -174,7 +174,7 @@ q() {
     fi
 }
 
-tr() {
+tt() {
     if is_wsl; then
         trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
