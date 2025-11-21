@@ -389,5 +389,12 @@
     "trae.tab.enableSummaryAutoDisplay": true,
     "remote.autoForwardPortsSource": "hybrid",
     "AI.toolcall.v2.ide.mcp.autoRun": "alwaysRun",
-    "AI.toolcall.v2.ide.command.mode": "blacklist"
+    "AI.toolcall.v2.ide.command.mode": "blacklist",
+    "syncSettings.keybindingsPerPlatform": false,
+    "syncSettings.resources": [
+        "keybindings",
+        "settings",
+        "snippets",
+        "uiState"
+    ]
 }
