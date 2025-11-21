@@ -166,7 +166,7 @@ if is_wsl; then
   alias explorer="explorer.exe"
 fi
 
-q() {
+qq() {
     if is_wsl; then
         qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
@@ -179,6 +179,14 @@ tt() {
         trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
         trae . "$@"
+    fi
+}
+
+aa() {
+    if is_wsl; then
+        agy --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        agy . "$@"
     fi
 }
 
