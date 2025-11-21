@@ -278,6 +278,72 @@ return {
       -- Keymaps moved to lua/mappings.lua for better organization
     end,
   },
+  -- toggleterm - terminal management
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    cmd = { "ToggleTerm", "TermExec" },
+    keys = {
+      { "<C-\\>", "<Cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Toggle terminal" },
+      -- { "<leader>t", "<Cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Toggle terminal" },
+      {
+        "<F3>",
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+
+          -- Create a dedicated fullscreen terminal
+          local fullscreen_term = Terminal:new {
+            direction = "float",
+            float_opts = {
+              border = "curved",
+              width = math.ceil(vim.o.columns * 0.9),
+              height = math.ceil(vim.o.lines * 0.9),
+              row = math.ceil(vim.o.lines * 0.05),
+              col = math.ceil(vim.o.columns * 0.05),
+              winblend = 0,
+              highlights = {
+                border = "Normal",
+                background = "Normal",
+              },
+            },
+          }
+
+          fullscreen_term:toggle()
+        end,
+        mode = { "n", "t" },
+        desc = "Toggle fullscreen terminal",
+      },
+    },
+    config = function()
+      require("toggleterm").setup {
+        size = 20,
+        hide_numbers = true,
+        shade_filetypes = {},
+        shade_terminals = true,
+        shading_factor = 2,
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = true,
+        direction = "horizontal",
+        close_on_exit = true,
+        shell = vim.o.shell,
+        float_opts = {
+          border = "curved",
+          width = math.ceil(vim.o.columns * 0.9),
+          height = math.ceil(vim.o.lines * 0.9),
+          row = math.ceil(vim.o.lines * 0.05), -- Center vertically (5% from top)
+          col = math.ceil(vim.o.columns * 0.05), -- Center horizontally (5% from left)
+          winblend = 0,
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          },
+        },
+      }
+    end,
+  },
+
   -- nvim-scrollbar
   {
     "petertriho/nvim-scrollbar",
@@ -357,4 +423,3 @@ return {
     end,
   },
 }
-

@@ -44,8 +44,8 @@ map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_wor
   desc = "Search on current file",
 })
 
--- replay macro in register q with F3 (so, start recording with `qq`)
-map("n", "<F3>", "@q", { noremap = true, silent = true, desc = "Replay macro in register a" })
+-- replay macro in register q with F4 (so, start recording with `qq`)
+map("n", "<F4>", "@q", { noremap = true, silent = true, desc = "Replay macro in register q" })
 
 -- map Ctrl+Backspace to delete word backward
 local delete_bw_key = vim.loop.os_uname().sysname == "Darwin" and "<D-BS>" or "<C-H>"
@@ -250,3 +250,5 @@ map("n", "<leader>w", "<C-w>", { noremap = true, silent = true, desc = "Window o
 map("n", "<leader>sc", function()
   require("scrollbar").clear()
 end, { desc = "Clear scrollbar marks" })
+
+-- Terminal toggle mappings are now handled in the plugin configuration itself
