@@ -270,4 +270,6 @@ fi
 
 
 # Added by Antigravity
-# export PATH="/Users/ball6847/.antigravity/antigravity/bin:$PATH"
+if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
+  export PATH="$SUDO_HOME/.antigravity/antigravity/bin:$PATH"
+fi
