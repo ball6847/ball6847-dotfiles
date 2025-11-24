@@ -418,6 +418,7 @@ return {
           search = true, -- Enable search marks if you have nvim-hlslens
           ale = false,
         },
+        excluded_filetypes = { "NvimTree" },
         set_highlights = false, -- We'll set our own highlights
       }
     end,
