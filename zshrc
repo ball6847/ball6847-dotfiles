@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions ansible kubectl helm asdf z)
+plugins=(zsh-autosuggestions ansible kubectl helm asdf z deno golang)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -156,7 +156,6 @@ alias t="task"
 alias m="make"
 alias g="gemini"
 alias oc="opencode"
-alias q="qwen"
 alias qw="qwen"
 alias cc="claude"
 alias wm="workspace-manager"
@@ -166,6 +165,30 @@ if is_wsl; then
   alias open="explorer.exe"
   alias explorer="explorer.exe"
 fi
+
+qq() {
+    if is_wsl; then
+        qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        qoder . "$@"
+    fi
+}
+
+tt() {
+    if is_wsl; then
+        trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        trae . "$@"
+    fi
+}
+
+aa() {
+    if is_wsl; then
+        antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+    else
+        antigravity . "$@"
+    fi
+}
 
 # ================================================
 
@@ -229,6 +252,12 @@ if which task > /dev/null; then
   eval "$(task --completion zsh)"
 fi
 
+# ================================================
+# set workspace-manager shell integration (powered by cliffy)
+
+if which workspace-manager > /dev/null; then
+  eval "$(workspace-manager completions zsh)"
+fi
 
 # ================================================
 # Allow parent to initialize shell
@@ -247,4 +276,6 @@ fi
 
 
 # Added by Antigravity
-# export PATH="/Users/ball6847/.antigravity/antigravity/bin:$PATH"
+if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
+  export PATH="$SUDO_HOME/.antigravity/antigravity/bin:$PATH"
+fi

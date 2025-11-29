@@ -192,7 +192,7 @@ vim.lsp.config("gopls", {
   settings = {
     gopls = {
       gofumpt = true,
-      staticcheck = true,
+      -- staticcheck = true,
       formatting = {
         goimportspath = "goimports",
       },
@@ -200,4 +200,3 @@ vim.lsp.config("gopls", {
   },
 })
 vim.lsp.enable "gopls"
-

@@ -47,3 +47,4 @@ end)
 
 require "configs.wsl"
 require "configs.autoread"
+require "configs.gitsigns"

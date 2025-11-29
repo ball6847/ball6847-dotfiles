@@ -278,4 +278,149 @@ return {
       -- Keymaps moved to lua/mappings.lua for better organization
     end,
   },
+  -- toggleterm - terminal management
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    event = "VeryLazy",
+    cmd = { "ToggleTerm", "TermExec" },
+    keys = {
+      { "<C-\\>", "<Cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Toggle terminal" },
+      -- { "<leader>t", "<Cmd>ToggleTerm<CR>", mode = { "n", "t" }, desc = "Toggle terminal" },
+      {
+        "<F3>",
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+
+          -- Create a dedicated fullscreen terminal
+          local fullscreen_term = Terminal:new {
+            direction = "float",
+            float_opts = {
+              border = "curved",
+              width = math.ceil(vim.o.columns * 0.9),
+              height = math.ceil(vim.o.lines * 0.9),
+              row = math.ceil(vim.o.lines * 0.05),
+              col = math.ceil(vim.o.columns * 0.05),
+              winblend = 0,
+              highlights = {
+                border = "Normal",
+                background = "Normal",
+              },
+            },
+          }
+
+          fullscreen_term:toggle()
+        end,
+        mode = { "n", "t" },
+        desc = "Toggle fullscreen terminal",
+      },
+    },
+    config = function()
+      require("toggleterm").setup {
+        size = 20,
+        hide_numbers = true,
+        shade_filetypes = {},
+        shade_terminals = true,
+        shading_factor = 2,
+        start_in_insert = true,
+        insert_mappings = true,
+        persist_size = false,
+        direction = "horizontal",
+        close_on_exit = true,
+        shell = vim.o.shell,
+        float_opts = {
+          border = "curved",
+          width = math.ceil(vim.o.columns * 0.9),
+          height = math.ceil(vim.o.lines * 0.9),
+          row = math.ceil(vim.o.lines * 0.05), -- Center vertically (5% from top)
+          col = math.ceil(vim.o.columns * 0.05), -- Center horizontally (5% from left)
+          winblend = 0,
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          },
+        },
+      }
+    end,
+  },
+
+  -- nvim-scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    event = "VeryLazy",
+    config = function()
+      -- Load custom highlights first
+      require "configs.scrollbar"
+
+      require("scrollbar").setup {
+        handle = {
+          text = "█", -- Changed from " " to "█" for better visibility
+          blend = 0, -- Changed from 30 to 0 for full opacity
+          highlight = "ScrollbarHandle",
+        },
+        marks = {
+          Cursor = {
+            text = "█", -- Changed from "•" to "█" for better visibility
+            priority = 0,
+            highlight = "ScrollbarCursor",
+          },
+          Search = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 1,
+            highlight = "ScrollbarSearch",
+          },
+          Error = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 2,
+            highlight = "ScrollbarError",
+          },
+          Warn = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 3,
+            highlight = "ScrollbarWarn",
+          },
+          Info = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 4,
+            highlight = "ScrollbarInfo",
+          },
+          Hint = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 5,
+            highlight = "ScrollbarHint",
+          },
+          Misc = {
+            text = { "█", "█" }, -- Changed from {"-", "="} to solid blocks
+            priority = 6,
+            highlight = "ScrollbarMisc",
+          },
+          GitAdd = {
+            text = "█", -- Changed from "┆" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitAdd",
+          },
+          GitChange = {
+            text = "█", -- Changed from "┆" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitChange",
+          },
+          GitDelete = {
+            text = "█", -- Changed from "▁" to "█" for better visibility
+            priority = 7,
+            highlight = "ScrollbarGitDelete",
+          },
+        },
+        handlers = {
+          cursor = true,
+          diagnostic = true,
+          gitsigns = true, -- Enable git signs if you have gitsigns
+          handle = true,
+          search = true, -- Enable search marks if you have nvim-hlslens
+          ale = false,
+        },
+        excluded_filetypes = { "NvimTree" },
+        set_highlights = false, -- We'll set our own highlights
+      }
+    end,
+  },
 }
