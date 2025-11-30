@@ -20,7 +20,9 @@ spot these issues
 - structured log context size (only add necessary fields useful for filtering at dashboard to log context)
 - zero values assignment should be avoided
 
-notes, please gather all information first, then analyze based on above criteria in one go
+notes
+- please gather all information first, then analyze based on above criteria in one go
+- be focused on the changes provided, do not consider external factors
 
 Here are the current changes:
 <status-output>
