@@ -23,15 +23,10 @@ notes, please gather all information first, then analyze based on above criteria
 
 Here are the current changes:
 <status-output>
-!`git status`
+!`git status --porcelain`
 </status-output>
-
-Here are the files with changes:
-<files-output>
-!`git diff --name-only`
-</files-output>
 
 Here are the detailed changes:
 <diff-output>
-!`git diff`
+!`git diff --no-ext-diff`
 </diff-output>
