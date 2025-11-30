@@ -18,6 +18,7 @@ spot these issues
 - logging (must be structured logs)
 - redundant logs
 - structured log context size (only add necessary fields useful for filtering at dashboard to log context)
+- zero values assignment should be avoided
 
 notes, please gather all information first, then analyze based on above criteria in one go
 
