@@ -222,20 +222,6 @@
             "context": 256000,
             "output": 32000
           }
-        },
-        "deepseek/deepseek-v3.2-exp": {
-          "name": "DeepSeek-V3.2-Exp",
-          "reasoning": true,
-          "temperature": true,
-          "tool_call": true,
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          },
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
         }
       }
     }
