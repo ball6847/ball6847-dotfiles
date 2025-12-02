@@ -13,5 +13,8 @@
   },
   "ui": {
     "theme": "GitHub"
+  },
+  "general": {
+    "previewFeatures": true
   }
 }
