@@ -223,8 +223,8 @@
             "output": 32000
           }
         },
-        "deepseek/deepseek-v3.2-speciale": {
-          "name": "DeepSeek-V3.2-Speciale",
+        "deepseek/deepseek-v3.2-exp": {
+          "name": "DeepSeek-V3.2-Exp",
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
