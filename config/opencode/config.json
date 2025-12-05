@@ -17,6 +17,16 @@
     "scroll_speed": 1
   },
   "provider": {
+    "synthetic": {
+      "models": {
+        "hf:MiniMaxAI/MiniMax-M2": {
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
+        }
+      }
+    },
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
       "name": "Kimi For Coding",
