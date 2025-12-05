@@ -7,12 +7,23 @@
 		"./bin/configure-touchpad.ts"
 	],
 	"cSpell.words": [
+		"deepseek",
 		"dotfiles",
+		"doubao",
+		"keybinds",
+		"kimi",
 		"LASTEXITCODE",
+		"ollama",
 		"oneline",
+		"opencode",
+		"openrouter",
+		"qwen",
 		"Touchpad",
 		"unpushed",
-		"xsessionrc"
+		"Vanchin",
+		"volcengine",
+		"xsessionrc",
+		"zenmux"
 	],
 	"dish-ai-commit.features.codeAnalysis.diffTarget": "auto"
 }
