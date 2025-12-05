@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# =============================================================================
+# CLEANUP SECTION - Remove previous installations
+# =============================================================================
+
 echo "Cleaning previous npm installations..."
 
 # Clean up any existing npm installations
@@ -11,6 +15,10 @@ npm uninstall -g mongodb-mcp-server 2>/dev/null || true
 
 # Reshim nodejs to ensure npm is properly recognized
 asdf reshim nodejs
+
+# =============================================================================
+# AI TOOLS INSTALLATION SECTION
+# =============================================================================
 
 echo "Installing AI tools..."
 
@@ -29,7 +37,9 @@ echo "Installing OpenCode AI..."
 # bun install --global opencode-ai@~0
 bun install --global opencode-ai@latest
 
-# MCP Servers
+# =============================================================================
+# MCP SERVERS INSTALLATION SECTION
+# =============================================================================
 
 echo "Installing MCP Language Server..."
 go install github.com/isaacphi/mcp-language-server@latest
@@ -47,10 +57,27 @@ go install github.com/kanapuli/mcp-kafka@latest
 echo "Installing MCP MongoDB Server..."
 bun install --global mongodb-mcp-server@latest
 
+echo "Installing MEM0 MCP Server..."
+pipx install mem0-mcp-server
+
+# If pipx fails with "No module named pip.__main__" error, fix system pip:
+# 1. sudo apt install --reinstall python3-pip
+# 2. sudo apt install --reinstall pipx  
+# 3. pipx reinstall-all
+# 4. pipx install mem0-mcp-server
+
+# =============================================================================
+# RESHIM SECTION - Update PATH for newly installed binaries
+# =============================================================================
+
 # reshim golang, bun, and nodejs to make sure newly installed binaries are available
 asdf reshim golang
 asdf reshim bun
 asdf reshim nodejs
+
+# =============================================================================
+# DEPENDENCY CHECKS SECTION
+# =============================================================================
 
 # Check if ripgrep is installed
 if ! command -v rg &> /dev/null; then
@@ -61,6 +88,10 @@ fi
 if ! command -v grpcurl &> /dev/null; then
     echo "Warning: grpcurl is not installed. This may be needed for gRPC testing and debugging. Consider installing it with your package manager (e.g., 'sudo apt install grpcurl' on Ubuntu)."
 fi
+
+# =============================================================================
+# PLUGIN UPDATES SECTION
+# =============================================================================
 
 # update opencode-gemini-auth plugin https://github.com/jenslys/opencode-gemini-auth
 sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"[Plugin] opencode-gemini-auth - update script finished successfully.\")"
