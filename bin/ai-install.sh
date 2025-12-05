@@ -57,15 +57,6 @@ go install github.com/kanapuli/mcp-kafka@latest
 echo "Installing MCP MongoDB Server..."
 bun install --global mongodb-mcp-server@latest
 
-echo "Installing MEM0 MCP Server..."
-pipx install mem0-mcp-server
-
-# If pipx fails with "No module named pip.__main__" error, fix system pip:
-# 1. sudo apt install --reinstall python3-pip
-# 2. sudo apt install --reinstall pipx  
-# 3. pipx reinstall-all
-# 4. pipx install mem0-mcp-server
-
 # =============================================================================
 # RESHIM SECTION - Update PATH for newly installed binaries
 # =============================================================================
