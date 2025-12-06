@@ -151,7 +151,7 @@ alias v="doppler run -p personal -c dev -- nvim"
 alias t="task"
 alias m="make"
 alias g="gemini"
-alias oc="doppler run -p personal -c dev -- opencode"
+alias oc="opencode"
 alias qw="qwen"
 alias cc="claude"
 alias wm="workspace-manager"
@@ -162,28 +162,35 @@ if is_wsl; then
   alias explorer="explorer.exe"
 fi
 
+# keep actual path to opencode binary, so we can wrap it with doppler without recursion
+OPENCODE_BIN="`which opencode`"
+
+opencode() {
+  doppler run -p personal -c dev -- $OPENCODE_BIN "$@"
+}
+
 qq() {
-    if is_wsl; then
-        doppler run -p personal -c dev -- qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-    else
-        doppler run -p personal -c dev -- qoder . "$@"
-    fi
+  if is_wsl; then
+    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    qoder . "$@"
+  fi
 }
 
 tt() {
-    if is_wsl; then
-        doppler run -p personal -c dev -- trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-    else
-        doppler run -p personal -c dev -- trae . "$@"
-    fi
+  if is_wsl; then
+    trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    trae . "$@"
+  fi
 }
 
 aa() {
-    if is_wsl; then
-        doppler run -p personal -c dev -- antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-    else
-        doppler run -p personal -c dev -- antigravity . "$@"
-    fi
+  if is_wsl; then
+    antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    antigravity . "$@"
+  fi
 }
 
 # ================================================
