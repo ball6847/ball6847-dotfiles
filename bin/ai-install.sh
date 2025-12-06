@@ -90,3 +90,6 @@ sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package
 # update opencode-alibaba-qwen3-auth plugin https://github.com/geoh/opencode-alibaba-qwen3-auth
 sh -c "(cd ~ && sed -i.bak '/\"opencode-alibaba-qwen3-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-alibaba-qwen3-auth && echo \"[Plugin] opencode-alibaba-qwen3-auth - update script finished successfully.\")"
 
+# update opencode-skills plugin https://github.com/geoh/opencode-skills
+sh -c "(cd ~ && sed -i.bak '/\"opencode-skills\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-skills && echo \"[Plugin] opencode-skills - update script finished successfully.\")"
+
