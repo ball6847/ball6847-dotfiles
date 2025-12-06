@@ -15,3 +15,4 @@ task 3.43.3
 mockery 3.2.5
 golangci-lint 2.4.0
 redis-cli 8.2.2
+doppler 3.75.1

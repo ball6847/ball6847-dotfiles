@@ -123,10 +123,6 @@ export GIT_COMMIT_AI_MODEL="openrouter/google/gemini-2.0-flash-exp:free"
 # set up bash alias
 
 alias c="clear"
-alias f='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias vimrc="nvim ~/.vimrc"
-alias zshrc="nvim ~/.zshrc"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
@@ -134,7 +130,7 @@ alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
 # alias gcmm='echo "$(cat ~/.config/opencode/command/git-commit.md)" | opencode run -m "openrouter/google/gemini-2.0-flash-exp:free"'
-alias gcmm="git-commit-ai g"
+alias gcmm="doppler run -p personal -c dev -- git-commit-ai g"
 alias gco="git checkout"
 alias gp="git push -u"
 alias gd="git diff"
@@ -151,11 +147,11 @@ alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
 alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
-alias v="nvim"
+alias v="doppler run -p personal -c dev -- nvim"
 alias t="task"
 alias m="make"
 alias g="gemini"
-alias oc="opencode"
+alias oc="doppler run -p personal -c dev -- opencode"
 alias qw="qwen"
 alias cc="claude"
 alias wm="workspace-manager"
@@ -168,25 +164,25 @@ fi
 
 qq() {
     if is_wsl; then
-        qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+        doppler run -p personal -c dev -- qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
-        qoder . "$@"
+        doppler run -p personal -c dev -- qoder . "$@"
     fi
 }
 
 tt() {
     if is_wsl; then
-        trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+        doppler run -p personal -c dev -- trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
-        trae . "$@"
+        doppler run -p personal -c dev -- trae . "$@"
     fi
 }
 
 aa() {
     if is_wsl; then
-        antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+        doppler run -p personal -c dev -- antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
     else
-        antigravity . "$@"
+        doppler run -p personal -c dev -- antigravity . "$@"
     fi
 }
 
