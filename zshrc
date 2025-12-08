@@ -155,6 +155,8 @@ alias oc="opencode"
 alias qw="qwen"
 alias cc="claude"
 alias wm="workspace-manager"
+alias wms="workspace-manager sync"
+alias wme="workspace-manager enable"
 
 # add custom alias for wsl
 if is_wsl; then
