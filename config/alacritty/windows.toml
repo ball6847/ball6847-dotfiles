@@ -12,5 +12,5 @@ args = [
   "--cd",
   "~",
   "-e",
-  "zsh -l -c \"source .zshrc && tmux\"",
+  "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
 ]
