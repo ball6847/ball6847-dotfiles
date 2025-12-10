@@ -1,0 +1,28 @@
+[terminal.shell]
+program = "C:\\Windows\\System32\\wsl.exe"
+args = ["-d", "Ubuntu-24.04", "--cd", "~"]
+
+[font]
+size = 10.0
+
+[font.offset]
+x = 1
+y = 5
+
+[window]
+padding = { x = 10, y = 10 }
+
+[font.normal]
+family = "M+1Code Nerd Font Mono"
+
+[font.bold]
+family = "M+1Code Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "M+1Code Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "M+1Code Nerd Font Mono"
+style = "Bold Italic"
