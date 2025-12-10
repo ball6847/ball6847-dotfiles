@@ -1,6 +1,7 @@
 # Alacritty config for macOS
 # Place at ~/.config/alacritty/alacritty.toml
 
+[general]
 import = ["common.toml"]
 
 # macOS uses default shell from $SHELL env var

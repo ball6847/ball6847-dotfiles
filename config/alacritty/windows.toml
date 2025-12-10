@@ -3,6 +3,7 @@
 # Set default WSL distro: wsl --set-default Ubuntu
 # If you need to use a specific distro, run: wsl --set-default <distro-name>
 
+[general]
 import = ["common.toml"]
 
 [terminal.shell]
