@@ -27,3 +27,8 @@ style = "Italic"
 [font.bold_italic]
 family = "M+1Code Nerd Font Mono"
 style = "Bold Italic"
+
+[keyboard]
+bindings = [
+  { key = "Backspace", mods = "Control", chars = "\x17" }
+]
