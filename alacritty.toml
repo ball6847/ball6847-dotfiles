@@ -1,8 +1,16 @@
 # This file should be placed at %APPDATA%\alacritty\alacritty.toml on Windows
 # To create the symlink, run as administrator: powershell -File link-alacritty.ps1
+# We might also need tp make sure we have same name of Distribution on all machines
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
-args = ["-d", "Ubuntu-24.04", "--cd", "~", "-e", "zsh -l -c \"source .zshrc && tmux\""]
+args = [
+  "-d",
+  "Ubuntu",
+  "--cd",
+  "~",
+  "-e",
+  "zsh -l -c \"source .zshrc && tmux\"",
+]
 
 [font]
 size = 10.0
@@ -30,6 +38,4 @@ family = "M+1Code Nerd Font Mono"
 style = "Bold Italic"
 
 [keyboard]
-bindings = [
-  { key = "Backspace", mods = "Control", chars = "\u0017" }
-]
+bindings = [{ key = "Backspace", mods = "Control", chars = "\u0017" }]
