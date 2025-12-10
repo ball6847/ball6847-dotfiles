@@ -1,4 +1,4 @@
-# PowerShell script to create symlink for alacritty.toml
+﻿# PowerShell script to create symlink for alacritty.toml
 # Creates a symlink from config\alacritty\windows.toml to %APPDATA%\alacritty\alacritty.toml
 # Can be run from any directory
 
