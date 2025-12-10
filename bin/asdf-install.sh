@@ -10,6 +10,8 @@
 #   $ apt install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev
 # - neovim (require when MasonInstallAll, and fzf by some plugin):
 #   $ apt install python3-venv
+# - tmux requires bison byacc to build from source:
+#   $ apt install bison byacc
 
 asdf plugin add neovim
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
@@ -29,3 +31,4 @@ asdf plugin add mockery https://github.com/cabify/asdf-mockery.git
 asdf plugin add golangci-lint https://github.com/hypnoglow/asdf-golangci-lint.git
 asdf plugin add redis-cli
 asdf plugin add doppler
+asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
