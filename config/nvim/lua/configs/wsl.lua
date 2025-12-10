@@ -7,7 +7,7 @@ if vim.fn.executable(clip) then
       if vim.v.event.operator ~= "y" then
         return
       end
-      vim.fn.system(clip, vim.fn.getreg(0))
+      vim.fn.system({clip}, vim.fn.getreg(0))
     end,
   }
 

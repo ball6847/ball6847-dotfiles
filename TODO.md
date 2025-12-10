@@ -1,12 +1,13 @@
 # Things I want to improve
 
-- [ ] cannot copy text from opencode when running in tmux
+- [ ] nvim clipboard no longer sync with windows clipboard
 - [ ] sometimes nvim leaves vertical line on screen when using with tmux
 - [ ] if it is possible, I want to remove `doppler` from tmux windows title
 - [ ] tmux status at the top really mess up neovim, fix at neovim side if possible or move the status line back to bottom (currently at bottom)
 
 Completed
 
+- [x] cannot copy text from opencode when running in tmux (suddenly work, not sure why, maybe I installed xclip?)
 - [x] research if tmux keybinding support key sequence like `ctrl+a` then `c` to create new window (no need)
 - [x] make alacritty start command to not create new tmux session if one is already running
 - [x] create tmux keybindiing to split pane vertically and horizontally
