@@ -1,8 +1,8 @@
-﻿# PowerShell script to create symlink for alacritty.toml
-# Creates a symlink from alacritty.toml to %APPDATA%\alacritty\alacritty.toml
+# PowerShell script to create symlink for alacritty.toml
+# Creates a symlink from config\alacritty\windows.toml to %APPDATA%\alacritty\alacritty.toml
 # Can be run from any directory
 
-$sourceFile = Join-Path $PSScriptRoot "alacritty.toml"
+$sourceFile = Join-Path $PSScriptRoot "config\alacritty\windows.toml"
 $targetDir = Join-Path $env:APPDATA "alacritty"
 $targetFile = Join-Path $targetDir "alacritty.toml"
 

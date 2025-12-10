@@ -1,0 +1,10 @@
+# Alacritty config for macOS
+# Place at ~/.config/alacritty/alacritty.toml
+
+import = ["common.toml"]
+
+# macOS uses default shell from $SHELL env var
+# Or you can specify explicitly:
+# [terminal.shell]
+# program = "/bin/zsh"
+# args = ["-l", "-c", "source ~/.zshrc && tmux"]

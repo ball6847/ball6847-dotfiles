@@ -1,0 +1,15 @@
+# Alacritty config for Windows (WSL)
+# Place at %APPDATA%\alacritty\alacritty.toml
+# Set default WSL distro: wsl --set-default Ubuntu
+# If you need to use a specific distro, run: wsl --set-default <distro-name>
+
+import = ["common.toml"]
+
+[terminal.shell]
+program = "C:\\Windows\\System32\\wsl.exe"
+args = [
+  "--cd",
+  "~",
+  "-e",
+  "zsh -l -c \"source .zshrc && tmux\"",
+]
