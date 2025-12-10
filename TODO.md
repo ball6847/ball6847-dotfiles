@@ -1,7 +1,5 @@
 # Things I want to improve
 
-- [ ] make alacritty start command to not create new tmux session if one is already running
-- [ ] research if tmux keybinding support key sequence like `ctrl+a` then `c` to create new window
 - [ ] cannot copy text from opencode when running in tmux
 - [ ] sometimes nvim leaves vertical line on screen when using with tmux
 - [ ] if it is possible, I want to remove `doppler` from tmux windows title
@@ -9,6 +7,8 @@
 
 Completed
 
+- [x] research if tmux keybinding support key sequence like `ctrl+a` then `c` to create new window (no need)
+- [x] make alacritty start command to not create new tmux session if one is already running
 - [x] create tmux keybindiing to split pane vertically and horizontally
 - [x] create tmux keybindiing to open opencode pane from tmux (alt+o to open in split pane, alt+p to open in new window)
 - [x] powershell script to link `alacritty.toml` to `%APPDATA%\alacritty\alacritty.toml`
