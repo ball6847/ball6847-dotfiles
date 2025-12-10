@@ -1,8 +1,8 @@
-# PowerShell script to create symlink for alacritty.toml
+﻿# PowerShell script to create symlink for alacritty.toml
 # Creates a symlink from alacritty.toml to %APPDATA%\alacritty\alacritty.toml
 # Can be run from any directory
 
-$sourceFile = Join-Path $HOME "alacritty.toml"
+$sourceFile = Join-Path $PSScriptRoot "alacritty.toml"
 $targetDir = Join-Path $env:APPDATA "alacritty"
 $targetFile = Join-Path $targetDir "alacritty.toml"
 
@@ -26,21 +26,13 @@ if (-not (Test-Path $targetDir)) {
     Write-Host ""
 }
 
-# Check if symlink already exists
+# Remove existing file if it exists
 if (Test-Path $targetFile) {
-    $item = Get-Item $targetFile
-    if ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
-        Write-Host "Symlink already exists: $targetFile -> $($item.Target)"
-        Write-Host ""
-        Write-Host "No action needed."
-        exit 0
-    } else {
-        Write-Host "Target file exists but is not a symlink: $targetFile"
-        Write-Host "Removing existing file..."
-        Remove-Item $targetFile -Force
-        Write-Host "  ✓ File removed"
-        Write-Host ""
-    }
+    Write-Host "Target file exists: $targetFile"
+    Write-Host "Removing existing file..."
+    Remove-Item $targetFile -Force
+    Write-Host "  ✓ File removed"
+    Write-Host ""
 }
 
 # Create symlink
