@@ -30,5 +30,5 @@ style = "Bold Italic"
 
 [keyboard]
 bindings = [
-  { key = "Backspace", mods = "Control", chars = "\x17" }
+  { key = "Backspace", mods = "Control", chars = "\u0017" }
 ]
