@@ -1,7 +1,6 @@
 #!/bin/bash
 # Shell script to create symlinks for alacritty config on macOS/Linux
-# Symlinks the entire config/alacritty directory to ~/.config/alacritty
-# Then creates alacritty.toml as a symlink to {macos,linux}.toml
+# Creates ~/.config/alacritty directory and symlinks config files into it
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -17,8 +16,7 @@ fi
 
 SOURCE_DIR="$SCRIPT_DIR/config/alacritty"
 TARGET_DIR="$HOME/.config/alacritty"
-TARGET_FILE="$TARGET_DIR/alacritty.toml"
-SOURCE_FILE="$SOURCE_DIR/$OS.toml"
+PLATFORM_FILE="$OS.toml"
 
 echo "Alacritty Symlink Creation Script"
 echo "=================================="
@@ -33,38 +31,47 @@ if [ ! -d "$SOURCE_DIR" ]; then
     exit 1
 fi
 
-# Check if platform file exists
-if [ ! -f "$SOURCE_FILE" ]; then
-    echo "Error: Platform config file does not exist: $SOURCE_FILE" >&2
-    exit 1
-fi
-
-# Remove existing target if it exists (file or directory)
-if [ -e "$TARGET_DIR" ]; then
-    echo "Target exists: $TARGET_DIR"
-    echo "Removing existing target..."
-    rm -rf "$TARGET_DIR"
-    echo "  ✓ Target removed"
+# Create target directory if it doesn't exist
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Creating target directory: $TARGET_DIR"
+    mkdir -p "$TARGET_DIR"
+    echo "  ✓ Directory created"
     echo ""
 fi
 
-# Create symlink for the directory
-echo "Creating directory symlink..."
-ln -sf "$SOURCE_DIR" "$TARGET_DIR"
-echo "  ✓ Directory symlink created: $TARGET_DIR -> $SOURCE_DIR"
-echo ""
-
-# Remove the alacritty.toml symlink that was created as part of the directory symlink
-# (the directory symlink will have created a symlink to $OS.toml as alacritty.toml)
-if [ -L "$TARGET_FILE" ]; then
-    rm -f "$TARGET_FILE"
+# Symlink common.toml
+COMMON_SOURCE="$SOURCE_DIR/common.toml"
+COMMON_TARGET="$TARGET_DIR/common.toml"
+if [ -e "$COMMON_TARGET" ]; then
+    rm -f "$COMMON_TARGET"
 fi
+echo "Creating common.toml symlink..."
+ln -sf "$COMMON_SOURCE" "$COMMON_TARGET"
+echo "  ✓ common.toml -> $COMMON_SOURCE"
 
-# Create symlink for alacritty.toml -> $OS.toml
+# Symlink platform file (macos.toml or linux.toml)
+PLATFORM_SOURCE="$SOURCE_DIR/$PLATFORM_FILE"
+PLATFORM_TARGET="$TARGET_DIR/$PLATFORM_FILE"
+if [ ! -f "$PLATFORM_SOURCE" ]; then
+    echo "Error: Platform config file does not exist: $PLATFORM_SOURCE" >&2
+    exit 1
+fi
+if [ -e "$PLATFORM_TARGET" ]; then
+    rm -f "$PLATFORM_TARGET"
+fi
+echo "Creating $PLATFORM_FILE symlink..."
+ln -sf "$PLATFORM_SOURCE" "$PLATFORM_TARGET"
+echo "  ✓ $PLATFORM_FILE -> $PLATFORM_SOURCE"
+
+# Symlink alacritty.toml -> platform file
+ALACRITTY_TARGET="$TARGET_DIR/alacritty.toml"
+if [ -e "$ALACRITTY_TARGET" ]; then
+    rm -f "$ALACRITTY_TARGET"
+fi
 echo "Creating alacritty.toml symlink..."
-ln -sf "$SOURCE_FILE" "$TARGET_FILE"
-echo "  ✓ File symlink created: $TARGET_FILE -> $SOURCE_FILE"
+ln -sf "$PLATFORM_SOURCE" "$ALACRITTY_TARGET"
+echo "  ✓ alacritty.toml -> $PLATFORM_SOURCE"
 echo ""
 
 echo "Operation completed successfully!"
-echo "Alacritty will now use the configuration from: $SOURCE_FILE"
+echo "Alacritty configuration is now linked."

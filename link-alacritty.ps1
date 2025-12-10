@@ -1,11 +1,8 @@
 ﻿# PowerShell script to create symlinks for alacritty config
-# Symlinks the entire config\alacritty directory to %APPDATA%\alacritty
-# Then creates alacritty.toml as a symlink to windows.toml
+# Creates %APPDATA%\alacritty directory and symlinks config files into it
 
 $sourceDir = Join-Path $PSScriptRoot "config\alacritty"
 $targetDir = Join-Path $env:APPDATA "alacritty"
-$targetFile = Join-Path $targetDir "alacritty.toml"
-$sourceFile = Join-Path $sourceDir "windows.toml"
 
 Write-Host "Alacritty Symlink Creation Script"
 Write-Host "=================================="
@@ -19,32 +16,43 @@ if (-not (Test-Path $sourceDir)) {
     exit 1
 }
 
-# Remove existing target if it exists (file or directory)
-if (Test-Path $targetDir) {
-    Write-Host "Target exists: $targetDir"
-    Write-Host "Removing existing target..."
-    Remove-Item $targetDir -Recurse -Force
-    Write-Host "  ✓ Target removed"
+# Create target directory if it doesn't exist
+if (-not (Test-Path $targetDir)) {
+    Write-Host "Creating target directory: $targetDir"
+    New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
+    Write-Host "  ✓ Directory created"
     Write-Host ""
 }
 
-# Create symlink for the directory
-Write-Host "Creating directory symlink..."
-New-Item -ItemType SymbolicLink -Path $targetDir -Target $sourceDir -Force | Out-Null
-Write-Host "  ✓ Directory symlink created: $targetDir -> $sourceDir"
-Write-Host ""
-
-# Remove the alacritty.toml symlink that was created as part of the directory symlink
-# (the directory symlink will have created a symlink to windows.toml as alacritty.toml)
-if (Test-Path $targetFile) {
-    Remove-Item $targetFile -Force
+# Symlink common.toml
+$commonSource = Join-Path $sourceDir "common.toml"
+$commonTarget = Join-Path $targetDir "common.toml"
+if (Test-Path $commonTarget) {
+    Remove-Item $commonTarget -Force
 }
+Write-Host "Creating common.toml symlink..."
+New-Item -ItemType SymbolicLink -Path $commonTarget -Target $commonSource -Force | Out-Null
+Write-Host "  ✓ common.toml -> $commonSource"
 
-# Create symlink for alacritty.toml -> windows.toml
+# Symlink windows.toml
+$windowsSource = Join-Path $sourceDir "windows.toml"
+$windowsTarget = Join-Path $targetDir "windows.toml"
+if (Test-Path $windowsTarget) {
+    Remove-Item $windowsTarget -Force
+}
+Write-Host "Creating windows.toml symlink..."
+New-Item -ItemType SymbolicLink -Path $windowsTarget -Target $windowsSource -Force | Out-Null
+Write-Host "  ✓ windows.toml -> $windowsSource"
+
+# Symlink alacritty.toml -> windows.toml
+$alacrittyTarget = Join-Path $targetDir "alacritty.toml"
+if (Test-Path $alacrittyTarget) {
+    Remove-Item $alacrittyTarget -Force
+}
 Write-Host "Creating alacritty.toml symlink..."
-New-Item -ItemType SymbolicLink -Path $targetFile -Target $sourceFile -Force | Out-Null
-Write-Host "  ✓ File symlink created: $targetFile -> $sourceFile"
+New-Item -ItemType SymbolicLink -Path $alacrittyTarget -Target $windowsSource -Force | Out-Null
+Write-Host "  ✓ alacritty.toml -> $windowsSource"
 Write-Host ""
 
 Write-Host "Operation completed successfully!"
-Write-Host "Alacritty will now use the configuration from: $sourceFile"
+Write-Host "Alacritty configuration is now linked."
