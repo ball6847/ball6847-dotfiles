@@ -1,11 +1,10 @@
 # This file should be placed at %APPDATA%\alacritty\alacritty.toml on Windows
 # To create the symlink, run as administrator: powershell -File link-alacritty.ps1
-# We might also need tp make sure we have same name of Distribution on all machines
+# Set default WSL distro: wsl --set-default Ubuntu
+# If you need to use a specific distro, run: wsl --set-default <distro-name>
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
 args = [
-  "-d",
-  "Ubuntu",
   "--cd",
   "~",
   "-e",
