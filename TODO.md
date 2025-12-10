@@ -1,5 +1,8 @@
 # Things I want to improve
 
+- [ ] create tmux keybindiing to open opencode pane from tmux
+- [ ] create tmux keybindiing to split pane vertically and horizontally
+- [ ] make alacritty start command to not create new tmux session if one is already running
 - [ ] cannot copy text from opencode when running in tmux
 - [ ] sometimes nvim leaves vertical line on screen when using with tmux
 - [ ] if it is possible, I want to remove `doppler` from tmux windows title
