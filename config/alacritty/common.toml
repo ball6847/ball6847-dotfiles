@@ -24,4 +24,9 @@ family = "M+1Code Nerd Font Mono"
 style = "Bold Italic"
 
 [keyboard]
-bindings = [{ key = "Backspace", mods = "Control", chars = "\u0017" }]
+bindings = [
+  { key = "Backspace", mods = "Control", chars = "\u0017" },
+  { key = "J", mods = "Command|Shift", chars = "\u001b[74;4u" },
+  { key = "K", mods = "Command|Shift", chars = "\u001b[75;4u" },
+  { key = "L", mods = "Command", chars = "\u001b[108;3u" }
+]

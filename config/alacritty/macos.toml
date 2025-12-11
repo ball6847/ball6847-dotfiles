@@ -4,6 +4,10 @@
 [general]
 import = ["common.toml"]
 
+# Make Option key work as Alt in terminal
+[window]
+option_as_alt = "Both"
+
 # macOS uses default shell from $SHELL env var
 # Or you can specify explicitly:
 # [terminal.shell]

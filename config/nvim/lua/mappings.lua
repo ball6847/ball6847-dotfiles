@@ -11,7 +11,7 @@ map("i", "jk", "<ESC>")
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- copilot accept suggession
-local copilot_accept_key = vim.loop.os_uname().sysname == "Darwin" and "<D-l>" or "<C-l>"
+local copilot_accept_key = vim.loop.os_uname().sysname == "Darwin" and "<A-l>" or "<C-l>"
 
 map("i", copilot_accept_key, function()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
@@ -144,6 +144,12 @@ end, { desc = "Toggle zen mode" })
 -- not sure why, but in mac os, we need cmd+shift+j or cmd+shift+k to move lines (linux works fine with ctrl+j or ctrl+k)
 map("n", "<" .. vim.g.os_ctrl_key .. "-J>", "10jzz", { noremap = true, silent = true, desc = "Move next 20 lines" })
 map("n", "<" .. vim.g.os_ctrl_key .. "-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
+
+-- Only register Alt+Shift mappings on macOS
+if vim.loop.os_uname().sysname == "Darwin" then
+  map("n", "<A-S-J>", "10jzz", { noremap = true, silent = true, desc = "Move next 20 lines" })
+  map("n", "<A-S-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
+end
 
 -- show VGit project diff preview
 map("n", "<leader>df", "<cmd>VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
