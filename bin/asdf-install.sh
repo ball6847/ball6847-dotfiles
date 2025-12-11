@@ -17,7 +17,7 @@
 # TMUX INSTALLATION GUIDANCE
 # =============================================================================
 # For tmux installation, you need to install dependencies first:
-#   $ brew install libevent utf8proc ncurses
+#   $ brew install libevent utf8proc ncurses automake
 #
 # Then install tmux with utf8proc support (required for tmux 3.6+):
 #   $ TMUX_CONF_OPT="--enable-utf8proc" asdf install tmux 3.6
