@@ -13,6 +13,24 @@
 # - tmux requires bison byacc to build from source:
 #   $ apt install bison byacc
 
+# =============================================================================
+# TMUX INSTALLATION GUIDANCE
+# =============================================================================
+# For tmux installation, you need to install dependencies first:
+#   $ brew install libevent utf8proc ncurses
+#
+# Then install tmux with utf8proc support (required for tmux 3.6+):
+#   $ TMUX_CONF_OPT="--enable-utf8proc" asdf install tmux 3.6
+#   $ asdf global tmux 3.6
+#
+# For older tmux versions that don't require utf8proc:
+#   $ asdf install tmux 3.5
+#   $ asdf global tmux 3.5
+#
+# Note: tmux 3.6+ requires explicit utf8proc configuration due to macOS
+# Unicode handling requirements. The TMUX_CONF_OPT environment variable
+# passes configuration flags to the tmux build process.
+
 asdf plugin add neovim
 asdf plugin add deno https://github.com/asdf-community/asdf-deno.git
 asdf plugin add golang
