@@ -116,7 +116,7 @@ export EDITOR='vim'
 export TERM=xterm-256color
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export PATH="$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:/opt/homebrew/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+export PATH="$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
 export GIT_COMMIT_AI_MODEL="openrouter/google/gemini-2.0-flash-exp:free"
 
 # ================================================
