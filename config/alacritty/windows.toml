@@ -14,3 +14,10 @@ args = [
   "-e",
   "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
 ]
+
+[font]
+size = 11
+
+[font.offset]
+x = 2
+y = 5
