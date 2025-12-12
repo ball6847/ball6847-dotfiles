@@ -19,5 +19,5 @@ args = [
 size = 11
 
 [font.offset]
-x = 2
+x = 1
 y = 5
