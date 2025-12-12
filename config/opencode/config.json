@@ -266,58 +266,18 @@
             "output": 262144
           }
         },
-        "qwen3-vl:2b": {
-          "name": "Qwen3-VL-2B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
-        "qwen3-vl:4b": {
-          "name": "Qwen3-VL-4B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
-        "qwen3-vl:8b": {
-          "name": "Qwen3-VL-8B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
-        "qwen3-vl:30b": {
-          "name": "Qwen3-VL-30B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
-        "qwen3-vl:32b": {
-          "name": "Qwen3-VL-32B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 128000,
-            "output": 64000
-          }
-        },
         "qwen3-vl:235b": {
           "name": "Qwen3-VL-235B",
+          "reasoning": false,
+          "temperature": true,
+          "tool_call": false,
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          }
+        },
+        "qwen3-vl:235b-instruct": {
+          "name": "Qwen3-VL-235B-Instruct",
           "reasoning": false,
           "temperature": true,
           "tool_call": false,
@@ -354,26 +314,6 @@
           "limit": {
             "context": 128000,
             "output": 64000
-          }
-        },
-        "gemma3:270m": {
-          "name": "Gemma3-270M",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 64000,
-            "output": 32000
-          }
-        },
-        "gemma3:1b": {
-          "name": "Gemma3-1B",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": false,
-          "limit": {
-            "context": 64000,
-            "output": 32000
           }
         },
         "gemma3:4b": {
@@ -448,8 +388,8 @@
             "output": 64000
           }
         },
-        "mistral-large-3": {
-          "name": "Mistral-Large-3",
+        "mistral-large-3:675b": {
+          "name": "Mistral-Large-3-675B",
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
@@ -490,8 +430,8 @@
             "output": 32768
           }
         },
-        "devstral-2": {
-          "name": "Devstral-2",
+        "devstral-2:123b": {
+          "name": "Devstral-2-123B",
           "reasoning": true,
           "temperature": true,
           "tool_call": true,
