@@ -29,18 +29,12 @@ git clone https://github.com/ball6847/dotfiles.git "$env:USERPROFILE\.dotfiles"
 cd "$env:USERPROFILE\.dotfiles"
 ```
 
-After cloning, initialize the git submodules to get all the required plugins:
+After cloning, initialize and update the git submodules to get all the required plugins:
 
 ```bash
-# Initialize submodules (Zsh plugins, etc.)
-git submodule update --init --recursive
-```
-
-To update submodules to the latest commits from their tracked branches:
-
-```bash
-# Update submodules to latest commits
-git submodule update --remote --recursive
+# Initialize and update submodules (Zsh plugins, etc.)
+# This command works for both initial setup and updates
+git submodule update --init --recursive --remote
 ```
 
 ## Installation
@@ -113,7 +107,7 @@ These dotfiles are highly customizable. The main configuration files you might w
 ### Common Issues
 
 - **Symlink errors**: Ensure you have the necessary permissions to create symlinks. On Windows, you may need to run PowerShell as Administrator.
-- **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive` again. To update submodules to the latest commits, use `git submodule update --remote --recursive`.
+- **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive --remote` to initialize and update all submodules.
 - **Script execution errors**: Make sure scripts have executable permissions (`chmod +x script.sh` on Linux/macOS).
 
 ### Getting Help
