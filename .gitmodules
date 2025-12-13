@@ -19,3 +19,4 @@
 [submodule "alacritty-theme"]
 	path = alacritty-theme
 	url = git@github.com:alacritty/alacritty-theme.git
+	branch = master

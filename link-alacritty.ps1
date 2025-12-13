@@ -54,5 +54,16 @@ New-Item -ItemType SymbolicLink -Path $alacrittyTarget -Target $windowsSource -F
 Write-Host "  ✓ alacritty.toml -> $windowsSource"
 Write-Host ""
 
+# Symlink alacritty-theme folder
+$themeSource = Join-Path $PSScriptRoot "alacritty-theme"
+$themeTarget = Join-Path $targetDir "alacritty-theme"
+if (Test-Path $themeTarget) {
+    Remove-Item $themeTarget -Force -Recurse
+}
+Write-Host "Creating alacritty-theme folder symlink..."
+New-Item -ItemType SymbolicLink -Path $themeTarget -Target $themeSource -Force | Out-Null
+Write-Host "  ✓ alacritty-theme -> $themeSource"
+Write-Host ""
+
 Write-Host "Operation completed successfully!"
 Write-Host "Alacritty configuration is now linked."
