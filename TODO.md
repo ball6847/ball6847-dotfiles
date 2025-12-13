@@ -2,6 +2,7 @@
 
 - [ ] make kimi-cli automatically start with YOLO mode
 - [ ] make mistral vibe start with YOLO mode
+- [ ] change tmux pane broadcasting from ctrl+x to something else, as this key is needed for kimi and nvim
 
 Completed
 
