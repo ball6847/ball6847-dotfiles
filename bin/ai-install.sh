@@ -40,6 +40,9 @@ bun install --global opencode-ai@latest
 echo "Installing Mistral Vibe..."
 uv tool install mistral-vibe
 
+echo "Installing Kimi CLI..."
+uv tool install kimi-cli
+
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
 # =============================================================================
