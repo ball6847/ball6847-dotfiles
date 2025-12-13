@@ -16,3 +16,6 @@
 [submodule "go-task"]
 	path = go-task
 	url = https://github.com/go-task/task.git
+[submodule "alacritty-theme"]
+	path = alacritty-theme
+	url = git@github.com:alacritty/alacritty-theme.git
