@@ -1,8 +1,8 @@
 # Things I want to improve
 
 - [x] make kimi-cli automatically start with YOLO mode
-- [ ] make mistral vibe start with YOLO mode
-- [ ] change tmux pane broadcasting from ctrl+x to something else, as this key is needed for kimi and nvim
+- [x] make mistral vibe start with YOLO mode
+- [x] change tmux pane broadcasting from ctrl+x to something else, as this key is needed for kimi and nvim
 - [x] examine git hook, remove unnecessary hooks
 
 Completed
