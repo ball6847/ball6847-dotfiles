@@ -154,6 +154,8 @@ alias t="task"
 alias m="make"
 alias g="gemini"
 alias oc="opencode"
+alias km="kimi"
+alias vb="vibe"
 alias qw="qwen"
 alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
@@ -173,6 +175,18 @@ OPENCODE_BIN="`which opencode`"
 
 opencode() {
   doppler run -p personal -c dev -- $OPENCODE_BIN "$@"
+}
+
+KIMI_BIN="`which kimi`"
+
+kimi() {
+  doppler run -p personal -c dev -- $KIMI_BIN --yolo "$@"
+}
+
+VIBE_BIN="`which vibe`"
+
+vibe() {
+  doppler run -p personal -c dev -- $VIBE_BIN "$@"
 }
 
 qq() {
