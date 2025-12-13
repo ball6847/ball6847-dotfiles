@@ -36,6 +36,13 @@ After cloning, initialize the git submodules to get all the required plugins:
 git submodule update --init --recursive
 ```
 
+To update submodules to the latest commits from their tracked branches:
+
+```bash
+# Update submodules to latest commits
+git submodule update --remote --recursive
+```
+
 ## Installation
 
 ### Linux/macOS
@@ -106,7 +113,7 @@ These dotfiles are highly customizable. The main configuration files you might w
 ### Common Issues
 
 - **Symlink errors**: Ensure you have the necessary permissions to create symlinks. On Windows, you may need to run PowerShell as Administrator.
-- **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive` again.
+- **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive` again. To update submodules to the latest commits, use `git submodule update --remote --recursive`.
 - **Script execution errors**: Make sure scripts have executable permissions (`chmod +x script.sh` on Linux/macOS).
 
 ### Getting Help
