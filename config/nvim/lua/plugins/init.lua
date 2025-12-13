@@ -423,4 +423,17 @@ return {
       }
     end,
   },
+
+  -- copy-reference.nvim - copy file references with line numbers
+  {
+    "cajames/copy-reference.nvim",
+    opts = {
+      register = "+", -- Use system clipboard
+      use_git_root = true, -- Use git root for relative paths when in a git repo
+    },
+    keys = {
+      { "yr", "<cmd>CopyReference file<cr>", mode = { "n", "v" }, desc = "Copy file path" },
+      { "yrr", "<cmd>CopyReference line<cr>", mode = { "n", "v" }, desc = "Copy file:line reference" },
+    },
+  },
 }
