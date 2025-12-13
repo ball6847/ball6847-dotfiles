@@ -37,11 +37,11 @@ echo "Installing OpenCode AI..."
 # bun install --global opencode-ai@~0
 bun install --global opencode-ai@latest
 
-echo "Installing Mistral Vibe..."
-uv tool install mistral-vibe
+echo "Installing/upgrading Mistral Vibe..."
+uv tool install --upgrade mistral-vibe
 
-echo "Installing Kimi CLI..."
-uv tool install kimi-cli
+echo "Installing/upgrading Kimi CLI..."
+uv tool install --upgrade kimi-cli
 
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
