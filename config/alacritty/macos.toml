@@ -2,7 +2,10 @@
 # Place at ~/.config/alacritty/alacritty.toml
 
 [general]
-import = ["common.toml"]
+import = [
+    "common.toml",
+    "alacritty-theme/themes/dracula.toml"
+]
 
 # Make Option key work as Alt in terminal
 [window]

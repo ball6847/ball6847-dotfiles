@@ -2,7 +2,10 @@
 # Place at ~/.config/alacritty/alacritty.toml
 
 [general]
-import = ["common.toml"]
+import = [
+    "common.toml",
+    "alacritty-theme/themes/dracula.toml"
+]
 
 # Linux uses default shell from $SHELL env var
 # Or you can specify explicitly:

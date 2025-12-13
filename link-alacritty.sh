@@ -71,6 +71,20 @@ fi
 echo "Creating alacritty.toml symlink..."
 ln -sf "$PLATFORM_SOURCE" "$ALACRITTY_TARGET"
 echo "  ✓ alacritty.toml -> $PLATFORM_SOURCE"
+
+# Symlink alacritty-theme directory for theme imports
+THEME_SOURCE="$SCRIPT_DIR/alacritty-theme"
+THEME_TARGET="$TARGET_DIR/alacritty-theme"
+if [ -d "$THEME_SOURCE" ]; then
+    if [ -e "$THEME_TARGET" ]; then
+        rm -rf "$THEME_TARGET"
+    fi
+    echo "Creating alacritty-theme directory symlink..."
+    ln -sf "$THEME_SOURCE" "$THEME_TARGET"
+    echo "  ✓ alacritty-theme -> $THEME_SOURCE"
+else
+    echo "  ⚠ alacritty-theme directory not found at $THEME_SOURCE"
+fi
 echo ""
 
 echo "Operation completed successfully!"

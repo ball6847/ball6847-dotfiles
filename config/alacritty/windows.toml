@@ -4,7 +4,10 @@
 # If you need to use a specific distro, run: wsl --set-default <distro-name>
 
 [general]
-import = ["common.toml"]
+import = [
+    "common.toml",
+    "alacritty-theme/themes/dracula.toml"
+]
 
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
