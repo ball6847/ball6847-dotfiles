@@ -123,35 +123,6 @@
         }
       }
     },
-    "mistral-custom": {
-      "npm": "@ai-sdk/mistral",
-      "name": "Mistral AI Custom",
-      "options": {
-        "apiKey": "{env:MISTRAL_API_KEY}"
-      },
-      "models": {
-        "devstral-2512": {
-          "name": "Devstral 2",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "limit": {
-            "context": 256000,
-            "output": 32768
-          }
-        },
-        "labs-devstral-small-2512": {
-          "name": "Devstral Small 2 (Labs)",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "limit": {
-            "context": 256000,
-            "output": 32768
-          }
-        }
-      }
-    },
     "ollama-cloud-custom": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama Cloud Custom",
