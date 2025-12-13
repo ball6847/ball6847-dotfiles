@@ -1,12 +1,15 @@
 [submodule "zsh_custom/plugins/zsh-syntax-highlighting"]
     path = zsh_custom/plugins/zsh-syntax-highlighting
     url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+    branch = master
 [submodule "zsh_custom/plugins/zsh-autosuggestions"]
     path = zsh_custom/plugins/zsh-autosuggestions
     url = https://github.com/zsh-users/zsh-autosuggestions.git
+    branch = master
 [submodule "zsh_custom/plugins/zsh-completions"]
     path = zsh_custom/plugins/zsh-completions
     url = https://github.com/zsh-users/zsh-completions.git
+    branch = master
 [submodule "alacritty-theme"]
 	path = alacritty-theme
 	url = git@github.com:alacritty/alacritty-theme.git
