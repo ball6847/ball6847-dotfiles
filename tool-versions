@@ -17,3 +17,4 @@ golangci-lint 2.4.0
 redis-cli 8.2.2
 doppler 3.75.1
 tmux 3.6
+uv 0.9.17

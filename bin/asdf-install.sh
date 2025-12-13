@@ -49,4 +49,7 @@ asdf plugin add mockery https://github.com/cabify/asdf-mockery.git
 asdf plugin add golangci-lint https://github.com/hypnoglow/asdf-golangci-lint.git
 asdf plugin add redis-cli
 asdf plugin add doppler
+asdf plugin add uv
+
+# TODO: consider removing tmux plugin as it require building from source which make build dependencies cumbersome to manage across different systems
 asdf plugin add tmux https://github.com/aphecetche/asdf-tmux.git
