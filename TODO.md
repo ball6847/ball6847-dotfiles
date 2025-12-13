@@ -1,6 +1,7 @@
 # Things I want to improve
 
-- no todo at the moment -
+- [ ] find a way to make AGENTS.md to work with devstral vibe
+- [ ] add command overload to integrate doppler and --auto-approve switch to gemini-cli and qwen-cli
 
 Completed
 
