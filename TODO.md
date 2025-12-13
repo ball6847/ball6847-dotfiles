@@ -1,6 +1,7 @@
 # Things I want to improve
 
-there is no todo item yet
+- [ ] make kimi-cli automatically start with YOLO mode
+- [ ] make mistral vibe start with YOLO mode
 
 Completed
 
