@@ -1,12 +1,13 @@
 # Things I want to improve
 
+- no todo at the moment -
+
+Completed
+
 - [x] make kimi-cli automatically start with YOLO mode
 - [x] make mistral vibe start with YOLO mode
 - [x] change tmux pane broadcasting from ctrl+x to something else, as this key is needed for kimi and nvim
 - [x] examine git hook, remove unnecessary hooks
-
-Completed
-
 - [x] cannot copy text from opencode when running in tmux (suddenly work, not sure why, maybe I installed xclip?)
 - [x] research if tmux keybinding support key sequence like `ctrl+a` then `c` to create new window (no need)
 - [x] make alacritty start command to not create new tmux session if one is already running
