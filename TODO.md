@@ -1,9 +1,6 @@
 # Things I want to improve
 
-- [ ] nvim clipboard no longer sync with windows clipboard
-- [ ] sometimes nvim leaves vertical line on screen when using with tmux
-- [ ] if it is possible, I want to remove `doppler` from tmux windows title
-- [ ] tmux status at the top really mess up neovim, fix at neovim side if possible or move the status line back to bottom (currently at bottom)
+there is no todo item yet
 
 Completed
 
