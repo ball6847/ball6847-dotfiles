@@ -210,7 +210,7 @@ vibe() {
 
 # open nvim on left pane, and opencode on right pane
 voc() {
-  tmux split-window -h -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)" -l 40%
   tmux select-pane -t 0
   tmux send-keys 'v' C-m
   tmux select-pane -t 1
@@ -220,7 +220,7 @@ voc() {
 
 # open nvim on left pane, and kimi on right pane
 vkm() {
-  tmux split-window -h -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)" -l 40%
   tmux select-pane -t 0
   tmux send-keys 'v' C-m
   tmux select-pane -t 1
@@ -230,7 +230,7 @@ vkm() {
 
 # open nvim on left pane, and mistral vibe on right pane
 vvb() {
-  tmux split-window -h -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)" -l 40%
   tmux select-pane -t 0
   tmux send-keys 'v' C-m
   tmux select-pane -t 1
