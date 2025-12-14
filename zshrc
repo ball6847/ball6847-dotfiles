@@ -224,6 +224,39 @@ aa() {
 }
 
 # ================================================
+# tmux alias for open new window in pre-configured view
+
+# open nvim on left pane, and opencode on right pane
+voc() {
+  tmux new-window -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)"
+  tmux select-pane -t 0
+  tmux send-keys 'nvim' C-m
+  tmux select-pane -t 1
+  tmux send-keys 'zsh -l -c "source ~/.zshrc; opencode"' C-m
+}
+
+# open nvim on left pane, and kimi on right pane
+vkm() {
+  tmux new-window -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)"
+  tmux select-pane -t 0
+  tmux send-keys 'nvim' C-m
+  tmux select-pane -t 1
+  tmux send-keys 'zsh -l -c "source ~/.zshrc; kimi"' C-m
+}
+
+# open nvim on left pane, and mistral vibe on right pane
+vvb() {
+  tmux new-window -c "$(pwd)"
+  tmux split-window -h -c "$(pwd)"
+  tmux select-pane -t 0
+  tmux send-keys 'nvim' C-m
+  tmux select-pane -t 1
+  tmux send-keys 'zsh -l -c "source ~/.zshrc; vibe"' C-m
+}
+
+# ================================================
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
