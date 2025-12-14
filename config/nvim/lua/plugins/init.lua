@@ -278,6 +278,35 @@ return {
       -- Keymaps moved to lua/mappings.lua for better organization
     end,
   },
+  -- hot-reload.nvim - reload neovim config on the fly
+  -- NOTE: Keep this list updated when adding/removing config files
+  -- The plugin uses pcall, so missing files won't crash but will show errors
+  {
+    "Zeioth/hot-reload.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "BufEnter",
+    opts = function()
+      local config_dir = vim.fn.stdpath("config") .. "/lua/"
+      return {
+        reload_files = {
+          config_dir .. "options.lua",
+          config_dir .. "mappings.lua",
+          config_dir .. "configs/lspconfig.lua",
+          config_dir .. "configs/cmp.lua",
+          config_dir .. "configs/conform.lua",
+          config_dir .. "configs/noice.lua",
+          config_dir .. "configs/scrollbar.lua",
+          config_dir .. "configs/lint.lua",
+          config_dir .. "configs/gitsigns.lua",
+          config_dir .. "configs/autoread.lua",
+        },
+        reload_callback = function()
+          vim.cmd(":silent! colorscheme " .. vim.g.default_colorscheme)
+          vim.cmd(":silent! doautocmd ColorScheme")
+        end,
+      }
+    end,
+  },
   -- toggleterm - terminal management
   {
     "akinsho/toggleterm.nvim",
