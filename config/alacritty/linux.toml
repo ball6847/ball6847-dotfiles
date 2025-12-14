@@ -4,7 +4,7 @@
 [general]
 import = [
     "common.toml",
-    "alacritty-theme/themes/tokyo_night.toml"
+    "alacritty-theme/themes/aura.toml"
 ]
 
 # Linux uses default shell from $SHELL env var

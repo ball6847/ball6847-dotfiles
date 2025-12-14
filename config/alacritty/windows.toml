@@ -6,7 +6,7 @@
 [general]
 import = [
     "common.toml",
-    "alacritty-theme/themes/tokyo_night.toml"
+    "alacritty-theme/themes/aura.toml"
 ]
 
 [terminal.shell]
