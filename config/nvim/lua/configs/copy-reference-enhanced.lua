@@ -1,32 +1,15 @@
 -- Enhanced copy-reference functionality that includes selected text
 --
--- This module extends the functionality of copy-reference.nvim plugin to support copying
--- selected text content along with file references. The original plugin only copies file
--- paths and line numbers (e.g., "file.lua:10-15"), but this enhancement adds the actual
--- code content in a properly formatted markdown code block.
+-- This module provides standalone copy-reference functionality that includes selected text content
+-- along with file references. It no longer depends on copy-reference.nvim plugin.
 --
--- Integration with copy-reference.nvim:
--- - Leverages the plugin's smart path detection (git root relative paths)
--- - Maintains compatibility with existing keybindings (yr/yrr)
--- - Adds new functionality: Shift+Y in visual mode for instant copy of selection + reference
---
--- Usage:
--- - Visual mode: Select text → Shift+Y → copies formatted code with file reference
--- - Normal mode: <leader>cL → copies current line with reference
--- Output format:
---   path/to/file.lua:10-15
---   ```lua
---   function example() {
---       // selected code
---   }
---   ```
---
--- This enhancement bridges the gap between simple file references and complete code context,
--- making it ideal for sharing precise code locations with accompanying content in AI-assisted (kimi-for-coding)
--- development workflows.
+-- Features:
+-- - Smart path detection (git root relative paths)
+-- - Copies file paths and line numbers (e.g., "file.lua:10-15")
+-- - Adds actual code content in a properly formatted markdown code block
 local M = {}
 
--- Get relative path (similar to copy-reference plugin)
+-- Get relative path
 local function get_relative_path()
   local bufname = vim.api.nvim_buf_get_name(0)
   if bufname == "" then
@@ -36,7 +19,7 @@ local function get_relative_path()
   -- Try to get path relative to git root
   local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("\n", "")
   if git_root ~= "" and bufname:find(git_root, 1, true) then
-    return bufname:sub(#git_root + 2) -- +2 to remove the slash
+    return bufname:sub(#git_root + 2)
   end
 
   -- Fallback to current working directory
@@ -49,7 +32,7 @@ local function get_relative_path()
   return bufname
 end
 
--- Enhanced copy function that includes text content
+-- Copy reference with text content
 function M.copy_reference_with_text()
   local mode = vim.api.nvim_get_mode().mode
 
@@ -102,30 +85,36 @@ function M.copy_reference_with_text()
 
   -- Copy to clipboard
   vim.fn.setreg("+", content)
-  vim.fn.setreg("1", content) -- Also copy to register 1 as backup
 
   -- Notify user
   local line_range = start_line == end_line and "line " .. start_line or "lines " .. start_line .. "-" .. end_line
   vim.notify("Copied " .. line_range .. " with reference to clipboard", vim.log.levels.INFO)
+
+  -- Return the content for potential further use
+  return content
 end
 
--- Simple copy reference (file:line) without text
-function M.copy_reference_only()
-  vim.cmd "CopyReference line"
+-- Copy file reference only
+function M.copy_reference()
+  local path = get_relative_path()
+  local start_line = vim.fn.line "."
+  local reference = path .. ":" .. start_line
+  vim.fn.setreg("+", reference)
+  vim.notify("Copied reference to clipboard", vim.log.levels.INFO)
 end
 
--- Copy only the selected text without reference
-function M.copy_text_only()
-  local mode = vim.api.nvim_get_mode().mode
-
-  if not mode:match "^[vV\022]" then
-    vim.notify("Please select text in visual mode", vim.log.levels.WARN)
+-- Copy file path only
+function M.copy_filename()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if bufname == "" then
+    vim.notify("No file name to copy", vim.log.levels.WARN)
     return
   end
 
-  -- Use normal yank behavior
-  vim.cmd "normal! y"
-  vim.notify("Copied selected text", vim.log.levels.INFO)
+  -- Get relative path (same as copy_reference_only but without line numbers)
+  local path = get_relative_path()
+  vim.fn.setreg("+", path)
+  vim.notify("Copied file path to clipboard", vim.log.levels.INFO)
 end
 
 return M

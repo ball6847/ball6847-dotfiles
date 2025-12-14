@@ -257,29 +257,13 @@ map("n", "<leader>sc", function()
   require("scrollbar").clear()
 end, { desc = "Clear scrollbar marks" })
 
--- copy-reference.nvim keybindings (alternative to the default yr/yrr)
-map("n", "<leader>cf", "<cmd>CopyReference file<cr>", { desc = "Copy file path" })
-map("n", "<leader>cl", "<cmd>CopyReference line<cr>", { desc = "Copy file:line reference" })
-map("v", "<leader>cf", "<cmd>CopyReference file<cr>", { desc = "Copy file path" })
-map("v", "<leader>cl", "<cmd>CopyReference line<cr>", { desc = "Copy file:line reference" })
-
--- Enhanced copy-reference keybindings (includes selected text)
-map("n", "<leader>cL", function()
-  require("configs.copy-reference-enhanced").copy_reference_with_text()
-end, { desc = "Copy file:line reference with text" })
-map("v", "<leader>cL", function()
-  require("configs.copy-reference-enhanced").copy_reference_with_text()
-end, { desc = "Copy file:line range with text" })
-map("n", "<leader>cR", function()
-  require("configs.copy-reference-enhanced").copy_reference_only()
-end, { desc = "Copy reference only (simple)" })
-map("v", "<leader>ct", function()
-  require("configs.copy-reference-enhanced").copy_text_only()
-end, { desc = "Copy selected text only" })
-
--- Super quick access: Shift+Y in visual mode for enhanced copy
+-- Copy-reference keybindings
+map("n", "yr", function()
+  require("configs.copy-reference-enhanced").copy_filename()
+end, { desc = "Copy filename" })
+map("n", "yrr", function()
+  require("configs.copy-reference-enhanced").copy_reference()
+end, { desc = "Copy reference" })
 map("v", "Y", function()
   require("configs.copy-reference-enhanced").copy_reference_with_text()
-end, { desc = "Copy selection with reference (enhanced)" })
-
--- Terminal toggle mappings are now handled in the plugin configuration itself
+end, { desc = "Copy selection with reference" })
