@@ -299,6 +299,8 @@ return {
           config_dir .. "configs/lint.lua",
           config_dir .. "configs/gitsigns.lua",
           config_dir .. "configs/autoread.lua",
+          config_dir .. "configs/lazy.lua",
+          config_dir .. "configs/copy-reference-enhanced.lua",
         },
         reload_callback = function()
           vim.cmd(":silent! colorscheme " .. vim.g.default_colorscheme)
