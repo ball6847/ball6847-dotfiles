@@ -170,6 +170,9 @@ if is_wsl; then
   alias explorer="explorer.exe"
 fi
 
+# ================================================
+# doopler wrapper
+
 # wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
 doppler_run() {
   doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
@@ -179,6 +182,9 @@ doppler_run() {
 doppler_update() {
   doppler run -p personal -c dev -- echo "doppler secrets updated"
 }
+
+# ================================================
+# wrap some frequently used tools with doppler_run
 
 # keep actual path to opencode binary, so we can wrap it with doppler without recursion
 OPENCODE_BIN="`which opencode`"
@@ -197,30 +203,6 @@ VIBE_BIN="`which vibe`"
 
 vibe() {
   doppler_run -- $VIBE_BIN --auto-approve "$@"
-}
-
-qq() {
-  if is_wsl; then
-    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    qoder . "$@"
-  fi
-}
-
-tt() {
-  if is_wsl; then
-    trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    trae . "$@"
-  fi
-}
-
-aa() {
-  if is_wsl; then
-    antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    antigravity . "$@"
-  fi
 }
 
 # ================================================
@@ -254,6 +236,33 @@ vvb() {
   tmux send-keys 'nvim' C-m
   tmux select-pane -t 1
   tmux send-keys 'zsh -l -c "source ~/.zshrc; vibe"' C-m
+}
+
+# ================================================
+# make ai ide tools work in wsl
+
+qq() {
+  if is_wsl; then
+    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    qoder . "$@"
+  fi
+}
+
+tt() {
+  if is_wsl; then
+    trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    trae . "$@"
+  fi
+}
+
+aa() {
+  if is_wsl; then
+    antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    antigravity . "$@"
+  fi
 }
 
 # ================================================
