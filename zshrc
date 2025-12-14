@@ -1,4 +1,4 @@
-#mask 022zshr
+#mask 022zshrzshrc
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
@@ -210,32 +210,32 @@ vibe() {
 
 # open nvim on left pane, and opencode on right pane
 voc() {
-  # tmux new-window -c "$(pwd)"
   tmux split-window -h -c "$(pwd)"
   tmux select-pane -t 0
-  tmux send-keys 'nvim' C-m
+  tmux send-keys 'v' C-m
   tmux select-pane -t 1
-  tmux send-keys 'zsh -l -c "source ~/.zshrc; opencode"' C-m
+  tmux send-keys 'oc' C-m
+  tmux select-pane -t 0
 }
 
 # open nvim on left pane, and kimi on right pane
 vkm() {
-  # tmux new-window -c "$(pwd)"
   tmux split-window -h -c "$(pwd)"
   tmux select-pane -t 0
-  tmux send-keys 'nvim' C-m
+  tmux send-keys 'v' C-m
   tmux select-pane -t 1
-  tmux send-keys 'zsh -l -c "source ~/.zshrc; kimi"' C-m
+  tmux send-keys 'kimi' C-m
+  tmux select-pane -t 0
 }
 
 # open nvim on left pane, and mistral vibe on right pane
 vvb() {
-  # tmux new-window -c "$(pwd)"
   tmux split-window -h -c "$(pwd)"
   tmux select-pane -t 0
-  tmux send-keys 'nvim' C-m
+  tmux send-keys 'v' C-m
   tmux select-pane -t 1
-  tmux send-keys 'zsh -l -c "source ~/.zshrc; vibe"' C-m
+  tmux send-keys 'vibe' C-m
+  tmux select-pane -t 0
 }
 
 # ================================================
