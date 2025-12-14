@@ -14,3 +14,7 @@
 	path = alacritty-theme
 	url = git@github.com:alacritty/alacritty-theme.git
 	branch = master
+[submodule "xclip-win32yank-wrapper"]
+	path = xclip-win32yank-wrapper
+	url = git@github.com:ball6847/xclip-win32yank-wrapper.git
+	branch = main
