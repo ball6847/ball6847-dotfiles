@@ -7,9 +7,9 @@
     "leader": "ctrl+o"
   },
   "plugin": [
-    "opencode-gemini-auth",
-    "opencode-alibaba-qwen3-auth",
-    "opencode-skills"
+    // "opencode-gemini-auth",
+    // "opencode-alibaba-qwen3-auth",
+    // "opencode-skills"
   ],
   "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
   "tui": {

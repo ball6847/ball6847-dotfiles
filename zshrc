@@ -159,7 +159,7 @@ alias vb="vibe"
 alias qw="qwen"
 alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
-alias run="doppler run -p personal -c dev"
+alias run="doppler_run"
 alias wm="workspace-manager"
 alias wms="workspace-manager sync"
 alias wme="workspace-manager enable"
@@ -170,23 +170,33 @@ if is_wsl; then
   alias explorer="explorer.exe"
 fi
 
+# wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
+doppler_run() {
+  doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
+}
+
+# force update doppler secrets cache
+doppler_update() {
+  doppler run -p personal -c dev -- echo "doppler secrets updated"
+}
+
 # keep actual path to opencode binary, so we can wrap it with doppler without recursion
 OPENCODE_BIN="`which opencode`"
 
 opencode() {
-  doppler run -p personal -c dev -- $OPENCODE_BIN "$@"
+  doppler_run -- $OPENCODE_BIN "$@"
 }
 
 KIMI_BIN="`which kimi`"
 
 kimi() {
-  doppler run -p personal -c dev -- $KIMI_BIN --yolo "$@"
+  doppler_run -- $KIMI_BIN --yolo "$@"
 }
 
 VIBE_BIN="`which vibe`"
 
 vibe() {
-  doppler run -p personal -c dev -- $VIBE_BIN --auto-approve "$@"
+  doppler_run -- $VIBE_BIN --auto-approve "$@"
 }
 
 qq() {
