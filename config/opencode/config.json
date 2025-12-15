@@ -434,8 +434,7 @@
       "url": "{env:OPENMEMORY_API_URL}",
       "headers": {
         "Authorization": "Bearer {env:OPENMEMORY_API_KEY}"
-      },
-      "oauth": false
+      }
     }
   }
 }
