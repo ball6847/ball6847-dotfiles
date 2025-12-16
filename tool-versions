@@ -16,5 +16,4 @@ mockery 3.2.5
 golangci-lint 2.7.2
 redis-cli 8.2.2
 doppler 3.75.1
-tmux 3.6
 uv 0.9.17

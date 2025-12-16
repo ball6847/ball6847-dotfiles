@@ -175,7 +175,19 @@ fi
 
 # wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
 doppler_run() {
-  doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
+  
+  if [[ "$DOPPLER_LOADED" == "true" ]]; then
+    # Remove leading -- from arguments if present
+    if [[ "$1" == "--" ]]; then
+      shift
+      "$@"
+    else
+      echo "Command must be prefixed with -- when DOPPLER_LOADED is true"
+      return 1
+    fi
+  else
+    doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
+  fi
 }
 
 # force update doppler secrets cache
