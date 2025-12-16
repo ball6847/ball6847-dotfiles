@@ -211,8 +211,10 @@ vibe() {
 # Helper function to ensure we're in tmux
 in_tmux() {
   if [ -z "$TMUX" ]; then
-    # Not in tmux, start it and execute the current function
-    tmux new-session -A -s main "$@"
+    # Not in tmux, create a new session and run the function properly
+    local cmd_str="${(j: :)${@:q}}"
+    # Create session, run the command, and keep session alive
+    tmux new-session -s main "zsh -c 'source ~/.zshrc; $cmd_str; exec zsh'"
   else
     # Already in tmux, execute directly
     "$@"
