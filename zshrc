@@ -208,34 +208,41 @@ vibe() {
 # ================================================
 # tmux alias for open new window in pre-configured view
 
-# open nvim on left pane, and opencode on right pane
-voc() {
+# Helper function to ensure we're in tmux
+in_tmux() {
+  if [ -z "$TMUX" ]; then
+    # Not in tmux, start it and execute the current function
+    tmux new-session -A -s main "$@"
+  else
+    # Already in tmux, execute directly
+    "$@"
+  fi
+}
+
+# Helper function to open neovim on left pane and specified command on right pane
+_ai_split() {
+  local cmd="$1"
   tmux split-window -h -c "$(pwd)" -l 40%
   tmux select-pane -t 0
   tmux send-keys 'v' C-m
   tmux select-pane -t 1
-  tmux send-keys 'oc' C-m
+  tmux send-keys "$cmd" C-m
   tmux select-pane -t 0
+}
+
+# open nvim on left pane, and opencode on right pane
+voc() {
+  in_tmux _ai_split "oc"
 }
 
 # open nvim on left pane, and kimi on right pane
 vkm() {
-  tmux split-window -h -c "$(pwd)" -l 40%
-  tmux select-pane -t 0
-  tmux send-keys 'v' C-m
-  tmux select-pane -t 1
-  tmux send-keys 'kimi' C-m
-  tmux select-pane -t 0
+  in_tmux _ai_split "kimi"
 }
 
 # open nvim on left pane, and mistral vibe on right pane
 vvb() {
-  tmux split-window -h -c "$(pwd)" -l 40%
-  tmux select-pane -t 0
-  tmux send-keys 'v' C-m
-  tmux select-pane -t 1
-  tmux send-keys 'vibe' C-m
-  tmux select-pane -t 0
+  in_tmux _ai_split "vibe"
 }
 
 # ================================================
