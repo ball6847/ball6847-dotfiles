@@ -199,22 +199,22 @@ doppler_update() {
 # wrap some frequently used tools with doppler_run
 
 # keep actual path to opencode binary, so we can wrap it with doppler without recursion
-OPENCODE_BIN="`which opencode`"
+_OPENCODE_BIN="`which opencode`"
 
 opencode() {
-  doppler_run -- $OPENCODE_BIN "$@"
+  doppler_run -- $_OPENCODE_BIN "$@"
 }
 
-KIMI_BIN="`which kimi`"
+_KIMI_BIN="`which kimi`"
 
 kimi() {
-  doppler_run -- $KIMI_BIN --yolo "$@"
+  doppler_run -- $_KIMI_BIN --yolo "$@"
 }
 
-VIBE_BIN="`which vibe`"
+_VIBE_BIN="`which vibe`"
 
 vibe() {
-  doppler_run -- $VIBE_BIN --auto-approve "$@"
+  doppler_run -- $_VIBE_BIN --auto-approve "$@"
 }
 
 # ================================================
@@ -257,6 +257,14 @@ vkm() {
 # open nvim on left pane, and mistral vibe on right pane
 vvb() {
   in_tmux _ai_split "vibe"
+}
+
+vq() {
+  in_tmux _ai_split "qw"
+}
+
+vg() {
+  in_tmux _ai_split "g"
 }
 
 # ================================================
