@@ -30,5 +30,7 @@ bindings = [
   { key = "J", mods = "Command|Shift", chars = "\u001b[74;4u" },
   { key = "K", mods = "Command|Shift", chars = "\u001b[75;4u" },
   { key = "L", mods = "Command", chars = "\u001b[108;3u" },
+  # Windows/WSL: Use \u000a (LF) for Shift+Enter if \u001b[10;2u doesn't work
+  # Backup original sequence: { key = "Enter", mods = "Shift", chars = "\u001b[10;2u" },
   { key = "Enter", mods = "Shift", chars = "\u000a" },
 ]
