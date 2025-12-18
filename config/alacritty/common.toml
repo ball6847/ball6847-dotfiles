@@ -1,28 +1,6 @@
-[font]
-size = 13
-
-[font.offset]
-x = 1
-y = 5
-
 [window]
 # padding = { x = 10, y = 10 }
 startup_mode = "Maximized"
-
-[font.normal]
-family = "M+1Code Nerd Font Mono"
-
-[font.bold]
-family = "M+1Code Nerd Font Mono"
-style = "Bold"
-
-[font.italic]
-family = "M+1Code Nerd Font Mono"
-style = "Italic"
-
-[font.bold_italic]
-family = "M+1Code Nerd Font Mono"
-style = "Bold Italic"
 
 [keyboard]
 bindings = [
