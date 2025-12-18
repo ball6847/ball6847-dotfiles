@@ -18,6 +18,7 @@ args = [
 
 [font]
 size = 11
+builtin_box_drawing = true
 
 [font.offset]
 x = 1
@@ -37,3 +38,12 @@ style = "Italic"
 [font.bold_italic]
 family = "RobotoMono Nerd Font"
 style = "Bold Italic"
+
+# Add these settings for better font rendering on Windows
+[font.glyph_offset]
+x = 0
+y = 0
+
+# Ensure proper DPI awareness
+[window]
+dynamic_title = true
