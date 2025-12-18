@@ -424,6 +424,20 @@
             "context": 128000,
             "output": 64000
           }
+        },
+        "nemotron-3-nano:30b": {
+          "name": "Nemotron-3-Nano-30B",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          }
         }
       }
     }
@@ -434,8 +448,7 @@
       "url": "{env:OPENMEMORY_API_URL}",
       "headers": {
         "Authorization": "Bearer {env:OPENMEMORY_API_KEY}"
-      },
-      "oauth": false
+      }
     }
   }
 }

@@ -152,11 +152,11 @@ alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /pr
 alias v="nvim"
 alias t="task"
 alias m="make"
-alias g="gemini"
+alias g="gemini -y"
 alias oc="opencode"
 alias km="kimi"
 alias vb="vibe"
-alias qw="qwen"
+alias qw="qwen -y"
 alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
 alias run="doppler_run"
@@ -175,7 +175,19 @@ fi
 
 # wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
 doppler_run() {
-  doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
+  
+  if [[ "$DOPPLER_LOADED" == "true" ]]; then
+    # Remove leading -- from arguments if present
+    if [[ "$1" == "--" ]]; then
+      shift
+      "$@"
+    else
+      echo "Command must be prefixed with -- when DOPPLER_LOADED is true"
+      return 1
+    fi
+  else
+    doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
+  fi
 }
 
 # force update doppler secrets cache
@@ -187,55 +199,72 @@ doppler_update() {
 # wrap some frequently used tools with doppler_run
 
 # keep actual path to opencode binary, so we can wrap it with doppler without recursion
-OPENCODE_BIN="`which opencode`"
+_OPENCODE_BIN="`which opencode`"
 
 opencode() {
-  doppler_run -- $OPENCODE_BIN "$@"
+  doppler_run -- $_OPENCODE_BIN "$@"
 }
 
-KIMI_BIN="`which kimi`"
+_KIMI_BIN="`which kimi`"
 
 kimi() {
-  doppler_run -- $KIMI_BIN --yolo "$@"
+  doppler_run -- $_KIMI_BIN --yolo "$@"
 }
 
-VIBE_BIN="`which vibe`"
+_VIBE_BIN="`which vibe`"
 
 vibe() {
-  doppler_run -- $VIBE_BIN --auto-approve "$@"
+  doppler_run -- $_VIBE_BIN --auto-approve "$@"
 }
 
 # ================================================
 # tmux alias for open new window in pre-configured view
 
-# open nvim on left pane, and opencode on right pane
-voc() {
+# Helper function to ensure we're in tmux
+in_tmux() {
+  if [ -z "$TMUX" ]; then
+    # Not in tmux, create a new session and run the function properly
+    local cmd_str="${(j: :)${@:q}}"
+    # Create session, run the command, and keep session alive
+    tmux new-session -s main "zsh -c 'source ~/.zshrc; $cmd_str; exec zsh'"
+  else
+    # Already in tmux, execute directly
+    "$@"
+  fi
+}
+
+# Helper function to open neovim on left pane and specified command on right pane
+_ai_split() {
+  local cmd="$1"
   tmux split-window -h -c "$(pwd)" -l 40%
   tmux select-pane -t 0
   tmux send-keys 'v' C-m
   tmux select-pane -t 1
-  tmux send-keys 'oc' C-m
+  tmux send-keys "$cmd" C-m
   tmux select-pane -t 0
+}
+
+# open nvim on left pane, and opencode on right pane
+voc() {
+  in_tmux _ai_split "oc"
 }
 
 # open nvim on left pane, and kimi on right pane
 vkm() {
-  tmux split-window -h -c "$(pwd)" -l 40%
-  tmux select-pane -t 0
-  tmux send-keys 'v' C-m
-  tmux select-pane -t 1
-  tmux send-keys 'kimi' C-m
-  tmux select-pane -t 0
+  in_tmux _ai_split "kimi"
 }
 
 # open nvim on left pane, and mistral vibe on right pane
 vvb() {
-  tmux split-window -h -c "$(pwd)" -l 40%
-  tmux select-pane -t 0
-  tmux send-keys 'v' C-m
-  tmux select-pane -t 1
-  tmux send-keys 'vibe' C-m
-  tmux select-pane -t 0
+  in_tmux _ai_split "vibe"
+}
+
+vq() {
+  in_tmux _ai_split "qw"
+}
+
+vg() {
+  in_tmux _ai_split "g"
 }
 
 # ================================================

@@ -151,8 +151,6 @@ if vim.loop.os_uname().sysname == "Darwin" then
   map("n", "<A-S-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
 end
 
--- show VGit project diff preview
-map("n", "<leader>df", "<cmd>VGit project_diff_preview<CR>", { desc = "Show VGit project diff preview" })
 
 -- telescope - find function or method
 map("n", "<leader>fn", function()
@@ -267,3 +265,49 @@ end, { desc = "Copy reference" })
 map("v", "Y", function()
   require("configs.copy-reference-enhanced").copy_reference_with_text()
 end, { desc = "Copy selection with reference" })
+
+-- vscode-diff.nvim keybindings
+-- Git diff mappings
+map("n", "<leader>gd", "<cmd>CodeDiff<CR>", { desc = "Git diff explorer" })
+map("n", "<leader>gh", "<cmd>CodeDiff file HEAD<CR>", { desc = "Git diff HEAD" })
+map("n", "<leader>gc", "<cmd>CodeDiff file HEAD~1<CR>", { desc = "Git diff previous commit" })
+
+-- File comparison mappings
+map(
+  "n",
+  "<leader>cd",
+  "<cmd>CodeDiff file <C-r>=expand('%')<CR> <C-r>=expand('%')<CR>~<CR>",
+  { desc = "Diff current file with HEAD" }
+)
+
+-- In diff view navigation
+-- These mappings will be active in the diff buffer
+-- ]c - next hunk (already configured in plugin)
+-- [c - prev hunk (already configured in plugin)
+
+-- vscode-diff.nvim custom keymaps
+-- Custom function to focus the explorer window
+local function focus_vscode_diff_explorer()
+  -- Find the explorer window by checking buffer filetype
+  local buffers = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(buffers) do
+    local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
+    if ft == 'vscode-diff-explorer' then
+      local wins = vim.api.nvim_list_wins()
+      for _, win in ipairs(wins) do
+        if vim.api.nvim_win_get_buf(win) == buf then
+          vim.api.nvim_set_current_win(win)
+          return
+        end
+      end
+    end
+  end
+  vim.notify("Explorer window not found", vim.log.levels.WARN)
+end
+
+-- Global mapping to focus vscode-diff explorer
+-- Works from anywhere, but only does something when in a diff view
+map('n', '<leader>da', focus_vscode_diff_explorer, {
+  desc = 'Focus vscode-diff explorer',
+  silent = true,
+})
