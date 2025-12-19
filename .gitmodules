@@ -18,6 +18,3 @@
 	path = xclip-win32yank-wrapper
 	url = git@github.com:ball6847/xclip-win32yank-wrapper.git
 	branch = main
-[submodule "trae-theme"]
-	path = trae-theme
-	url = https://github.com/xiaoguan521/trae-theme.git
