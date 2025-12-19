@@ -4,7 +4,9 @@
 # If you need to use a specific distro, run: wsl --set-default <distro-name>
 
 [general]
-import = ["common.toml", "alacritty-theme/themes/xterm.toml"]
+import = ["common.toml", "alacritty-theme/themes/omni.toml"]
+# import = ["common.toml", "alacritty-theme/themes/pastel_dark.toml"]
+# import = ["common.toml", "alacritty-theme/themes/pencil_dark.toml"]
 
 [terminal.shell]
 program = "C:\\Windows\\System32\\wsl.exe"
@@ -38,11 +40,6 @@ y = 5
 # [font.bold_italic]
 # family = "RobotoMono Nerd Font"
 # style = "Bold Italic"
-
-# Add these settings for better font rendering on Windows
-[font.glyph_offset]
-x = 0
-y = 0
 
 # Ensure proper DPI awareness
 [window]
