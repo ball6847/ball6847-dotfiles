@@ -2,10 +2,7 @@
 # Place at ~/.config/alacritty/alacritty.toml
 
 [general]
-import = [
-    "common.toml",
-    "alacritty-theme/themes/aura.toml"
-]
+import = ["common.toml", "alacritty-theme/themes/aura.toml"]
 
 # Make Option key work as Alt in terminal
 [window]
@@ -20,6 +17,13 @@ args = ["-l", "-c", "source ~/.zshrc && tmux new-session -A -s main"]
 # Allow navigate by word (Alt + Arrow keys)
 [keyboard]
 bindings = [
-  { key = "Left",  mods = "Alt", chars = "\u001bb" },  # ESC + b (backward word)
-  { key = "Right", mods = "Alt", chars = "\u001bf" }   # ESC + f (forward word)
+  { key = "Left", mods = "Alt", chars = "\u001bb" },  # ESC + b (backward word)
+  { key = "Right", mods = "Alt", chars = "\u001bf" }, # ESC + f (forward word)
 ]
+
+# [font]
+# size = 10
+
+[font.offset]
+x = 3
+y = 6
