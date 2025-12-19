@@ -85,10 +85,17 @@ function M.copy_reference_with_text()
 
   -- Copy to clipboard
   vim.fn.setreg("+", content)
+  vim.fn.setreg("*", content) -- Also copy to primary selection
 
   -- Notify user
   local line_range = start_line == end_line and "line " .. start_line or "lines " .. start_line .. "-" .. end_line
   vim.notify("Copied " .. line_range .. " with reference to clipboard", vim.log.levels.INFO)
+
+  vim.defer_fn(function()
+    -- Exit visual mode and clear selection
+    -- Using vim.api.nvim_feedkeys with proper termcodes
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), "n", true)
+  end, 10)
 
   -- Return the content for potential further use
   return content
