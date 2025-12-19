@@ -141,6 +141,10 @@ line-height = 1.3
 # blur = false
 # decorations = "enabled"
 # colorspace = "display-p3"
+[window]
+mode = "Maximized"
+decorations = "enabled"
+colorspace = "srgb"
 
 # Renderer
 #
@@ -166,9 +170,9 @@ line-height = 1.3
 # • filters: A list of paths to RetroArch slang shaders. Might not work with OpenGL.
 #
 # Example:
-# [renderer]
-# performance = "high"
-# backend = "automatic"
+[renderer]
+performance = "high"
+backend = "automatic"
 # disable-unfocused-render = false
 # level = 1
 # filters = []
@@ -246,9 +250,10 @@ line-height = 1.3
 # style = "Italic"
 # weight = 800
 [fonts]
-family = "M+CodeLat60 Nerd Font Propo"
-size = 13
-width = "SemiExpanded"
+# family = "M+CodeLat60 Nerd Font Propo"
+family = "M+1Code Nerd Font Propo"
+size = 14
+width = "Expanded"
 
 # Scroll
 #
