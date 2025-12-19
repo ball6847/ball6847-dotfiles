@@ -2,7 +2,11 @@
 # Place at ~/.config/alacritty/alacritty.toml
 
 [general]
-import = ["common.toml", "alacritty-theme/themes/aura.toml"]
+import = [
+  "common.toml",
+  # import theme from submodule
+  # "alacritty-theme/themes/aura.toml",
+]
 
 # Make Option key work as Alt in terminal
 [window]
@@ -25,5 +29,5 @@ bindings = [
 # size = 10
 
 [font.offset]
-x = 3
+x = 2
 y = 6

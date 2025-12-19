@@ -1,6 +1,7 @@
 require "nvchad.options"
 
--- add yours here!
+-- enable true color support
+vim.opt.termguicolors = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
@@ -22,5 +23,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.tabstop = 4
     vim.opt_local.shiftwidth = 4
     vim.opt_local.expandtab = true
+  end,
+})
+
+-- Ensure termguicolors is enabled even after NvChad loads
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.opt.termguicolors = true
   end,
 })

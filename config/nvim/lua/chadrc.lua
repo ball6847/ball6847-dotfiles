@@ -6,7 +6,9 @@
 local M = {}
 
 M.base46 = {
-  theme = "ayu_dark",
+  theme = "vscode_dark",
+  -- enable true color support for base46 themes
+  -- termguicolors = true,  -- This might be handled automatically
 
   -- hl_override = {
   -- 	Comment = { italic = true },
@@ -15,10 +17,9 @@ M.base46 = {
 }
 
 M.nvdash = { load_on_startup = true }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
---}
+M.ui = {
+  -- ensure true color support
+  termguicolors = true,
+}
 
 return M

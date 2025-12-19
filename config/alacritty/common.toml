@@ -30,3 +30,16 @@ style = "Italic"
 [font.bold_italic]
 family = "M+1Code Nerd Font Mono"
 style = "Bold Italic"
+
+[terminal]
+# ensure true color is enabled
+shell = "/bin/zsh"
+
+[env]
+# Set environment variables for true color support
+COLORTERM = "truecolor"
+TERM = "xterm-256color"
+
+[debug]
+# Enable debug rendering if needed for color testing
+# render_timer = true
