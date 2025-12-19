@@ -12,3 +12,21 @@ bindings = [
   # Backup original sequence: { key = "Enter", mods = "Shift", chars = "\u001b[10;2u" },
   { key = "Enter", mods = "Shift", chars = "\u000a" },
 ]
+
+[font]
+size = 13
+
+[font.normal]
+family = "M+1Code Nerd Font Mono"
+
+[font.bold]
+family = "M+1Code Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "M+1Code Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "M+1Code Nerd Font Mono"
+style = "Bold Italic"
