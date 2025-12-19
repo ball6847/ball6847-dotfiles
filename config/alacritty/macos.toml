@@ -5,7 +5,7 @@
 import = [
   "common.toml",
   # import theme from submodule
-  # "alacritty-theme/themes/aura.toml",
+  "alacritty-theme/themes/xterm.toml",
 ]
 
 # Make Option key work as Alt in terminal
