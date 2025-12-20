@@ -48,18 +48,12 @@ async function fileExists(filePath: string): Promise<boolean> {
 
 // get pre-configured settings from ./assets/windows-terminal-config.json
 async function getPreConfiguredSettings(): Promise<ActionsAndKeybindings> {
-  try {
-    const content = await Deno.readTextFile(PRE_CONFIGURED_SETTINGS_PATH);
-    const config = JSON.parse(content);
-    return {
-      actions: config.actions || [],
-      keybindings: config.keybindings || [],
-    };
-  } catch (error) {
-    console.error(`Failed to read pre-configured settings: ${error instanceof Error ? error.message : String(error)}`);
-    console.error("Cannot proceed without pre-configured settings. Exiting.");
-    Deno.exit(1);
-  }
+  const content = await Deno.readTextFile(PRE_CONFIGURED_SETTINGS_PATH);
+  const config = JSON.parse(content);
+  return {
+    actions: config.actions || [],
+    keybindings: config.keybindings || [],
+  };
 }
 
 // lookup windows terminal settings.json files
@@ -184,11 +178,17 @@ async function mergeSettingsToFile(
   }
 }
 
-const preConfiguredSettings = await getPreConfiguredSettings();
-const settingsFiles = await windowsTerminalSettingsLookup();
+try {
+  const preConfiguredSettings = await getPreConfiguredSettings();
+  const settingsFiles = await windowsTerminalSettingsLookup();
 
-for (const filePath of settingsFiles) {
-  await mergeSettingsToFile(preConfiguredSettings, filePath);
+  for (const filePath of settingsFiles) {
+    await mergeSettingsToFile(preConfiguredSettings, filePath);
+  }
+
+  console.log("Windows Terminal settings merge completed!");
+} catch (error) {
+  console.error(`Failed to read pre-configured settings: ${error instanceof Error ? error.message : String(error)}`);
+  console.error("Cannot proceed without pre-configured settings. Exiting.");
+  Deno.exit(1);
 }
-
-console.log("Windows Terminal settings merge completed!");
