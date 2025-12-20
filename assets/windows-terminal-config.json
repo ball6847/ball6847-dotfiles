@@ -24,6 +24,20 @@
         "splitMode": "duplicate"
       },
       "id": "User.splitPane.A6751878"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0017"
+      },
+      "id": "User.ctrlBackspace"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u000a"
+      },
+      "id": "User.shiftEnter"
     }
   ],
   "copyFormatting": "none",
@@ -61,6 +75,14 @@
     {
       "id": "Terminal.PrevTab",
       "keys": "ctrl+shift+["
+    },
+    {
+      "id": "User.ctrlBackspace",
+      "keys": "ctrl+backspace"
+    },
+    {
+      "id": "User.shiftEnter",
+      "keys": "shift+enter"
     }
   ],
   "newTabMenu": [
