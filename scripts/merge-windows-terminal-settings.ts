@@ -188,7 +188,7 @@ try {
 
   console.log("Windows Terminal settings merge completed!");
 } catch (error) {
-  console.error(`Failed to read pre-configured settings: ${error instanceof Error ? error.message : String(error)}`);
-  console.error("Cannot proceed without pre-configured settings. Exiting.");
+  console.error(`Windows Terminal settings merge failed: ${error instanceof Error ? error.message : String(error)}`);
+  console.error("Exiting.");
   Deno.exit(1);
 }
