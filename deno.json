@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "windows-terminal": "deno run --allow-read --allow-write --allow-env scripts/merge-windows-terminal-settings.ts"
+  }
+}
