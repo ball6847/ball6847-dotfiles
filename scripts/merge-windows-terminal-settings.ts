@@ -35,10 +35,11 @@ type WindowsTerminalSettings = {
 
 // Get script directory and resolve assets path using Deno's functions
 // This script is in scripts/ directory, assets/ is one level up
-const __filename = fromFileUrl(import.meta.url);
-const scriptDir = dirname(__filename);
-const repoDir = dirname(scriptDir);
-const PRE_CONFIGURED_SETTINGS_PATH = join(repoDir, 'assets', 'windows-terminal-config.json');
+const PRE_CONFIGURED_SETTINGS_PATH = join(
+  dirname(dirname(fromFileUrl(import.meta.url))),
+  'assets',
+  'windows-terminal-config.json'
+);
 
 // Helper function to check if file exists
 async function fileExists(filePath: string): Promise<boolean> {
@@ -177,7 +178,9 @@ async function mergeSettingsToFile(
     } else if (error instanceof SyntaxError) {
       console.error(`Invalid JSON in settings file: ${filePath}`);
     } else {
-      console.error(`Error merging settings to ${filePath}: ${error instanceof Error ? error.message : String(error)}`);
+      console.error(
+        `Error merging settings to ${filePath}: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   }
 }
@@ -192,7 +195,9 @@ try {
 
   console.log("Windows Terminal settings merge completed!");
 } catch (error) {
-  console.error(`Windows Terminal settings merge failed: ${error instanceof Error ? error.message : String(error)}`);
+  console.error(
+    `Windows Terminal settings merge failed: ${error instanceof Error ? error.message : String(error)}`,
+  );
   console.error("Exiting.");
   Deno.exit(1);
 }

@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@std/path": "jsr:@std/path"
+    "@std/path": "jsr:@std/path@1.1.3"
   },
   "tasks": {
     "windows-terminal": "deno run --allow-read --allow-write --allow-env scripts/merge-windows-terminal-settings.ts"
