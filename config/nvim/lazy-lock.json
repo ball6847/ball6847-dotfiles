@@ -41,7 +41,7 @@
   "vim-test": { "branch": "master", "commit": "aa619692ff48a3cf3e6bdb893765039488d4e5f3" },
   "vim-wakatime": { "branch": "master", "commit": "d7973b157a632d1edeff01818f18d67e584eeaff" },
   "volt": { "branch": "main", "commit": "620de1321f275ec9d80028c68d1b88b409c0c8b1" },
-  "vscode-diff.nvim": { "branch": "main", "commit": "24fd73d889f2d71a467d65db03a01f4ca1255dca" },
+  "vscode-diff.nvim": { "branch": "main", "commit": "f2c6907410161f430e3301fb170fd1d2094174aa" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "zen-mode.nvim": { "branch": "main", "commit": "8564ce6d29ec7554eb9df578efa882d33b3c23a7" }
 }
