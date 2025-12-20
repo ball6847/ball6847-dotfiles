@@ -31,8 +31,11 @@ type WindowsTerminalSettings = {
   [key: string]: unknown;
 };
 
-const SCRIPT_DIR = new URL(".", import.meta.url).pathname;
-const PRE_CONFIGURED_SETTINGS_PATH = `${SCRIPT_DIR}/../assets/windows-terminal-config.json`;
+// Get script directory and resolve assets path correctly
+const SCRIPT_URL = new URL(".", import.meta.url);
+const SCRIPT_DIR = SCRIPT_URL.pathname;
+const ASSETS_URL = new URL("../assets/", SCRIPT_URL);
+const PRE_CONFIGURED_SETTINGS_PATH = ASSETS_URL.pathname + "windows-terminal-config.json";
 
 // Helper function to check if file exists
 async function fileExists(filePath: string): Promise<boolean> {
@@ -55,7 +58,8 @@ async function getPreConfiguredSettings(): Promise<ActionsAndKeybindings> {
     };
   } catch (error) {
     console.error(`Failed to read pre-configured settings: ${error instanceof Error ? error.message : String(error)}`);
-    return { actions: [], keybindings: [] };
+    console.error("Cannot proceed without pre-configured settings. Exiting.");
+    Deno.exit(1);
   }
 }
 
