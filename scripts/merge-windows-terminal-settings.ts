@@ -1,12 +1,14 @@
 /**
  * Windows Terminal Settings Merger
- * 
+ *
  * This script merges pre-configured actions and keybindings from
  * ./assets/windows-terminal-config.json into all Windows Terminal
  * settings.json files found on the system.
- * 
+ *
  * Usage: deno run --allow-read --allow-write --allow-env scripts/merge-windows-terminal-settings.ts
  */
+
+import { dirname, join, fromFileUrl } from "@std/path";
 
 type Action = {
   command: string | Record<string, unknown>;
@@ -33,11 +35,10 @@ type WindowsTerminalSettings = {
 
 // Get script directory and resolve assets path using Deno's functions
 // This script is in scripts/ directory, assets/ is one level up
-const SCRIPT_FILE_PATH = new URL(import.meta.url).pathname;
-const SCRIPT_DIR_PATH = SCRIPT_FILE_PATH.replace(/\/scripts\/[^/]*\.ts$/, '/');
-
-// Simple concatenation - let Deno handle platform differences
-const PRE_CONFIGURED_SETTINGS_PATH = SCRIPT_DIR_PATH + 'assets/windows-terminal-config.json';
+const __filename = fromFileUrl(import.meta.url);
+const scriptDir = dirname(__filename);
+const repoDir = dirname(scriptDir);
+const PRE_CONFIGURED_SETTINGS_PATH = join(repoDir, 'assets', 'windows-terminal-config.json');
 
 // Helper function to check if file exists
 async function fileExists(filePath: string): Promise<boolean> {
