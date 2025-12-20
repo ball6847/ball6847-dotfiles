@@ -33,7 +33,6 @@ type WindowsTerminalSettings = {
 
 // Get script directory and resolve assets path correctly
 const SCRIPT_URL = new URL(".", import.meta.url);
-const SCRIPT_DIR = SCRIPT_URL.pathname;
 const ASSETS_URL = new URL("../assets/", SCRIPT_URL);
 const PRE_CONFIGURED_SETTINGS_PATH = ASSETS_URL.pathname + "windows-terminal-config.json";
 
