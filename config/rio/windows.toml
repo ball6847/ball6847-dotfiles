@@ -251,7 +251,7 @@ backend = "automatic"
 # weight = 800
 [fonts]
 # family = "M+CodeLat60 Nerd Font Propo"
-family = "M+1Code Nerd Font Propo"
+family = "M+1Code Nerd Font Mono"
 size = 14
 width = "Expanded"
 
