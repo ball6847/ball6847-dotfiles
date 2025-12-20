@@ -31,10 +31,13 @@ type WindowsTerminalSettings = {
   [key: string]: unknown;
 };
 
-// Get script directory and resolve assets path correctly
-const SCRIPT_URL = new URL(".", import.meta.url);
-const ASSETS_URL = new URL("../assets/", SCRIPT_URL);
-const PRE_CONFIGURED_SETTINGS_PATH = ASSETS_URL.pathname + "windows-terminal-config.json";
+// Get script directory and resolve assets path using Deno's functions
+// This script is in scripts/ directory, assets/ is one level up
+const SCRIPT_FILE_PATH = new URL(import.meta.url).pathname;
+const SCRIPT_DIR_PATH = SCRIPT_FILE_PATH.replace(/\/scripts\/[^/]*\.ts$/, '/');
+
+// Simple concatenation - let Deno handle platform differences
+const PRE_CONFIGURED_SETTINGS_PATH = SCRIPT_DIR_PATH + 'assets/windows-terminal-config.json';
 
 // Helper function to check if file exists
 async function fileExists(filePath: string): Promise<boolean> {
