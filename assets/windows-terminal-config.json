@@ -38,20 +38,6 @@
         "input": "\u000a"
       },
       "id": "User.shiftEnter"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u001bb"
-      },
-      "id": "User.altLeft"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u001bf"
-      },
-      "id": "User.altRight"
     }
   ],
   "copyFormatting": "none",
@@ -97,14 +83,6 @@
     {
       "id": "User.shiftEnter",
       "keys": "shift+enter"
-    },
-    {
-      "id": "User.altLeft",
-      "keys": "alt+left"
-    },
-    {
-      "id": "User.altRight",
-      "keys": "alt+right"
     }
   ],
   "newTabMenu": [
