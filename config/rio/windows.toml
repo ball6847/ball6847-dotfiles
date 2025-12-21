@@ -365,6 +365,10 @@ args = ["--cd","~","-e","zsh -l -c \"source .zshrc && tmux new-session -A -s mai
 #   # Send escape sequence to clear screen
 #   { key = "l", with = "control", esc = "\u001b[2J\u001b[H" }
 # ]
+[bindings]
+keys = [
+  { key = "return", with = "shift", esc =  "\u000a" },
+]
 
 # Platform
 #
