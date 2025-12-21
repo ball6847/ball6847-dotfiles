@@ -151,7 +151,6 @@ if vim.loop.os_uname().sysname == "Darwin" then
   map("n", "<A-S-K>", "10kzz", { noremap = true, silent = true, desc = "Move prev 20 lines" })
 end
 
-
 -- telescope - find function or method
 map("n", "<leader>fn", function()
   require("telescope.builtin").lsp_document_symbols {
@@ -291,8 +290,8 @@ local function focus_vscode_diff_explorer()
   -- Find the explorer window by checking buffer filetype
   local buffers = vim.api.nvim_list_bufs()
   for _, buf in ipairs(buffers) do
-    local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
-    if ft == 'vscode-diff-explorer' then
+    local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
+    if ft == "vscode-diff-explorer" then
       local wins = vim.api.nvim_list_wins()
       for _, win in ipairs(wins) do
         if vim.api.nvim_win_get_buf(win) == buf then
@@ -307,7 +306,7 @@ end
 
 -- Global mapping to focus vscode-diff explorer
 -- Works from anywhere, but only does something when in a diff view
-map('n', '<leader>da', focus_vscode_diff_explorer, {
-  desc = 'Focus vscode-diff explorer',
+map("n", "<leader>da", focus_vscode_diff_explorer, {
+  desc = "Focus vscode-diff explorer",
   silent = true,
 })
