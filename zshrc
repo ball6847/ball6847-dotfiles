@@ -216,7 +216,7 @@ kimi() {
 _VIBE_BIN="`which vibe`"
 
 vibe() {
-  doppler_run -- $_VIBE_BIN --auto-approve "$@"
+  doppler_run -- $_VIBE_BIN "$@"
 }
 
 # ================================================
