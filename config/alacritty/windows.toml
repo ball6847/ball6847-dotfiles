@@ -9,7 +9,7 @@ import = ["common.toml", "alacritty-theme/themes/omni.toml"]
 # import = ["common.toml", "alacritty-theme/themes/pencil_dark.toml"]
 
 [terminal.shell]
-program = "C:\\Windows\\System32\\wsl.exe"
+program = "wsl"
 args = [
   "--cd",
   "~",
