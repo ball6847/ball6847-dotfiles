@@ -12,7 +12,7 @@ import { dirname, join, fromFileUrl } from "@std/path";
 
 type Action = {
   command: string | Record<string, unknown>;
-  name: string;
+  id: string;
   [key: string]: unknown;
 };
 
@@ -108,11 +108,7 @@ function isActionDuplicate(
   newAction: Action,
   existingActions: Action[],
 ): boolean {
-  return existingActions.some(
-    (action) =>
-      action.name === newAction.name ||
-      JSON.stringify(action.command) === JSON.stringify(newAction.command),
-  );
+  return existingActions.some((action) => action.id === newAction.id);
 }
 
 // Helper function to check if keybinding is duplicate
