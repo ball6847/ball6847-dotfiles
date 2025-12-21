@@ -107,7 +107,8 @@ function isActionDuplicate(newAction: Action, existingActions: Action[]): boolea
 // Helper function to check if keybinding is duplicate
 function isKeybindingDuplicate(newKeybinding: Keybinding, existingKeybindings: Keybinding[]): boolean {
   return existingKeybindings.some(keybinding =>
-    keybinding.keys === newKeybinding.keys
+    keybinding.keys === newKeybinding.keys && 
+    keybinding.id === newKeybinding.id
   );
 }
 
