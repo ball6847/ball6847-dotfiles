@@ -251,9 +251,13 @@ backend = "automatic"
 # weight = 800
 [fonts]
 # family = "M+CodeLat60 Nerd Font Propo"
-family = "M+1Code Nerd Font Mono"
+family = "M+1Code Nerd Font"
 size = 14
-width = "Expanded"
+hinting = true
+
+[fonts.regular]
+weight = 500
+width = "UltraExpanded"
 
 # Scroll
 #
