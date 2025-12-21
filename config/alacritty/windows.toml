@@ -26,20 +26,21 @@ builtin_box_drawing = true
 x = 1
 y = 5
 
-# [font.normal]
-# family = "RobotoMono Nerd Font"
+[font.normal]
+family = "M+1Code Nerd Font"
+style = "Medium"
 
-# [font.bold]
-# family = "RobotoMono Nerd Font"
-# style = "Bold"
+[font.bold]
+family = "M+1Code Nerd Font"
+style = "Bold"
 
-# [font.italic]
-# family = "RobotoMono Nerd Font"
-# style = "Italic"
+[font.italic]
+family = "M+1Code Nerd Font"
+style = "Italic"
 
-# [font.bold_italic]
-# family = "RobotoMono Nerd Font"
-# style = "Bold Italic"
+[font.bold_italic]
+family = "M+1Code Nerd Font"
+style = "Bold Italic"
 
 # Ensure proper DPI awareness
 [window]
