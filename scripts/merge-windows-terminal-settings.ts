@@ -37,8 +37,8 @@ type WindowsTerminalSettings = {
 // This script is in scripts/ directory, assets/ is one level up
 const PRE_CONFIGURED_SETTINGS_PATH = join(
   dirname(dirname(fromFileUrl(import.meta.url))),
-  'assets',
-  'windows-terminal-config.json'
+  "assets",
+  "windows-terminal-config.json",
 );
 
 // Helper function to check if file exists
@@ -75,7 +75,10 @@ async function windowsTerminalSettingsLookup(): Promise<string[]> {
 
   try {
     for await (const entry of Deno.readDir(packagesDir)) {
-      if (entry.name.startsWith("Microsoft.WindowsTerminal_") && entry.isDirectory) {
+      if (
+        entry.name.startsWith("Microsoft.WindowsTerminal_") &&
+        entry.isDirectory
+      ) {
         const settingsPath = `${packagesDir}\\${entry.name}\\LocalState\\settings.json`;
         if (await fileExists(settingsPath)) {
           settingsFiles.push(settingsPath);
@@ -85,11 +88,15 @@ async function windowsTerminalSettingsLookup(): Promise<string[]> {
     }
   } catch (error) {
     if (error instanceof Deno.errors.NotFound) {
-      console.error(`Windows Terminal packages directory not found: ${packagesDir}`);
+      console.error(
+        `Windows Terminal packages directory not found: ${packagesDir}`,
+      );
     } else if (error instanceof Deno.errors.PermissionDenied) {
       console.error(`Permission denied accessing: ${packagesDir}`);
     } else {
-      console.error(`Error scanning Windows Terminal packages: ${error instanceof Error ? error.message : String(error)}`);
+      console.error(
+        `Error scanning Windows Terminal packages: ${error instanceof Error ? error.message : String(error)}`,
+      );
     }
   }
 
@@ -97,18 +104,26 @@ async function windowsTerminalSettingsLookup(): Promise<string[]> {
 }
 
 // Helper function to check if action is duplicate
-function isActionDuplicate(newAction: Action, existingActions: Action[]): boolean {
-  return existingActions.some(action =>
-    action.name === newAction.name ||
-    JSON.stringify(action.command) === JSON.stringify(newAction.command)
+function isActionDuplicate(
+  newAction: Action,
+  existingActions: Action[],
+): boolean {
+  return existingActions.some(
+    (action) =>
+      action.name === newAction.name ||
+      JSON.stringify(action.command) === JSON.stringify(newAction.command),
   );
 }
 
 // Helper function to check if keybinding is duplicate
-function isKeybindingDuplicate(newKeybinding: Keybinding, existingKeybindings: Keybinding[]): boolean {
-  return existingKeybindings.some(keybinding =>
-    keybinding.keys === newKeybinding.keys && 
-    keybinding.id === newKeybinding.id
+function isKeybindingDuplicate(
+  newKeybinding: Keybinding,
+  existingKeybindings: Keybinding[],
+): boolean {
+  return existingKeybindings.some(
+    (keybinding) =>
+      keybinding.keys === newKeybinding.keys &&
+      keybinding.id === newKeybinding.id,
   );
 }
 
@@ -170,7 +185,6 @@ async function mergeSettingsToFile(
     // Write back the merged JSON
     await Deno.writeTextFile(filePath, JSON.stringify(mergedSettings, null, 2));
     console.log(`Successfully merged settings to: ${filePath}`);
-
   } catch (error) {
     if (error instanceof Deno.errors.NotFound) {
       console.error(`Settings file not found: ${filePath}`);
@@ -190,11 +204,21 @@ try {
   const preConfiguredSettings = await getPreConfiguredSettings();
   const settingsFiles = await windowsTerminalSettingsLookup();
 
+  if (settingsFiles.length === 0) {
+    console.log("No Windows Terminal settings files found.");
+    Deno.exit(0);
+  }
+
+  console.log(
+    `Found ${settingsFiles.length} Windows Terminal settings file(s):`,
+  );
+
   for (const filePath of settingsFiles) {
+    console.log(`\nProcessing: ${filePath}`);
     await mergeSettingsToFile(preConfiguredSettings, filePath);
   }
 
-  console.log("Windows Terminal settings merge completed!");
+  console.log("\nWindows Terminal settings merge completed!");
 } catch (error) {
   console.error(
     `Windows Terminal settings merge failed: ${error instanceof Error ? error.message : String(error)}`,
