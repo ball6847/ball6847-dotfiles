@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ============================================================================
 # VERSION-AWARE DEV TOOLS INSTALLATION SCRIPT
 # ============================================================================
 # Checks current versions before installing, skips if already up-to-date
@@ -15,10 +14,13 @@
 #   ./dev-tools-install.sh [OPTIONS]
 #
 # Options:
-#   --no-cache          Skip reading from cache, force fresh queries
 #   --deno-only         Install only Deno packages
 #   --golang-only       Install only Go tools
 #   --help, -h          Show this help message
+
+
+# TODO: go package version detection is flaky
+# TODO: refactor functions into a library file (~/.dotfiles/lib/[package-by-functional].sh)
 
 # ============================================================================
 # LIBRARY FUNCTIONS (INTERNAL - DO NOT MODIFY UNLESS NECESSARY)
@@ -53,12 +55,7 @@ colorize() {
     esac
 }
 
-# Configuration
-CACHE_FILE="/tmp/dev-tools-versions.cache"
-CACHE_TTL=3600  # 1 hour in seconds
-
 # Flags
-NO_CACHE=false
 DENO_ONLY=false
 GOLANG_ONLY=false
 
@@ -90,113 +87,37 @@ compare_versions() {
     return 0  # equal
 }
 
-# Function: Get current timestamp
-get_timestamp() {
-    date +%s
-}
 
-# Function: Check if cache is stale
-is_cache_stale() {
-    local timestamp="$1"
-    local current_time=$(get_timestamp)
-    
-    if [[ -z "$timestamp" ]]; then
-        return 1  # Stale if no timestamp
-    fi
-    
-    local age=$((current_time - timestamp))
-    if (( age > CACHE_TTL )); then
-        return 0  # Stale
-    else
-        return 1  # Fresh
-    fi
-}
-
-# Function: Parse cache entry (format: key: value timestamp)
-parse_cache_entry() {
-    local entry="$1"
-    
-    # Extract value and timestamp
-    # Format: key: value timestamp
-    local value=$(echo "$entry" | cut -d' ' -f2)
-    local timestamp=$(echo "$entry" | cut -d' ' -f3-)
-    
-    echo "$value"
-    echo "$timestamp"
-}
-
-# Function: Read version from cache
-get_cached_version() {
-    local key="$1"
-    
-    if [[ "$NO_CACHE" = true ]]; then
-        return 1  # Skip cache if --no-cache flag is set
-    fi
-    
-    if [[ ! -f "$CACHE_FILE" ]]; then
-        return 1
-    fi
-    
-    local entry
-    entry=$(grep "^$key:" "$CACHE_FILE" | head -1)
-    
-    if [[ -n "$entry" ]]; then
-        # Parse value and timestamp
-        local value
-        local timestamp
-        read -r value timestamp <<< "$(parse_cache_entry "$entry")"
-        
-        # Check if cache is stale
-        if is_cache_stale "$timestamp"; then
-            return 1  # Stale, treat as not found
-        fi
-        
-        echo "$value"
-        return 0
-    fi
-    
-    return 1
-}
-
-# Function: Write version to cache
-cache_version() {
-    local key="$1"
-    local value="$2"
-    
-    if [[ "$NO_CACHE" = true ]]; then
-        return 0  # Skip cache if --no-cache flag is set
-    fi
-    
-    # Create cache directory if needed
-    mkdir -p "$(dirname "$CACHE_FILE")"
-    
-    # Get current timestamp
-    local timestamp=$(get_timestamp)
-    
-    # Write or update cache (format: key: value timestamp)
-    if grep -q "^$key:" "$CACHE_FILE" 2>/dev/null; then
-        sed -i "s/^$key:.*/$key: $value $timestamp/" "$CACHE_FILE"
-    else
-        echo "$key: $value $timestamp" >> "$CACHE_FILE"
-    fi
-}
 
 # Function: Get installed Deno package version
 get_installed_deno_version() {
     local package="$1"
     
-    # Try to get version from deno info
-    local info_output
-    info_output=$(deno info "$package" 2>&1)
+    # Extract package name from the full package specifier (e.g., "jsr:@ball6847/workspace-manager")
+    # The binary name is just the last part (e.g., "workspace-manager")
+    local package_name
+    package_name=$(echo "$package" | sed 's/.*://' | sed 's|^@||' | sed 's|.*/||')
     
-    if [[ $? -eq 0 && -n "$info_output" ]]; then
-        # Extract version from URL in the output (format: /X.Y.Z/main.ts)
-        local version
-        version=$(echo "$info_output" | grep -oP '/[0-9]+\.[0-9]+\.[0-9]+/' | head -1 | tr -d '/')
+    # Check if the package is installed globally by checking the deno bin directory
+    # This is more reliable than deno info which shows cached versions
+    # or command -v which finds shims even when the actual binary is missing
+    local deno_bin_dir
+    deno_bin_dir=$(realpath "$(dirname "$(command -v deno)")/../installs/deno/$(deno --version | head -1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')/.deno/bin")
+    
+    if [[ -n "$deno_bin_dir" && -f "$deno_bin_dir/$package_name" ]]; then
+        # Package is installed, get version from deno info
+        local info_output
+        info_output=$(deno info "$package" 2>&1)
         
-        if [[ -n "$version" ]]; then
-            echo "$version"
-            return 0
+        if [[ $? -eq 0 && -n "$info_output" ]]; then
+            # Extract version from URL in the output (format: /X.Y.Z/main.ts)
+            local version
+            version=$(echo "$info_output" | grep -oP '/[0-9]+\.[0-9]+\.[0-9]+/' | head -1 | tr -d '/')
+            
+            if [[ -n "$version" ]]; then
+                echo "$version"
+                return 0
+            fi
         fi
     fi
     
@@ -207,28 +128,21 @@ get_installed_deno_version() {
 get_latest_deno_version() {
     local package="$1"
     
-    # Try cache first
-    local cached_value
-    if cached_value=$(get_cached_version "$package"); then
-        echo "$cached_value"
+    # Query JSR meta.json to get the latest version
+    # Extract package name from the full package specifier (e.g., "jsr:@ball6847/workspace-manager")
+    local package_name
+    package_name=$(echo "$package" | sed 's/.*://' | sed 's|^@||')
+    
+    # Construct JSR meta.json URL
+    local meta_url="https://jsr.io/@$package_name/meta.json"
+    
+    # Query JSR meta.json with timeout to avoid hanging
+    local version
+    version=$(curl -s "$meta_url" | grep -oP '"latest":"[^"]*"' | sed 's/.*"latest":"\([^"]*\)".*/\1/')
+    
+    if [[ -n "$version" ]]; then
+        echo "$version"
         return 0
-    fi
-    
-    # Try to get version from deno info (same as installed, but for latest)
-    # This is a fallback - in production we might want to query JSR API
-    # Suppress output
-    local info_output
-    info_output=$(deno info "$package" 2>&1)
-    
-    if [[ $? -eq 0 && -n "$info_output" ]]; then
-        local version
-        version=$(echo "$info_output" | grep -oP '/[0-9]+\.[0-9]+\.[0-9]+/' | head -1 | tr -d '/')
-        
-        if [[ -n "$version" ]]; then
-            cache_version "$package" "$version"
-            echo "$version"
-            return 0
-        fi
     fi
     
     return 1
@@ -267,14 +181,6 @@ get_installed_go_version() {
 # Function: Get latest Go tool version from GitHub API
 get_latest_go_version() {
     local repo="$1"
-    local cache_key="go-$repo"
-    
-    # Try cache first
-    local cached_value
-    if cached_value=$(get_cached_version "$cache_key"); then
-        echo "$cached_value"
-        return 0
-    fi
     
     # Query GitHub API (with timeout to avoid hanging)
     local api_url="https://api.github.com/repos/$repo/releases/latest"
@@ -282,7 +188,6 @@ get_latest_go_version() {
     version=$(curl -s "$api_url" | grep '"tag_name"' | head -1 | sed 's/.*"v\([^"]*\)".*/\1/' | tr -d 'v')
     
     if [[ -n "$version" ]]; then
-        cache_version "$cache_key" "$version"
         echo "$version"
         return 0
     fi
@@ -418,10 +323,6 @@ install_go_tool() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --no-cache)
-            NO_CACHE=true
-            shift
-            ;;
         --deno-only)
             DENO_ONLY=true
             shift
@@ -434,14 +335,12 @@ while [[ $# -gt 0 ]]; do
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --no-cache          Skip reading from cache, force fresh queries"
             echo "  --deno-only         Install only Deno packages"
             echo "  --golang-only       Install only Go tools"
             echo "  --help, -h          Show this help message"
             echo ""
             echo "Examples:"
             echo "  $0                          # Install all tools (default)"
-            echo "  $0 --no-cache               # Force fresh install, ignore cache"
             echo "  $0 --deno-only              # Install only Deno packages"
             echo "  $0 --golang-only            # Install only Go tools"
             exit 0
