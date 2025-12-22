@@ -242,13 +242,13 @@ install_deno_package() {
     
     # Show version information
     if [[ -n "$installed_version" ]]; then
-        colorize "boldgreen" "  Installed: v$installed_version"
+        echo "  Installed: $(colorize "boldgreen" "v$installed_version")"
     else
         echo "  ⚠️  Installed version: unknown"
     fi
     
     if [[ -n "$latest_version" ]]; then
-        colorize "boldgreen" "  Latest:    v$latest_version"
+        echo "  Latest:    $(colorize "boldgreen" "v$latest_version")"
     else
         echo "  ⚠️  Latest version: unknown"
     fi
@@ -263,7 +263,7 @@ install_deno_package() {
     
     # Install or update (suppress deno output but show errors)
     if [[ -n "$latest_version" ]]; then
-        colorize "boldgreen" "  🔄 Installing/updating to v$latest_version..."
+        echo "  🔄 Installing/updating to $(colorize "boldgreen" "v$latest_version")..."
     else
         echo "  🔄 Installing/updating (latest version)..."
     fi
@@ -276,7 +276,7 @@ install_deno_package() {
     
     if [[ $exit_code -eq 0 ]]; then
         if [[ -n "$latest_version" ]]; then
-            colorize "boldgreen" "  ✓ Installed (v$latest_version)"
+            echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
         else
             echo "  ✓ Installed (latest version)"
         fi
@@ -304,13 +304,13 @@ install_go_tool() {
     
     # Show version information
     if [[ -n "$installed_version" ]]; then
-        colorize "boldgreen" "  Installed: v$installed_version"
+        echo "  Installed: $(colorize "boldgreen" "v$installed_version")"
     else
         echo "  ⚠️  Installed version: unknown"
     fi
     
     if [[ -n "$latest_version" ]]; then
-        colorize "boldgreen" "  Latest:    v$latest_version"
+        echo "  Latest:    $(colorize "boldgreen" "v$latest_version")"
     else
         echo "  ⚠️  Latest version: unknown"
     fi
@@ -325,7 +325,7 @@ install_go_tool() {
     
     # Install or update with timeout
     if [[ -n "$latest_version" ]]; then
-        colorize "boldgreen" "  🔄 Installing/updating to v$latest_version..."
+        echo "  🔄 Installing/updating to $(colorize "boldgreen" "v$latest_version")..."
     else
         echo "  🔄 Installing/updating (latest version)..."
     fi
@@ -334,7 +334,7 @@ install_go_tool() {
     # Suppress go install output
     if timeout 300 go install "$repo"@latest >/dev/null 2>&1; then
         if [[ -n "$latest_version" ]]; then
-            colorize "boldgreen" "  ✓ Installed (v$latest_version)"
+            echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
         else
             echo "  ✓ Installed (latest version)"
         fi
