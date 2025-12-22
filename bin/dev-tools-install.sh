@@ -7,15 +7,14 @@
 # This script provides significant performance improvements by:
 # - Checking installed versions before installing
 # - Skipping installation when tools are already up-to-date
-# - Caching version information to minimize API calls
 # - Providing clear feedback about what's happening
 #
 # Usage:
 #   ./dev-tools-install.sh [OPTIONS]
 #
 # Options:
-#   --deno-only         Install only Deno packages
-#   --golang-only       Install only Go tools
+#   --deno              Install only Deno packages
+#   --golang            Install only Go tools
 #   --help, -h          Show this help message
 
 # TODO: go package version detection is flaky
@@ -36,9 +35,9 @@ else
     exit 1
 fi
 
-# Flags
-DENO_ONLY=false
-GOLANG_ONLY=false
+# Installation flags - default to false
+INSTALL_DENO_PKG=false
+INSTALL_GO_PKG=false
 
 # ============================================================================
 # MAIN INSTALLATION LOGIC (SAFE TO MODIFY)
@@ -47,26 +46,26 @@ GOLANG_ONLY=false
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --deno-only)
-            DENO_ONLY=true
+        --deno)
+            INSTALL_DENO_PKG=true
             shift
             ;;
-        --golang-only)
-            GOLANG_ONLY=true
+        --golang)
+            INSTALL_GO_PKG=true
             shift
             ;;
         --help|-h)
             echo "Usage: $0 [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --deno-only         Install only Deno packages"
-            echo "  --golang-only       Install only Go tools"
+            echo "  --deno              Install only Deno packages"
+            echo "  --golang            Install only Go tools"
             echo "  --help, -h          Show this help message"
             echo ""
             echo "Examples:"
             echo "  $0                          # Install all tools (default)"
-            echo "  $0 --deno-only              # Install only Deno packages"
-            echo "  $0 --golang-only            # Install only Go tools"
+            echo "  $0 --deno                   # Install only Deno packages"
+            echo "  $0 --golang                 # Install only Go tools"
             exit 0
             ;;
         *)
@@ -77,9 +76,10 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Validate flag combinations
-if [[ "$DENO_ONLY" = true && "$GOLANG_ONLY" = true ]]; then
-    echo "Warning: Both --deno-only and --golang-only specified, installing all tools"
+# If no flags specified, install all packages by default
+if [[ "$INSTALL_DENO_PKG" = false && "$INSTALL_GO_PKG" = false ]]; then
+    INSTALL_DENO_PKG=true
+    INSTALL_GO_PKG=true
 fi
 
 # Main installation logic
@@ -87,7 +87,7 @@ colorize "boldgreen" "🚀 Starting version-aware dev tools installation..."
 echo
 
 # Deno packages
-if [[ "$DENO_ONLY" = true || "$GOLANG_ONLY" = false ]]; then
+if [[ "$INSTALL_DENO_PKG" = true ]]; then
     colorize "boldblue" "📦 Deno packages:"
     install_deno_package "jsr:@ball6847/workspace-manager" "workspace-manager"
     install_deno_package "jsr:@ball6847/git-commit-ai" "git-commit-ai"
@@ -98,7 +98,7 @@ if [[ "$DENO_ONLY" = true || "$GOLANG_ONLY" = false ]]; then
 fi
 
 # Go tools
-if [[ "$GOLANG_ONLY" = true || "$DENO_ONLY" = false ]]; then
+if [[ "$INSTALL_GO_PKG" = true ]]; then
     colorize "boldblue" "📦 Go tools:"
     install_go_tool "github.com/vektra/mockery/v2" "mockery"
     install_go_tool "github.com/mitranim/gow" "gow"
