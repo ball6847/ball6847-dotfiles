@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "chadracula",
+  theme = "radium",
   -- enable true color support for base46 themes
   -- termguicolors = true,  -- This might be handled automatically
 
