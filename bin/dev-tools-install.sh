@@ -10,6 +10,15 @@
 # - Skipping installation when tools are already up-to-date
 # - Caching version information to minimize API calls
 # - Providing clear feedback about what's happening
+#
+# Usage:
+#   ./dev-tools-install.sh [OPTIONS]
+#
+# Options:
+#   --no-cache          Skip reading from cache, force fresh queries
+#   --deno-only         Install only Deno packages
+#   --golang-only       Install only Go tools
+#   --help, -h          Show this help message
 
 # ============================================================================
 # LIBRARY FUNCTIONS (INTERNAL - DO NOT MODIFY UNLESS NECESSARY)
@@ -46,6 +55,12 @@ colorize() {
 
 # Configuration
 CACHE_FILE="/tmp/dev-tools-versions.cache"
+CACHE_TTL=3600  # 1 hour in seconds
+
+# Flags
+NO_CACHE=false
+DENO_ONLY=false
+GOLANG_ONLY=false
 
 # Function: Compare semantic versions (simplified)
 # Returns 0 if v1 >= v2, 1 if v1 < v2
@@ -80,18 +95,62 @@ get_timestamp() {
     date +%s
 }
 
+# Function: Check if cache is stale
+is_cache_stale() {
+    local timestamp="$1"
+    local current_time=$(get_timestamp)
+    
+    if [[ -z "$timestamp" ]]; then
+        return 1  # Stale if no timestamp
+    fi
+    
+    local age=$((current_time - timestamp))
+    if (( age > CACHE_TTL )); then
+        return 0  # Stale
+    else
+        return 1  # Fresh
+    fi
+}
+
+# Function: Parse cache entry (format: key: value timestamp)
+parse_cache_entry() {
+    local entry="$1"
+    
+    # Extract value and timestamp
+    # Format: key: value timestamp
+    local value=$(echo "$entry" | cut -d' ' -f2)
+    local timestamp=$(echo "$entry" | cut -d' ' -f3-)
+    
+    echo "$value"
+    echo "$timestamp"
+}
+
 # Function: Read version from cache
 get_cached_version() {
     local key="$1"
+    
+    if [[ "$NO_CACHE" = true ]]; then
+        return 1  # Skip cache if --no-cache flag is set
+    fi
     
     if [[ ! -f "$CACHE_FILE" ]]; then
         return 1
     fi
     
-    local value
-    value=$(grep "^$key:" "$CACHE_FILE" | cut -d' ' -f2-)
+    local entry
+    entry=$(grep "^$key:" "$CACHE_FILE" | head -1)
     
-    if [[ -n "$value" ]]; then
+    if [[ -n "$entry" ]]; then
+        # Parse value and timestamp
+        local value
+        local timestamp
+        read -r value timestamp <<< "$(parse_cache_entry "$entry")"
+        
+        # Check if cache is stale
+        if is_cache_stale "$timestamp"; then
+            return 1  # Stale, treat as not found
+        fi
+        
         echo "$value"
         return 0
     fi
@@ -104,14 +163,21 @@ cache_version() {
     local key="$1"
     local value="$2"
     
+    if [[ "$NO_CACHE" = true ]]; then
+        return 0  # Skip cache if --no-cache flag is set
+    fi
+    
     # Create cache directory if needed
     mkdir -p "$(dirname "$CACHE_FILE")"
     
-    # Write or update cache
+    # Get current timestamp
+    local timestamp=$(get_timestamp)
+    
+    # Write or update cache (format: key: value timestamp)
     if grep -q "^$key:" "$CACHE_FILE" 2>/dev/null; then
-        sed -i "s/^$key:.*/$key: $value/" "$CACHE_FILE"
+        sed -i "s/^$key:.*/$key: $value $timestamp/" "$CACHE_FILE"
     else
-        echo "$key: $value" >> "$CACHE_FILE"
+        echo "$key: $value $timestamp" >> "$CACHE_FILE"
     fi
 }
 
@@ -213,7 +279,7 @@ get_latest_go_version() {
     # Query GitHub API (with timeout to avoid hanging)
     local api_url="https://api.github.com/repos/$repo/releases/latest"
     local version
-    version=$(curl -s "$api_url" | grep '"tag_name"' | head -1 | sed 's/.*"v\([^\"]*\).*/\1/' | tr -d 'v')
+    version=$(curl -s "$api_url" | grep '"tag_name"' | head -1 | sed 's/.*"v\([^"]*\)".*/\1/' | tr -d 'v')
     
     if [[ -n "$version" ]]; then
         cache_version "$cache_key" "$version"
@@ -349,31 +415,79 @@ install_go_tool() {
 # MAIN INSTALLATION LOGIC (SAFE TO MODIFY)
 # ============================================================================
 
+# Parse command-line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --no-cache)
+            NO_CACHE=true
+            shift
+            ;;
+        --deno-only)
+            DENO_ONLY=true
+            shift
+            ;;
+        --golang-only)
+            GOLANG_ONLY=true
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: $0 [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --no-cache          Skip reading from cache, force fresh queries"
+            echo "  --deno-only         Install only Deno packages"
+            echo "  --golang-only       Install only Go tools"
+            echo "  --help, -h          Show this help message"
+            echo ""
+            echo "Examples:"
+            echo "  $0                          # Install all tools (default)"
+            echo "  $0 --no-cache               # Force fresh install, ignore cache"
+            echo "  $0 --deno-only              # Install only Deno packages"
+            echo "  $0 --golang-only            # Install only Go tools"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1" >&2
+            echo "Use --help for usage information" >&2
+            exit 1
+            ;;
+    esac
+done
+
+# Validate flag combinations
+if [[ "$DENO_ONLY" = true && "$GOLANG_ONLY" = true ]]; then
+    echo "Warning: Both --deno-only and --golang-only specified, installing all tools"
+fi
+
 # Main installation logic
 colorize "boldgreen" "🚀 Starting version-aware dev tools installation..."
 echo
 
 # Deno packages
-colorize "boldblue" "📦 Deno packages:"
-install_deno_package "jsr:@ball6847/workspace-manager" "workspace-manager"
-install_deno_package "jsr:@ball6847/git-commit-ai" "git-commit-ai"
-echo
+if [[ "$DENO_ONLY" = true || "$GOLANG_ONLY" = false ]]; then
+    colorize "boldblue" "📦 Deno packages:"
+    install_deno_package "jsr:@ball6847/workspace-manager" "workspace-manager"
+    install_deno_package "jsr:@ball6847/git-commit-ai" "git-commit-ai"
+    echo
 
-# Reshim deno
-if ! asdf reshim deno 2>/dev/null; then
-    echo "⚠️  asdf reshim failed or asdf not available"
+    # Reshim deno
+    if ! asdf reshim deno 2>/dev/null; then
+        echo "⚠️  asdf reshim failed or asdf not available"
+    fi
 fi
 
 # Go tools
-colorize "boldblue" "📦 Go tools:"
-install_go_tool "github.com/vektra/mockery/v2" "mockery"
-install_go_tool "github.com/mitranim/gow" "gow"
-install_go_tool "golang.org/x/tools/gopls" "gopls"
-echo
+if [[ "$GOLANG_ONLY" = true || "$DENO_ONLY" = false ]]; then
+    colorize "boldblue" "📦 Go tools:"
+    install_go_tool "github.com/vektra/mockery/v2" "mockery"
+    install_go_tool "github.com/mitranim/gow" "gow"
+    install_go_tool "golang.org/x/tools/gopls" "gopls"
+    echo
 
-# Reshim golang
-if ! asdf reshim golang 2>/dev/null; then
-    echo "⚠️  asdf reshim failed or asdf not available"
+    # Reshim golang
+    if ! asdf reshim golang 2>/dev/null; then
+        echo "⚠️  asdf reshim failed or asdf not available"
+    fi
 fi
 
 colorize "boldgreen" "✅ Dev tools installation completed!"
