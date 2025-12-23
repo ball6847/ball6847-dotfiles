@@ -139,7 +139,6 @@ alias gd="git diff"
 alias gl="git log --oneline"
 alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias git-clean="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
-alias tm="tmux new-session -A -s main"
 alias tm-reload="tmux source-file ~/.tmux.conf"
 alias dc="docker-compose"
 alias dcx="docker-compose exec"
@@ -297,6 +296,16 @@ aa() {
 }
 
 # ================================================
+# start or attach to tmux session
+
+tm() {
+  local session_name="main"
+  if [[ -n "$1" ]]; then
+    session_name="$1"
+  fi
+  tmux new-session -A -s "$session_name"
+}
+
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
