@@ -26,6 +26,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- set .env filetype and disable LSP
+vim.filetype.add({
+  extension = {
+    env = "env",
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "env",
+  callback = function()
+    vim.b.lspenabled = false
+  end,
+})
+
 -- Ensure termguicolors is enabled even after NvChad loads
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
