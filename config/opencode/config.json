@@ -438,6 +438,34 @@
             "context": 128000,
             "output": 64000
           }
+        },
+        "minimax-m2.1": {
+          "name": "MiniMax-M2.1",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
+          "limit": {
+            "context": 200000,
+            "output": 200000
+          }
+        },
+        "gemini-3-flash-preview": {
+          "name": "Gemini-3-Flash-Preview",
+          "reasoning": true,
+          "temperature": true,
+          "tool_call": true,
+          "options": {
+            "reasoningEffort": "low",
+            "textVerbosity": "low"
+          },
+          "limit": {
+            "context": 128000,
+            "output": 64000
+          }
         }
       }
     }
