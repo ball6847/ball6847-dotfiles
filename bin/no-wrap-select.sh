@@ -1,6 +1,6 @@
 #!/bin/bash
 # Non-wrapping pane selection for tmux
-# Usage: no-wrap-select.sh [left|right|up|down]
+# Usage: no-wrap-select.sh [left|right|up|down|pane-prev|pane-next]
 
 SESSION=$(tmux display-message -p '#S')
 WINDOW=$(tmux display-message -p '#I')
@@ -23,7 +23,7 @@ while read -r line; do
 done < "$tmpfile"
 
 case "$DIRECTION" in
-    "left"|"up")
+    "left"|"up"|"pane-prev")
         # Find previous pane (don't wrap)
         for i in "${!PANE_ARRAY[@]}"; do
             if [ "${PANE_ARRAY[i]}" -eq "$CURRENT" ] && [ "$i" -gt 0 ]; then
@@ -34,10 +34,10 @@ case "$DIRECTION" in
             fi
         done
         ;;
-    "right"|"down")
+    "right"|"down"|"pane-next")
         # Find next pane (don't wrap)
         for i in "${!PANE_ARRAY[@]}"; do
-            if [ "${PANE_ARRAY[i]}" -eq "$CURRENT" ] && [ "$i" -lt "$((${#PANE_ARRAY[@]}-1))" ]; then
+            if [ "${PANE_ARRAY[i]}" -eq "$CURRENT" ] && [ $i -lt $((${#PANE_ARRAY[@]}-1)) ]; then
                 NEXT="${PANE_ARRAY[$((i+1))]}"
                 tmux select-pane -t "$TARGET.$NEXT"
                 rm -f "$tmpfile"
