@@ -142,7 +142,7 @@ line-height = 1.3
 # decorations = "enabled"
 # colorspace = "display-p3"
 [window]
-mode = "Maximized"
+mode = "Fullscreen"
 decorations = "enabled"
 colorspace = "srgb"
 
@@ -378,6 +378,8 @@ keys = [
   { key = "h", with = "alt", action = "SplitDown" },
   { key = "[", with = "alt | shift", action = "SelectPrevSplit" },
   { key = "]", with = "alt | shift", action = "SelectNextSplit" },
+  { key = "[", with = "control | shift", action = "SelectPrevTab" },
+  { key = "]", with = "control | shift", action = "SelectNextTab" },
   { key = "up", with = "control | shift", action = "MoveDividerUp" },
   { key = "down", with = "control | shift", action = "MoveDividerDown" },
   { key = "left", with = "control | shift", action = "MoveDividerLeft" },
