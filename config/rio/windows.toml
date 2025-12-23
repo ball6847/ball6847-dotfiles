@@ -298,6 +298,11 @@ weight = 500
 # use-current-path = false
 # color-automation = []
 
+[navigation]
+mode = "BottomTab"
+use-current-path = true
+hide-if-single = false
+
 # Shell
 #
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
@@ -369,6 +374,10 @@ args = ["--cd","~"]
 [bindings]
 keys = [
   { key = "return", with = "shift", esc =  "\u000a" },
+  { key = "v", with = "alt", action = "SplitRight" },
+  { key = "h", with = "alt", action = "SplitDown" },
+  { key = "left", with = "alt | shift", action = "SelectPrevSplit" },
+  { key = "right", with = "alt | shift", action = "SelectNextSplit" },
 ]
 
 # Platform
