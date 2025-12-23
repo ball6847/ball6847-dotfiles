@@ -333,7 +333,8 @@ weight = 500
 # args = ["new-session", "-c", "/var/www"]
 [shell]
 program = "wsl"
-args = ["--cd","~","-e","zsh -l -c \"source .zshrc && tmux new-session -A -s main\""]
+# args = ["--cd","~","-e","zsh -l -c \"source .zshrc && tmux new-session -A -s main\""]
+args = ["--cd","~"]
 
 
 # Colors
