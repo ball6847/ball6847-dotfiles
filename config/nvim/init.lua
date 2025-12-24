@@ -47,3 +47,4 @@ end)
 
 require "configs.autoread"
 require "configs.gitsigns"
+require "configs.quickfix"
