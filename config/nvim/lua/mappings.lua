@@ -72,42 +72,47 @@ map("n", "<leader>tw", toggle_nvim_tree_width, { desc = "Toggle nvim-tree width"
 
 -- organize imports
 local function organize_imports()
-  local params = vim.lsp.util.make_range_params()
-  -- TODO: we might need to provide different codeAction name based on specific lsp
-  params.context = {
-    only = {
-      "source.organizeImports",
+  local params = {
+    textDocument = { uri = vim.uri_from_bufnr(vim.api.nvim_get_current_buf()) },
+    range = nil,
+    context = {
+      only = {
+        "source.organizeImports",
+      },
     },
   }
 
-  local clients = vim.lsp.get_active_clients()
-  for _, client in pairs(clients) do
-    if client.supports_method "textDocument/codeAction" then
-      client.request("textDocument/codeAction", params, function(err, res)
-        if err then
-          vim.notify("Error organizing imports: " .. err.message, vim.log.levels.ERROR)
-          return
-        end
-
-        if res and res[1] then
-          local action = res[1]
-
-          -- If the action has an `edit` field, apply it
-          if action.edit then
-            vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
-          end
-
-          -- If the action has a `command` field, execute it
-          if action.command then
-            vim.lsp.buf.execute_command(action.command)
-          end
-        else
-          vim.notify("No organize imports action available", vim.log.levels.INFO)
-        end
-      end)
+  vim.lsp.buf_request(vim.api.nvim_get_current_buf(), "textDocument/codeAction", params, function(err, res, ctx)
+    if err then
+      vim.notify("Error organizing imports: " .. err.message, vim.log.levels.ERROR)
       return
     end
-  end
+
+    if res and res[1] then
+      local action = res[1]
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      if not client then
+        return
+      end
+
+      -- If the action has an `edit` field, apply it
+      if action.edit then
+        vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+      end
+
+      -- If the action has a `command` field, execute it
+      if action.command then
+        local cmd = type(action.command) == "table" and action.command or { command = action.command }
+        client:exec_cmd({
+          title = "Organize Imports",
+          command = cmd.command,
+          arguments = cmd.arguments,
+        }, { bufnr = ctx.bufnr })
+      end
+    else
+      vim.notify("No organize imports action available", vim.log.levels.INFO)
+    end
+  end)
 end
 
 -- Mapping to trigger the function

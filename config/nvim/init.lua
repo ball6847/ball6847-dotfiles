@@ -45,6 +45,7 @@ vim.schedule(function()
   require "mappings"
 end)
 
+-- load my custom configs
 require "configs.autoread"
 require "configs.gitsigns"
 require "configs.quickfix"
