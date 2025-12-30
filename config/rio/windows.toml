@@ -416,3 +416,6 @@ keys = [
 # log-level = "OFF"
 # enable-log-file = false
 
+[bell]
+visual = false
+audio = false
