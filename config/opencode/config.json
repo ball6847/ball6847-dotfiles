@@ -46,35 +46,16 @@
         }
       }
     },
-    "vanchin": {
+    "streamlake": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Vanchin KAT-Coder",
+      "name": "StreamLake Coding Plan",
       "options": {
-        "baseURL": "https://vanchin.streamlake.ai/api/gateway/v1/endpoints",
-        "headers": {
-          "Authorization": "Bearer {env:VC_API_KEY}"
-        }
+        "baseURL": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+        "apiKey": "{env:VC_API_KEY}"
       },
       "models": {
-        "ep-y5jyym-1762763475872074194": {
-          "name": "KAT-Coder-Pro",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "limit": {
-            "context": 200000,
-            "output": 200000
-          }
-        },
-        "ep-trsvc7-1762763786443153146": {
-          "name": "KAT-Coder-Air",
-          "reasoning": false,
-          "temperature": true,
-          "tool_call": true,
-          "limit": {
-            "context": 200000,
-            "output": 200000
-          }
+        "kat-coder-pro-v1": {
+          "name": "kat-coder-pro-v1"
         }
       }
     },
