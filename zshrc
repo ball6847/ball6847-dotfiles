@@ -218,6 +218,12 @@ vibe() {
   doppler_run -- $_VIBE_BIN "$@"
 }
 
+_CLAUDE_BIN="`which claude`"
+
+claude() {
+  doppler_run -- $_CLAUDE_BIN "$@"
+}
+
 # ================================================
 # tmux alias for open new window in pre-configured view
 
