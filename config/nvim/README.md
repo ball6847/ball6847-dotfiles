@@ -61,6 +61,18 @@ asdf install ruby
 - `<C-V>` on nvim-tree to open file in vertical split
 - `W` on nvim-tree to collapse all folders
 
+## Macro Recording
+
+Vim macros allow you to record and replay sequences of keystrokes:
+
+- **Start recording**: `qq` (records into register `q`)
+- **Stop recording**: `q`
+- **Replay macro**: `@q` (or press `<F4>` for the macro in register `q`)
+- **Replay multiple times**: `5@q` (replays 5 times)
+- **Replay last macro**: `@@`
+
+The configuration includes a custom `<F4>` key mapping that replays the macro stored in register `q`, making it convenient to execute recorded macros quickly.
+
 ## Github Copilot
 
 Run `:Copilot setup` to setup github copilot and follow the instructions. Use `<C-L>` to accept the suggestion
