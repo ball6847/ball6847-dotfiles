@@ -28,9 +28,8 @@ bun install --global @qwen-code/qwen-code@latest
 echo "Installing Gemini CLI..."
 bun install --global @google/gemini-cli@latest
 
-# no longer use claude code
-# echo "Installing Claude Code..."
-# bun install --global @anthropic-ai/claude-code@latest
+echo "Installing Claude Code..."
+bun install --global @anthropic-ai/claude-code@latest
 
 # Stick to 0.x version as 1.x is still not yet stable
 echo "Installing OpenCode AI..."
