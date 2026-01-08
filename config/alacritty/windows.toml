@@ -13,8 +13,8 @@ program = "wsl"
 args = [
   "--cd",
   "~",
-  "-e",
-  "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
+  # "-e",
+  # "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
 ]
 
 
