@@ -10,7 +10,7 @@ kubecm 0.33.0
 k3d 5.8.3
 helm 3.17.3
 terraform 1.11.4
-lua-language-server 3.14
+lua-language-server 3.16.4
 task 3.43.3
 mockery 3.2.5
 golangci-lint 2.7.2
