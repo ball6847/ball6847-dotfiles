@@ -8,6 +8,7 @@
 # dependencies
 # - ruby (require upon installation, and must have rustc installed): 
 #   $ apt install build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev
+#   $ brew install autoconf openssl@3 libyaml zlib libffi gmp
 # - neovim (require when MasonInstallAll, and fzf by some plugin):
 #   $ apt install python3-venv
 
