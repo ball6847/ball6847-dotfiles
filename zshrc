@@ -266,13 +266,22 @@ vvb() {
   in_tmux _ai_split "vibe"
 }
 
-vq() {
+# open nvim on left pane, and qwen on right pane
+vqw() {
   in_tmux _ai_split "qw"
 }
 
+# open nvim on left pane, and gemini on right pane
 vg() {
   in_tmux _ai_split "g"
 }
+
+# open nvim on left pane, and claude code on right pane
+vcc() {
+  in_tmux _ai_split "cc"
+}
+
+# TODO: add vcc() for nvim + claude code
 
 # ================================================
 # make ai ide tools work in wsl
