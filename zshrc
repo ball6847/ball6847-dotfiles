@@ -281,8 +281,6 @@ vcc() {
   in_tmux _ai_split "cc"
 }
 
-# TODO: add vcc() for nvim + claude code
-
 # ================================================
 # make ai ide tools work in wsl
 
