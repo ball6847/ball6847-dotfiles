@@ -221,7 +221,7 @@ vibe() {
 _CLAUDE_BIN="`which claude`"
 
 claude() {
-  doppler_run -- $_CLAUDE_BIN "$@"
+  doppler_run -- $_CLAUDE_BIN --allow-dangerously-skip-permissions "$@"
 }
 
 # ================================================
