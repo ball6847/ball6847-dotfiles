@@ -1,23 +1,27 @@
-require "configs.cmp"
-
-local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
+-- LSP Configuration using nvim-lspconfig plugin
+-- Import and configure LSP servers from the nvim-lspconfig plugin
 
 -- Configure all LSPs with default settings using new Neovim 0.11+ API
 vim.lsp.config("*", {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+  on_attach = require("nvchad.configs.lspconfig").on_attach,
+  on_init = require("nvchad.configs.lspconfig").on_init,
+  capabilities = require("nvchad.configs.lspconfig").capabilities,
 })
 
--- Enable LSP servers with default config
+-- Enable LSP servers with default config from nvim-lspconfig
 local servers = {
   "html",
   "cssls",
   "bashls",
-  -- "golangci_lint_ls",
+  "lua_ls",
+  "denols",
+  "ts_ls",
+  "svelte",
+  "intelephense",
+  "protols",
+  "gopls",
 }
+
 for _, server in ipairs(servers) do
   vim.lsp.enable(server)
 end
@@ -38,166 +42,128 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
-vim.lsp.enable "lua_ls"
 
--- deno (typescript)
--- see https://docs.deno.com/runtime/manual/getting_started/setup_your_environment#vimneovim-via-plugins
--- note: denols will only enabled if the project root contains deno.json or deno.jsonc
---       and if your project also contains package.json as well, tsserver will be enabled as well and this will be mess. Make sure you don't have both deno.json and package.json in the same project
-
--- denols using new Neovim 0.11 API
-vim.lsp.config("denols", {
-  root_markers = { "deno.json", "deno.jsonc" },
-  settings = {
-    deno = {
-      enable = true,
-      lint = true,
-      config = "deno.json",
-    },
-  },
-})
-vim.lsp.enable "denols"
-
--- typescript
--- note: tsserver will be disabled if the project root contains deno.json or deno.jsonc
-
--- ts_ls using new Neovim 0.11 API
-vim.lsp.config("ts_ls", {
-  root_markers = { "package.json" },
-  on_attach = function(client, bufnr)
-    if vim.fn.filereadable("deno.json") == 1 or vim.fn.filereadable("deno.jsonc") == 1 then
-      client:stop()
-    else
-      on_attach(client, bufnr)
-    end
-  end,
-})
-vim.lsp.enable "ts_ls"
-
--- svelte - configure on_attach with workaround for lsp not picking up ts/js changes.
--- see - https://github.com/neovim/nvim-lspconfig/issues/725#issuecomment-1837509673
-vim.lsp.config("svelte", {
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = { "*.js", "*.ts" },
-      callback = function(ctx)
-        -- Here use ctx.match instead of ctx.file
-        client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-      end,
-    })
-  end,
-})
-vim.lsp.enable "svelte"
-
--- intelephense (php)
-vim.lsp.config("intelephense", {
-  settings = {
-    intelephense = {
-      -- Add wordpress to the list of stubs
-      stubs = {
-        "apache",
-        "bcmath",
-        "bz2",
-        "calendar",
-        "com_dotnet",
-        "Core",
-        "ctype",
-        "curl",
-        "date",
-        "dba",
-        "dom",
-        "enchant",
-        "exif",
-        "FFI",
-        "fileinfo",
-        "filter",
-        "fpm",
-        "ftp",
-        "gd",
-        "gettext",
-        "gmp",
-        "hash",
-        "iconv",
-        "imap",
-        "intl",
-        "json",
-        "ldap",
-        "libxml",
-        "mbstring",
-        "meta",
-        "mysqli",
-        "oci8",
-        "odbc",
-        "openssl",
-        "pcntl",
-        "pcre",
-        "PDO",
-        "pdo_ibm",
-        "pdo_mysql",
-        "pdo_pgsql",
-        "pdo_sqlite",
-        "pgsql",
-        "Phar",
-        "posix",
-        "pspell",
-        "readline",
-        "Reflection",
-        "session",
-        "shmop",
-        "SimpleXML",
-        "snmp",
-        "soap",
-        "sockets",
-        "sodium",
-        "SPL",
-        "sqlite3",
-        "standard",
-        "superglobals",
-        "sysvmsg",
-        "sysvsem",
-        "sysvshm",
-        "tidy",
-        "tokenizer",
-        "xml",
-        "xmlreader",
-        "xmlrpc",
-        "xmlwriter",
-        "xsl",
-        "Zend OPcache",
-        "zip",
-        "zlib",
-        "wordpress",
-        "phpunit",
-      },
-      diagnostics = {
-        enable = true,
-      },
-      format = {
-        enable = true,
-      },
-    },
-  },
-})
-vim.lsp.enable "intelephense"
-
--- protols: detects the root directory by looking for protols.toml
-vim.lsp.config("protols", {
-  root_dir = require("lspconfig.util").root_pattern "protols.toml",
-})
-vim.lsp.enable "protols"
-
--- gopls, setup integration with gofumpt and auto organize imports on save
--- see: https://github.com/golang/tools/blob/master/gopls/doc/vim.md
+-- Configure gopls with gofumpt integration
 vim.lsp.config("gopls", {
   settings = {
     gopls = {
       gofumpt = true,
-      -- staticcheck = true,
       formatting = {
         goimportspath = "goimports",
       },
     },
   },
 })
-vim.lsp.enable "gopls"
+
+-- Configure intelephense with WordPress stubs
+vim.lsp.config("intelephense", {
+  settings = {
+    intelephense = {
+      stubs = {
+        "apache", "bcmath", "bz2", "calendar", "com_dotnet", "Core", "ctype", "curl",
+        "date", "dba", "dom", "enchant", "exif", "FFI", "fileinfo", "filter", "fpm",
+        "ftp", "gd", "gettext", "gmp", "hash", "iconv", "imap", "intl", "json", "ldap",
+        "libxml", "mbstring", "meta", "mysqli", "oci8", "odbc", "openssl", "pcntl",
+        "pcre", "PDO", "pdo_ibm", "pdo_mysql", "pdo_pgsql", "pdo_sqlite", "pgsql", "Phar",
+        "posix", "pspell", "readline", "Reflection", "session", "shmop", "SimpleXML",
+        "snmp", "soap", "sockets", "sodium", "SPL", "sqlite3", "standard", "superglobals",
+        "sysvmsg", "sysvsem", "sysvshm", "tidy", "tokenizer", "xml", "xmlreader", "xmlrpc",
+        "xmlwriter", "xsl", "Zend OPcache", "zip", "zlib", "wordpress", "phpunit",
+      },
+      diagnostics = { enable = true },
+      format = { enable = true },
+    },
+  },
+})
+
+-- Configure svelte with TypeScript/JavaScript file change handling
+vim.lsp.config("svelte", {
+  on_attach = function(client, bufnr)
+    -- Default on_attach handling
+    if client.config.on_attach then
+      client.config.on_attach(client, bufnr)
+    end
+    
+    -- Handle TypeScript/JavaScript file changes
+    vim.api.nvim_create_autocmd("BufWritePost", {
+      buffer = bufnr,
+      pattern = { "*.js", "*.ts" },
+      callback = function(ctx)
+        client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+      end,
+    })
+  end,
+})
+
+-- Configure denols with settings from nvim-lspconfig
+vim.lsp.config("denols", {
+  settings = {
+    deno = {
+      enable = true,
+      lint = true,
+      suggest = {
+        imports = {
+          hosts = {
+            ["https://deno.land"] = true,
+          },
+        },
+      },
+      config = "deno.json",
+    },
+  },
+  -- Enable organize imports capability for Deno
+  commands = {
+    DenolsCache = {
+      function()
+        local clients = vim.lsp.get_clients { bufnr = 0, name = 'denols' }
+        if #clients > 0 then
+          local params = {
+            command = 'deno.cache',
+            arguments = { {}, vim.uri_from_bufnr(0) },
+          }
+          clients[#clients]:request('workspace/executeCommand', params, function(err, _result, ctx)
+            if err then
+              local uri = ctx.params.arguments[2]
+              vim.notify('Cache command failed for ' .. vim.uri_to_fname(uri), vim.log.levels.ERROR)
+            end
+          end, 0)
+        end
+      end,
+      description = 'Cache a module and all of its dependencies.',
+    },
+  },
+  on_attach = function(client, bufnr)
+    -- Setup default on_attach for denols
+    require("nvchad.configs.lspconfig").on_attach(client, bufnr)
+    
+    -- Enable organize imports for denols
+    client.server_capabilities.code_action_provider = true
+    client.server_capabilities.execute_command_provider = true
+    
+    -- Add cache command to buffer
+    vim.api.nvim_buf_create_user_command(bufnr, 'LspDenolsCache', function()
+      local params = {
+        command = 'deno.cache',
+        arguments = { {}, vim.uri_from_bufnr(bufnr) },
+      }
+      client:request('workspace/executeCommand', params, function(err, _result, ctx)
+        if err then
+          local uri = ctx.params.arguments[2]
+          vim.notify('Cache command failed for ' .. vim.uri_to_fname(uri), vim.log.levels.ERROR)
+        end
+      end)
+    end, {
+      desc = 'Cache a module and all of its dependencies.',
+    })
+  end,
+})
+
+-- Configure TypeScript to avoid conflicts with Deno
+vim.lsp.config("ts_ls", {
+  on_attach = function(client, bufnr)
+    -- Stop tsserver if Deno project detected
+    if vim.fn.filereadable("deno.json") == 1 or vim.fn.filereadable("deno.jsonc") == 1 then
+      client:stop()
+    end
+  end,
+})

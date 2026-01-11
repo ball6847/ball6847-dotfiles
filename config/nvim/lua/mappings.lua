@@ -72,47 +72,20 @@ map("n", "<leader>tw", toggle_nvim_tree_width, { desc = "Toggle nvim-tree width"
 
 -- organize imports
 local function organize_imports()
-  local params = {
-    textDocument = { uri = vim.uri_from_bufnr(vim.api.nvim_get_current_buf()) },
-    range = nil,
+  -- Use vim.lsp.buf.code_action directly with minimal context
+  local ok, result = pcall(vim.lsp.buf.code_action, {
     context = {
       only = {
         "source.organizeImports",
       },
     },
-  }
+  })
 
-  vim.lsp.buf_request(vim.api.nvim_get_current_buf(), "textDocument/codeAction", params, function(err, res, ctx)
-    if err then
-      vim.notify("Error organizing imports: " .. err.message, vim.log.levels.ERROR)
-      return
-    end
-
-    if res and res[1] then
-      local action = res[1]
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      if not client then
-        return
-      end
-
-      -- If the action has an `edit` field, apply it
-      if action.edit then
-        vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
-      end
-
-      -- If the action has a `command` field, execute it
-      if action.command then
-        local cmd = type(action.command) == "table" and action.command or { command = action.command }
-        client:exec_cmd({
-          title = "Organize Imports",
-          command = cmd.command,
-          arguments = cmd.arguments,
-        }, { bufnr = ctx.bufnr })
-      end
-    else
-      vim.notify("No organize imports action available", vim.log.levels.INFO)
-    end
-  end)
+  if not ok then
+    vim.notify("Error organizing imports: " .. tostring(result), vim.log.levels.ERROR)
+  else
+    vim.notify("Organize imports completed successfully", vim.log.levels.INFO)
+  end
 end
 
 -- Mapping to trigger the function
@@ -296,7 +269,7 @@ local function focus_vscode_diff_explorer()
   local buffers = vim.api.nvim_list_bufs()
   for _, buf in ipairs(buffers) do
     local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
-    if ft == "vscode-diff-explorer" then
+    if ft == "codediff-explorer" then
       local wins = vim.api.nvim_list_wins()
       for _, win in ipairs(wins) do
         if vim.api.nvim_win_get_buf(win) == buf then
@@ -315,3 +288,4 @@ map("n", "<leader>da", focus_vscode_diff_explorer, {
   desc = "Focus vscode-diff explorer",
   silent = true,
 })
+
