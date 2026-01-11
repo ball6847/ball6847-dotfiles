@@ -1,12 +1,24 @@
 local conform = require "conform"
 
+-- Helper function to detect if we're in a Deno project
+local function is_deno_project()
+  local root_markers = { "deno.json", "deno.jsonc" }
+  local root_dir = vim.fs.find(root_markers, { upward = true, path = vim.fn.getcwd() })
+  return #root_dir > 0
+end
+
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     svelte = { "prettierd", "prettier" },
     javascript = { "prettierd", "prettier" },
-    typescript = { "prettierd", "prettier" },
-    -- typescript = { "lsp" },
+    typescript = function()
+      if is_deno_project() then
+        return { "lsp" }  -- Use LSP formatter when Deno is detected
+      else
+        return { "prettierd", "prettier" }  -- Use Prettier for non-Deno projects
+      end
+    end,
     javascriptreact = { "prettierd", "prettier" },
     typescriptreact = { "prettierd", "prettier" },
     json = { "prettierd", "prettier" },
