@@ -339,7 +339,7 @@ weight = 500
 [shell]
 program = "wsl"
 # args = ["--cd","~","-e","zsh -l -c \"source .zshrc && tmux new-session -A -s main\""]
-args = ["--cd","~"]
+args = ["--cd", "~"]
 
 
 # Colors
@@ -373,17 +373,20 @@ args = ["--cd","~"]
 # ]
 [bindings]
 keys = [
-  { key = "return", with = "shift", esc =  "\u000a" },
-  { key = "v", with = "alt", action = "SplitRight" },
-  { key = "h", with = "alt", action = "SplitDown" },
-  { key = "[", with = "alt | shift", action = "SelectPrevSplit" },
-  { key = "]", with = "alt | shift", action = "SelectNextSplit" },
+  # - shift-enter for new line (useful for agentic coder like opencode, kimi-cli)
+  { key = "return", with = "shift", esc = "\u000a" },
+  # - navigate between tabs
   { key = "[", with = "control | shift", action = "SelectPrevTab" },
   { key = "]", with = "control | shift", action = "SelectNextTab" },
-  { key = "up", with = "control | shift", action = "MoveDividerUp" },
-  { key = "down", with = "control | shift", action = "MoveDividerDown" },
-  { key = "left", with = "control | shift", action = "MoveDividerLeft" },
-  { key = "right", with = "control | shift", action = "MoveDividerRight" },
+  # - manage splits and navigate between them
+  # { key = "v", with = "alt", action = "SplitRight" },
+  # { key = "h", with = "alt", action = "SplitDown" },
+  # { key = "[", with = "alt | shift", action = "SelectPrevSplit" },
+  # { key = "]", with = "alt | shift", action = "SelectNextSplit" },
+  # { key = "up", with = "control | shift", action = "MoveDividerUp" },
+  # { key = "down", with = "control | shift", action = "MoveDividerDown" },
+  # { key = "left", with = "control | shift", action = "MoveDividerLeft" },
+  # { key = "right", with = "control | shift", action = "MoveDividerRight" },
 ]
 
 # Platform
