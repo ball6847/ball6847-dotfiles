@@ -20,7 +20,7 @@
 # (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)
 #
 # Example:
-# theme = "dracula"
+theme = "themes/Adventure"
 
 # Padding-x
 #
