@@ -18,3 +18,6 @@
 	path = xclip-win32yank-wrapper
 	url = git@github.com:ball6847/xclip-win32yank-wrapper.git
 	branch = main
+[submodule "config/rio/themes"]
+	path = config/rio/themes
+	url = git@github.com:raphamorim/rio-terminal-themes.git

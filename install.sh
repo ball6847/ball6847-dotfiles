@@ -23,7 +23,7 @@ files="
     config/opencode/config.json
     config/opencode/command
     config/opencode/agent
-    config/rio/config.toml
+    config/rio
     qwen/settings.json
     gemini/settings.json"
 
@@ -56,3 +56,4 @@ for file in $files; do
     ln -sf $dir/"$file" ~/."$file"
 done
 
+# TODO: this script still does not handle directory linking well

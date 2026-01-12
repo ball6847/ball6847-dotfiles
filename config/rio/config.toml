@@ -251,7 +251,7 @@ backend = "automatic"
 # weight = 800
 [fonts]
 # family = "M+CodeLat60 Nerd Font"
-family = "M+1Code Nerd Font"
+family = "M+1Code Nerd Font Mono"
 # family = "ZedMono Nerd Font"
 size = 14
 # hinting = true
