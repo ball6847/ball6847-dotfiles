@@ -1,7 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "3732756842a2f7e0e76a7b0487e9692072857277" },
   "NvChad": { "branch": "v2.5", "commit": "30e75dbbdf33f393430d6e7612dd32ef84e2a710" },
-  "base46": { "branch": "v3.0", "commit": "45b336ec52615dd1a3aa47848d894616dd6293a5" },
+  "base46": { "branch": "v3.0", "commit": "63ee2b718fd8965b41a529b18710d52f22d96021" },
   "cmp-async-path": { "branch": "main", "commit": "9c2374deb32c2bec8b27e928c6f57090e9a875d2" },
   "cmp-buffer": { "branch": "main", "commit": "b74fab3656eea9de20a9b8116afa3cfc4ec09657" },
   "cmp-cmdline": { "branch": "main", "commit": "d126061b624e0af6c3a556428712dd4d4194ec6d" },
@@ -37,7 +37,7 @@
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "telescope.nvim": { "branch": "master", "commit": "a8c2223ea6b185701090ccb1ebc7f4e41c4c9784" },
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
-  "ui": { "branch": "v3.0", "commit": "ebf58649bc5c759ee6c730c87d8d2d4dd4124c0d" },
+  "ui": { "branch": "v3.0", "commit": "4afd4402d23575b4048d6460051d8e7ebf7c5d80" },
   "vgit.nvim": { "branch": "main", "commit": "796a183620ffcab17fc00baff3187006463cbaef" },
   "vim-test": { "branch": "master", "commit": "aa619692ff48a3cf3e6bdb893765039488d4e5f3" },
   "vim-wakatime": { "branch": "master", "commit": "d7973b157a632d1edeff01818f18d67e584eeaff" },
