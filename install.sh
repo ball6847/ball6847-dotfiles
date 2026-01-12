@@ -23,6 +23,7 @@ files="
     config/opencode/config.json
     config/opencode/command
     config/opencode/agent
+    config/rio/config.toml
     qwen/settings.json
     gemini/settings.json"
 
