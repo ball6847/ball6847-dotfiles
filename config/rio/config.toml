@@ -44,6 +44,7 @@ theme = "themes/Adventure"
 #
 # Example:
 # option-as-alt = 'left'
+option-as-alt = 'left'
 
 # Line height
 #
@@ -144,7 +145,7 @@ line-height = 1.3
 [window]
 mode = "Maximized"
 decorations = "enabled"
-colorspace = "srgb"
+colorspace = "display-p3"
 
 # Renderer
 #
@@ -376,6 +377,11 @@ args = ["-l"]
 keys = [
   # - shift-enter for new line (useful for agentic coder like opencode, kimi-cli)
   { key = "return", with = "shift", esc = "\u000a" },
+  # - additional keybindings from Alacritty
+  { key = "backspace", with = "control", esc = "\u0017" },
+  { key = "j", with = "super | shift", esc = "\u001b[74;4u" },
+  { key = "k", with = "super | shift", esc = "\u001b[75;4u" },
+  { key = "l", with = "super", esc = "\u001b[108;3u" },
   # - navigate between tabs
   { key = "[", with = "control | shift", action = "SelectPrevTab" },
   { key = "]", with = "control | shift", action = "SelectNextTab" },
