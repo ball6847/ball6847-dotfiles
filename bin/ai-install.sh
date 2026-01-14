@@ -36,6 +36,9 @@ echo "Installing OpenCode AI..."
 # bun install --global opencode-ai@~0
 bun install --global opencode-ai@latest
 
+echo "Installing Ralph Wiggum ... for opencode"
+bun install --global @th0rgal/ralph-wiggum
+
 echo "Installing/upgrading Mistral Vibe..."
 uv tool install --upgrade mistral-vibe
 
