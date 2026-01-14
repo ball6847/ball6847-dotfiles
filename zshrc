@@ -281,12 +281,6 @@ vcc() {
   in_tmux _ai_split "cc"
 }
 
-# run ralph loop with options
-ralph-loop() {
-  local actual_prompt="$1"
-  ralph "${actual_prompt}. Output <promise>COMPLETED</promise> when complete." --max-iterations 5 --no-commit
-}
-
 # ================================================
 # make ai ide tools work in wsl
 
