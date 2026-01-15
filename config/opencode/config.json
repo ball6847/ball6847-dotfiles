@@ -10,6 +10,7 @@
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
     // "opencode-skills"
+    "opencode-orchestrator"
   ],
   "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
   "tui": {
