@@ -27,7 +27,7 @@ asdf plugin add terraform
 asdf plugin add lua-language-server
 asdf plugin add task
 asdf plugin add mockery https://github.com/cabify/asdf-mockery.git
-asdf plugin add golangci-lint https://github.com/hypnoglow/asdf-golangci-lint.git
+# asdf plugin add golangci-lint https://github.com/hypnoglow/asdf-golangci-lint.git
 asdf plugin add redis-cli
 asdf plugin add doppler
 asdf plugin add uv
