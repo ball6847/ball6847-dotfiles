@@ -409,10 +409,10 @@ if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
 fi
 
 # Only run in interactive shells and when not already in tmux
-if [[ $- == *i* ]] && [[ -z $TMUX ]]; then
-  if [[ -n $VSCODE_WORKSPACE ]]; then
-    exec tmux new -A -t "$VSCODE_WORKSPACE"
-  else
-    exec tmux new -A -t default
-  fi
-fi
+# if [[ $- == *i* ]] && [[ -z $TMUX ]]; then
+#   if [[ -n $VSCODE_WORKSPACE ]]; then
+#     exec tmux new -A -t "$VSCODE_WORKSPACE"
+#   else
+#     exec tmux new -A -t default
+#   fi
+# fi
