@@ -400,7 +400,7 @@ fi
 # ================================================
 # grc zsh integration (generic colorizer)
 
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+# [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # Added by Antigravity
 if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
