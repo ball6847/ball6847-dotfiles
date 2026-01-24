@@ -176,7 +176,7 @@ fi
 
 # wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
 doppler_run() {
-  
+
   if [[ "$DOPPLER_LOADED" == "true" ]]; then
     # Remove leading -- from arguments if present
     if [[ "$1" == "--" ]]; then
@@ -402,16 +402,18 @@ fi
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-
 # Added by Antigravity
 if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
   export PATH="$SUDO_HOME/.antigravity/antigravity/bin:$PATH"
 fi
 
-# Only run in interactive shells and when not already in tmux
-if [[ $- == *i* ]] && [[ -z $TMUX ]]; then
+# Only run in interactive shells, when not already in tmux, and not called by opencode extension
+if [[ -z $OPENCODE_CALLER ]] && [[ $- == *i* ]] && [[ -z $TMUX ]]; then
+  # If VSCODE_WORKSPACE environment variable is set (indicating we're in a VSCode workspace),
+  # create or attach to a tmux session with the workspace name
+  # Otherwise, create or attach to a default tmux session
   if [[ -n $VSCODE_WORKSPACE ]]; then
-    # exec tmux new -A -t "$VSCODE_WORKSPACE"
+    exec tmux new -A -t "$VSCODE_WORKSPACE"
   else
     exec tmux new -A -t default
   fi
