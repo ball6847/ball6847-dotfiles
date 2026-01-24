@@ -285,11 +285,13 @@ vcc() {
 # make ai ide tools work in wsl
 
 qq() {
-  if is_wsl; then
-    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    qoder . "$@"
-  fi
+  # experimental to not handle wsl path conversion, qoder might already do that internally
+  qoder . "$@"
+  # if is_wsl; then
+  #   qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  # else
+  #   qoder . "$@"
+  # fi
 }
 
 tt() {
@@ -407,14 +409,24 @@ if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
   export PATH="$SUDO_HOME/.antigravity/antigravity/bin:$PATH"
 fi
 
-# Only run in interactive shells, when not already in tmux, and not called by opencode extension
-if [[ -z $OPENCODE_CALLER ]] && [[ $- == *i* ]] && [[ -z $TMUX ]]; then
-  # If VSCODE_WORKSPACE environment variable is set (indicating we're in a VSCode workspace),
-  # create or attach to a tmux session with the workspace name
-  # Otherwise, create or attach to a default tmux session
-  if [[ -n $VSCODE_WORKSPACE ]]; then
-    exec tmux new -A -t "$VSCODE_WORKSPACE"
-  else
-    exec tmux new -A -t default
-  fi
+
+
+# # Only run in interactive shells, when not already in tmux, and not called by opencode extension
+# if [[ -z $OPENCODE_CALLER ]] && [[ $- == *i* ]] && [[ -z $TMUX ]]; then
+#   # If VSCODE_WORKSPACE environment variable is set (indicating we're in a VSCode workspace),
+#   # create or attach to a tmux session with the workspace name
+#   # Otherwise, create or attach to a default tmux session
+#   if [[ -n $VSCODE_WORKSPACE ]]; then
+#     exec tmux new -A -t "$VSCODE_WORKSPACE"
+#   else
+#     exec tmux new -A -t default
+#   fi
+# fi
+
+# Automatically start or attach to a tmux session when in an interactive shell,
+# not already in tmux, and not in VSCode
+if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
+  exec tmux new -A -t main
 fi
+
+
