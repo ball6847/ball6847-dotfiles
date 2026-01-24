@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions ansible kubectl helm asdf z deno golang)
+plugins=(zsh-autosuggestions ansible kubectl helm asdf z golang)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -164,6 +164,7 @@ alias run="doppler_run"
 alias wm="workspace-manager"
 alias wms="workspace-manager sync"
 alias wme="workspace-manager enable"
+alias wmo="workspace-manager open"
 
 # add custom alias for wsl
 if is_wsl; then
@@ -172,7 +173,7 @@ if is_wsl; then
 fi
 
 # ================================================
-# doopler wrapper
+# doppler wrapper
 
 # wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
 doppler_run() {
