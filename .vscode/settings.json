@@ -1,11 +1,12 @@
 {
 	"deno.enable": true,
-	"deno.unstable": true,
+	// "deno.unstable": true,
 	"deno.lint": true,
 	"deno.enablePaths": [
 		"./deno-libs",
 		"./bin/configure-touchpad.ts"
 	],
+	"git.detectSubmodules": false,
 	"cSpell.words": [
 		"deepseek",
 		"dotfiles",
@@ -18,11 +19,13 @@
 		"opencode",
 		"OPENMEMORY",
 		"openrouter",
+		"qoder",
 		"qwen",
 		"Touchpad",
 		"unpushed",
 		"Vanchin",
 		"volcengine",
+		"wslpath",
 		"xsessionrc",
 		"zenmux"
 	],
