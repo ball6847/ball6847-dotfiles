@@ -332,7 +332,7 @@ asdf_link_bin() {
 }
 
 # TODO: even linking to .local/bin doesn't work for deno, need deno.path configured in vscode's settings.json for now
-asdf_link_bin deno
+# asdf_link_bin deno
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
