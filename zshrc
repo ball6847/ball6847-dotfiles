@@ -286,13 +286,11 @@ vcc() {
 # make ai ide tools work in wsl
 
 qq() {
-  # experimental to not handle wsl path conversion, qoder might already do that internally
-  qoder . "$@"
-  # if is_wsl; then
-  #   qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  # else
-  #   qoder . "$@"
-  # fi
+  if is_wsl; then
+    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
+  else
+    qoder . "$@"
+  fi
 }
 
 tt() {
