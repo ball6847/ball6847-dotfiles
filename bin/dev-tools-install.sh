@@ -98,15 +98,15 @@ if [[ "$INSTALL_DENO_PKG" = true ]]; then
 fi
 
 # Go tools
-if [[ "$INSTALL_GO_PKG" = true ]]; then
-    colorize "boldblue" "📦 Go tools:"
-    install_go_tool "github.com/vektra/mockery/v2" "mockery"
-    install_go_tool "github.com/mitranim/gow" "gow"
-    install_go_tool "golang.org/x/tools/gopls" "gopls"
-    echo
-
-    # Reshim golang
-    reshim_language "golang"
-fi
+# if [[ "$INSTALL_GO_PKG" = true ]]; then
+#     colorize "boldblue" "📦 Go tools:"
+#     install_go_tool "github.com/vektra/mockery/v2" "mockery"
+#     install_go_tool "github.com/mitranim/gow" "gow"
+#     install_go_tool "golang.org/x/tools/gopls" "gopls"
+#     echo
+#
+#     # Reshim golang
+#     reshim_language "golang"
+# fi
 
 colorize "boldgreen" "✅ Dev tools installation completed!"
