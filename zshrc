@@ -438,8 +438,7 @@ fi
 
 # Automatically start or attach to a tmux session when in an interactive shell,
 # not already in tmux, and not in VSCode
-if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
-  exec tmux new -A -t main
-fi
-
+# if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
+#   exec tmux new -A -t main
+# fi
 
