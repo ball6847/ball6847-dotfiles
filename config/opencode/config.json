@@ -14,7 +14,7 @@
     // "opencode-skills"
     "opencode-orchestrator"
   ],
-  "small_model": "openrouter/google/gemini-2.0-flash-exp:free",
+  "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
   "tui": {
     "scroll_speed": 1
   },

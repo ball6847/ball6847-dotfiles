@@ -120,7 +120,7 @@ export WINEPREFIX=$SUDO_HOME/.wine
 export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
 export TMUX_VERSION=$(tmux -V | grep -o '[0-9]\+\.[0-9]\+' | head -1)
 # export GIT_COMMIT_AI_MODEL="openrouter/google/gemini-2.0-flash-exp:free"
-export GIT_COMMIT_AI_MODEL="openrouter/nvidia/nemotron-3-nano-30b-a3b:free"
+export GIT_COMMIT_AI_MODEL="openrouter/arcee-ai/trinity-large-preview:free"
 
 # ================================================
 # set up bash alias
