@@ -16,8 +16,8 @@ option_as_alt = "Both"
 # Or you can specify explicitly:
 [terminal.shell]
 program = "/bin/zsh"
-# args = ["-l", "-c", "source ~/.zshrc && tmux new-session -A -s main"]
-args = ["-l"]
+args = ["-l", "-c", "source ~/.zshrc && tmux new-session -A -s main"]
+# args = ["-l"]
 
 # Allow navigate by word (Alt + Arrow keys)
 [keyboard]
