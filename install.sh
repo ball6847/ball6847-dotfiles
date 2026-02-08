@@ -21,7 +21,7 @@ files="
     ansible.cfg
     tool-versions
     config/opencode/config.json
-    config/opencode/command
+    config/opencode/commands
     config/opencode/agent
     config/rio
     qwen/settings.json
