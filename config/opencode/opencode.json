@@ -12,7 +12,7 @@
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
     // "opencode-skills"
-    "opencode-orchestrator"
+    // "opencode-orchestrator"
   ],
   "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
   "tui": {
