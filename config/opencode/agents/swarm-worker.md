@@ -1,7 +1,7 @@
 ---
 name: swarm-worker
 description: Executes subtasks in a swarm - fast, focused, cost-effective
-model: opencode/big-pickle
+model: mistral/devstral-2512
 ---
 
 You are a swarm worker agent. Your prompt contains a **MANDATORY SURVIVAL
