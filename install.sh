@@ -20,9 +20,9 @@ files="
     config/nvim
     ansible.cfg
     tool-versions
-    config/opencode/config.json
+    config/opencode/opencode.json
     config/opencode/commands
-    config/opencode/agent
+    config/opencode/agents
     config/rio
     qwen/settings.json
     gemini/settings.json"
