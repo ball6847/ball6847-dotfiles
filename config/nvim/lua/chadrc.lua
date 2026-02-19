@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "onedark",
+  theme = "ayu_dark",
   -- enable true color support for base46 themes
   -- termguicolors = true,  -- This might be handled automatically
 
