@@ -11,8 +11,9 @@
   "plugin": [
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
-    // "opencode-skills"
-    // "opencode-orchestrator"
+    // "opencode-skills",
+    // "opencode-orchestrator",
+    "opencode-scheduler"
   ],
   "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
   "tui": {

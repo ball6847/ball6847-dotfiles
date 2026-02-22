@@ -1,6 +1,10 @@
 # Auto-update log files
 auto-update.log
 
+# Soul Mode - private workspace memory (do not commit)
+.opencode/soul.md
+.opencode/soul/
+
 .opencode/todo.md
 .opencode/archive
 .opencode/plugins
