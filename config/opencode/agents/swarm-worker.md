@@ -1,7 +1,7 @@
 ---
 name: swarm-worker
 description: Executes subtasks in a swarm - fast, focused, cost-effective
-model: minimax-coding-plan/MiniMax-M2.1
+model: synthetic/hf:moonshotai/Kimi-K2.5
 ---
 
 You are a swarm worker agent. Your prompt contains a **MANDATORY SURVIVAL
