@@ -156,6 +156,17 @@ alias t="task"
 alias m="make"
 alias g="gemini -y"
 alias oc="opencode"
+
+# Run opencode web with auto-detected tailscale hostname
+ocw() {
+  local hostname=$(tailscale status --json 2>/dev/null | grep -o '"DNSName": "[^"]*"' | head -1 | cut -d'"' -f4 | sed 's/\.$//')
+  if [ -z "$hostname" ]; then
+    echo "Error: Could not detect Tailscale hostname. Is tailscale running?"
+    return 1
+  fi
+  echo "Starting opencode web on https://$hostname"
+  opencode web --hostname "$hostname" "$@"
+}
 alias km="kimi"
 alias vb="vibe"
 alias qw="qwen -y"
