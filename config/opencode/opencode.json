@@ -21,16 +21,6 @@
     "scroll_speed": 1
   },
   "provider": {
-    "synthetic": {
-      "models": {
-        "hf:MiniMaxAI/MiniMax-M2": {
-          "options": {
-            "reasoningEffort": "low",
-            "textVerbosity": "low"
-          }
-        }
-      }
-    },
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
       "name": "Kimi For Coding",
@@ -465,7 +455,72 @@
           }
         }
       }
-    }
+    },
+    "synthetic": {
+      "id": "synthetic",
+      "env": [
+        "SYNTHETIC_API_KEY"
+      ],
+      "npm": "@ai-sdk/openai-compatible",
+      "api": "https://api.synthetic.new/v1",
+      "name": "Synthetic",
+      "models": {
+        "hf:Qwen/Qwen3.5-397B-A17B": {
+          "id": "hf:Qwen/Qwen3.5-397B-A17B",
+          "name": "Qwen 3.5 397B A17B",
+          "family": "qwen",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": true,
+          "release_date": "2026-02-19",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 3
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
+        },
+        "hf:MiniMaxAI/MiniMax-M2.5": {
+          "id": "hf:MiniMaxAI/MiniMax-M2.5",
+          "name": "MiniMax-M2.5",
+          "family": "minimax",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": true,
+          "release_date": "2026-02-15",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 3
+          },
+          "limit": {
+            "context": 191488,
+            "output": 65536
+          }
+        },
+      }
+    },
   },
   "mcp": {
     "openmemory": {
