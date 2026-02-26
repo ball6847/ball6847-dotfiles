@@ -2,7 +2,9 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
   "permission": "allow",
-  "instructions": ["AGENTS.md"],
+  "instructions": [
+    "AGENTS.md"
+  ],
   "plugin": [
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
@@ -10,7 +12,7 @@
     // "opencode-orchestrator",
     "opencode-scheduler"
   ],
-  "small_model": "mistral/labs-devstral-small-2512",
+  "small_model": "mistral/devstral-small-latest",
   "provider": {
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
@@ -32,9 +34,30 @@
         }
       }
     },
+    "mistral": {
+      "id": "mistral",
+      "models": {
+        "mistral-vibe-cli-latest": {
+          "name": "mistral-vibe-cli-latest",
+          "limit": {
+            "context": 200000,
+            "output": 32768
+          }
+        },
+        "devstral-small-latest": {
+          "name": "devstral-small-latest",
+          "limit": {
+            "context": 200000,
+            "output": 32768
+          }
+        },
+      }
+    },
     "synthetic": {
       "id": "synthetic",
-      "env": ["SYNTHETIC_API_KEY"],
+      "env": [
+        "SYNTHETIC_API_KEY"
+      ],
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
@@ -49,8 +72,13 @@
           "temperature": true,
           "release_date": "2026-02-19",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "cost": {
             "input": 0.6,
@@ -71,8 +99,13 @@
           "temperature": true,
           "release_date": "2026-02-15",
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "cost": {
             "input": 0.6,
