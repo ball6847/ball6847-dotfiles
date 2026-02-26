@@ -1,14 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "opencode",
   "autoupdate": false,
   "permission": "allow",
-  "instructions": [
-    "AGENTS.md"
-  ],
-  "keybinds": {
-    "leader": "ctrl+o"
-  },
+  "instructions": ["AGENTS.md"],
   "plugin": [
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
@@ -17,9 +11,6 @@
     "opencode-scheduler"
   ],
   "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
-  "tui": {
-    "scroll_speed": 1
-  },
   "provider": {
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
@@ -43,9 +34,7 @@
     },
     "synthetic": {
       "id": "synthetic",
-      "env": [
-        "SYNTHETIC_API_KEY"
-      ],
+      "env": ["SYNTHETIC_API_KEY"],
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
@@ -60,13 +49,8 @@
           "temperature": true,
           "release_date": "2026-02-19",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.6,
@@ -87,13 +71,8 @@
           "temperature": true,
           "release_date": "2026-02-15",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.6,
@@ -103,9 +82,34 @@
             "context": 191488,
             "output": 65536
           }
-        },
+        }
       }
     },
+    "byteplus": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "byteplus",
+      "options": {
+        "baseURL": "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+        "apiKey": "{env:ARK_API_KEY}"
+      },
+      "models": {
+        "bytedance-seed-code": {
+          "name": "bytedance-seed-code"
+        },
+        "kimi-k2.5": {
+          "name": "kimi-k2.5"
+        },
+        "glm-4.7": {
+          "name": "glm-4.7"
+        },
+        "kimi-k2-thinking": {
+          "name": "kimi-k2-thinking"
+        },
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        }
+      }
+    }
   },
   "mcp": {
     "openmemory": {
