@@ -1,7 +1,7 @@
 ---
 description: Flash agent, for quick and simple task
 mode: subagent
-model: openrouter/google/gemini-2.0-flash-exp:free
+model: mistral/labs-devstral-small-2512
 tools:
   write: true
   edit: true

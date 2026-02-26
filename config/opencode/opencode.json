@@ -10,7 +10,7 @@
     // "opencode-orchestrator",
     "opencode-scheduler"
   ],
-  "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
+  "small_model": "mistral/labs-devstral-small-2512",
   "provider": {
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
