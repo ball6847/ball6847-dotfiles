@@ -452,4 +452,3 @@ fi
 # if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
 #   exec tmux new -A -t main
 # fi
-

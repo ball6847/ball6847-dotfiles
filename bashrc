@@ -140,4 +140,3 @@ ulimit -Sn 4096
 
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
-
