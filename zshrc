@@ -63,7 +63,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions ansible kubectl helm z golang)
+plugins=(zsh-autosuggestions ansible kubectl helm asdf z golang)
 
 # the zsh-completions.plugin.zsh seems not working
 # so, we manually add plugin to $fpath to enable completions the plugin provides
@@ -104,6 +104,11 @@ fi
 
 # ================================================
 
+export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
+
+# asdf rust plugin requires manually PATH setup, we should keep this align with ~/.tool-versions
+export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
+
 # General environment variable
 export LC_ALL="en_US.UTF-8"
 export LANG=en_US.UTF-8
@@ -112,7 +117,7 @@ export TERM=xterm-256color
 export COLORTERM=truecolor
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export PATH="/data/data/com.termux/files/bin:/data/data/com.termux/files/usr/bin:/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+export PATH="/data/data/com.termux/files/bin:/data/data/com.termux/files/usr/bin:/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
 export TMUX_VERSION=$(tmux -V | grep -o '[0-9]\+\.[0-9]\+' | head -1)
 # export GIT_COMMIT_AI_MODEL="openrouter/google/gemini-2.0-flash-exp:free"
 export GIT_COMMIT_AI_MODEL="openrouter/arcee-ai/trinity-large-preview:free"
@@ -328,8 +333,18 @@ tm() {
 }
 
 # ================================================
+# asdf bin linker as some IDE lsp doesn't work with asdf shims
+
+asdf_link_bin() {
+  local plugin="$1"
+  local bin_path=`asdf which $plugin`
+  if [ -f "$bin_path" ]; then
+    ln -sfn "$bin_path" "$SUDO_HOME/.local/bin/$bin_name"
+  fi
+}
 
 # TODO: even linking to .local/bin doesn't work for deno, need deno.path configured in vscode's settings.json for now
+# asdf_link_bin deno
 
 # use ctrl+space to accept suggesstion (zsh-autosuggestions)
 bindkey '^ ' autosuggest-accept
@@ -437,3 +452,4 @@ fi
 # if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
 #   exec tmux new -A -t main
 # fi
+
