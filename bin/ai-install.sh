@@ -71,6 +71,18 @@ go install github.com/kanapuli/mcp-kafka@latest
 echo "Installing MCP MongoDB Server..."
 bun install --global mongodb-mcp-server@latest
 
+echo "Installing vibe-mcp..."
+VIBE_MCP_DIR="$HOME/.local/share/mcp-servers/vibe-mcp"
+if [ -d "$VIBE_MCP_DIR/.git" ]; then
+    # Directory exists and is a git repo, pull latest changes
+    (cd "$VIBE_MCP_DIR" && git pull)
+else
+    # Directory doesn't exist or isn't a git repo, clone fresh
+    mkdir -p "$(dirname "$VIBE_MCP_DIR")"
+    rm -rf "$VIBE_MCP_DIR"
+    git clone https://github.com/DarkPhilosophy/vibe-mcp.git "$VIBE_MCP_DIR"
+fi
+
 # =============================================================================
 # RESHIM SECTION - Update PATH for newly installed binaries
 # =============================================================================
