@@ -115,6 +115,30 @@
             "context": 191488,
             "output": 65536
           }
+        },
+        "hf:zai-org/GLM-4.7-Flash": {
+          "id": "hf:zai-org/GLM-4.7-Flash",
+          "name": "GLM-4.7-Flash",
+          "family": "glm",
+          "attachment": true,
+          "tool_call": true,
+          "temperature": true,
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 0.06,
+            "output": 0.4
+          },
+          "limit": {
+            "context": 196608,
+            "output": 8192
+          }
         }
       }
     },
