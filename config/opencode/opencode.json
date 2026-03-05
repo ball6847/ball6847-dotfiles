@@ -176,5 +176,13 @@
         "Authorization": "Bearer {env:OPENMEMORY_API_KEY}"
       }
     }
+  },
+  "agent": {
+    "explore": {
+      "model": "mistral/devstral-small-latest"
+    },
+    "compaction": {
+      "model": "mistral/devstral-small-latest"
+    }
   }
 }
