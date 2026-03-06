@@ -1,5 +1,5 @@
 display_name = "Reviewer"
-description = "Subagent uses review skills to review tasks as planned"
+description = "Always instruct him to use `review` skill"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
