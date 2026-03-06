@@ -3,3 +3,4 @@ description = "Agent uses review skills to review tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
+disabled_tools = ["task"]

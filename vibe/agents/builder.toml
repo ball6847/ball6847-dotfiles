@@ -3,3 +3,4 @@ description = "Subagent uses build skills to implement tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
+disabled_tools = ["task"]
