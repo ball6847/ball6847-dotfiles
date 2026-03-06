@@ -1,5 +1,6 @@
 display_name = "Reviewer"
-description = "Always instruct him to use `review` skill"
+description = "Agent uses review skills to review tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
+system_prompt_id = "reviewer"
