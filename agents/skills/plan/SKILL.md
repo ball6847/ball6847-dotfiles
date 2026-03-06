@@ -10,6 +10,8 @@ user-invocable: true
 
 Create comprehensive implementation plans as new markdown files. Plans must be explicit and detailed enough for less capable models to work with them without requiring further technical decisions.
 
+**Important**: This skill is for planning only. Do not implement the plan - only create the plan file with the required structure and content.
+
 ### File Path Format
 
 Plans must be saved to:
