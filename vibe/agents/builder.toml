@@ -1,4 +1,4 @@
-display_name = "Build"
+display_name = "Builder"
 description = "Subagent uses build skills to implement tasks as planned"
 safety = "yolo"
 agent_type = "subagent"

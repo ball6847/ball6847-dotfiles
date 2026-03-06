@@ -1,4 +1,4 @@
-display_name = "Review"
+display_name = "Reviewer"
 description = "Subagent uses review skills to review tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
