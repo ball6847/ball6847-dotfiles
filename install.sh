@@ -25,7 +25,9 @@ files="
     config/opencode/agents
     config/rio
     qwen/settings.json
-    gemini/settings.json"
+    gemini/settings.json
+    agents
+    vibe"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"

@@ -1,0 +1,5 @@
+display_name = "Review"
+description = "Subagent uses review skills to review tasks as planned"
+safety = "yolo"
+agent_type = "subagent"
+enabled_tools = ["*"]
