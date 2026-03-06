@@ -3,4 +3,3 @@ description = "Subagent uses build skills to implement tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
-system_prompt_id = "builder"

@@ -3,4 +3,3 @@ description = "Agent uses review skills to review tasks as planned"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
-system_prompt_id = "reviewer"
