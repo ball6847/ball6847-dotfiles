@@ -8,20 +8,23 @@ user-invocable: true
 
 ## Instructions
 
-Create comprehensive implementation plans as new markdown files. Plans must be explicit and detailed enough for less capable models to work with them without requiring further technical decisions.
-
-**Important**: This skill is for planning only. Do not implement the plan - only create the plan file with the required structure and content.
+Create comprehensive implementation plans as new markdown files. Plans must be
+explicit and detailed enough for less capable models to work with them without
+requiring further technical decisions.
 
 ### File Path Format
 
 Plans must be saved to:
+
 ```
 .context/plans/YYYY-MM-DD/FEATURE_NAME_PLAN.md
 ```
 
 Where:
+
 - `YYYY-MM-DD` is the current date with leading zeros (e.g., `2026-04-03`)
-- `FEATURE_NAME_PLAN.md` is the plan name in UPPER_SNAKE_CASE followed by `_PLAN.md`
+- `FEATURE_NAME_PLAN.md` is the plan name in UPPER_SNAKE_CASE followed by
+  `_PLAN.md`
 
 ### Required Frontmatter
 
@@ -36,7 +39,8 @@ reviewedAt: null
 ```
 
 - `createdAt`: ISO 8601 timestamp when the plan is created (use current time)
-- `implementedAt`: Set to `null` initially, updated when implementation is complete
+- `implementedAt`: Set to `null` initially, updated when implementation is
+  complete
 - `reviewedAt`: Set to `null` initially, updated when the plan is reviewed
 
 ### Plan Structure

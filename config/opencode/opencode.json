@@ -50,7 +50,7 @@
             "context": 200000,
             "output": 32768
           }
-        },
+        }
       }
     },
     "synthetic": {
@@ -188,7 +188,7 @@
       "mode": "subagent",
       "model": "mistral/devstral-small-latest",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
-      "prompt": "{file:.qoder/agents/builder.md}",
+      "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
         "read": true,
         "write": true,
@@ -202,7 +202,7 @@
       "mode": "subagent",
       "model": "synthetic/hf:nvidia/Kimi-K2.5-NVFP4",
       "description": "Implementation review specialist. Reads plans and implementation reports, verifies builder's work against plans, creates review reports with verdicts (PASS/PARTIAL/FAIL), and updates plan timestamps. Use proactively after builder completes implementation.",
-      "prompt": "{file:.qoder/agents/reviewer.md}",
+      "prompt": "{file:~/.dotfiles/agents/skills/reviewer/SKILL.md}",
       "tools": {
         "read": true,
         "write": true,

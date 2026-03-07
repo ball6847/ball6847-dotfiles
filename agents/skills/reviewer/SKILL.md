@@ -1,5 +1,5 @@
 ---
-name: review
+name: reviewer
 description: Reviews build agent's implementation against predefined plans, creating review reports with timestamps and bidirectional links. Updates plan's reviewedAt field and generates reports in `.context/reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md` format.
 user-invocable: true
 ---
@@ -8,7 +8,9 @@ user-invocable: true
 
 ## Instructions
 
-Review the build agent's implementation against the predefined plan to ensure correctness and completeness. Create a review report documenting findings and update the plan with review timestamp.
+Review the build agent's implementation against the predefined plan to ensure
+correctness and completeness. Create a review report documenting findings and
+update the plan with review timestamp.
 
 ### Workflow
 
@@ -43,18 +45,26 @@ Review the build agent's implementation against the predefined plan to ensure co
 
 When reviewing implementations, be direct and thorough:
 
-- **Point out all deviations** - No matter how small, document every discrepancy from the plan
-- **Question design decisions** - If implementation choices differ from the planned approach, question whether the change was justified
-- **Highlight incomplete work** - Clearly mark any planned items that were skipped or partially implemented
-- **Assess quality gaps** - Note missing tests, documentation, error handling, or edge cases
-- **Be specific** - Provide concrete examples of what was expected vs. what was delivered
-- **Rate severity** - Classify issues as blocking (must fix), concerning (should fix), or minor (nice to have)
+- **Point out all deviations** - No matter how small, document every discrepancy
+  from the plan
+- **Question design decisions** - If implementation choices differ from the
+  planned approach, question whether the change was justified
+- **Highlight incomplete work** - Clearly mark any planned items that were
+  skipped or partially implemented
+- **Assess quality gaps** - Note missing tests, documentation, error handling,
+  or edge cases
+- **Be specific** - Provide concrete examples of what was expected vs. what was
+  delivered
+- **Rate severity** - Classify issues as blocking (must fix), concerning (should
+  fix), or minor (nice to have)
 
-The goal is honest, constructive criticism that improves code quality and maintains architectural integrity.
+The goal is honest, constructive criticism that improves code quality and
+maintains architectural integrity.
 
 ### Review Reports
 
 Create a review report to document findings, especially when:
+
 - Discrepancies are found between plan and implementation
 - Implementation reports indicate unresolved obstacles
 - Formal review documentation is needed
@@ -62,13 +72,16 @@ Create a review report to document findings, especially when:
 #### Report File Path
 
 Reports must be saved to:
+
 ```
 .context/reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md
 ```
 
 Where:
+
 - `YYYY-MM-DD` is the current date with leading zeros (e.g., `2026-04-03`)
-- `FEATURE_NAME_REVIEW.md` is the review name in UPPER_SNAKE_CASE followed by `_REVIEW.md`
+- `FEATURE_NAME_REVIEW.md` is the review name in UPPER_SNAKE_CASE followed by
+  `_REVIEW.md`
 
 #### Required Frontmatter
 
@@ -85,7 +98,8 @@ implementationReportPaths:
 
 - `createdAt`: ISO 8601 timestamp when the review was completed
 - `planPath`: Relative path to the original plan file
-- `implementationReportPaths`: List of related implementation reports (supports multiple iterations)
+- `implementationReportPaths`: List of related implementation reports (supports
+  multiple iterations)
 
 #### Report Structure
 
@@ -111,21 +125,21 @@ implementationReportPaths:
 
 ### Files Created
 
-| File | Status | Notes |
-|------|--------|-------|
+| File              | Status                | Notes                 |
+| ----------------- | --------------------- | --------------------- |
 | `path/to/file.go` | ✅ Created as planned | Matches specification |
 
 ### Files Modified
 
-| File | Status | Notes |
-|------|--------|-------|
+| File              | Status                 | Notes                       |
+| ----------------- | ---------------------- | --------------------------- |
 | `path/to/file.go` | ✅ Modified as planned | Changes match specification |
 
 ### Files Deleted
 
-| File | Status | Notes |
-|------|--------|-------|
-| `path/to/file.go` | ✅ Deleted as planned | N/A |
+| File              | Status                | Notes |
+| ----------------- | --------------------- | ----- |
+| `path/to/file.go` | ✅ Deleted as planned | N/A   |
 
 ## Discrepancies
 
@@ -141,8 +155,8 @@ implementationReportPaths:
 
 ## Obstacles Resolution
 
-| Obstacle | Status | Resolution |
-|----------|--------|------------|
+| Obstacle                            | Status      | Resolution          |
+| ----------------------------------- | ----------- | ------------------- |
 | Obstacle from implementation report | ✅ Resolved | How it was resolved |
 
 ## Related Links
@@ -161,6 +175,7 @@ implementationReportPaths:
 After completing the review:
 
 1. Update the plan file's frontmatter to set `reviewedAt`:
+
 ```yaml
 ---
 createdAt: "2026-04-03T10:30:00Z"
@@ -170,12 +185,14 @@ reviewedAt: "2026-04-03T16:00:00Z"
 ```
 
 2. Add a "Review" section at the end of the plan linking to the review report:
+
 ```markdown
 ## Review
 
 - **Status**: [PASS / PARTIAL / FAIL]
 - **Reviews**:
-  - [Review Report](../reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md) (if applicable)
+  - [Review Report](../reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md) (if
+    applicable)
 ```
 
 ### Example

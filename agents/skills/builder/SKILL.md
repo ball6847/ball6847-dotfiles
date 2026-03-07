@@ -1,5 +1,5 @@
 ---
-name: build
+name: builder
 description: Implements features or fixes according to a predefined plan, creating implementation reports with timestamps and bidirectional links to plans. Updates plan's implementedAt field upon completion. Generates reports in `.context/implementation-reports/YYYY-MM-DD/FEATURE_NAME_REPORT.md` format.
 user-invocable: true
 ---
@@ -22,6 +22,7 @@ Implement features or fixes according to a predefined plan. Focus on writing cle
 After successful implementation:
 
 1. Update the plan file's frontmatter to set `implementedAt`:
+
 ```yaml
 ---
 createdAt: "2026-04-03T10:30:00Z"
@@ -31,6 +32,7 @@ reviewedAt: null
 ```
 
 2. Add an "Implementation" section at the end of the plan linking to the report (if created):
+
 ```markdown
 ## Implementation
 
@@ -42,6 +44,7 @@ reviewedAt: null
 ### Implementation Reports
 
 Create an implementation report **only if**:
+
 - Obstacles blocked completion of planned tasks
 - Deviations from the plan were required
 - Further decisions from the manager are needed
@@ -49,11 +52,13 @@ Create an implementation report **only if**:
 #### Report File Path
 
 Reports must be saved to:
+
 ```
 .context/implementation-reports/YYYY-MM-DD/FEATURE_NAME_REPORT.md
 ```
 
 Where:
+
 - `YYYY-MM-DD` is the current date with leading zeros (e.g., `2026-04-03`)
 - `FEATURE_NAME_REPORT.md` is the report name in UPPER_SNAKE_CASE followed by `_REPORT.md`
 
@@ -104,9 +109,9 @@ planPath: "../plans/2026-04-03/FEATURE_NAME_PLAN.md"
 
 ## Deviations from Plan
 
-| Plan Item | Deviation | Reason |
-|-----------|-----------|--------|
-| Item 1 | Changed approach | Reason for change |
+| Plan Item | Deviation        | Reason            |
+| --------- | ---------------- | ----------------- |
+| Item 1    | Changed approach | Reason for change |
 
 ## Next Steps
 
