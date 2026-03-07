@@ -39,6 +39,9 @@ bun install --global opencode-ai@latest
 echo "Installing Ralph Wiggum ... for opencode"
 bun install --global @th0rgal/ralph-wiggum
 
+echo "Installing Vibe Kanban"
+bun install --global vibe-kanban
+
 # echo "Installing opencode-orchestrator"
 # npm install -g opencode-orchestrator
 
