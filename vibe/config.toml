@@ -1,4 +1,4 @@
-active_model = "devstral-2"
+active_model = "devstral-small"
 vim_keybindings = false
 disable_welcome_banner_animation = false
 autocopy_to_clipboard = true
@@ -86,7 +86,7 @@ max_dirs_per_level = 20
 timeout_seconds = 2.0
 
 [session_logging]
-save_dir = "/home/ball6847/.dotfiles/vibe/logs/session"
+save_dir = "~/.dotfiles/vibe/logs/session"
 session_prefix = "session"
 enabled = true
 
