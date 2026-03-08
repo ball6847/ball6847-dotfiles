@@ -186,7 +186,7 @@
     },
     "builder": {
       "mode": "subagent",
-      "model": "mistral/devstral-small-latest",
+      "model": "hf:zai-org/GLM-4.7-Flash",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
