@@ -139,6 +139,32 @@
             "context": 196608,
             "output": 8192
           }
+        },
+        "hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4": {
+          "id": "hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+          "name": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+          "family": "nvidia",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": true,
+          "release_date": "2025-11-08",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 3
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          }
         }
       }
     },
