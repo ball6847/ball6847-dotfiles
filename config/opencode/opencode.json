@@ -10,7 +10,7 @@
     // "opencode-orchestrator",
     "opencode-scheduler"
   ],
-  "small_model": "synthetic/hf:meta-llama/Llama-3.1-8B-Instruct",
+  "small_model": "openrouter/arcee-ai/trinity-large-preview:free",
   "provider": {
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
@@ -182,12 +182,6 @@
     }
   },
   "agent": {
-    "explore": {
-      "model": "mistral/devstral-small-latest"
-    },
-    "compaction": {
-      "model": "mistral/devstral-small-latest"
-    },
     "builder": {
       "mode": "subagent",
       "model": "mistral/mistral-vibe-cli-latest",
