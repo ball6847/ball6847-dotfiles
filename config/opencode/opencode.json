@@ -2,9 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
   "permission": "allow",
-  "instructions": [
-    "AGENTS.md"
-  ],
+  "instructions": ["AGENTS.md"],
   "plugin": [
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
@@ -12,7 +10,7 @@
     // "opencode-orchestrator",
     "opencode-scheduler"
   ],
-  "small_model": "mistral/devstral-small-latest",
+  "small_model": "synthetic/hf:meta-llama/Llama-3.1-8B-Instruct",
   "provider": {
     "kimi-for-coding": {
       "npm": "@ai-sdk/anthropic",
@@ -55,9 +53,7 @@
     },
     "synthetic": {
       "id": "synthetic",
-      "env": [
-        "SYNTHETIC_API_KEY"
-      ],
+      "env": ["SYNTHETIC_API_KEY"],
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
@@ -72,13 +68,8 @@
           "temperature": true,
           "release_date": "2026-02-19",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.6,
@@ -99,13 +90,8 @@
           "temperature": true,
           "release_date": "2026-02-15",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text", "image"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.6,
@@ -124,12 +110,8 @@
           "tool_call": true,
           "temperature": true,
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.06,
@@ -150,12 +132,8 @@
           "temperature": true,
           "release_date": "2025-11-08",
           "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": ["text"],
+            "output": ["text"]
           },
           "cost": {
             "input": 0.6,
