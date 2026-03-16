@@ -1,14 +1,57 @@
 # Alacritty config for Linux
 # Place at ~/.config/alacritty/alacritty.toml
 
-[general]
-import = [
-    "common.toml",
-    "alacritty-theme/themes/aura.toml"
-]
+# [general]
+# import = ["common.toml", "alacritty-theme/themes/aura.toml"]
 
 # Linux uses default shell from $SHELL env var
 # Or you can specify explicitly:
 # [terminal.shell]
 # program = "/bin/zsh"
 # args = ["-l", "-c", "source ~/.zshrc && tmux"]
+
+[window]
+# padding = { x = 10, y = 10 }
+startup_mode = "Maximized"
+
+[keyboard]
+bindings = [
+  { key = "Backspace", mods = "Control", chars = "\u0017" },
+  { key = "J", mods = "Command|Shift", chars = "\u001b[74;4u" },
+  { key = "K", mods = "Command|Shift", chars = "\u001b[75;4u" },
+  { key = "L", mods = "Command", chars = "\u001b[108;3u" },
+  # Windows/WSL: Use \u000a (LF) for Shift+Enter if \u001b[10;2u doesn't work
+  # Backup original sequence: { key = "Enter", mods = "Shift", chars = "\u001b[10;2u" },
+  { key = "Enter", mods = "Shift", chars = "\u000a" },
+]
+
+[font]
+size = 13
+
+[font.normal]
+family = "M+1Code Nerd Font Mono"
+
+[font.bold]
+family = "M+1Code Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "M+1Code Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "M+1Code Nerd Font Mono"
+style = "Bold Italic"
+
+[terminal]
+# ensure true color is enabled
+# shell = "/bin/zsh"
+
+[env]
+# Set environment variables for true color support
+COLORTERM = "truecolor"
+TERM = "xterm-256color"
+
+[debug]
+# Enable debug rendering if needed for color testing
+# render_timer = true
