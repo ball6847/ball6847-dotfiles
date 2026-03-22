@@ -206,7 +206,7 @@
   "agent": {
     "builder": {
       "mode": "subagent",
-      "model": "mistral/mistral-vibe-cli-latest",
+      "model": "synthetic/hf:moonshotai/Kimi-K2.5",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
@@ -220,7 +220,7 @@
     },
     "reviewer": {
       "mode": "subagent",
-      "model": "synthetic/hf:nvidia/Kimi-K2.5-NVFP4",
+      "model": "synthetic/hf:moonshotai/Kimi-K2.5",
       "description": "Implementation review specialist. Reads plans and implementation reports, verifies builder's work against plans, creates review reports with verdicts (PASS/PARTIAL/FAIL), and updates plan timestamps. Use proactively after builder completes implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/reviewer/SKILL.md}",
       "tools": {
