@@ -8,7 +8,7 @@
     // "opencode-alibaba-qwen3-auth",
     // "opencode-skills",
     // "opencode-orchestrator",
-    "opencode-scheduler"
+    // "opencode-scheduler"
   ],
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
