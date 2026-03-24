@@ -138,5 +138,18 @@ fi
 ulimit -Sn 4096
 # . "$HOME/.cargo/env"
 
+# we link this file to multiple user's home, and many resource sharing located on our user's home
+if [ $SUDO_USER ] ; then
+    SUDO_HOME=$(sudo -H -u $SUDO_USER env | grep HOME= | sed 's/HOME=//g')
+else
+    SUDO_HOME=$HOME
+fi
+
+export DOTFILES=$SUDO_HOME/.dotfiles
+export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
+export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
