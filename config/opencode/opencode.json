@@ -182,8 +182,7 @@
     },
     "vibe_kanban": {
       "type": "local",
-      "command": "npx",
-      "args": ["-y", "vibe-kanban@latest", "--mcp"]
+      "command": ["npx", "-y", "vibe-kanban@latest", "--mcp"]
     }
   },
   "agent": {
