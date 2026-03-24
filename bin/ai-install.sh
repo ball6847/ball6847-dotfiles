@@ -86,6 +86,9 @@ else
     git clone https://github.com/DarkPhilosophy/vibe-mcp.git "$VIBE_MCP_DIR"
 fi
 
+echo "Installing opencode plugin manager (ocx)..."
+npm install -g ocx
+
 # =============================================================================
 # RESHIM SECTION - Update PATH for newly installed binaries
 # =============================================================================
