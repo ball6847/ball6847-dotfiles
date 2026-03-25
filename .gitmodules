@@ -21,3 +21,6 @@
 [submodule "config/rio/themes"]
 	path = config/rio/themes
 	url = git@github.com:raphamorim/rio-terminal-themes.git
+[submodule "agents/skills/cc-skills-golang"]
+	path = agents/skills/cc-skills-golang
+	url = https://github.com/samber/cc-skills-golang.git
