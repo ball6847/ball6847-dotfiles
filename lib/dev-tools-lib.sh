@@ -1,7 +1,32 @@
+# Shared functions for dev tools installation scripts
+# This file can be sourced by multiple scripts to avoid code duplication
+
+# ============================================================================
+# LOAD COMMON LIBRARY
+# ============================================================================
+=======
 #!/bin/bash
 
 # DEV TOOLS LIBRARY
 # ============================================================================
+# Shared functions for dev tools installation scripts
+# This file can be sourced by multiple scripts to avoid code duplication
+
+# ============================================================================
+# REQUIREMENTS
+# ============================================================================
+# This script requires the following commands to be installed:
+# - timeout: For preventing hanging installations (part of GNU coreutils)
+# - curl: For fetching latest version information
+# - go: For Go tool installation (only needed when installing Go tools)
+# - deno: For Deno package installation (only needed when installing Deno packages)
+#
+# On macOS, you can install GNU coreutils with: brew install coreutils
+# The timeout command will then be available as gtimeout
+
+# ============================================================================
+# LOAD COMMON LIBRARY
+# ========================================================================================================================================================
 # Shared functions for dev tools installation scripts
 # This file can be sourced by multiple scripts to avoid code duplication
 
@@ -194,14 +219,24 @@ get_installed_go_version() {
     # Suppress all output from version commands
     # Use more specific pattern to avoid matching line numbers in help text
     local version
-    version=$(timeout 5 "$tool" --version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    # Check if timeout command exists, use it if available
+    if command -v timeout &> /dev/null; then
+        version=$(timeout 5 "$tool" --version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    else
+        version=$("$tool" --version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    fi
     
     if [[ -n "$version" ]]; then
         echo "$version"
         return 0
     fi
     
-    version=$(timeout 5 "$tool" version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    # Check if timeout command exists, use it if available
+    if command -v timeout &> /dev/null; then
+        version=$(timeout 5 "$tool" version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    else
+        version=$("$tool" version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+    fi
     
     if [[ -n "$version" ]]; then
         echo "$version"
@@ -272,19 +307,43 @@ install_go_tool() {
     else
         echo "  🔄 Installing/updating (latest version)..."
     fi
-    
+
     # Use timeout to prevent hanging (300 seconds = 5 minutes)
-    # Suppress go install output
-    if timeout 300 go install "$repo"@latest >/dev/null 2>&1; then
-        if [[ -n "$latest_version" ]]; then
-            echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
+    # Stream go install output in real-time
+    echo "  📦 Installing dependencies..."
+    
+    # Run go install with timeout and stream output
+    # Check if timeout command exists, use it if available
+    if command -v timeout &> /dev/null; then
+        if timeout 300 go install "$repo"@latest 2>&1 | while read -r line; do
+            echo "  📦 $line"
+        done; then
+            if [[ -n "$latest_version" ]]; then
+                echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
+            else
+                echo "  ✓ Installed (latest version)"
+            fi
         else
-            echo "  ✓ Installed (latest version)"
+            local exit_code=$?
+            echo "  ⚠️  Installation timed out after 5 minutes"
+            echo "     You may need to install it manually: go install $repo@latest"
+            return 1
         fi
     else
-        echo "  ⚠️  Installation timed out after 5 minutes"
-        echo "     You may need to install it manually: go install $repo@latest"
-        return 1
+        echo "  ⚠️  timeout command not found. Installing without timeout protection..."
+        echo "     Consider installing GNU coreutils: brew install coreutils"
+        if go install "$repo"@latest 2>&1 | while read -r line; do
+            echo "  📦 $line"
+        done; then
+            if [[ -n "$latest_version" ]]; then
+                echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
+            else
+                echo "  ✓ Installed (latest version)"
+            fi
+        else
+            echo "  ❌ Installation failed"
+            return 1
+        fi
     fi
 }
 
