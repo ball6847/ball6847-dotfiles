@@ -430,6 +430,13 @@ if which workspace-manager > /dev/null; then
 fi
 
 # ================================================
+# set wtp shell integration
+
+if which wtp > /dev/null; then
+  eval "$(wtp shell-init zsh)"
+fi
+
+# ================================================
 # Allow parent to initialize shell
 #
 # This is awesome for opening terminals in VSCode.
