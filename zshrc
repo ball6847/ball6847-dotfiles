@@ -244,7 +244,7 @@ kimi() {
 _VIBE_BIN="`which vibe`"
 
 vibe() {
-  doppler_run -- $_VIBE_BIN "$@"
+  doppler_run -- $_VIBE_BIN --agent auto-approve "$@"
 }
 
 _CLAUDE_BIN="`which claude`"
