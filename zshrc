@@ -433,7 +433,7 @@ fi
 # set wtp shell integration
 
 if which wtp > /dev/null; then
-  eval "$(wtp shell-init zsh)"
+  eval "$(wtp completion zsh)"
 fi
 
 # ================================================
