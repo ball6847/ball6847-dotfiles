@@ -100,7 +100,7 @@ fi
 # Go tools
 if [[ "$INSTALL_GO_PKG" = true ]]; then
     colorize "boldblue" "📦 Go tools:"
-    install_go_tool "github.com/satococoa/wtp/cmd/wtp" "wtp"
+    # install_go_tool "github.com/satococoa/wtp/cmd/wtp" "wtp"
     install_go_tool "github.com/golangci/golangci-lint/v2/cmd/golangci-lint" "golangci-lint"
     # install_go_tool "github.com/vektra/mockery/v2" "mockery"
     # install_go_tool "github.com/mitranim/gow" "gow"
