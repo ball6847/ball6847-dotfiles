@@ -1,0 +1,23 @@
+{
+  "skill_name": "git-commit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to commit some changes I made to the authentication system. Can you help me create a proper git commit?",
+      "expected_output": "Git commands to add relevant files and create a commit with a well-formed message following conventional commit standards",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I fixed a bug in the string parser and added tests. How should I commit this?",
+      "expected_output": "Git commands staging the fixed files and tests with a commit message like 'fix(utils): handle null values in string parser' with bullet points explaining the changes",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I added a new user profile API endpoint and need to commit it following best practices.",
+      "expected_output": "Git add command for API files followed by git commit with message like 'feat(api): add user profile endpoint' and descriptive body",
+      "files": []
+    }
+  ]
+}
