@@ -435,6 +435,7 @@ fi
 
 if which wtp > /dev/null; then
   eval "$(wtp completion zsh)"
+  eval "$(wtp hook zsh)"
 fi
 
 # ================================================
