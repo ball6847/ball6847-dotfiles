@@ -172,6 +172,7 @@ alias t="task"
 alias m="make"
 alias g="gemini -y"
 alias oc="opencode"
+alias cat="bat"
 
 # Run opencode web with auto-detected tailscale hostname
 ocw() {
