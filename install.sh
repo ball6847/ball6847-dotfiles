@@ -27,7 +27,8 @@ files="
     qwen/settings.json
     gemini/settings.json
     agents
-    vibe"
+    vibe
+    kimi"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"

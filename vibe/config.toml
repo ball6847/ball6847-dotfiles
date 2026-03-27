@@ -1,5 +1,4 @@
 active_model = "devstral-2"
-
 vim_keybindings = false
 disable_welcome_banner_animation = false
 autocopy_to_clipboard = true
@@ -93,7 +92,9 @@ enabled = true
 
 [tools.task]
 permission = "ask"
-allowlist = ["explore"]
+allowlist = [
+    "explore",
+]
 denylist = []
 
 [tools.search_replace]
@@ -107,53 +108,53 @@ fuzzy_threshold = 0.9
 [tools.bash]
 permission = "ask"
 allowlist = [
-  "echo",
-  "git diff",
-  "git log",
-  "git status",
-  "tree",
-  "whoami",
-  "cat",
-  "file",
-  "head",
-  "ls",
-  "pwd",
-  "stat",
-  "tail",
-  "uname",
-  "wc",
-  "which",
+    "echo",
+    "git diff",
+    "git log",
+    "git status",
+    "tree",
+    "whoami",
+    "cat",
+    "file",
+    "head",
+    "ls",
+    "pwd",
+    "stat",
+    "tail",
+    "uname",
+    "wc",
+    "which",
 ]
 denylist = [
-  "gdb",
-  "pdb",
-  "passwd",
-  "nano",
-  "vim",
-  "vi",
-  "emacs",
-  "bash -i",
-  "sh -i",
-  "zsh -i",
-  "fish -i",
-  "dash -i",
-  "screen",
-  "tmux",
+    "gdb",
+    "pdb",
+    "passwd",
+    "nano",
+    "vim",
+    "vi",
+    "emacs",
+    "bash -i",
+    "sh -i",
+    "zsh -i",
+    "fish -i",
+    "dash -i",
+    "screen",
+    "tmux",
 ]
 max_output_bytes = 16000
 default_timeout = 300
 denylist_standalone = [
-  "python",
-  "python3",
-  "ipython",
-  "bash",
-  "sh",
-  "nohup",
-  "vi",
-  "vim",
-  "emacs",
-  "nano",
-  "su",
+    "python",
+    "python3",
+    "ipython",
+    "bash",
+    "sh",
+    "nohup",
+    "vi",
+    "vim",
+    "emacs",
+    "nano",
+    "su",
 ]
 
 [tools.grep]
@@ -164,29 +165,29 @@ max_output_bytes = 64000
 default_max_matches = 100
 default_timeout = 60
 exclude_patterns = [
-  ".venv/",
-  "venv/",
-  ".env/",
-  "env/",
-  "node_modules/",
-  ".git/",
-  "__pycache__/",
-  ".pytest_cache/",
-  ".mypy_cache/",
-  ".tox/",
-  ".nox/",
-  ".coverage/",
-  "htmlcov/",
-  "dist/",
-  "build/",
-  ".idea/",
-  ".vscode/",
-  "*.egg-info",
-  "*.pyc",
-  "*.pyo",
-  "*.pyd",
-  ".DS_Store",
-  "Thumbs.db",
+    ".venv/",
+    "venv/",
+    ".env/",
+    "env/",
+    "node_modules/",
+    ".git/",
+    "__pycache__/",
+    ".pytest_cache/",
+    ".mypy_cache/",
+    ".tox/",
+    ".nox/",
+    ".coverage/",
+    "htmlcov/",
+    "dist/",
+    "build/",
+    ".idea/",
+    ".vscode/",
+    "*.egg-info",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    ".DS_Store",
+    "Thumbs.db",
 ]
 codeignore_file = ".vibeignore"
 
