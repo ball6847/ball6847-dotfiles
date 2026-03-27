@@ -1,6 +1,12 @@
 [window]
 # padding = { x = 10, y = 10 }
 startup_mode = "Maximized"
+dynamic_padding = true
+padding = { x = 10, y = 0 }
+
+[selection]
+# Ensure this is NOT set to true if you want tmux to handle it
+save_to_clipboard = true
 
 [keyboard]
 bindings = [
