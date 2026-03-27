@@ -1,11 +1,6 @@
+#!/bin/bash
 # Shared functions for dev tools installation scripts
 # This file can be sourced by multiple scripts to avoid code duplication
-
-# ============================================================================
-# LOAD COMMON LIBRARY
-# ============================================================================
-=======
-#!/bin/bash
 
 # DEV TOOLS LIBRARY
 # ============================================================================
@@ -29,10 +24,6 @@
 # ========================================================================================================================================================
 # Shared functions for dev tools installation scripts
 # This file can be sourced by multiple scripts to avoid code duplication
-
-# ============================================================================
-# LOAD COMMON LIBRARY
-# ============================================================================
 
 # Get the directory where this library is located
 LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
