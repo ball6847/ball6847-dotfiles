@@ -24,11 +24,10 @@ files="
     config/opencode/commands
     config/opencode/agents
     config/rio
+    config/vite
     qwen/settings.json
     gemini/settings.json
-    agents
-    vibe
-    kimi"
+    agents"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -58,5 +57,12 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -sf $dir/"$file" ~/."$file"
 done
+
+# Setup agent skills symlinks (kimi, vibe, claude, etc.)
+# This links only the skills directories, keeping agent configs in ~
+if [[ -f "$dir/bin/setup-agent-skills" ]]; then
+    echo ""
+    bash "$dir/bin/setup-agent-skills"
+fi
 
 # TODO: this script still does not handle directory linking well
