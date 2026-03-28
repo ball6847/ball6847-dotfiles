@@ -121,7 +121,7 @@ main() {
     for config in "${AGENT_CONFIGS[@]}"; do
         IFS=':' read -r agent_name config_type agent_config_path <<< "$config"
         link_agent_config "$agent_name" "$config_type" "$agent_config_path"
-        ((configured_count++))
+        configured_count=$((configured_count + 1))
         echo ""
     done
     
