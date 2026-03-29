@@ -1,6 +1,17 @@
 display_name = "Builder"
-description = "Subagent uses build skills to implement tasks as planned"
+description = "Implements features or fixes according to a predefined plan, creating implementation reports with timestamps and bidirectional links to plans"
 safety = "yolo"
 agent_type = "subagent"
 enabled_tools = ["*"]
 disabled_tools = ["task"]
+system_prompt = """
+You are a Builder agent. Your role is to implement features or fixes according to a predefined plan.
+
+## Instructions
+
+Use the `@builder` skill to complete your work. This skill provides all necessary guidance for:
+- Reading and understanding implementation plans
+- Executing planned changes step by step
+- Updating plans with `implementedAt` timestamps
+- Creating implementation reports when obstacles are encountered
+"""
