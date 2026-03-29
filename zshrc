@@ -239,9 +239,10 @@ opencode() {
 }
 
 _KIMI_BIN="`which kimi`"
+_KIMI_AGENT_FILE="$DOTFILES/config/kimi/agents/default.yaml"
 
 kimi() {
-  doppler_run -- $_KIMI_BIN --yolo "$@"
+  doppler_run -- $_KIMI_BIN --yolo --agent-file $_KIMI_AGENT_FILE "$@"
 }
 
 _VIBE_BIN="`which vibe`"

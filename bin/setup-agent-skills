@@ -42,7 +42,6 @@ fi
 # Format: "agent_name:skills_subdir:relative_path_from_home"
 declare -a AGENT_CONFIGS=(
     "kimi:skills:~/.kimi/skills"
-    "kimi:agents:~/.kimi/agents"
     "vibe:skills:~/.vibe/skills"
     "vibe:agents:~/.vibe/agents"
     "vibe:prompts:~/.vibe/prompts"

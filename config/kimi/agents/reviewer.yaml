@@ -1,17 +1,23 @@
----
 version: 1
 agent:
   extend: default
   name: reviewer
-  description: Reviews build agent's implementation against predefined plans, creating
-    review reports with timestamps and bidirectional links
-  skills: [reviewer]
-  system_prompt: |-
-    You are a Reviewer agent. Your role is to review the build agent's implementation against the predefined plan to ensure correctness and completeness.
-
-    ## Instructions
-    Use the `@reviewer` skill to complete your work. This skill provides all necessary guidance for:
-    - Loading and analyzing implementation plans
-    - Verifying implementation details against plan specifications
-    - Identifying deviations from the planned approach
-    - Creating review reports with `reviewedAt` timestamps
+  system_prompt_path: ./reviewer.md
+  when_to_use: |
+    Use this agent for reviewing build agent's implementation against predefined plans,
+    creating review reports with timestamps and bidirectional links.
+  tools: []
+  allowed_tools:
+    - "kimi_cli.tools.file:ReadFile"
+    - "kimi_cli.tools.file:Glob"
+    - "kimi_cli.tools.file:Grep"
+    - "kimi_cli.tools.shell:Shell"
+    - "kimi_cli.tools.web:SearchWeb"
+    - "kimi_cli.tools.web:FetchURL"
+  exclude_tools:
+    - "kimi_cli.tools.agent:Agent"
+    - "kimi_cli.tools.ask_user:AskUserQuestion"
+    - "kimi_cli.tools.todo:SetTodoList"
+    - "kimi_cli.tools.plan:ExitPlanMode"
+    - "kimi_cli.tools.plan.enter:EnterPlanMode"
+    - "kimi_cli.tools.file:WriteFile"
