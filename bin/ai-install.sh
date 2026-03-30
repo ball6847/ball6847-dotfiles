@@ -4,17 +4,17 @@
 # CLEANUP SECTION - Remove previous installations
 # =============================================================================
 
-echo "Cleaning previous npm installations..."
-
-# Clean up any existing npm installations
-npm uninstall -g @qwen-code/qwen-code 2>/dev/null || true
-npm uninstall -g @google/gemini-cli 2>/dev/null || true
-npm uninstall -g @anthropic-ai/claude-code 2>/dev/null || true
-npm uninstall -g opencode-ai 2>/dev/null || true
-npm uninstall -g mongodb-mcp-server 2>/dev/null || true
+# echo "Cleaning previous npm installations..."
+#
+# # Clean up any existing npm installations
+# npm uninstall -g @qwen-code/qwen-code 2>/dev/null || true
+# npm uninstall -g @google/gemini-cli 2>/dev/null || true
+# npm uninstall -g @anthropic-ai/claude-code 2>/dev/null || true
+# npm uninstall -g opencode-ai 2>/dev/null || true
+# npm uninstall -g mongodb-mcp-server 2>/dev/null || true
 
 # Reshim nodejs to ensure npm is properly recognized
-asdf reshim nodejs
+# asdf reshim nodejs
 
 # =============================================================================
 # AI TOOLS INSTALLATION SECTION
@@ -36,17 +36,17 @@ echo "Installing OpenCode AI..."
 # bun install --global opencode-ai@~0
 bun install --global opencode-ai@latest
 
-echo "Installing Ralph Wiggum ... for opencode"
-bun install --global @th0rgal/ralph-wiggum
-
-echo "Installing Vibe Kanban"
-bun install --global vibe-kanban
+# echo "Installing Ralph Wiggum ... for opencode"
+# bun install --global @th0rgal/ralph-wiggum
+#
+# echo "Installing Vibe Kanban"
+# bun install --global vibe-kanban
 
 # echo "Installing opencode-orchestrator"
 # npm install -g opencode-orchestrator
 
-echo "Installing opencode-swarm-plugin"
-bun add -g opencode-swarm-plugin@latest
+# echo "Installing opencode-swarm-plugin"
+# bun add -g opencode-swarm-plugin@latest
 
 echo "Installing/upgrading Mistral Vibe..."
 uv tool install --upgrade mistral-vibe
@@ -54,12 +54,15 @@ uv tool install --upgrade mistral-vibe
 echo "Installing/upgrading Kimi CLI..."
 uv tool install --upgrade kimi-cli
 
+echo "Installing Qoder CLI..."
+npm install -g @qoder-ai/qodercli
+
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
 # =============================================================================
 
-echo "Installing MCP Language Server..."
-go install github.com/isaacphi/mcp-language-server@latest
+# echo "Installing MCP Language Server..."
+# go install github.com/isaacphi/mcp-language-server@latest
 
 # echo "Installing MCP gRPCurl..."
 # go install github.com/wricardo/mcp-grpcurl@latest
@@ -68,26 +71,26 @@ go install github.com/isaacphi/mcp-language-server@latest
 # git clone https://github.com/wricardo/grpcurl-mcp.git && cd grpcurl-mcp && go build -o ~/.local/bin/grpcurl-mcp ./main.go
 # TODO: make this idempotent so we can run multiple times without issues
 
-echo "Installing MCP Kafka Server..."
-go install github.com/kanapuli/mcp-kafka@latest
+# echo "Installing MCP Kafka Server..."
+# go install github.com/kanapuli/mcp-kafka@latest
+#
+# echo "Installing MCP MongoDB Server..."
+# bun install --global mongodb-mcp-server@latest
+#
+# echo "Installing vibe-mcp..."
+# VIBE_MCP_DIR="$HOME/.local/share/mcp-servers/vibe-mcp"
+# if [ -d "$VIBE_MCP_DIR/.git" ]; then
+#     # Directory exists and is a git repo, pull latest changes
+#     (cd "$VIBE_MCP_DIR" && git pull)
+# else
+#     # Directory doesn't exist or isn't a git repo, clone fresh
+#     mkdir -p "$(dirname "$VIBE_MCP_DIR")"
+#     rm -rf "$VIBE_MCP_DIR"
+#     git clone https://github.com/DarkPhilosophy/vibe-mcp.git "$VIBE_MCP_DIR"
+# fi
 
-echo "Installing MCP MongoDB Server..."
-bun install --global mongodb-mcp-server@latest
-
-echo "Installing vibe-mcp..."
-VIBE_MCP_DIR="$HOME/.local/share/mcp-servers/vibe-mcp"
-if [ -d "$VIBE_MCP_DIR/.git" ]; then
-    # Directory exists and is a git repo, pull latest changes
-    (cd "$VIBE_MCP_DIR" && git pull)
-else
-    # Directory doesn't exist or isn't a git repo, clone fresh
-    mkdir -p "$(dirname "$VIBE_MCP_DIR")"
-    rm -rf "$VIBE_MCP_DIR"
-    git clone https://github.com/DarkPhilosophy/vibe-mcp.git "$VIBE_MCP_DIR"
-fi
-
-echo "Installing opencode plugin manager (ocx)..."
-npm install -g ocx
+# echo "Installing opencode plugin manager (ocx)..."
+# npm install -g ocx
 
 # =============================================================================
 # RESHIM SECTION - Update PATH for newly installed binaries
@@ -116,8 +119,8 @@ fi
 # PLUGIN UPDATES SECTION
 # =============================================================================
 
-# update opencode-gemini-auth plugin https://github.com/jenslys/opencode-gemini-auth
-sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"[Plugin] opencode-gemini-auth - update script finished successfully.\")"
-
-# update opencode-alibaba-qwen3-auth plugin https://github.com/geoh/opencode-alibaba-qwen3-auth
-sh -c "(cd ~ && sed -i.bak '/\"opencode-alibaba-qwen3-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-alibaba-qwen3-auth && echo \"[Plugin] opencode-alibaba-qwen3-auth - update script finished successfully.\")"
+# # update opencode-gemini-auth plugin https://github.com/jenslys/opencode-gemini-auth
+# sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"[Plugin] opencode-gemini-auth - update script finished successfully.\")"
+#
+# # update opencode-alibaba-qwen3-auth plugin https://github.com/geoh/opencode-alibaba-qwen3-auth
+# sh -c "(cd ~ && sed -i.bak '/\"opencode-alibaba-qwen3-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-alibaba-qwen3-auth && echo \"[Plugin] opencode-alibaba-qwen3-auth - update script finished successfully.\")"
