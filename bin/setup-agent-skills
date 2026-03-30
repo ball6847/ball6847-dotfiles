@@ -75,6 +75,10 @@ link_agent_config() {
     if [[ ! -d "$agent_dir" ]]; then
         log_warn "$agent_name directory not found: $agent_dir"
         log_info "  Creating $agent_dir for future use..."
+        # Remove broken symlinks before creating directory
+        if [[ -L "$agent_dir" ]]; then
+            unlink "$agent_dir"
+        fi
         mkdir -p "$agent_dir"
     fi
     
