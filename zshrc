@@ -257,6 +257,34 @@ claude() {
   doppler_run -- $_CLAUDE_BIN --allow-dangerously-skip-permissions "$@"
 }
 
+_QODERCLI_BIN="`which qodercli`"
+
+# qodercli: manual model override (for non-standard models not in TUI)
+# 
+# Available models:
+#   auto        - Auto selection
+#   efficient   - Efficient models
+#   gmodel      - Google models
+#   kmodel      - Kimi models
+#   lite        - Lite models
+#   mmodel      - Mistral models
+#   performance - Performance models
+#   q35model    - Qwen 3.5 models
+#   qmodel      - Qwen models
+#   ultimate    - Ultimate models
+#
+# Usage: qodercli --model <model_name>
+# Example: qodercli --model ultimate
+
+qodercli() {
+  if [[ ! -f "$_QODERCLI_BIN" ]]; then
+    echo "qodercli not found. Installing automatically..."
+    npm install -g @qoder-ai/qodercli
+    _QODERCLI_BIN="`which qodercli`"
+  fi
+  doppler_run -- $_QODERCLI_BIN --yolo "$@"
+}
+
 # ================================================
 # tmux alias for open new window in pre-configured view
 
