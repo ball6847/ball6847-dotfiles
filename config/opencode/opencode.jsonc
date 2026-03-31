@@ -32,6 +32,22 @@
         }
       }
     },
+    "streamlake": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "StreamLake Coding Plan",
+      "options": {
+        "baseURL": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+        "apiKey": "{env:VC_API_KEY}"
+      },
+      "models": {
+        "kat-coder-pro-v1": {
+          "name": "kat-coder-pro-v1"
+        },
+        "kat-coder-pro-v2": {
+          "name": "kat-coder-pro-v2"
+        }
+      }
+    },
     "mistral": {
       "id": "mistral",
       "models": {
