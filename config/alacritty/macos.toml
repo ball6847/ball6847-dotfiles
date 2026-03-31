@@ -26,9 +26,6 @@ bindings = [
   { key = "Right", mods = "Alt", chars = "\u001bf" }, # ESC + f (forward word)
 ]
 
-# [font]
-# size = 10
-
-[font.offset]
-x = 2
-y = 6
+[font]
+size = 13
+offset = { x = 2, y = 6 }
