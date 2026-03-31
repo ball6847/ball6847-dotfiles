@@ -51,15 +51,31 @@ for file in $files; do
     # backup to $olddir if neccessary
     echo "Moving any existing dotfiles from ~ to $olddir"
 
-    [ -e ~/."$file" ] && mv -f ~/."$file" $olddir/"$file"
+    # Remove existing backup if it exists to avoid conflicts with nested symlinks
+    [ -e $olddir/"$file" ] && rm -rf $olddir/"$file"
+    # Move existing file/symlink to backup (use -h to detect symlinks before following)
+    [ -e ~/."$file" ] || [ -L ~/."$file" ] && mv -f ~/."$file" $olddir/"$file"
 
     # create link at home directory
     echo "Creating symlink to $file in home directory."
     ln -sf $dir/"$file" ~/."$file"
 done
 
+# Fix nested symlinks created by the loop above
+fix_nested_symlinks() {
+    for subdir in config/*/; do
+        dirname="$(basename "$subdir")"
+        nested="$subdir$dirname"
+        [ -L "$nested" ] && rm -f "$nested"
+    done
+    [ -L "agents/agents" ] && rm -f agents/agents
+}
+fix_nested_symlinks
+
 # Cleanup deprecated opencode.json symlink (renamed to opencode.jsonc)
 unlink ~/.opencode/opencode.json 2>/dev/null || true
+
+git checkout ~/.opencode/config/kitty
 
 # Setup agent skills symlinks (kimi, vibe, claude, etc.)
 # This links only the skills directories, keeping agent configs in ~
@@ -67,5 +83,3 @@ if [[ -f "$dir/bin/setup-agent-skills" ]]; then
     echo ""
     bash "$dir/bin/setup-agent-skills"
 fi
-
-# TODO: this script still does not handle directory linking well
