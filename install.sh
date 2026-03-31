@@ -20,7 +20,7 @@ files="
     config/nvim
     ansible.cfg
     tool-versions
-    config/opencode/opencode.json
+    config/opencode/opencode.jsonc
     config/opencode/commands
     config/opencode/agents
     config/rio
@@ -57,6 +57,9 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -sf $dir/"$file" ~/."$file"
 done
+
+# Cleanup deprecated opencode.json symlink (renamed to opencode.jsonc)
+unlink ~/.opencode/opencode.json 2>/dev/null || true
 
 # Setup agent skills symlinks (kimi, vibe, claude, etc.)
 # This links only the skills directories, keeping agent configs in ~
