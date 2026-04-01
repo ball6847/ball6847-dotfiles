@@ -23,6 +23,7 @@ First, determine which MR to fetch:
 3. If unclear, list open MRs and ask user to specify
 
 **Commands:**
+
 ```bash
 # View current branch
 git branch --show-current
@@ -37,11 +38,13 @@ glab api "projects/:id/merge_requests?state=opened" | grep -A5 '"source_branch":
 ### Step 2: Fetch Discussions
 
 **Primary command (works in most cases):**
+
 ```bash
 glab mr view <MR_NUMBER> --comments
 ```
 
 **If blank output, try:**
+
 ```bash
 DEBUG=1 glab mr view <MR_NUMBER> --comments
 ```
@@ -61,6 +64,7 @@ glab api "projects/:id/merge_requests/<MR_IID>/discussions"
 ```
 
 **Important:** Always quote URLs with `?` to avoid shell globbing issues:
+
 ```bash
 # Good - quoted
 glab api "projects/:id/merge_requests/117/notes"
@@ -90,22 +94,22 @@ Group related comments by topic. Include code suggestions if present.
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| `glab` not found | Install: `snap install glab` or check `which glab` |
-| No output from glab | Add `DEBUG=1` prefix to see what's happening |
-| "no matches found" error | Quote the URL (zsh globbing issue) |
-| Authentication error | Run `glab auth login` or check with `glab repo view` |
-| Can't find MR | Verify MR exists: `glab mr view <NUMBER> --web` |
+| Issue                    | Solution                                             |
+| ------------------------ | ---------------------------------------------------- |
+| `glab` not found         | Install: `snap install glab` or check `which glab`   |
+| No output from glab      | Add `DEBUG=1` prefix to see what's happening         |
+| "no matches found" error | Quote the URL (zsh globbing issue)                   |
+| Authentication error     | Run `glab auth login` or check with `glab repo view` |
+| Can't find MR            | Verify MR exists: `glab mr view <NUMBER> --web`      |
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| View MR with comments | `glab mr view <NR> --comments` |
-| View with debug | `DEBUG=1 glab mr view <NR> --comments` |
-| List open MRs | `glab mr list --state opened` |
-| Open in browser | `glab mr view <NR> --web` |
-| Check auth | `glab repo view` |
-| API: notes | `glab api "projects/:id/merge_requests/<NR>/notes"` |
-| API: discussions | `glab api "projects/:id/merge_requests/<NR>/discussions"` |
+| Task                  | Command                                                   |
+| --------------------- | --------------------------------------------------------- |
+| View MR with comments | `glab mr view <NR> --comments`                            |
+| View with debug       | `DEBUG=1 glab mr view <NR> --comments`                    |
+| List open MRs         | `glab mr list --state opened`                             |
+| Open in browser       | `glab mr view <NR> --web`                                 |
+| Check auth            | `glab repo view`                                          |
+| API: notes            | `glab api "projects/:id/merge_requests/<NR>/notes"`       |
+| API: discussions      | `glab api "projects/:id/merge_requests/<NR>/discussions"` |
