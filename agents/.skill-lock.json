@@ -28,6 +28,15 @@
       "skillFolderHash": "",
       "installedAt": "2026-04-01T10:02:09.838Z",
       "updatedAt": "2026-04-01T10:02:09.838Z"
+    },
+    "create-agentsmd": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/awesome-copilot.git",
+      "skillPath": "skills/create-agentsmd/SKILL.md",
+      "skillFolderHash": "290ab8ae85ba8695e9bceb674e74177e76f8633d",
+      "installedAt": "2026-04-02T05:51:21.882Z",
+      "updatedAt": "2026-04-02T05:51:21.882Z"
     }
   },
   "dismissed": {
@@ -35,9 +44,12 @@
   },
   "lastSelectedAgents": [
     "amp",
+    "antigravity",
     "cline",
     "codex",
     "cursor",
+    "deepagents",
+    "firebender",
     "gemini-cli",
     "github-copilot",
     "kimi-cli",
