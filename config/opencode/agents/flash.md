@@ -1,7 +1,7 @@
 ---
 description: Flash agent, for quick and simple task
 mode: subagent
-model: mistral/labs-devstral-small-2512
+model: mistral/devstral-small-latest
 tools:
   write: true
   edit: true
