@@ -53,7 +53,6 @@
       "models": {
         "mistral-vibe-cli-latest": {
           "name": "mistral-vibe-cli-latest",
-          "temperature": 0.2,
           "limit": {
             "context": 200000,
             "output": 32768
@@ -61,7 +60,6 @@
         },
         "devstral-small-latest": {
           "name": "devstral-small-latest",
-          "temperature": 0.2,
           "limit": {
             "context": 200000,
             "output": 32768
