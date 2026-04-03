@@ -27,7 +27,7 @@
       "skillPath": "SKILL.md",
       "skillFolderHash": "",
       "installedAt": "2026-04-01T10:02:09.838Z",
-      "updatedAt": "2026-04-01T10:02:09.838Z"
+      "updatedAt": "2026-04-03T11:41:54.113Z"
     },
     "create-agentsmd": {
       "source": "github/awesome-copilot",
@@ -37,6 +37,34 @@
       "skillFolderHash": "290ab8ae85ba8695e9bceb674e74177e76f8633d",
       "installedAt": "2026-04-02T05:51:21.882Z",
       "updatedAt": "2026-04-02T05:51:21.882Z"
+    },
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "3b319028d5e51497e251a3481d2c7d8521a860eb",
+      "pluginName": "agent-browser",
+      "installedAt": "2026-04-03T11:40:12.604Z",
+      "updatedAt": "2026-04-03T11:40:12.604Z"
+    },
+    "dogfood": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/dogfood/SKILL.md",
+      "skillFolderHash": "c818a5daf6e6ef6ec6375705df201499de4e6437",
+      "installedAt": "2026-04-03T11:40:28.388Z",
+      "updatedAt": "2026-04-03T11:40:28.388Z"
+    },
+    "electron": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/electron/SKILL.md",
+      "skillFolderHash": "79bf2fb6edfcf688931e6f1a444da144b835ccbd",
+      "installedAt": "2026-04-03T11:40:42.290Z",
+      "updatedAt": "2026-04-03T11:40:42.290Z"
     }
   },
   "dismissed": {

@@ -22,41 +22,20 @@
 
 echo "Installing AI tools..."
 
-echo "Installing Qwen Code..."
 bun install --global @qwen-code/qwen-code@latest
-
-echo "Installing Gemini CLI..."
 bun install --global @google/gemini-cli@latest
-
-echo "Installing Claude Code..."
 bun install --global @anthropic-ai/claude-code@latest
-
-echo "Installing OpenCode AI..."
 bun install --global opencode-ai@latest
-
-echo "Installing Agent Browser..."
 bun install --global agent-browser@latest
-
-echo "Installing Qoder CLI..."
 npm install -g @qoder-ai/qodercli
-
-# echo "Installing Ralph Wiggum ... for opencode"
-# bun install --global @th0rgal/ralph-wiggum
-#
-# echo "Installing Vibe Kanban"
-# bun install --global vibe-kanban
-
-# echo "Installing opencode-orchestrator"
-# npm install -g opencode-orchestrator
-
-# echo "Installing opencode-swarm-plugin"
-# bun add -g opencode-swarm-plugin@latest
-
-echo "Installing/upgrading Mistral Vibe..."
+npm install -g skills
 uv tool install --upgrade mistral-vibe
-
-echo "Installing/upgrading Kimi CLI..."
 uv tool install --upgrade kimi-cli
+
+# bun install --global @th0rgal/ralph-wiggum
+# bun install --global vibe-kanban
+# npm install -g opencode-orchestrator
+# bun add -g opencode-swarm-plugin@latest
 
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
