@@ -512,3 +512,5 @@ fi
 # fi
 
 # export PATH="/home/ball6847/snap/alacritty/common/.cache/.bun/bin:$PATH"
+export AGENT_BROWSER_CONFIG_HEADED=true
+export AGENT_BROWSER_CONFIG_FULL=true
