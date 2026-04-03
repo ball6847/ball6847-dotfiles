@@ -27,10 +27,12 @@ bun install --global @google/gemini-cli@latest
 bun install --global @anthropic-ai/claude-code@latest
 bun install --global opencode-ai@latest
 bun install --global agent-browser@latest
-npm install -g @qoder-ai/qodercli
-npm install -g skills
 uv tool install --upgrade mistral-vibe
-uv tool install --upgrade kimi-cli
+uv tool install --upgrade kimi-cli 
+npm install -g @qoder-ai/qodercli@latest &
+npm install -g skills@latest &
+
+wait
 
 # bun install --global @th0rgal/ralph-wiggum
 # bun install --global vibe-kanban
