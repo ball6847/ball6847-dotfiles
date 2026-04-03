@@ -26,11 +26,11 @@ bun install --global @qwen-code/qwen-code@latest
 bun install --global @google/gemini-cli@latest
 bun install --global @anthropic-ai/claude-code@latest
 bun install --global opencode-ai@latest
-bun install --global agent-browser@latest
 uv tool install --upgrade mistral-vibe
 uv tool install --upgrade kimi-cli 
 npm install -g @qoder-ai/qodercli@latest &
 npm install -g skills@latest &
+cargo install agent-browser &
 
 wait
 
@@ -82,6 +82,7 @@ wait
 asdf reshim golang
 asdf reshim bun
 asdf reshim nodejs
+asdf reshim rust
 
 # Download Chrome for Testing (safe to run multiple times)
 agent-browser install

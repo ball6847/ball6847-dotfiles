@@ -511,3 +511,4 @@ fi
 #   exec tmux new -A -t main
 # fi
 
+# export PATH="/home/ball6847/snap/alacritty/common/.cache/.bun/bin:$PATH"
