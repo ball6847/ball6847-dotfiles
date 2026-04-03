@@ -31,10 +31,14 @@ bun install --global @google/gemini-cli@latest
 echo "Installing Claude Code..."
 bun install --global @anthropic-ai/claude-code@latest
 
-# Stick to 0.x version as 1.x is still not yet stable
 echo "Installing OpenCode AI..."
-# bun install --global opencode-ai@~0
 bun install --global opencode-ai@latest
+
+echo "Installing Agent Browser..."
+bun install --global agent-browser@latest
+
+echo "Installing Qoder CLI..."
+npm install -g @qoder-ai/qodercli
 
 # echo "Installing Ralph Wiggum ... for opencode"
 # bun install --global @th0rgal/ralph-wiggum
@@ -53,9 +57,6 @@ uv tool install --upgrade mistral-vibe
 
 echo "Installing/upgrading Kimi CLI..."
 uv tool install --upgrade kimi-cli
-
-echo "Installing Qoder CLI..."
-npm install -g @qoder-ai/qodercli
 
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
@@ -100,6 +101,9 @@ npm install -g @qoder-ai/qodercli
 asdf reshim golang
 asdf reshim bun
 asdf reshim nodejs
+
+# Download Chrome for Testing (safe to run multiple times)
+agent-browser install
 
 # =============================================================================
 # DEPENDENCY CHECKS SECTION
