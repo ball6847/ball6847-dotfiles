@@ -10,18 +10,17 @@ map("i", "jk", "<ESC>")
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
--- copilot accept suggession
-local copilot_accept_key = vim.loop.os_uname().sysname == "Darwin" and "<A-l>" or "<C-l>"
-
-map("i", copilot_accept_key, function()
-  vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-end, {
-  replace_keycodes = true,
-  nowait = true,
-  silent = true,
-  expr = true,
-  noremap = true,
-})
+-- copilot accept suggestion (disabled)
+-- local copilot_accept_key = vim.loop.os_uname().sysname == "Darwin" and "<A-l>" or "<C-l>"
+-- map("i", copilot_accept_key, function()
+--   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
+-- end, {
+--   replace_keycodes = true,
+--   nowait = true,
+--   silent = true,
+--   expr = true,
+--   noremap = true,
+-- })
 
 -- keep visual mode after indent
 map("v", "<", "<gv")
