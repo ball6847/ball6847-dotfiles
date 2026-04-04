@@ -431,12 +431,12 @@ return {
         -- Highlight configuration
         highlights = {
           -- Line-level: darker but visible colors for dark theme
-          line_insert = "#2d5a3d", -- Dark green for insertions
-          line_delete = "#5a2d2d", -- Dark red for deletions
+          line_insert = "#1e402c", -- Darker green for insertions
+          line_delete = "#401e1e", -- Darker red for deletions
 
           -- Character-level: slightly lighter for character-level differences
-          char_insert = "#3d7a4d", -- Medium green for chars
-          char_delete = "#7a3d3d", -- Medium red for chars
+          char_insert = "#255032", -- Darker medium green for chars
+          char_delete = "#502525", -- Darker medium red for chars
 
           -- Brightness multiplier (not used when char_insert/char_delete are set)
           char_brightness = nil,
