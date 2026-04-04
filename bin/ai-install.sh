@@ -29,6 +29,7 @@ bun install --global opencode-ai@latest
 uv tool install --upgrade mistral-vibe
 uv tool install --upgrade kimi-cli 
 npm install -g @qoder-ai/qodercli@latest &
+npm install -g diffx-cli@latest &
 npm install -g skills@latest &
 cargo install agent-browser &
 
