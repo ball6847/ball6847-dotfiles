@@ -65,6 +65,15 @@
       "skillFolderHash": "79bf2fb6edfcf688931e6f1a444da144b835ccbd",
       "installedAt": "2026-04-03T11:40:42.290Z",
       "updatedAt": "2026-04-03T11:40:42.290Z"
+    },
+    "ascii-visualizer": {
+      "source": "yonatangross/orchestkit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/yonatangross/orchestkit.git",
+      "skillPath": "plugins/ork/skills/ascii-visualizer/SKILL.md",
+      "skillFolderHash": "67be8b80abe316d7505312437b549efad3fff651",
+      "installedAt": "2026-04-05T03:52:10.318Z",
+      "updatedAt": "2026-04-05T03:53:39.226Z"
     }
   },
   "dismissed": {
