@@ -2,7 +2,9 @@
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
   "permission": "allow",
-  "instructions": ["AGENTS.md"],
+  "instructions": [
+    "AGENTS.md"
+  ],
   "plugin": [
     // "opencode-gemini-auth",
     // "opencode-alibaba-qwen3-auth",
@@ -28,6 +30,32 @@
           "limit": {
             "context": 262144,
             "output": 32768
+          }
+        }
+      }
+    },
+    "ollama-cloud": {
+      "id": "ollama-cloud",
+      "models": {
+        "gemma4:31b": {
+          "id": "gemma4:31b",
+          "name": "gemma4:31b",
+          "family": "gemma",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 131072,
+            "output": 131072
           }
         }
       }
@@ -69,7 +97,9 @@
     },
     "synthetic": {
       "id": "synthetic",
-      "env": ["SYNTHETIC_API_KEY"],
+      "env": [
+        "SYNTHETIC_API_KEY"
+      ],
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
@@ -82,8 +112,12 @@
           "tool_call": true,
           "temperature": true,
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "cost": {
             "input": 0.06,
@@ -104,8 +138,12 @@
           "temperature": true,
           "release_date": "2026-01-01",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "cost": {
             "input": 1,
@@ -126,8 +164,12 @@
           "temperature": true,
           "release_date": "2025-11-08",
           "modalities": {
-            "input": ["text"],
-            "output": ["text"]
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "cost": {
             "input": 0.6,
@@ -176,7 +218,12 @@
     },
     "vibe_kanban": {
       "type": "local",
-      "command": ["npx", "-y", "vibe-kanban@latest", "--mcp"]
+      "command": [
+        "npx",
+        "-y",
+        "vibe-kanban@latest",
+        "--mcp"
+      ]
     }
   },
   "agent": {
