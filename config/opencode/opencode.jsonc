@@ -209,22 +209,22 @@
     }
   },
   "mcp": {
-    "openmemory": {
-      "type": "remote",
-      "url": "{env:OPENMEMORY_API_URL}",
-      "headers": {
-        "Authorization": "Bearer {env:OPENMEMORY_API_KEY}"
-      }
-    },
-    "vibe_kanban": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "vibe-kanban@latest",
-        "--mcp"
-      ]
-    }
+    // "openmemory": {
+    //   "type": "remote",
+    //   "url": "{env:OPENMEMORY_API_URL}",
+    //   "headers": {
+    //     "Authorization": "Bearer {env:OPENMEMORY_API_KEY}"
+    //   }
+    // },
+    // "vibe_kanban": {
+    //   "type": "local",
+    //   "command": [
+    //     "npx",
+    //     "-y",
+    //     "vibe-kanban@latest",
+    //     "--mcp"
+    //   ]
+    // }
   },
   "agent": {
     "builder": {
