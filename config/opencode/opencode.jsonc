@@ -229,7 +229,7 @@
   "agent": {
     "builder": {
       "mode": "subagent",
-      "model": "streamlake/kat-coder-pro-v2",
+      // "model": "streamlake/kat-coder-pro-v2",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
@@ -243,7 +243,7 @@
     },
     "reviewer": {
       "mode": "subagent",
-      "model": "synthetic/hf:zai-org/GLM-5",
+      // "model": "synthetic/hf:zai-org/GLM-5",
       "description": "Implementation review specialist. Reads plans and implementation reports, verifies builder's work against plans, creates review reports with verdicts (PASS/PARTIAL/FAIL), and updates plan timestamps. Use proactively after builder completes implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/reviewer/SKILL.md}",
       "tools": {
