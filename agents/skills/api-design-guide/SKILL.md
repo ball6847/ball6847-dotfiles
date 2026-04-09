@@ -287,10 +287,13 @@ Use TypeScript-style interface definitions:
 
 ### Creating Diagrams
 
+**IMPORTANT**: Always render diagrams as ASCII only, NOT SVG.
+
 1. Write Mermaid diagrams in `docs/diagrams/api/{feature}/*.mmd` files
-2. Render to ASCII using pretty-mermaid skill
-3. Include ASCII in document
-4. Add reference to source Mermaid file
+2. Render to ASCII using pretty-mermaid skill (ASCII output only)
+3. Copy the ASCII diagram output from the pretty-mermaid result
+4. Paste the ASCII diagram into the API design document
+5. Add reference to source Mermaid file below the diagram
 
 ### Diagram Types by Use Case
 
