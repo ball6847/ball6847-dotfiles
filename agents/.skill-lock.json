@@ -128,6 +128,15 @@
       "skillFolderHash": "6394aa59a324cc2e1dfc19a24015175d70d8eae5",
       "installedAt": "2026-04-07T15:36:32.229Z",
       "updatedAt": "2026-04-07T15:36:32.229Z"
+    },
+    "pretty-mermaid": {
+      "source": "imxv/pretty-mermaid-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/imxv/pretty-mermaid-skills.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "e33f086d3b5bcec9f28632e4bd9c348b02bb2278",
+      "installedAt": "2026-04-09T15:53:46.242Z",
+      "updatedAt": "2026-04-09T15:53:46.242Z"
     }
   },
   "dismissed": {
