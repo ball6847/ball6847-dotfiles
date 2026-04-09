@@ -188,6 +188,29 @@ ocw() {
   echo "Starting opencode web on https://$hostname"
   opencode web --hostname "$hostname" "$@"
 }
+
+# Run kimi web with auto-detected tailscale hostname
+kmw() {
+  local tailscale_ip=$(tailscale status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
+  local hostname=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
+
+  if [ -z "$tailscale_ip" ] || [ -z "$hostname" ]; then
+    echo "Error: Could not detect Tailscale. Is tailscale running?"
+    return 1
+  fi
+
+  # Generate random token
+  local auth_token=$(openssl rand -hex 32)
+  local port=${KM_PORT:-5494}
+
+  echo "================================================"
+  echo "Kimi Web URL:"
+  echo "http://$hostname:$port/?token=$auth_token"
+  echo "================================================"
+
+  kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" "$@"
+}
+
 alias km="kimi"
 alias vb="vibe"
 alias qw="qwen -y"
