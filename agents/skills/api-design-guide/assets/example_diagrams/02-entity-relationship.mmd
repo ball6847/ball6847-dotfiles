@@ -1,0 +1,22 @@
+erDiagram
+    ENTITY_A ||--o{ ENTITY_B : relationship
+    ENTITY_B ||--o{ ENTITY_C : contains
+    
+    ENTITY_A {
+        string id PK
+        string name
+        datetime createdAt
+    }
+    
+    ENTITY_B {
+        string id PK
+        string entityAId FK
+        string status
+        datetime createdAt
+    }
+    
+    ENTITY_C {
+        string id PK
+        string entityBId FK
+        string data
+    }

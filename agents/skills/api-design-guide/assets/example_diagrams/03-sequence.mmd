@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Client
+    participant API
+    participant Service
+    participant Storage
+    
+    Client->>API: 1. Request
+    API->>API: 2. Validate
+    API->>Service: 3. Process
+    Service->>Storage: 4. Read/Write
+    Storage-->>Service: 5. Return data
+    Service-->>API: 6. Result
+    API-->>Client: 7. Response

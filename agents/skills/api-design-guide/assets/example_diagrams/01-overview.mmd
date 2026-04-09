@@ -1,0 +1,17 @@
+flowchart LR
+    subgraph Step1["Step 1"]
+        S1[Action 1]
+    end
+    
+    subgraph Step2["Step 2"]
+        S2[Action 2]
+        API1[POST /api/v1/endpoint]
+    end
+    
+    subgraph Step3["Step 3"]
+        S3[Action 3]
+    end
+    
+    S1 --> S2
+    S2 --> S3
+    S2 --> API1

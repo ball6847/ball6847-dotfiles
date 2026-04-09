@@ -1,0 +1,10 @@
+stateDiagram-v2
+    [*] --> StateA
+    
+    StateA --> StateB: Event 1
+    StateB --> StateC: Event 2
+    StateC --> [*]: Complete
+    
+    StateA: State A<br/>attribute: value
+    StateB: State B<br/>attribute: value
+    StateC: State C
