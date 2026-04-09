@@ -1,8 +1,8 @@
 ---
 name: api-design-guide
 description: |
-  Create technology-neutral API design documents with consistent structure, 
-  response formats, error handling, and ASCII diagram integration.
+  Create technology-neutral API design documents with consistent structure,
+  file organization, naming conventions, response formats, and diagram integration.
 
   Use this skill when:
   - User asks to "design an API" or "create API documentation"
@@ -11,6 +11,8 @@ description: |
   - User is creating high-level API design docs (not implementation)
   - User needs consistent API response/error formats
   - User wants to visualize API flows with diagrams
+  - User needs file naming conventions for docs
+  - User is reorganizing API documentation
 ---
 
 # API Design Guide
@@ -474,4 +476,142 @@ Header: `Authorization: Bearer {token}`
 - Max files: {N}
 - Max size per file: {N}MB
 - Allowed types: {list}
+```
+
+
+---
+
+## File Organization & Naming
+
+### Folder Structure
+
+Use this structure for API design projects:
+
+```
+project-root/
+├── docs/                          # Documentation
+│   ├── README.md                  # Docs index
+│   ├── AGENTS.md                  # AI assistant guide
+│   │
+│   ├── api/                       # API designs
+│   │   ├── README.md              # API index
+│   │   ├── {feature}.md           # Individual API designs
+│   │   └── {feature}/             # Sub-docs if needed
+│   │
+│   ├── architecture/              # System design
+│   │   ├── srs.md                 # Requirements
+│   │   └── phases.md              # Implementation plan
+│   │
+│   └── guides/                    # How-to guides
+│       └── getting-started.md
+│
+├── diagrams/                      # Shared diagrams (Mermaid)
+│   ├── README.md                  # Diagram index
+│   ├── api/                       # Match docs/api/
+│   │   └── {feature}/
+│   │       ├── 01-flow-{name}.mmd
+│   │       ├── 02-er-{name}.mmd
+│   │       ├── 03-sequence-{name}.mmd
+│   │       └── 04-state-{name}.mmd
+│   └── architecture/
+│       └── 01-{type}-{name}.mmd
+│
+└── AGENTS.md -> docs/AGENTS.md    # (Optional) Symlink
+```
+
+### File Naming Rules
+
+#### Markdown Documents
+
+| Pattern | Example |
+|---------|---------|
+| `lowercase-with-hyphens.md` | `deal-creation.md` |
+| Keep acronyms uppercase | `kyc-jit.md`, `api-gateway.md` |
+| Always `README.md` for indices | `docs/api/README.md` |
+
+#### Diagram Files (Mermaid)
+
+| Pattern | Example |
+|---------|---------|
+| `NN-{type}-{name}.mmd` | `01-flow-overview.mmd` |
+
+**Diagram Types:**
+- `01-flow-*` - Flowcharts (processes, workflows)
+- `02-er-*` - Entity Relationship diagrams
+- `03-sequence-*` - Sequence diagrams (API flows)
+- `04-state-*` - State diagrams (lifecycles)
+- `05-class-*` - Class diagrams (models)
+
+### Naming Rules Summary
+
+✓ **DO:**
+- Use lowercase: `deal-creation.md`
+- Use hyphens: `sequence-upload.mmd`
+- Use numbers for ordering: `01-overview.mmd`
+- Keep acronyms uppercase: `kyc-jit.md`
+
+✗ **DON'T:**
+- ~~Spaces~~: `Deal Creation.md`
+- ~~Underscores~~: `deal_creation.md`
+- ~~CamelCase~~: `dealCreation.md`
+- ~~Abbreviate~~: `dc.md` (use `deal-creation.md`)
+
+### Document References
+
+Reference diagrams in your docs:
+
+```markdown
+> **Diagram Source**: `diagrams/api/deal-creation/01-flow-overview.mmd`
+```
+
+### Migration Example
+
+**Before (inconsistent):**
+```
+DEAL_CREATION_API_DESIGN.md
+BANK_ACCOUNT_API.MD
+diagrams/
+  ├── deal_flow.mmd
+  └── entity_diagram.txt
+```
+
+**After (consistent):**
+```
+docs/
+├── api/
+│   ├── deal-creation.md
+│   ├── bank-account.md
+│   └── README.md
+└── architecture/
+    └── srs.md
+
+diagrams/
+├── api/
+│   ├── deal-creation/
+│   │   ├── 01-flow-overview.mmd
+│   │   ├── 02-er-entities.mmd
+│   │   └── 03-sequence-upload.mmd
+│   └── bank-account/
+└── README.md
+```
+
+### Quick Reference
+
+```
+FOLDERS:
+  docs/api/              - API designs
+  diagrams/api/          - API diagrams
+
+DOCUMENTS:
+  lowercase-with-hyphens.md
+
+DIAGRAMS:
+  01-flow-{name}.mmd     - Flowcharts
+  02-er-{name}.mmd       - Entity Relationship
+  03-sequence-{name}.mmd - API flows
+  04-state-{name}.mmd    - Lifecycles
+  05-class-{name}.mmd    - Object models
+
+REFERENCES:
+  > **Diagram Source**: diagrams/api/{feature}/NN-{type}-{name}.mmd
 ```
