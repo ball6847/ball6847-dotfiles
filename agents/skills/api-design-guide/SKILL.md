@@ -2,7 +2,7 @@
 name: api-design-guide
 description: |
   Create technology-neutral API design documents with consistent structure,
-  file organization, naming conventions, response formats, and diagram integration.
+  response formats, error codes, and diagram integration.
 
   Use this skill when:
   - User asks to "design an API" or "create API documentation"
@@ -11,8 +11,6 @@ description: |
   - User is creating high-level API design docs (not implementation)
   - User needs consistent API response/error formats
   - User wants to visualize API flows with diagrams
-  - User needs file naming conventions for docs
-  - User is reorganizing API documentation
 ---
 
 # API Design Guide
@@ -28,7 +26,7 @@ Create professional, technology-neutral API design documents that follow industr
 
 ## Document Structure
 
-ALWAYS use this exact structure:
+ALWAYS use this exact structure for API design documents:
 
 ````markdown
 # {API Name} Design
@@ -44,7 +42,7 @@ ALWAYS use this exact structure:
 
 {ASCII flowchart diagram showing main flows}
 
-> **Diagram Reference**: `diagrams/01-overview.mmd`
+> **Diagram Source**: `docs/diagrams/api/{feature}/01-flow-overview.mmd`
 
 ---
 
@@ -134,7 +132,7 @@ All API responses follow the standard wrapper format:
 
 {ASCII ER diagram showing entities and relationships}
 
-> **Diagram Reference**: `diagrams/02-entity-relationship.mmd`
+> **Diagram Source**: `docs/diagrams/api/{feature}/02-er-entities.mmd`
 
 **Relationships**:
 
@@ -148,7 +146,7 @@ All API responses follow the standard wrapper format:
 
 {ASCII sequence diagram}
 
-> **Diagram Reference**: `diagrams/03-sequence-{name}.mmd`
+> **Diagram Source**: `docs/diagrams/api/{feature}/03-sequence-{name}.mmd`
 
 **Notes**:
 
@@ -208,11 +206,10 @@ interface {ModelName} {
 | **{Benefit 1}** | {Explanation} |
 | **{Benefit 2}** | {Explanation} |
 
-````
-
 ## Technology-Neutral Guidelines
 
 ### ALLOWED (Industry Standards)
+
 - HTTP methods: GET, POST, PUT, DELETE, PATCH
 - HTTP status codes: 200, 201, 204, 400, 401, 403, 404, 500
 - Content-Types: application/json, multipart/form-data
@@ -221,6 +218,7 @@ interface {ModelName} {
 - REST conventions: plural nouns, hierarchical paths
 
 ### AVOID (Technology-Specific)
+
 - ❌ Framework-specific code (Go structs, Java annotations, Python decorators)
 - ❌ Database-specific syntax (SQL operators, MongoDB operators)
 - ❌ Cloud provider names (S3 → use "Cloud Storage" or "Storage")
@@ -229,20 +227,22 @@ interface {ModelName} {
 - ❌ Implementation details (garbage collection → cleanup job)
 
 ### Data Types
+
 Use TypeScript-style interface definitions:
 
-| TypeScript | Meaning |
-|------------|---------|
-| `string` | Text values |
-| `number` | Numeric values (integers and floats) |
-| `boolean` | true/false |
-| `T[]` | Array of type T |
-| `Type \| Type` | Union types (enums) |
-| `field?: T` | Optional field |
+| TypeScript     | Meaning                              |
+| -------------- | ------------------------------------ |
+| `string`       | Text values                          |
+| `number`       | Numeric values (integers and floats) |
+| `boolean`      | true/false                           |
+| `T[]`          | Array of type T                      |
+| `Type \| Type` | Union types (enums)                  |
+| `field?: T`    | Optional field                       |
 
 ## Response Format Rules
 
 ### Success Response (200/201)
+
 ```json
 {
   "status": {
@@ -251,7 +251,7 @@ Use TypeScript-style interface definitions:
   },
   "data": { ... }
 }
-````
+```
 
 ### Error Response
 
@@ -287,7 +287,7 @@ Use TypeScript-style interface definitions:
 
 ### Creating Diagrams
 
-1. Write Mermaid diagrams in `diagrams/*.mmd` files
+1. Write Mermaid diagrams in `docs/diagrams/api/{feature}/*.mmd` files
 2. Render to ASCII using pretty-mermaid skill
 3. Include ASCII in document
 4. Add reference to source Mermaid file
@@ -307,7 +307,7 @@ Use TypeScript-style interface definitions:
 Always include after ASCII diagram:
 
 ```markdown
-> **Diagram Reference**: `diagrams/{NN}-{name}.mmd` (Source: {Diagram Type} - {Description})
+> **Diagram Source**: `docs/diagrams/api/{feature}/{NN}-{type}-{name}.mmd`
 ```
 
 ## Working with User Requests
@@ -388,7 +388,6 @@ Content-Type: image/jpeg
 
 [binary data]
 ```
-````
 
 **Response (201 Created)**:
 
@@ -414,7 +413,6 @@ Content-Type: image/jpeg
 | `400`       | `16002`    | `invalid file type` | Not JPEG/PNG          |
 | `401`       | `9101`     | `unauthorized`      | Invalid token         |
 | `404`       | `11001`    | `user not found`    | User ID doesn't exist |
-
 ````
 
 ## Quality Checklist
@@ -437,13 +435,13 @@ Before finalizing the document, verify:
 
 ### CRUD Operations
 
-| Operation | Method | Path | Auth |
-|-----------|--------|------|------|
-| Create | POST | /api/v1/{resources} | Required |
-| Read (list) | GET | /api/v1/{resources} | Required |
-| Read (one) | GET | /api/v1/{resources}/{id} | Required |
-| Update | PUT/PATCH | /api/v1/{resources}/{id} | Required |
-| Delete | DELETE | /api/v1/{resources}/{id} | Required |
+| Operation   | Method    | Path                     | Auth     |
+| ----------- | --------- | ------------------------ | -------- |
+| Create      | POST      | /api/v1/{resources}      | Required |
+| Read (list) | GET       | /api/v1/{resources}      | Required |
+| Read (one)  | GET       | /api/v1/{resources}/{id} | Required |
+| Update      | PUT/PATCH | /api/v1/{resources}/{id} | Required |
+| Delete      | DELETE    | /api/v1/{resources}/{id} | Required |
 
 ### Authentication Patterns
 
@@ -451,7 +449,7 @@ Before finalizing the document, verify:
 **Authentication**: Required (Bearer token)
 
 Header: `Authorization: Bearer {token}`
-````
+```
 
 ### Pagination Pattern
 
@@ -478,140 +476,33 @@ Header: `Authorization: Bearer {token}`
 - Allowed types: {list}
 ```
 
+## File Organization
 
----
+Store API design documents in `docs/api/`:
 
-## File Organization & Naming
-
-### Folder Structure
-
-Use this structure for API design projects:
-
-```
-project-root/
-├── docs/                          # Documentation
-│   ├── README.md                  # Docs index
-│   ├── AGENTS.md                  # AI assistant guide
-│   │
-│   ├── api/                       # API designs
-│   │   ├── README.md              # API index
-│   │   ├── {feature}.md           # Individual API designs
-│   │   └── {feature}/             # Sub-docs if needed
-│   │
-│   ├── architecture/              # System design
-│   │   ├── srs.md                 # Requirements
-│   │   └── phases.md              # Implementation plan
-│   │
-│   └── guides/                    # How-to guides
-│       └── getting-started.md
-│
-├── diagrams/                      # Shared diagrams (Mermaid)
-│   ├── README.md                  # Diagram index
-│   ├── api/                       # Match docs/api/
-│   │   └── {feature}/
-│   │       ├── 01-flow-{name}.mmd
-│   │       ├── 02-er-{name}.mmd
-│   │       ├── 03-sequence-{name}.mmd
-│   │       └── 04-state-{name}.mmd
-│   └── architecture/
-│       └── 01-{type}-{name}.mmd
-│
-└── AGENTS.md -> docs/AGENTS.md    # (Optional) Symlink
-```
-
-### File Naming Rules
-
-#### Markdown Documents
-
-| Pattern | Example |
-|---------|---------|
-| `lowercase-with-hyphens.md` | `deal-creation.md` |
-| Keep acronyms uppercase | `kyc-jit.md`, `api-gateway.md` |
-| Always `README.md` for indices | `docs/api/README.md` |
-
-#### Diagram Files (Mermaid)
-
-| Pattern | Example |
-|---------|---------|
-| `NN-{type}-{name}.mmd` | `01-flow-overview.mmd` |
-
-**Diagram Types:**
-- `01-flow-*` - Flowcharts (processes, workflows)
-- `02-er-*` - Entity Relationship diagrams
-- `03-sequence-*` - Sequence diagrams (API flows)
-- `04-state-*` - State diagrams (lifecycles)
-- `05-class-*` - Class diagrams (models)
-
-### Naming Rules Summary
-
-✓ **DO:**
-- Use lowercase: `deal-creation.md`
-- Use hyphens: `sequence-upload.mmd`
-- Use numbers for ordering: `01-overview.mmd`
-- Keep acronyms uppercase: `kyc-jit.md`
-
-✗ **DON'T:**
-- ~~Spaces~~: `Deal Creation.md`
-- ~~Underscores~~: `deal_creation.md`
-- ~~CamelCase~~: `dealCreation.md`
-- ~~Abbreviate~~: `dc.md` (use `deal-creation.md`)
-
-### Document References
-
-Reference diagrams in your docs:
-
-```markdown
-> **Diagram Source**: `diagrams/api/deal-creation/01-flow-overview.mmd`
-```
-
-### Migration Example
-
-**Before (inconsistent):**
-```
-DEAL_CREATION_API_DESIGN.md
-BANK_ACCOUNT_API.MD
-diagrams/
-  ├── deal_flow.mmd
-  └── entity_diagram.txt
-```
-
-**After (consistent):**
 ```
 docs/
 ├── api/
-│   ├── deal-creation.md
-│   ├── bank-account.md
-│   └── README.md
-└── architecture/
-    └── srs.md
-
-diagrams/
-├── api/
-│   ├── deal-creation/
-│   │   ├── 01-flow-overview.mmd
-│   │   ├── 02-er-entities.mmd
-│   │   └── 03-sequence-upload.mmd
-│   └── bank-account/
-└── README.md
+│   ├── README.md              # API index
+│   └── {FEATURE}.md           # API designs (UPPERCASE-WITH-HYPHENS.md)
+│
+└── diagrams/
+    └── api/
+        └── {feature}/
+            ├── 01-flow-{name}.mmd
+            ├── 02-er-{name}.mmd
+            ├── 03-sequence-{name}.mmd
+            └── 04-state-{name}.mmd
 ```
 
-### Quick Reference
+### Naming
 
-```
-FOLDERS:
-  docs/api/              - API designs
-  diagrams/api/          - API diagrams
+- **API docs**: `UPPERCASE-WITH-HYPHENS.md` (e.g., `DEAL-CREATION.md`)
+- **Diagrams**: `NN-{type}-{name}.mmd` (e.g., `01-flow-overview.mmd`)
+- **Acronyms stay uppercase**: `KYC-JIT.md`, `API-GATEWAY.md`
 
-DOCUMENTS:
-  lowercase-with-hyphens.md
+### Diagram Reference Format
 
-DIAGRAMS:
-  01-flow-{name}.mmd     - Flowcharts
-  02-er-{name}.mmd       - Entity Relationship
-  03-sequence-{name}.mmd - API flows
-  04-state-{name}.mmd    - Lifecycles
-  05-class-{name}.mmd    - Object models
-
-REFERENCES:
-  > **Diagram Source**: diagrams/api/{feature}/NN-{type}-{name}.mmd
+```markdown
+> **Diagram Source**: `docs/diagrams/api/{feature}/01-flow-overview.mmd`
 ```
