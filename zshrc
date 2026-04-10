@@ -131,7 +131,7 @@ export WINEPREFIX=$SUDO_HOME/.wine
 export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
 export TMUX_VERSION=$(tmux -V | grep -o '[0-9]\+\.[0-9]\+' | head -1)
 # export GIT_COMMIT_AI_MODEL="openrouter/google/gemini-2.0-flash-exp:free"
-export GIT_COMMIT_AI_MODEL="openrouter/z-ai/glm-4.5-air:free"
+export GIT_COMMIT_AI_MODEL="openrouter/openrouter/free"
 
 # Set up PATH for Termux if we're in a Termux session
 if is_termux; then
@@ -149,8 +149,8 @@ alias gs="git status"
 alias ga="git add -A"
 alias gcm="git commit -am"
 # alias gcmm='echo "$(cat ~/.config/opencode/command/git-commit.md)" | opencode run -m "openrouter/google/gemini-2.0-flash-exp:free"'
-# alias gcmm="doppler_run -- git-commit-ai g"
-alias gcmm="vibe \"/git-commit\""
+alias gcmm="doppler_run -- git-commit-ai g"
+# alias gcmm="vibe \"/git-commit\""
 alias gco="git checkout"
 alias gp="git push -u"
 alias gd="git diff"
