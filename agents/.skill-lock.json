@@ -137,6 +137,15 @@
       "skillFolderHash": "e33f086d3b5bcec9f28632e4bd9c348b02bb2278",
       "installedAt": "2026-04-09T15:53:46.242Z",
       "updatedAt": "2026-04-09T15:53:46.242Z"
+    },
+    "maar": {
+      "source": "ball6847/maar",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/ball6847/maar.git",
+      "skillPath": "skills/maar/SKILL.md",
+      "skillFolderHash": "2c9a767d5d3d1e0a2143571083ca0aa09b1f0de3",
+      "installedAt": "2026-04-11T05:27:29.640Z",
+      "updatedAt": "2026-04-11T05:27:29.640Z"
     }
   },
   "dismissed": {
