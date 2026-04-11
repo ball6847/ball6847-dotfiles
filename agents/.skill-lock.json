@@ -146,6 +146,24 @@
       "skillFolderHash": "2c9a767d5d3d1e0a2143571083ca0aa09b1f0de3",
       "installedAt": "2026-04-11T05:27:29.640Z",
       "updatedAt": "2026-04-11T05:27:29.640Z"
+    },
+    "diffx-finish-review": {
+      "source": "wong2/diffx",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wong2/diffx.git",
+      "skillPath": "skills/diffx-finish-review/SKILL.md",
+      "skillFolderHash": "6c9b78b79fce5f2eeebf65f15ec7972fdffce9b2",
+      "installedAt": "2026-04-11T09:49:17.734Z",
+      "updatedAt": "2026-04-11T09:49:17.734Z"
+    },
+    "diffx-start-review": {
+      "source": "wong2/diffx",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wong2/diffx.git",
+      "skillPath": "skills/diffx-start-review/SKILL.md",
+      "skillFolderHash": "d539b2438c5ba19c1d50f541e108cc15fb17f077",
+      "installedAt": "2026-04-11T09:49:18.199Z",
+      "updatedAt": "2026-04-11T09:49:18.199Z"
     }
   },
   "dismissed": {
