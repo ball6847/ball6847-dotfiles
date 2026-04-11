@@ -202,6 +202,20 @@ curl -fsSL https://deno.land/install.sh | sh
 # Restart shell after install
 ```
 
+### Check Version / Upgrade
+
+```bash
+# Check current version
+maar --version
+# or
+deno run --allow-read jsr:@ball6847/maar --version
+
+# Upgrade to latest
+deno install --allow-read --allow-write -n maar --force jsr:@ball6847/maar
+```
+
+If issues persist, try upgrading and re-running MAAR.
+
 ### Mermaid Syntax Error
 
 Validate at https://mermaid.live/ before running MAAR.

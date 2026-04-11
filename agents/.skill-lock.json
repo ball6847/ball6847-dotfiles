@@ -43,10 +43,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
       "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "3b319028d5e51497e251a3481d2c7d8521a860eb",
-      "pluginName": "agent-browser",
+      "skillFolderHash": "b6f762bf402cdfaf6a06514e9ce4142ce3e4fb4c",
       "installedAt": "2026-04-03T11:40:12.604Z",
-      "updatedAt": "2026-04-03T11:40:12.604Z"
+      "updatedAt": "2026-04-11T10:31:53.851Z"
     },
     "dogfood": {
       "source": "vercel-labs/agent-browser",
@@ -71,9 +70,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/yonatangross/orchestkit.git",
       "skillPath": "plugins/ork/skills/ascii-visualizer/SKILL.md",
-      "skillFolderHash": "67be8b80abe316d7505312437b549efad3fff651",
+      "skillFolderHash": "1c53aa5ff2bd55b90bb8d6596fd72c471406d85a",
       "installedAt": "2026-04-05T03:52:10.318Z",
-      "updatedAt": "2026-04-05T03:53:39.226Z"
+      "updatedAt": "2026-04-11T10:32:11.384Z"
     },
     "user-story": {
       "source": "deanpeters/product-manager-skills",
@@ -143,9 +142,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/ball6847/maar.git",
       "skillPath": "skills/maar/SKILL.md",
-      "skillFolderHash": "2c9a767d5d3d1e0a2143571083ca0aa09b1f0de3",
+      "skillFolderHash": "58e5eb93706741650dd8b2415d7a0b6715c68d54",
       "installedAt": "2026-04-11T05:27:29.640Z",
-      "updatedAt": "2026-04-11T05:27:29.640Z"
+      "updatedAt": "2026-04-11T10:32:14.565Z"
     },
     "diffx-finish-review": {
       "source": "wong2/diffx",
