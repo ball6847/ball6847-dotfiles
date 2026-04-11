@@ -163,6 +163,14 @@
       "skillFolderHash": "d539b2438c5ba19c1d50f541e108cc15fb17f077",
       "installedAt": "2026-04-11T09:49:18.199Z",
       "updatedAt": "2026-04-11T09:49:18.199Z"
+    },
+    "tmux": {
+      "source": "smithery.ai",
+      "sourceType": "well-known",
+      "sourceUrl": "https://smithery.ai/skills/codekiln/tmux/.well-known/skills/tmux/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-04-11T16:32:37.610Z",
+      "updatedAt": "2026-04-11T16:32:37.610Z"
     }
   },
   "dismissed": {
