@@ -154,6 +154,32 @@
             "output": 65536
           }
         },
+        "hf:zai-org/GLM-5.1": {
+          "id": "hf:zai-org/GLM-5.1",
+          "name": "GLM-5.1",
+          "family": "glm",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "temperature": true,
+          "release_date": "2026-01-01",
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "cost": {
+            "input": 1,
+            "output": 6
+          },
+          "limit": {
+            "context": 196608,
+            "output": 65536
+          }
+        },
         "hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4": {
           "id": "hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
           "name": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
