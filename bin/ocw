@@ -1,0 +1,13 @@
+#!/bin/bash
+# Run opencode web with auto-detected Tailscale hostname
+# Doppler secrets are injected via the `oc` wrapper script
+
+hostname=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
+
+if [ -z "$hostname" ]; then
+    echo "Error: Could not detect Tailscale hostname. Is tailscale running?"
+    exit 1
+fi
+
+echo "Starting opencode web on https://$hostname"
+exec oc web --hostname "$hostname" "$@"

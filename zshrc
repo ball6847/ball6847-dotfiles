@@ -172,23 +172,13 @@ alias v="nvim"
 alias t="task"
 alias m="make"
 alias g="gemini -y"
-alias oc="opencode"
+
 alias w="wtp"
 
 if command -v batcat >/dev/null 2>&1; then
   alias bat="batcat"
 fi
 
-# Run opencode web with auto-detected tailscale hostname
-ocw() {
-  local hostname=$(tailscale status --json 2>/dev/null | grep -o '"DNSName": "[^"]*"' | head -1 | cut -d'"' -f4 | sed 's/\.$//')
-  if [ -z "$hostname" ]; then
-    echo "Error: Could not detect Tailscale hostname. Is tailscale running?"
-    return 1
-  fi
-  echo "Starting opencode web on https://$hostname"
-  opencode web --hostname "$hostname" "$@"
-}
 
 # Run kimi web with auto-detected tailscale hostname
 kmw() {
@@ -257,12 +247,6 @@ doppler_update() {
 # ================================================
 # wrap some frequently used tools with doppler_run
 
-# keep actual path to opencode binary, so we can wrap it with doppler without recursion
-_OPENCODE_BIN="`which opencode`"
-
-opencode() {
-  doppler_run -- $_OPENCODE_BIN "$@"
-}
 
 _KIMI_BIN="`which kimi`"
 _KIMI_AGENT_FILE="$DOTFILES/config/kimi/agents/default.yaml"

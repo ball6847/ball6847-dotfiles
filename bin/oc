@@ -1,0 +1,17 @@
+#!/bin/bash
+# Wrapper for opencode that injects doppler secrets
+# This avoids the need for a shell function that breaks signal handling
+
+_OPENCODE_BIN="$(which opencode 2>/dev/null)"
+
+if [ -z "$_OPENCODE_BIN" ]; then
+    echo "Error: opencode not found in PATH"
+    exit 1
+fi
+
+# Check if doppler is available and configured
+if command -v doppler &> /dev/null && [ -f "$HOME/.doppler/.doppler.yaml" ]; then
+    exec doppler run -- $_OPENCODE_BIN "$@"
+else
+    exec $_OPENCODE_BIN "$@"
+fi
