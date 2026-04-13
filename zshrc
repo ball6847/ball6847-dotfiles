@@ -258,10 +258,10 @@ doppler_update() {
 # wrap some frequently used tools with doppler_run
 
 # keep actual path to opencode binary, so we can wrap it with doppler without recursion
-# _OPENCODE_BIN="`which opencode`"
+_OPENCODE_BIN="`which opencode`"
 
 opencode() {
-  doppler_run -- bunx opencode-ai@latest "$@"
+  doppler_run -- $_OPENCODE_BIN "$@"
 }
 
 _KIMI_BIN="`which kimi`"
