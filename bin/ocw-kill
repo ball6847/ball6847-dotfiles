@@ -1,0 +1,27 @@
+#!/bin/bash
+# Kill all opencode web processes
+
+echo "Finding opencode web processes..."
+
+# Find and kill opencode web processes
+# Using pgrep to find processes matching "opencode web"
+pids=$(pgrep -f "opencode web" 2>/dev/null)
+
+if [ -z "$pids" ]; then
+    echo "No opencode web processes found."
+    exit 0
+fi
+
+echo "Killing opencode web processes: $pids"
+echo "$pids" | xargs -r kill -TERM 2>/dev/null
+
+# Wait a moment and check if they're still running
+sleep 1
+
+remaining=$(pgrep -f "opencode web" 2>/dev/null)
+if [ -n "$remaining" ]; then
+    echo "Processes still running, force killing..."
+    echo "$remaining" | xargs -r kill -KILL 2>/dev/null
+fi
+
+echo "Done."
