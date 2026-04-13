@@ -1,0 +1,37 @@
+{
+  "skill_name": "dev-story-orchestrator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "implement-all-stories-command",
+      "prompt": "implement all stories",
+      "expected_output": "Orchestrator discovers all story files, prioritizes them, and delegates each /dev-story to a general subagent one-by-one",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "batch-dev-story-request",
+      "prompt": "start implementation for all user stories one-by-one, please delegate dev-story workflow to general subagent",
+      "expected_output": "Orchestrator finds stories in docs/stories/ and sequentially delegates each to a general subagent with instructions to load bmad-orchestrator and run /dev-story",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "multiple-stories-with-dependencies",
+      "prompt": "run dev-story on STORY-001, STORY-002, and STORY-003. STORY-002 depends on STORY-001",
+      "expected_output": "Orchestrator recognizes dependencies, orders STORY-001 first, then delegates sequentially: STORY-001 → STORY-003 → STORY-002 (dependency last)",
+      "files": [
+        "docs/stories/STORY-001.md",
+        "docs/stories/STORY-002.md",
+        "docs/stories/STORY-003.md"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "no-stories-found",
+      "prompt": "implement all user stories",
+      "expected_output": "Orchestrator reports that no stories were found in docs/stories/ and suggests creating stories first",
+      "files": []
+    }
+  ]
+}
