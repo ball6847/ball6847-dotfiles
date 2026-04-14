@@ -23,6 +23,7 @@ files="
     config/opencode/opencode.jsonc
     config/opencode/commands
     config/opencode/agents
+    config/git-commit-ai
     config/rio
     config/vite
     qwen/settings.json

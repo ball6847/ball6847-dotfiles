@@ -1,0 +1,13 @@
+{
+  "model": "mistral/devstral-small-latest",
+  "providers": {
+    "mistral": {
+      "extend": true,
+      "models": {
+        "devstral-small-latest": {
+          "name": "devstral-small-latest"
+        }
+      }
+    }
+  }
+}
