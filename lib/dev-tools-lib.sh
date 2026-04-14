@@ -77,31 +77,23 @@ compare_versions() {
 get_installed_deno_version() {
     local package="$1"
     
-    # Extract package name from the full package specifier (e.g., "jsr:@ball6847/workspace-manager")
-    # The binary name is just the last part (e.g., "workspace-manager")
     local package_name
     package_name=$(echo "$package" | sed 's/.*://' | sed 's|^@||' | sed 's|.*/||')
     
-    # Check if the package is installed globally by checking the deno bin directory
-    # This is more reliable than deno info which shows cached versions
-    # or command -v which finds shims even when the actual binary is missing
-    local deno_bin_dir
-    deno_bin_dir=$(realpath "$(dirname "$(command -v deno)")/../installs/deno/$(deno --version | head -1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')/.deno/bin")
+    if ! command -v "$package_name" &> /dev/null; then
+        return 1
+    fi
     
-    if [[ -n "$deno_bin_dir" && -f "$deno_bin_dir/$package_name" ]]; then
-        # Package is installed, get version from deno info
-        local info_output
-        info_output=$(deno info "$package" 2>&1)
+    local info_output
+    info_output=$(deno info --no-lock "$package" 2>/dev/null)
+    
+    if [[ -n "$info_output" ]]; then
+        local version
+        version=$(echo "$info_output" | grep -oP "/$package_name/[0-9]+\.[0-9]+\.[0-9]+/" | head -1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')
         
-        if [[ $? -eq 0 && -n "$info_output" ]]; then
-            # Extract version from URL in the output (format: /X.Y.Z/main.ts)
-            local version
-            version=$(echo "$info_output" | grep -oP '/[0-9]+\.[0-9]+\.[0-9]+/' | head -1 | tr -d '/')
-            
-            if [[ -n "$version" ]]; then
-                echo "$version"
-                return 0
-            fi
+        if [[ -n "$version" ]]; then
+            echo "$version"
+            return 0
         fi
     fi
     
@@ -176,13 +168,24 @@ install_deno_package() {
         echo "  🔄 Installing/updating (latest version)..."
     fi
     
-    # Use a temporary file to capture output and check exit code
+    local deno_bin_dir
+    deno_bin_dir=$(realpath "$(dirname "$(command -v deno)")/../installs/deno/$(deno --version | head -1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')/.deno/bin")
+    rm -rf "$deno_bin_dir/.$package_name" 2>/dev/null
+    
     local temp_file=$(mktemp)
-    deno install -fr --global --allow-run --allow-env --allow-read --allow-write --allow-net "$package" > "$temp_file" 2>&1
-    local exit_code=$?
+    deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net "$package" > "$temp_file" 2>&1
+    local install_exit_code=$?
+    rm -f "$deno_bin_dir/.$package_name/deno.lock" 2>/dev/null
+    
+    local jsr_scope_name
+    jsr_scope_name=$(echo "$package" | sed 's/.*://' | sed 's|^@||')
+    if [[ -n "$latest_version" && -n "$jsr_scope_name" ]]; then
+        curl -s "https://jsr.io/@$jsr_scope_name/$latest_version/deno.json" > "$deno_bin_dir/.$package_name/deno.json" 2>/dev/null
+    fi
+    
     rm -f "$temp_file"
     
-    if [[ $exit_code -eq 0 ]]; then
+    if [[ $install_exit_code -eq 0 ]]; then
         if [[ -n "$latest_version" ]]; then
             echo "  ✓ Installed ($(colorize "boldgreen" "v$latest_version"))"
         else
@@ -212,9 +215,9 @@ get_installed_go_version() {
     local version
     # Check if timeout command exists, use it if available
     if command -v timeout &> /dev/null; then
-        version=$(timeout 5 "$tool" --version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+        version=$(timeout 5 "$tool" --version 2>/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
     else
-        version=$("$tool" --version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+        version=$("$tool" --version 2>/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
     fi
     
     if [[ -n "$version" ]]; then
@@ -222,11 +225,10 @@ get_installed_go_version() {
         return 0
     fi
     
-    # Check if timeout command exists, use it if available
     if command -v timeout &> /dev/null; then
-        version=$(timeout 5 "$tool" version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+        version=$(timeout 5 "$tool" version 2>/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
     else
-        version=$("$tool" version 2>&1 >/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
+        version=$("$tool" version 2>/dev/null | grep -oP 'v?[0-9]\.[0-9]+\.[0-9]+' | head -1 | tr -d 'v')
     fi
     
     if [[ -n "$version" ]]; then
@@ -259,6 +261,7 @@ get_latest_go_version() {
 install_go_tool() {
     local repo="$1"
     local tool_name="$2"
+    local github_repo="${3:-$1}"
     
     # Print tool name with color
     colorize "boldblue" "  $tool_name:"
@@ -269,7 +272,7 @@ install_go_tool() {
     
     # Get latest version
     local latest_version=""
-    latest_version=$(get_latest_go_version "$repo" 2>/dev/null)
+    latest_version=$(get_latest_go_version "$github_repo" 2>/dev/null)
     
     # Show version information
     if [[ -n "$installed_version" ]]; then
