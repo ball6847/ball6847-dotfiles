@@ -172,6 +172,7 @@ alias t="task"
 alias m="make"
 alias g="gemini -y"
 
+alias oc="opencode"
 alias w="wtp"
 
 if command -v batcat >/dev/null 2>&1; then
