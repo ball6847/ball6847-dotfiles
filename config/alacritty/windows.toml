@@ -16,3 +16,10 @@ args = [
   # "-e",
   # "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
 ]
+
+[keyboard]
+bindings = [
+  # Explicitly send ESC + m so tmux receives Alt+M even if another app (e.g. Discord)
+  # has registered it as a global hotkey on Windows.
+  { key = "M", mods = "Alt", chars = "\u001bm" },
+]
