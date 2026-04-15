@@ -46,11 +46,15 @@ fi
 if [[ "$INSTALL_DENO_PKG" = true ]]; then
     deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/workspace-manager
     deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/git-commit-ai
-    asdf reshim deno
+    if command -v asdf &> /dev/null; then
+        asdf reshim deno
+    fi
 fi
 
 if [[ "$INSTALL_GO_PKG" = true ]]; then
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
     go install github.com/evilmartians/lefthook@latest
-    asdf reshim golang
+    if command -v asdf &> /dev/null; then
+        asdf reshim golang
+    fi
 fi
