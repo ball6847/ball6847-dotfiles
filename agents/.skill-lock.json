@@ -171,6 +171,15 @@
       "skillFolderHash": "",
       "installedAt": "2026-04-11T16:32:37.610Z",
       "updatedAt": "2026-04-11T16:32:37.610Z"
+    },
+    "qa-test-planner": {
+      "source": "softaworks/agent-toolkit",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/softaworks/agent-toolkit.git",
+      "skillPath": "skills/qa-test-planner/SKILL.md",
+      "skillFolderHash": "0f6e2438f6037ae4a4e45410d26daca6d61141d2",
+      "installedAt": "2026-04-15T05:08:57.122Z",
+      "updatedAt": "2026-04-15T05:08:57.122Z"
     }
   },
   "dismissed": {
