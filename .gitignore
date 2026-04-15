@@ -9,13 +9,6 @@ auto-update.log
 .opencode/archive
 .opencode/plugins
 
-
-vibe/logs
-vibe/trusted_folders.toml
-vibe/update_cache.json
-vibe/vibehistory
-
-
 .env
 
 arms_cache
