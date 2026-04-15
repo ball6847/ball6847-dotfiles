@@ -25,11 +25,12 @@ files="
     config/rio
     config/vite
     qwen/settings.json
-    gemini/settings.json
     agents
     kimi
     vibe
-    agent-browser"
+    agent-browser
+    qoder
+    gemini"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
