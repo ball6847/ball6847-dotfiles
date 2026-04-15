@@ -1,5 +1,5 @@
 [core]
-autocrlf = false
+autocrlf = input
 fileMode = true
 eol = lf
 pager = delta
