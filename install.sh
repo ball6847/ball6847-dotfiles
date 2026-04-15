@@ -29,7 +29,9 @@ files="
     qwen/settings.json
     gemini/settings.json
     agents
-    config/agent-browser"
+    kimi
+    vibe
+    agent-browser"
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -51,21 +53,21 @@ for file in $files; do
         basedir=".agent-browser"
         [ ! -d $olddir/"$basedir" ] && mkdir -p $olddir/"$basedir"
         [ ! -d ~/"$basedir" ] && mkdir -p ~/"$basedir"
-        
+
         # backup to $olddir if neccessary
         echo "Moving any existing dotfiles from ~ to $olddir"
-        
+
         # Remove existing backup if it exists to avoid conflicts with nested symlinks
         [ -e $olddir/"$basedir"/config.json ] && rm -rf $olddir/"$basedir"/config.json
         # Move existing file/symlink to backup (use -h to detect symlinks before following)
         [ -e ~/"$basedir"/config.json ] || [ -L ~/"$basedir"/config.json ] && mv -f ~/"$basedir"/config.json $olddir/"$basedir"/config.json
-        
+
         # create link at home directory
         echo "Creating symlink to $file in home directory."
         ln -sf $dir/config/agent-browser/config.json ~/"$basedir"/config.json
         continue
     fi
-    
+
     basedir="$(dirname "$file")"
 
     if [[ "$basedir" != "." ]]; then
@@ -100,7 +102,9 @@ fix_nested_symlinks
 # Cleanup deprecated opencode.json symlink (renamed to opencode.jsonc)
 unlink ~/.opencode/opencode.json 2>/dev/null || true
 
-git checkout ~/.opencode/config/kitty
+# this is incorrect, must specify -C <directory> to git checkout
+git checkout ~/.dotfiles/config/kitty
+
 
 # Setup agent skills symlinks (kimi, vibe, claude, etc.)
 # This links only the skills directories, keeping agent configs in ~
