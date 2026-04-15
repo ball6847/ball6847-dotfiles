@@ -1,0 +1,23 @@
+version: 1
+agent:
+  extend: default
+  name: general
+  system_prompt_path: ./general.md
+  when_to_use: |
+    Use this general-purpose agent for researching complex questions and executing multi-step tasks.
+    This agent can execute multiple units of work in parallel and is ideal for complex research,
+    analysis, and multi-step workflows.
+  tools: []
+  allowed_tools:
+    - "kimi_cli.tools.file:ReadFile"
+    - "kimi_cli.tools.file:WriteFile"
+    - "kimi_cli.tools.file:Glob"
+    - "kimi_cli.tools.file:Grep"
+    - "kimi_cli.tools.shell:Shell"
+    - "kimi_cli.tools.web:SearchWeb"
+    - "kimi_cli.tools.web:FetchURL"
+    - "kimi_cli.tools.agent:Agent"
+  exclude_tools:
+    - "kimi_cli.tools.todo:SetTodoList"
+    - "kimi_cli.tools.plan:ExitPlanMode"
+    - "kimi_cli.tools.plan.enter:EnterPlanMode"
