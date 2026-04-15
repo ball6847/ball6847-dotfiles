@@ -80,10 +80,12 @@ wait
 # =============================================================================
 
 # reshim golang, bun, and nodejs to make sure newly installed binaries are available
-asdf reshim golang
-asdf reshim bun
-asdf reshim nodejs
-asdf reshim rust
+if command -v asdf &> /dev/null; then
+    asdf reshim golang
+    asdf reshim bun
+    asdf reshim nodejs
+    asdf reshim rust
+fi
 
 # Download Chrome for Testing (safe to run multiple times)
 agent-browser install

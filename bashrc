@@ -135,8 +135,6 @@ fi
 
 # export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-ulimit -Sn 4096
-# . "$HOME/.cargo/env"
 
 # we link this file to multiple user's home, and many resource sharing located on our user's home
 if [ $SUDO_USER ] ; then
@@ -150,6 +148,60 @@ export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
 export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+
+# =============================================================================
+# Environment Detection Functions
+# =============================================================================
+
+# Detect if running on Git Bash (MSYS2/MinGW on Windows)
+is_git_bash() {
+    [[ -n "$MSYSTEM" ]]
+}
+
+# Detect if running on WSL (Windows Subsystem for Linux)
+is_wsl() {
+    if grep -qEi "(Microsoft|WSL)" /proc/version 2>/dev/null; then
+        return 0
+    fi
+    return 1
+}
+
+# Detect if running on Cygwin
+is_cygwin() {
+    [[ "$OSTYPE" == *cygwin* ]]
+}
+
+# Detect if running on native Windows (CMD/PowerShell)
+is_windows_native() {
+    [[ "$OSTYPE" == *mingw* || "$OSTYPE" == *msys* ]]
+}
+
+# Detect if running on Windows (any environment: Git Bash, WSL, Cygwin)
+is_on_windows() {
+    is_git_bash || is_wsl || is_cygwin
+}
+
+# Main detection - returns human-readable environment name
+get_shell_env() {
+    if is_wsl; then
+        echo "wsl"
+    elif is_cygwin; then
+        echo "cygwin"
+    elif is_git_bash; then
+        echo "git-bash"
+    elif [[ "$OSTYPE" == *darwin* ]]; then
+        echo "macos"
+    elif [[ "$OSTYPE" == *linux* ]]; then
+        echo "linux"
+    else
+        echo "unknown"
+    fi
+}
+
+if ! is_on_windows; then
+    ulimit -Sn 4096
+fi
+# . "$HOME/.cargo/env"
 
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"

@@ -48,26 +48,6 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
-    # Special case for agent-browser config
-    if [[ "$file" == "config/agent-browser" ]]; then
-        basedir=".agent-browser"
-        [ ! -d $olddir/"$basedir" ] && mkdir -p $olddir/"$basedir"
-        [ ! -d ~/"$basedir" ] && mkdir -p ~/"$basedir"
-
-        # backup to $olddir if neccessary
-        echo "Moving any existing dotfiles from ~ to $olddir"
-
-        # Remove existing backup if it exists to avoid conflicts with nested symlinks
-        [ -e $olddir/"$basedir"/config.json ] && rm -rf $olddir/"$basedir"/config.json
-        # Move existing file/symlink to backup (use -h to detect symlinks before following)
-        [ -e ~/"$basedir"/config.json ] || [ -L ~/"$basedir"/config.json ] && mv -f ~/"$basedir"/config.json $olddir/"$basedir"/config.json
-
-        # create link at home directory
-        echo "Creating symlink to $file in home directory."
-        ln -sf $dir/config/agent-browser/config.json ~/"$basedir"/config.json
-        continue
-    fi
-
     basedir="$(dirname "$file")"
 
     if [[ "$basedir" != "." ]]; then
