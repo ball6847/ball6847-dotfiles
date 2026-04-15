@@ -3,6 +3,15 @@ autocrlf = input
 fileMode = true
 eol = lf
 pager = delta
+symlinks = true  # Enable symbolic link support for cross-platform compatibility
+
+# Cross-platform symbolic link setup
+# For Windows: Requires Developer Mode enabled AND one of:
+# 1. Admin privileges when cloning, OR
+# 2. Proper directory permissions set before cloning
+# 3. Git configured with: git config --global core.symlinks true
+# For Unix/Linux: Works out of the box with standard permissions
+# Setup script: Run 'install.sh' or 'install.ps1' to create symlinks automatically
 
 [user]
 name = Porawit Poboonma

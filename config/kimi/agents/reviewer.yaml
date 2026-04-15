@@ -1,0 +1,23 @@
+version: 1
+agent:
+  extend: default
+  name: reviewer
+  system_prompt_path: ./reviewer.md
+  when_to_use: |
+    Use this agent for reviewing build agent's implementation against predefined plans,
+    creating review reports with timestamps and bidirectional links.
+  tools: []
+  allowed_tools:
+    - "kimi_cli.tools.file:ReadFile"
+    - "kimi_cli.tools.file:Glob"
+    - "kimi_cli.tools.file:Grep"
+    - "kimi_cli.tools.shell:Shell"
+    - "kimi_cli.tools.web:SearchWeb"
+    - "kimi_cli.tools.web:FetchURL"
+  exclude_tools:
+    - "kimi_cli.tools.agent:Agent"
+    - "kimi_cli.tools.ask_user:AskUserQuestion"
+    - "kimi_cli.tools.todo:SetTodoList"
+    - "kimi_cli.tools.plan:ExitPlanMode"
+    - "kimi_cli.tools.plan.enter:EnterPlanMode"
+    - "kimi_cli.tools.file:WriteFile"
