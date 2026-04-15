@@ -201,8 +201,8 @@ kmw() {
   kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" "$@"
 }
 
-alias km="kimi"
-alias vb="vibe"
+alias km="kimi --yolo --agent-file ~/.kimi/agents/default.yaml" 
+alias vb="vibe --agent auto-approve"
 alias qw="qwen -y"
 alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
@@ -245,20 +245,6 @@ doppler_update() {
 
 # ================================================
 # wrap some frequently used tools with doppler_run
-
-
-_KIMI_BIN="`which kimi`"
-_KIMI_AGENT_FILE="$DOTFILES/config/kimi/agents/default.yaml"
-
-kimi() {
-  doppler_run -- $_KIMI_BIN --yolo --agent-file $_KIMI_AGENT_FILE "$@"
-}
-
-_VIBE_BIN="`which vibe`"
-
-vibe() {
-  doppler_run -- $_VIBE_BIN --agent auto-approve "$@"
-}
 
 _CLAUDE_BIN="`which claude`"
 
@@ -324,16 +310,6 @@ _ai_split() {
 # open nvim on left pane, and opencode on right pane
 voc() {
   in_tmux _ai_split "oc"
-}
-
-# open nvim on left pane, and kimi on right pane
-vkm() {
-  in_tmux _ai_split "kimi"
-}
-
-# open nvim on left pane, and mistral vibe on right pane
-vvb() {
-  in_tmux _ai_split "vibe"
 }
 
 # open nvim on left pane, and qwen on right pane
