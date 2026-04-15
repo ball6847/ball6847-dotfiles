@@ -20,9 +20,7 @@ files="
     config/nvim
     ansible.cfg
     tool-versions
-    config/opencode/opencode.jsonc
-    config/opencode/commands
-    config/opencode/agents
+    config/opencode
     config/git-commit-ai
     config/rio
     config/vite
@@ -68,6 +66,13 @@ for file in $files; do
     ln -sf $dir/"$file" ~/."$file"
 done
 
+# exclusively create link from ~/.claude/skills to ~/.agents/skills
+# check if already linked, then make sure ~/.claude exists the create a link inside
+if [ ! -L ~/.claude/skills ]; then
+    mkdir -p ~/.claude
+    ln -sf ~/.agents/skills ~/.claude/skills
+fi
+
 # Fix nested symlinks created by the loop above
 fix_nested_symlinks() {
     for subdir in config/*/; do
@@ -83,12 +88,5 @@ fix_nested_symlinks
 unlink ~/.opencode/opencode.json 2>/dev/null || true
 
 # this is incorrect, must specify -C <directory> to git checkout
-git checkout ~/.dotfiles/config/kitty
+git -C ~/.dotfiles checkout config/kitty
 
-
-# Setup agent skills symlinks (kimi, vibe, claude, etc.)
-# This links only the skills directories, keeping agent configs in ~
-if [[ -f "$dir/bin/setup-agent-skills" ]]; then
-    echo ""
-    bash "$dir/bin/setup-agent-skills"
-fi
