@@ -118,8 +118,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-
 # echo "__git_ps1"
 # __git_ps1
 
@@ -148,6 +146,11 @@ export ASDF_DATA_DIR="$SUDO_HOME/.asdf"
 export ASDF_RUST_BIN="$ASDF_DATA_DIR/installs/rust/1.84.1"
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+
+# load local bash script
+if [ -f $SUDO_HOME/.lbashrc ]; then
+    source $SUDO_HOME/.lbashrc
+fi
 
 # =============================================================================
 # Environment Detection Functions
