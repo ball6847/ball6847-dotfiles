@@ -10,4 +10,4 @@ if [ -z "$hostname" ]; then
 fi
 
 echo "Starting opencode web on https://$hostname"
-exec oc web --hostname "$hostname" "$@"
+exec opencode web --hostname "$hostname" "$@"
