@@ -26,7 +26,7 @@ bun install --global @qwen-code/qwen-code@latest
 bun install --global @google/gemini-cli@latest
 bun install --global @anthropic-ai/claude-code@latest
 uv tool install --upgrade mistral-vibe
-uv tool install --upgrade kimi-cli 
+uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @qoder-ai/qodercli@latest &
 npm install -g diffx-cli@latest &
@@ -35,7 +35,7 @@ cargo install agent-browser &
 
 wait
 
-# bun install --global @th0rgal/ralph-wiggum
+bun install --global @th0rgal/ralph-wiggum
 # bun install --global vibe-kanban
 # npm install -g opencode-orchestrator
 # bun add -g opencode-swarm-plugin@latest
