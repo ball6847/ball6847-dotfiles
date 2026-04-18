@@ -6,11 +6,7 @@
     "AGENTS.md"
   ],
   "plugin": [
-    // "opencode-gemini-auth",
-    // "opencode-alibaba-qwen3-auth",
-    // "opencode-skills",
-    // "opencode-orchestrator",
-    // "opencode-scheduler"
+    "@tarquinen/opencode-dcp@latest"
   ],
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
