@@ -180,6 +180,15 @@
       "skillFolderHash": "0f6e2438f6037ae4a4e45410d26daca6d61141d2",
       "installedAt": "2026-04-15T05:08:57.122Z",
       "updatedAt": "2026-04-15T05:08:57.122Z"
+    },
+    "svelte-core-bestpractices": {
+      "source": "sveltejs/ai-tools",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sveltejs/ai-tools.git",
+      "skillPath": "plugins/claude/svelte/skills/svelte-core-bestpractices/SKILL.md",
+      "skillFolderHash": "dc5e4f0dc9844316967acca220d313780ed452b1",
+      "installedAt": "2026-04-18T03:23:16.297Z",
+      "updatedAt": "2026-04-18T03:23:16.297Z"
     }
   },
   "dismissed": {
