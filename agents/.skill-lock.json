@@ -189,6 +189,15 @@
       "skillFolderHash": "dc5e4f0dc9844316967acca220d313780ed452b1",
       "installedAt": "2026-04-18T03:23:16.297Z",
       "updatedAt": "2026-04-18T03:23:16.297Z"
+    },
+    "open-ralph-wiggum": {
+      "source": "Th0rgal/open-ralph-wiggum",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Th0rgal/open-ralph-wiggum.git",
+      "skillPath": "skills/open-ralph-wiggum/SKILL.md",
+      "skillFolderHash": "aa00c1dca79a9c610a7f938b5d15d72bd8de02d8",
+      "installedAt": "2026-04-18T05:10:21.192Z",
+      "updatedAt": "2026-04-18T05:10:21.192Z"
     }
   },
   "dismissed": {
