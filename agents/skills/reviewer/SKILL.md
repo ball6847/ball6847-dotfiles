@@ -38,6 +38,12 @@ update the plan with review timestamp.
 - Ensure no unintended changes were made
 - Confirm the solution addresses the original requirements
 - Check that obstacles from implementation reports were resolved
+- **Verify test coverage**: Ensure each test case from the plan's `## Test Cases`
+  section is covered by actual tests — check TC-IDs, priorities, steps, and
+  expected results match
+- **Verify diagram conformance**: If the plan included sequence, state
+  transition, or ER diagrams, confirm the implementation follows the depicted
+  flows, states, and data relationships
 
 **DO NOT FIX** - Only report discrepancies between the plan and implementation.
 
@@ -140,6 +146,24 @@ implementationReportPaths:
 | File              | Status                | Notes |
 | ----------------- | --------------------- | ----- |
 | `path/to/file.go` | ✅ Deleted as planned | N/A   |
+
+### Diagrams Conformance
+
+[If the plan included diagrams, verify implementation follows them]
+
+| Diagram Type     | Status | Notes                               |
+| ---------------- | ------ | ----------------------------------- |
+| Sequence Diagram | ✅/❌  | Implementation follows planned flow |
+| State Transition | ✅/❌  | States and transitions match plan   |
+| ER Diagram       | ✅/❌  | Schema and relationships match plan |
+
+### Test Cases Coverage
+
+[Verify each test case from the plan has a corresponding test]
+
+| TC-ID  | Priority | Type       | Status | Notes                   |
+| ------ | -------- | ---------- | ------ | ----------------------- |
+| TC-001 | P0       | Functional | ✅/❌  | Covered / Missing steps |
 
 ## Discrepancies
 
