@@ -78,6 +78,7 @@ Track rounds explicitly in your response:
 **Status**: [Building / Reviewing / Complete]
 
 ### Round History
+
 | Round | Build Status | Review Verdict | Notes |
 |-------|--------------|----------------|-------|
 | 1 | Completed | PARTIAL | Missing error handling |
