@@ -45,7 +45,7 @@ fi
 
 if [[ "$INSTALL_DENO_PKG" = true ]]; then
     deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/workspace-manager
-    deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/git-commit-ai
+    deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys jsr:@ball6847/git-commit-ai
     if command -v asdf &> /dev/null; then
         asdf reshim deno
     fi
