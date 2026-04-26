@@ -198,6 +198,15 @@
       "skillFolderHash": "aa00c1dca79a9c610a7f938b5d15d72bd8de02d8",
       "installedAt": "2026-04-18T05:10:21.192Z",
       "updatedAt": "2026-04-18T05:10:21.192Z"
+    },
+    "requirements-clarity": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/davila7/claude-code-templates.git",
+      "skillPath": "cli-tool/components/skills/productivity/requirements-clarity/SKILL.md",
+      "skillFolderHash": "88157583b20b296c8eaa3808af3dd3d669d73ce0",
+      "installedAt": "2026-04-24T16:25:04.144Z",
+      "updatedAt": "2026-04-24T16:25:04.144Z"
     }
   },
   "dismissed": {
