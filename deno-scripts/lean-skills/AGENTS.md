@@ -1,6 +1,8 @@
 # Agent Instructions for lean-skills
 
-IMPORTANT: Always check your current working directory before running any scripts or commands. Never run scripts from the project root directory. Use the correct target project directory.
+IMPORTANT: Always check your current working directory before running any
+scripts or commands. Never run scripts from the project root directory. Use the
+correct target project directory.
 
 ## Examples:
 

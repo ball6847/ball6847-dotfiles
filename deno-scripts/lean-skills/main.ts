@@ -180,7 +180,7 @@ async function clean(): Promise<number> {
       const result = cleanDescription(content);
 
       if (result.isErr()) {
-        console.log(`⚠ ${file}: ${result.error}`);
+        console.warn(`⚠ ${file}: ${result.error}`);
         continue;
       }
 
@@ -220,7 +220,7 @@ async function restore(): Promise<number> {
       const result = restoreDescription(content);
 
       if (result.isErr()) {
-        console.log(`⚠ ${file}: ${result.error}`);
+        console.warn(`⚠ ${file}: ${result.error}`);
         continue;
       }
 
@@ -262,12 +262,12 @@ await new Command()
   .description("Replace bare 'description:' with '_description:'")
   .action(async () => {
     const changed = await clean();
-    Deno.exit(changed === 0 ? 1 : 0);
+    Deno.exit(changed >= 0 ? 0 : 1);
   })
   .command("restore")
   .description("Restore _description: back to description:")
   .action(async () => {
     const changed = await restore();
-    Deno.exit(changed === 0 ? 1 : 0);
+    Deno.exit(changed >= 0 ? 0 : 1);
   })
   .parse(Deno.args);
