@@ -1,11 +1,29 @@
 # Agent Instructions for lean-skills
 
-After making any code changes to this project, always run:
+IMPORTANT: Always check your current working directory before running any scripts or commands. Never run scripts from the project root directory. Use the correct target project directory.
+
+## Examples:
+
+✅ DO:
 
 ```bash
-deno fmt
-deno lint
-deno check main.ts
+cd /path/to/lean-skills
+./script.sh
 ```
 
-This ensures code quality and type safety.
+❌ DON'T:
+
+```bash
+cd /home/ball6847/.dotfiles
+./deno-scripts/lean-skills/script.sh
+```
+
+After making any code changes to this project, always run these commands:
+
+```bash
+deno task fmt
+deno task lint
+deno task check
+```
+
+This ensures code quality and type safety. Follow these instructions carefully.
