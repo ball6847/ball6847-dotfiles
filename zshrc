@@ -442,14 +442,14 @@ fi
 # ================================================
 # set workspace-manager shell integration (powered by cliffy)
 
-if which workspace-manager > /dev/null; then
+if asdf which workspace-manager > /dev/null 2>&1; then
   eval "$(workspace-manager completions zsh)"
 fi
 
 # ================================================
 # set wtp shell integration
 
-if which wtp > /dev/null; then
+if asdf which wtp > /dev/null 2>&1; then
   eval "$(wtp completion zsh)"
   eval "$(wtp hook zsh)"
 fi
