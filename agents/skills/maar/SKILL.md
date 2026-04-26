@@ -1,6 +1,6 @@
 ---
 name: maar
-description: |
+_description: |
   Mermaid ASCII Auto-Renderer — render Mermaid .mmd diagram files into ASCII art
   and inject them into Markdown documents automatically.
 

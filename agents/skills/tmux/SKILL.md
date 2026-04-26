@@ -1,6 +1,6 @@
 ---
 name: tmux
-description: Remote control tmux sessions for interactive command-line work. Send keystrokes and scrape pane output from Python REPLs, debuggers, and other interactive terminal applications. Use when working with interactive CLI tools, debugging sessions, or REPL-driven development.
+_description: Remote control tmux sessions for interactive command-line work. Send keystrokes and scrape pane output from Python REPLs, debuggers, and other interactive terminal applications. Use when working with interactive CLI tools, debugging sessions, or REPL-driven development.
 license: Vibecoded
 ---
 

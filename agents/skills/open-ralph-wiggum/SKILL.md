@@ -1,6 +1,6 @@
 ---
 name: open-ralph-wiggum
-description: >
+_description: >
   Use this skill whenever a user wants to run, install, configure, or understand open-ralph-wiggum (ralph).
   This skill can be used by any AI assistant or IDE agent (GitHub Copilot, Claude Code, Cursor, Windsurf, etc.).
   Triggers on: "ralph", "ralph wiggum", "agentic loop", "iterative AI loop", "autonomous coding loop",

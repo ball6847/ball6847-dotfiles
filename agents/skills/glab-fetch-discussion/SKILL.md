@@ -1,6 +1,6 @@
 ---
 name: glab-fetch-discussion
-description: Fetch and summarize GitLab merge request discussions/comments. Use when user asks about MR comments, discussions, notes, feedback, or reviews on a merge request. Triggers on phrases like "fetch discussions", "get MR comments", "show merge request feedback", "what are the comments on MR", or when user mentions GitLab MR review feedback.
+_description: Fetch and summarize GitLab merge request discussions/comments. Use when user asks about MR comments, discussions, notes, feedback, or reviews on a merge request. Triggers on phrases like "fetch discussions", "get MR comments", "show merge request feedback", "what are the comments on MR", or when user mentions GitLab MR review feedback.
 ---
 
 # GitLab Merge Request Discussion Fetcher

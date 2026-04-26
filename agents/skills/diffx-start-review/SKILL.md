@@ -1,6 +1,6 @@
 ---
 name: diffx-start-review
-description: "Start a code review session by launching the diffx server and opening the browser UI. Use when the user invokes /diffx-start-review."
+_description: "Start a code review session by launching the diffx server and opening the browser UI. Use when the user invokes /diffx-start-review."
 user_invocable: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: diffx-finish-review
-description: "Finish a code review session by fetching comments from the running diffx server, applying requested changes, and marking comments as resolved. Use when the user invokes /diffx-finish-review."
+_description: "Finish a code review session by fetching comments from the running diffx server, applying requested changes, and marking comments as resolved. Use when the user invokes /diffx-finish-review."
 user_invocable: true
 ---
 
