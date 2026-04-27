@@ -35,7 +35,7 @@
       "models": {
         "deepseek-v4-pro": {
           "id": "deepseek-v4-pro",
-          "name": "DeepSeek V4 Pro",
+          "name": "deepseek-v4-pro",
           "family": "deepseek-thinking",
           "attachment": false,
           "reasoning": true,
