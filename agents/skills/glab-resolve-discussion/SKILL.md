@@ -1,6 +1,6 @@
 ---
 name: glab-resolve-discussion
-_description: Resolve GitLab merge request discussions using the glab CLI. Use this skill when the user wants to resolve, mark as resolved, close, or dismiss one or more discussions/comments/threads on a GitLab MR. Trigger on phrases like "resolve discussion", "mark as resolved", "resolve this comment", "close thread", "resolve MR feedback", or "resolve all discussions". Also trigger when the user asks to resolve discussions after fixing review comments, even if they don't use the word "resolve".
+description: Resolve GitLab merge request discussions using the glab CLI. Use this skill when the user wants to resolve, mark as resolved, close, or dismiss one or more discussions/comments/threads on a GitLab MR. Trigger on phrases like "resolve discussion", "mark as resolved", "resolve this comment", "close thread", "resolve MR feedback", or "resolve all discussions". Also trigger when the user asks to resolve discussions after fixing review comments, even if they don't use the word "resolve".
 ---
 
 # GitLab Resolve Discussion Skill

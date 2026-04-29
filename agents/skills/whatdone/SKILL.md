@@ -1,6 +1,6 @@
 ---
 name: whatdone
-_description: Retrieve GitLab activity (commits/MRs) from yesterday/last week. Triggers on questions like "What have I done yesterday?" or slash commands "/whatdone", "/wd". Requires confirmation for conversational triggers, but slash commands proceed directly to time selection.
+description: Retrieve GitLab activity (commits/MRs) from yesterday/last week. Triggers on questions like "What have I done yesterday?" or slash commands "/whatdone", "/wd". Requires confirmation for conversational triggers, but slash commands proceed directly to time selection.
 ---
 
 # WhatDone Skill

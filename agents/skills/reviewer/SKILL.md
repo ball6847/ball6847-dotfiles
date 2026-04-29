@@ -1,6 +1,6 @@
 ---
 name: reviewer
-_description: Reviews build agent's implementation against predefined plans, creating review reports with timestamps and bidirectional links. Updates plan's reviewedAt field and generates reports in `.context/reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md` format.
+description: Reviews build agent's implementation against predefined plans, creating review reports with timestamps and bidirectional links. Updates plan's reviewedAt field and generates reports in `.context/reviews/YYYY-MM-DD/FEATURE_NAME_REVIEW.md` format.
 user-invocable: true
 ---
 

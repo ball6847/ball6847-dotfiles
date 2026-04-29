@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-_description: Orchestrates build-review cycles to implement a plan with automated quality gates. Delegates to builder for implementation and reviewer for verification. Loops until review passes or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
+description: Orchestrates build-review cycles to implement a plan with automated quality gates. Delegates to builder for implementation and reviewer for verification. Loops until review passes or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
 user-invocable: true
 ---
 

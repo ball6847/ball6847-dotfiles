@@ -1,6 +1,6 @@
 ---
 name: pretty-mermaid
-_description: |
+description: |
   Render beautiful Mermaid diagrams as SVG or ASCII art using the beautiful-mermaid library.
   Supports 15+ themes, 5 diagram types (flowchart, sequence, state, class, ER), and ultra-fast rendering.
 

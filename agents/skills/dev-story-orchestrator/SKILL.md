@@ -1,6 +1,6 @@
 ---
 name: dev-story-orchestrator
-_description: Orchestrate batch implementation of multiple user stories by delegating /dev-story workflows to a general subagent. Use when the user wants to "start implementation for all user stories", "implement all stories", "batch dev-story", "run dev-story on multiple stories", or "implement stories one-by-one". This skill is the orchestrator that delegates actual implementation work to subagents.
+description: Orchestrate batch implementation of multiple user stories by delegating /dev-story workflows to a general subagent. Use when the user wants to "start implementation for all user stories", "implement all stories", "batch dev-story", "run dev-story on multiple stories", or "implement stories one-by-one". This skill is the orchestrator that delegates actual implementation work to subagents.
 allowed-tools: Read, Glob, Bash, Task, TodoWrite
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: bmad-orchestrator
-_description: Orchestrates BMAD workflows for structured AI-driven development. Use when initializing BMAD in projects, checking workflow status, or routing between 4 phases (Analysis, Planning, Solutioning, Implementation). Manages project configs, tracks progress through project levels 0-4, and coordinates with specialized workflows. Trigger on /workflow-init, /workflow-status, or when users need BMAD setup.
+description: Orchestrates BMAD workflows for structured AI-driven development. Use when initializing BMAD in projects, checking workflow status, or routing between 4 phases (Analysis, Planning, Solutioning, Implementation). Manages project configs, tracks progress through project levels 0-4, and coordinates with specialized workflows. Trigger on /workflow-init, /workflow-status, or when users need BMAD setup.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 

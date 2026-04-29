@@ -1,6 +1,6 @@
 ---
 name: git-commit
-_description: Create well-formed git commits following conventional commit standards. Use this skill whenever the user asks to commit changes, create a commit, make a git commit, or needs help crafting commit messages. This skill provides git status/diff context and guides users through creating atomic, descriptive commits.
+description: Create well-formed git commits following conventional commit standards. Use this skill whenever the user asks to commit changes, create a commit, make a git commit, or needs help crafting commit messages. This skill provides git status/diff context and guides users through creating atomic, descriptive commits.
 ---
 
 # Git Commit Skill

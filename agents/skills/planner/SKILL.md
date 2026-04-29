@@ -1,6 +1,6 @@
 ---
 name: planner
-_description: Creates detailed implementation plans with test cases, ASCII diagrams, timestamps, and proper file naming. Use when breaking down complex tasks into actionable steps before coding. Generates plans in `.context/plans/YYYY-MM-DD/FEATURE_NAME_PLAN.md` format with createdAt, implementedAt, and reviewedAt timestamps. Includes test cases following qa-test-planner format and ASCII sequence, state transition, and ER diagrams when relevant.
+description: Creates detailed implementation plans with test cases, ASCII diagrams, timestamps, and proper file naming. Use when breaking down complex tasks into actionable steps before coding. Generates plans in `.context/plans/YYYY-MM-DD/FEATURE_NAME_PLAN.md` format with createdAt, implementedAt, and reviewedAt timestamps. Includes test cases following qa-test-planner format and ASCII sequence, state transition, and ER diagrams when relevant.
 user-invocable: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: general-orchestrator
-_description: Orchestrates plan-build-review using general agent, only trigger when user mention exactly `general-orchestrator` or `general orchestrator`
+description: Orchestrates plan-build-review using general agent, only trigger when user mention exactly `general-orchestrator` or `general orchestrator`
 user-invocable: true
 ---
 

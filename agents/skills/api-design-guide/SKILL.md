@@ -1,6 +1,6 @@
 ---
 name: api-design-guide
-_description: |
+description: |
   Create technology-neutral API design documents with consistent structure,
   response formats, error codes, and diagram integration.
 

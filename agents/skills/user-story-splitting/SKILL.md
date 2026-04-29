@@ -1,6 +1,6 @@
 ---
 name: user-story-splitting
-_description: Break a large story or epic into smaller deliverable stories using proven split patterns. Use when backlog items are too big for estimation, sequencing, or independent release.
+description: Break a large story or epic into smaller deliverable stories using proven split patterns. Use when backlog items are too big for estimation, sequencing, or independent release.
 intent: >-
   Break down large user stories, epics, or features into smaller, independently deliverable stories using systematic splitting patterns. Use this to make work more manageable, reduce risk, enable faster feedback cycles, and maintain flow in agile development. This skill applies to user stories, epics, and any work that's too large to complete in a single sprint.
 type: component
