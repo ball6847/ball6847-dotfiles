@@ -88,6 +88,7 @@ if [[ "$INSTALL_GO_PKG" = true ]]; then
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
     go install github.com/evilmartians/lefthook@latest
     go install github.com/bufbuild/buf/cmd/buf@latest
+    go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
     install_from_github_repo "ball6847/wtp" "./cmd/wtp"
     if command -v asdf &> /dev/null; then
         asdf reshim golang
