@@ -175,6 +175,7 @@
         }
       }
 
+    }
   },
   "mcp": {
     // "openmemory": {
@@ -218,13 +219,6 @@
         "read": true,
         "write": true,
         "bash": true,
-        "grep": true,
-        "glob": true
-      }
-    }
-  }
-}
-true,
         "grep": true,
         "glob": true
       }
