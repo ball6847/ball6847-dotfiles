@@ -85,6 +85,7 @@ if [[ "$INSTALL_DENO_PKG" = true ]]; then
 fi
 
 if [[ "$INSTALL_GO_PKG" = true ]]; then
+    go install golang.org/x/tools/gopls@latest
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
     go install github.com/evilmartians/lefthook@latest
     go install github.com/bufbuild/buf/cmd/buf@latest
