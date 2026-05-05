@@ -137,43 +137,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
-      "models": {
-        "hf:moonshotai/Kimi-K2.6": {
-          "id": "hf:moonshotai/Kimi-K2.6",
-          "name": "Kimi K2.6",
-          "family": "kimi",
-          "attachment": true,
-          "reasoning": true,
-          "tool_call": true,
-          "interleaved": {
-            "field": "reasoning_content"
-          },
-          "temperature": true,
-          "knowledge": "2025-01",
-          "release_date": "2026-04-21",
-          "last_updated": "2026-04-21",
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "video"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "open_weights": true,
-          "cost": {
-            "input": 0.95,
-            "output": 4,
-            "cache_read": 0.16
-          },
-          "limit": {
-            "context": 262144,
-            "output": 262144
-          }
-        }
-      }
+      "models": {}
 
     }
   },
