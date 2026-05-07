@@ -6,7 +6,7 @@
     "AGENTS.md"
   ],
   "plugin": [
-    "@tarquinen/opencode-dcp@latest"
+    // "@tarquinen/opencode-dcp@latest"
   ],
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
