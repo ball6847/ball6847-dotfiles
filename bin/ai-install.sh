@@ -36,11 +36,11 @@ cargo install agent-browser &
 wait
 
 # bun install --global @th0rgal/ralph-wiggum
-# bun install --global vibe-kanban
+bun install --global vibe-kanban
 # npm install -g opencode-orchestrator
 # bun add -g opencode-swarm-plugin@latest
 
-curl -fsSL https://raw.githubusercontent.com/njbrake/agent-of-empires/main/scripts/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/njbrake/agent-of-empires/main/scripts/install.sh | bash
 
 # =============================================================================
 # MCP SERVERS INSTALLATION SECTION
