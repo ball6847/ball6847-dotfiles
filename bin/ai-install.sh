@@ -36,7 +36,7 @@ cargo install agent-browser &
 wait
 
 # bun install --global @th0rgal/ralph-wiggum
-bun install --global vibe-kanban
+# npm install --global vibe-kanban@latest
 # npm install -g opencode-orchestrator
 # bun add -g opencode-swarm-plugin@latest
 
