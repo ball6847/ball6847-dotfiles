@@ -198,7 +198,7 @@ kmw() {
   echo "http://$hostname:$port/?token=$auth_token"
   echo "================================================"
 
-  kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" "$@"
+  kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" --no-restrict-sensitive-apis "$@"
 }
 
 alias km="kimi --yolo --agent-file ~/.kimi/agents/default.yaml" 
