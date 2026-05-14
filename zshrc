@@ -137,6 +137,9 @@ if is_termux; then
   export PATH="/data/data/com.termux/files/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/home/.cargo/bin:$PATH"
 fi
 
+# enable name-rev fix for workspace-manager v0.4.2+
+export WM_USE_NAME_REV=1 
+
 # ================================================
 # set up bash alias
 
