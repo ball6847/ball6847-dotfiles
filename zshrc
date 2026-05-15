@@ -365,7 +365,11 @@ tm() {
   if [[ -n "$1" ]]; then
     session_name="$1"
   fi
-  tmux new-session -A -s "$session_name"
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session_name" 2>/dev/null || tmux new-session -d -s "$session_name" \; switch-client -t "$session_name"
+  else
+    tmux new-session -A -s "$session_name"
+  fi
 }
 
 # ================================================
