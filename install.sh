@@ -75,6 +75,11 @@ if [ ! -L ~/.claude/skills ]; then
     ln -sf ~/.agents/skills ~/.claude/skills
 fi
 
+# create symlink from ~/.agent-of-empires to ~/.config/agent-of-empires/ if running on mac
+if [ "$(uname)" = "Darwin" ] && [ ! -L ~/.agent-of-empires ]; then
+    ln -sf ~/.config/agent-of-empires ~/.agent-of-empires
+fi
+
 # Fix nested symlinks created by the loop above
 fix_nested_symlinks() {
     for subdir in config/*/; do
