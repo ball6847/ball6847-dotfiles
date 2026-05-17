@@ -24,7 +24,7 @@ files="
     config/git-commit-ai
     config/rio
     config/vite
-    config/agents-of-empire
+    config/agent-of-empires
     qwen/settings.json
     agents
     kimi
