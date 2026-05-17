@@ -207,6 +207,15 @@
       "skillFolderHash": "88157583b20b296c8eaa3808af3dd3d669d73ce0",
       "installedAt": "2026-04-24T16:25:04.144Z",
       "updatedAt": "2026-04-24T16:25:04.144Z"
+    },
+    "complexity-optimizer": {
+      "source": "Kappaemme-git/codex-complexity-optimizer",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Kappaemme-git/codex-complexity-optimizer.git",
+      "skillPath": "complexity-optimizer/SKILL.md",
+      "skillFolderHash": "5437ecf97d35f7a242f6cab180334beb6b69c79d",
+      "installedAt": "2026-05-17T16:37:55.810Z",
+      "updatedAt": "2026-05-17T16:37:55.810Z"
     }
   },
   "dismissed": {
@@ -219,6 +228,7 @@
     "codex",
     "cursor",
     "deepagents",
+    "dexto",
     "firebender",
     "gemini-cli",
     "github-copilot",
