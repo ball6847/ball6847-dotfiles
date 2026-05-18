@@ -42,8 +42,8 @@ default_tool = "opencode"
 yolo_mode_default = true
 agent_status_hooks = true
 strict_hotkeys = false
-custom_agents = { "kimi" = "kimi" }
-agent_detect_as = { "kimi" = "qwen" }
+# custom_agents = { "kimi" = "kimi" }
+# agent_detect_as = { "kimi" = "qwen" }
 
 [diff]
 context_lines = 3
