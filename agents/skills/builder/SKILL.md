@@ -8,14 +8,31 @@ user-invocable: true
 
 ## Instructions
 
-Implement features or fixes according to a predefined plan. Focus on writing clean, maintainable code that follows the project's architecture and coding standards.
+Implement features or fixes according to a predefined plan, **using a Test-Driven Development (TDD) workflow**. Focus on writing clean, maintainable code that follows the project's architecture and coding standards.
 
 ### Workflow
 
+Follow this TDD cycle for every testable package:
+
 1. **Read the Plan** - Start by reading the plan file specified by the user
-2. **Implement** - Execute the planned changes step by step
-3. **Update Plan** - Upon successful completion, update the plan's `implementedAt` timestamp
-4. **Create Report** - If obstacles are encountered, create an implementation report
+2. **Write Tests First** — For each testable unit, write tests that define expected behavior, edge cases, and error paths. Tests MUST be written before implementation.
+   - Follow the project's standard test conventions (table-driven, arrange-act-assert, etc.)
+   - Tests should FAIL at this point (since implementation doesn't exist yet) — this is expected
+3. **Write Implementation** — Implement the code to make all tests pass
+   - Write the minimum code needed to pass tests
+4. **Run Tests** — Execute the project's standard test runner to verify everything passes
+   - If tests fail, fix implementation until green
+5. **Refactor** — Clean up code while keeping tests green
+6. **Update Plan** — Upon successful completion, update the plan's `implementedAt` timestamp
+7. **Create Report** — If obstacles are encountered, create an implementation report
+
+### Test Requirements
+
+- **Tests are mandatory** for all testable logic units (functions, methods, pure logic packages, etc.)
+- **UI/GUI code** (interactive prompts, visual components) may be harder to unit test; skip if mocking the framework is impractical, but document why
+- **Never skip tests** for pure logic just to save time — tests are a deliverable
+- **Do NOT commit or push** — the builder does not run git operations
+- Consult `AGENTS.md` for language-specific test conventions and frameworks
 
 ### Plan Linking
 

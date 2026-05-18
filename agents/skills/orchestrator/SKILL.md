@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Orchestrates build-review cycles to implement a plan with automated quality gates. Delegates to builder for implementation and TWO concurrent reviewers for verification. Loops until BOTH reviewers pass or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
+description: Orchestrates build-review cycles to implement a plan with automated quality gates and TDD enforcement. Delegates to builder for implementation and TWO concurrent reviewers for verification. Loops until BOTH reviewers pass or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
 user-invocable: true
 ---
 
@@ -61,6 +61,15 @@ Provide the plan path and any specific issues to address from previous reviews.
 Use the Task tool TWICE with subagent_type: "reviewer"
 Provide the SAME plan path to both reviewers to verify implementation against.
 Both reviewers must receive identical prompts simultaneously.
+
+BEFORE delegating to reviewers, the orchestrator should:
+1. Read AGENTS.md to discover Review-phase skills (e.g., golang-code-style, golang-security)
+2. Use the skill tool to load each Review-phase skill
+3. Embed the loaded skills' key guidance directly into the reviewer prompt
+
+The reviewer prompt MUST include:
+- Skill-specific review criteria (e.g., Go naming conventions, security checks)
+- The standard review checklist from the Review skill
 ```
 
 ### Checking Review Verdict

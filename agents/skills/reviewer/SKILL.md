@@ -17,17 +17,28 @@ update the plan with review timestamp.
 1. **Load Inputs**
    - Read the plan file
    - Read any related implementation reports (if available)
+   - **Read `AGENTS.md`** (if present in the project root) to discover:
+     - Technology stack and conventions
+     - Skill activation rules by phase (look for a table or section mentioning "Review" phase skills)
+     - Project-specific quality gates
 
-2. **Verify Implementation**
+2. **Activate Phase-Specific Skills**
+   - If `AGENTS.md` lists skills for the **Review** phase (e.g., `golang-code-style`, `golang-security`, `complexity-optimizer`), read the corresponding `SKILL.md` files if accessible
+     - Typical paths: `~/.agents/skills/<skill-name>/SKILL.md` or `file:///Users/<user>/.agents/skills/<skill-name>/SKILL.md`
+   - If skill files are NOT accessible (e.g., subagent restrictions), ask the user to load them for you explicitly: **"Please load skill: <skill-name>"**
+   - Apply the loaded skills' guidance alongside the standard review checklist
+   - If no `AGENTS.md` exists or no Review-phase skills are listed, proceed with the standard review checklist only
+
+3. **Verify Implementation**
    - Explore the codebase to check each planned change
    - Verify implementation details against plan specifications
    - Identify deviations from the planned approach
 
-3. **Create Review Report** (if discrepancies found or review needed)
+4. **Create Review Report** (if discrepancies found or review needed)
    - Document findings in a review report
    - Link to plan and implementation reports
 
-4. **Update Plan**
+5. **Update Plan**
    - Set the plan's `reviewedAt` timestamp
    - Add "Review" section linking to the review report
 
@@ -63,6 +74,11 @@ When reviewing implementations, be direct and thorough:
   delivered
 - **Rate severity** - Classify issues as blocking (must fix), concerning (should
   fix), or minor (nice to have)
+- **TDD Compliance** — Check that test files exist for testable logic units
+  and that they contain real test functions (not just boilerplate). If tests are
+  missing or only exist as stubs, mark as blocking and require the builder to
+  apply TDD retroactively: write tests, verify they fail, then implement until
+  they pass.
 
 The goal is honest, constructive criticism that improves code quality and
 maintains architectural integrity.
