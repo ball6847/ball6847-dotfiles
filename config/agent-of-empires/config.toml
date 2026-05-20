@@ -69,7 +69,7 @@ notify_on_error = true
 notify_on_wake_fire = true
 
 [cockpit]
-enabled = false
+enabled = true
 default_for_claude = true
 default_agent = "aoe-agent"
 max_concurrent_workers = 5
