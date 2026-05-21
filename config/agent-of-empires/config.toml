@@ -25,7 +25,12 @@ init_submodules = true
 enabled_by_default = false
 default_image = "ghcr.io/njbrake/aoe-sandbox:latest"
 extra_volumes = []
-environment = ["TERM", "COLORTERM", "FORCE_COLOR", "NO_COLOR"]
+environment = [
+    "TERM",
+    "COLORTERM",
+    "FORCE_COLOR",
+    "NO_COLOR",
+]
 auto_cleanup = true
 default_terminal_mode = "host"
 volume_ignores = []
@@ -42,8 +47,6 @@ default_tool = "opencode"
 yolo_mode_default = true
 agent_status_hooks = true
 strict_hotkeys = false
-# custom_agents = { "kimi" = "kimi" }
-# agent_detect_as = { "kimi" = "qwen" }
 
 [diff]
 context_lines = 3
@@ -54,9 +57,12 @@ context_lines = 3
 enabled = false
 mode = "random"
 
+[status_hooks]
+enabled = false
+
 [app_state]
 has_seen_welcome = true
-last_seen_version = "1.7.0"
+last_seen_version = "1.7.1"
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = false
 group_by = "project"
@@ -79,8 +85,17 @@ node_path = ""
 show_tool_durations = true
 queue_drain_mode = "combined"
 max_concurrent_resumes = 4
+force_end_turn_threshold_secs = 30
+silent_orphan_grace_secs = 60
+silent_orphan_fast_grace_secs = 20
 
 [logging]
 default_level = "info"
+output = "file"
+file_path = "debug.log"
+rotation = "size"
+max_size_mib = 50
+keep_count = 5
+show_spans = false
 
 [logging.targets]
