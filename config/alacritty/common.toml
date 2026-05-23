@@ -24,10 +24,10 @@ bindings = [
   { key = "N", mods = "Command", action = "SpawnNewInstance" },
   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" },
   # Tab Navigation
-  { key = "BracketLeft", mods = "Command|Shift", action = "SelectPreviousTab" },
-  { key = "BracketLeft", mods = "Control|Shift", action = "SelectPreviousTab" },
-  { key = "BracketRight", mods = "Command|Shift", action = "SelectNextTab" },
-  { key = "BracketRight", mods = "Control|Shift", action = "SelectNextTab" },
+  { key = "[", mods = "Command|Shift", action = "SelectPreviousTab" },
+  { key = "[", mods = "Control|Shift", action = "SelectPreviousTab" },
+  { key = "]", mods = "Command|Shift", action = "SelectNextTab" },
+  { key = "]", mods = "Control|Shift", action = "SelectNextTab" },
 ]
 
 [font]
