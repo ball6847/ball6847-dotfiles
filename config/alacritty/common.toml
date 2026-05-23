@@ -17,6 +17,17 @@ bindings = [
   # Windows/WSL: Use \u000a (LF) for Shift+Enter if \u001b[10;2u doesn't work
   # Backup original sequence: { key = "Enter", mods = "Shift", chars = "\u001b[10;2u" },
   { key = "Enter", mods = "Shift", chars = "\u000a" },
+  # New Tab — macOS: Cmd+T, Windows/Linux: Ctrl+Shift+T
+  { key = "T", mods = "Command", action = "CreateNewTab" },
+  { key = "T", mods = "Control|Shift", action = "CreateNewTab" },
+  # New Window — macOS: Cmd+N, Windows/Linux: Ctrl+Shift+N
+  { key = "N", mods = "Command", action = "SpawnNewInstance" },
+  { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" },
+  # Tab Navigation
+  { key = "BracketLeft", mods = "Command|Shift", action = "SelectPreviousTab" },
+  { key = "BracketLeft", mods = "Control|Shift", action = "SelectPreviousTab" },
+  { key = "BracketRight", mods = "Command|Shift", action = "SelectNextTab" },
+  { key = "BracketRight", mods = "Control|Shift", action = "SelectNextTab" },
 ]
 
 [font]
