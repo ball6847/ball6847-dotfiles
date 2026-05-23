@@ -19,13 +19,6 @@ program = "/bin/zsh"
 # args = ["-l", "-c", "source ~/.zshrc && tmux new-session -A -s main"]
 args = ["-l"]
 
-# Allow navigate by word (Alt + Arrow keys)
-[keyboard]
-bindings = [
-  { key = "Left", mods = "Alt", chars = "\u001bb" },  # ESC + b (backward word)
-  { key = "Right", mods = "Alt", chars = "\u001bf" }, # ESC + f (forward word)
-]
-
 [font]
 size = 13
 offset = { x = 2, y = 11 }
