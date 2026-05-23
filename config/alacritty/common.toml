@@ -24,10 +24,19 @@ bindings = [
   { key = "N", mods = "Command", action = "SpawnNewInstance" },
   { key = "N", mods = "Control|Shift", action = "SpawnNewInstance" },
   # Tab Navigation
+  # Previous tab — macOS: Cmd+Shift+[, Windows/Linux: Ctrl+Shift+[
   { key = "[", mods = "Command|Shift", action = "SelectPreviousTab" },
   { key = "[", mods = "Control|Shift", action = "SelectPreviousTab" },
+  # Next tab — macOS: Cmd+Shift+], Windows/Linux: Ctrl+Shift+]
   { key = "]", mods = "Command|Shift", action = "SelectNextTab" },
   { key = "]", mods = "Control|Shift", action = "SelectNextTab" },
+  # Windows/WSL: Explicitly send ESC + m so tmux receives Alt+M even if another
+  # app (e.g. Discord) has registered it as a global hotkey.
+  { key = "M", mods = "Alt", chars = "\u001bm" },
+  # Navigate by word (Option/Alt + Arrow keys). Primarily for macOS with
+  # window.option_as_alt set, but harmless on other platforms.
+  { key = "Left", mods = "Alt", chars = "\u001bb" },   # ESC + b (backward word)
+  { key = "Right", mods = "Alt", chars = "\u001bf" },  # ESC + f (forward word)
 ]
 
 [font]
