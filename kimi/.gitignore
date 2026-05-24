@@ -3,4 +3,5 @@
 
 # Except agents directory
 !/agents/
+!/mcp.json
 !.gitignore

@@ -31,6 +31,7 @@ npm install -g opencode-ai@latest &
 npm install -g @qoder-ai/qodercli@latest &
 npm install -g diffx-cli@latest &
 npm install -g skills@latest &
+npm install -g cachebro@latest &
 cargo install agent-browser &
 
 wait

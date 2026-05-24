@@ -5,4 +5,5 @@
 !/agents/
 !/prompts/
 !/skills/
+!/config.toml
 !.gitignore
