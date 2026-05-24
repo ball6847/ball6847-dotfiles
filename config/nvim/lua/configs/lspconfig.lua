@@ -48,7 +48,9 @@ vim.lsp.config("gopls", {
   settings = {
     gopls = {
       gofumpt = true,
-      buildFlags = { "-tags=wireinject,integration" },
+      build = {
+        buildFlags = { "-tags=wireinject,integration" },
+      },
       formatting = {
         goimportspath = "goimports",
       },
