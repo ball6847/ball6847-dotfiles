@@ -66,7 +66,7 @@ enabled = false
 
 [app_state]
 has_seen_welcome = true
-last_seen_version = "1.8.0"
+last_seen_version = "1.8.1"
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = false
 group_by = "project"
@@ -90,7 +90,7 @@ show_tool_durations = true
 queue_drain_mode = "combined"
 max_concurrent_resumes = 4
 force_end_turn_threshold_secs = 30
-silent_orphan_grace_secs = 60
+silent_orphan_grace_secs = 120
 silent_orphan_fast_grace_secs = 20
 
 [logging]
