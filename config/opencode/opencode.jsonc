@@ -158,10 +158,10 @@
     //     "--mcp"
     //   ]
     // }
-    "cachebro": {
-      "type": "local",
-      "command": ["cachebro", "serve"]
-    }
+    // "cachebro": {
+    //  "type": "local",
+    //  "command": ["cachebro", "serve"]
+    // }
   },
   "agent": {
     "builder": {

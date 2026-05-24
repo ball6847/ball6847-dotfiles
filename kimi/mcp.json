@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "cachebro": {
-      "command": "cachebro",
-      "args": ["serve"]
-    }
-  }
-}

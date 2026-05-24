@@ -22,7 +22,7 @@ enable_notifications = true
 api_timeout = 720.0
 auto_compact_threshold = 200000
 tool_paths = []
-# mcp_servers = []
+mcp_servers = []
 enabled_tools = []
 disabled_tools = []
 agent_paths = []
@@ -285,9 +285,9 @@ sensitive_patterns = ["**/.env", "**/.env.*"]
 max_write_bytes = 64000
 create_parent_dirs = true
 
-[[mcp_servers]]
-name = "cachebro"
-transport = "stdio"
-command = "cachebro"
-args = ["serve"]
-env = {}
+# [[mcp_servers]]
+# name = "cachebro"
+# transport = "stdio"
+# command = "cachebro"
+# args = ["serve"]
+# env = {}
