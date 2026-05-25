@@ -69,7 +69,7 @@ has_seen_welcome = true
 last_seen_version = "1.8.1"
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = false
-group_by = "project"
+group_by = "manual"
 
 [web]
 notifications_enabled = true
