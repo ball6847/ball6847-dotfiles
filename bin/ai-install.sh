@@ -26,7 +26,7 @@ echo "Installing AI tools..."
 # bun install --global @google/gemini-cli@latest
 # bun install --global @anthropic-ai/claude-code@latest
 uv tool install --upgrade mistral-vibe
-uv tool install --upgrade kimi-cli
+# uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @qoder-ai/qodercli@latest &
 npm install -g diffx-cli@latest &

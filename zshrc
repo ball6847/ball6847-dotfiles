@@ -501,3 +501,6 @@ fi
 #   exec tmux new -A -t main
 # fi
 
+
+# kimi-code
+export PATH="/Users/ball6847/.kimi-code/bin:$PATH"

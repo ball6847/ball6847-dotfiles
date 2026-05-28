@@ -23,7 +23,7 @@ init_submodules = true
 
 [sandbox]
 enabled_by_default = false
-default_image = "ghcr.io/njbrake/aoe-sandbox:latest"
+default_image = "ghcr.io/agent-of-empires/aoe-sandbox:latest"
 extra_volumes = []
 environment = [
     "TERM",
@@ -53,6 +53,8 @@ row_tag = "none"
 session_id_poller_max_threads = 50
 live_send_exit_chord = "C-q"
 new_session_attach_mode = "tmux"
+default_attach_mode = "tmux"
+click_action = "live_send"
 
 [diff]
 context_lines = 3
@@ -68,11 +70,11 @@ enabled = false
 
 [app_state]
 has_seen_welcome = true
-last_seen_version = "1.9.0"
+last_seen_version = "1.9.3"
 show_preview_info = false
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = false
-sort_order = "a_z"
+sort_order = "newest"
 group_by = "manual"
 
 [web]
