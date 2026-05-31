@@ -22,7 +22,7 @@
 
 echo "Installing AI tools..."
 
-# bun install --global @qwen-code/qwen-code@latest
+bun install --global @qwen-code/qwen-code@latest
 # bun install --global @google/gemini-cli@latest
 # bun install --global @anthropic-ai/claude-code@latest
 uv tool install --upgrade mistral-vibe
