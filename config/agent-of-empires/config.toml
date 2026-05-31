@@ -70,7 +70,7 @@ enabled = false
 
 [app_state]
 has_seen_welcome = true
-last_seen_version = "1.9.3"
+last_seen_version = "1.9.5"
 show_preview_info = false
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = false
