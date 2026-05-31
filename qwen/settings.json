@@ -1,8 +1,4 @@
 {
-  "approvalMode": "auto-edit",
-  "autoAccept": true,
-  "contextFileName": "AGENTS.md",
-  "hasSeenIdeIntegrationNudge": true,
   "hooks": {
     "Notification": [
       {
@@ -56,7 +52,22 @@
       }
     ]
   },
-  "ideMode": true,
   "mcpServers": {},
-  "selectedAuthType": "qwen-oauth"
+  "tools": {
+    "autoAccept": true,
+    "approvalMode": "auto-edit"
+  },
+  "context": {
+    "fileName": "AGENTS.md"
+  },
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "qwen-oauth"
+    }
+  },
+  "$version": 4
 }
