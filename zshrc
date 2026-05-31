@@ -206,7 +206,7 @@ kmw() {
 
 alias km="kimi --yolo --agent-file ~/.kimi/agents/default.yaml" 
 alias vb="vibe --agent auto-approve"
-alias qw="qwen -y"
+alias qw="qwen --yolo"
 alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
 alias run="doppler_run"
