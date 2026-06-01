@@ -11,6 +11,9 @@
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
     "bailian-token-plan": {
+      "env": [
+        "QWEN_CLOUD_API_KEY"
+      ],
       "npm": "@ai-sdk/anthropic",
       "name": "Qwen Cloud",
       "options": {
