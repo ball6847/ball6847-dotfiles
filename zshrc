@@ -204,7 +204,7 @@ kmw() {
   kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" --no-restrict-sensitive-apis "$@"
 }
 
-alias km="kimi --yolo --agent-file ~/.kimi/agents/default.yaml" 
+alias km="kimi --yolo" 
 alias vb="vibe --agent auto-approve"
 alias qw="qwen --yolo"
 alias cc="claude"
