@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Orchestrates build-review cycles to implement a plan with automated quality gates and TDD enforcement. Delegates to builder for implementation and TWO concurrent reviewers for verification. Loops until BOTH reviewers pass or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
+description: Orchestrates build-review cycles to implement a plan with automated quality gates. Delegates to builder for implementation and a reviewer for verification. Loops until reviewer passes or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
 user-invocable: true
 ---
 
@@ -8,8 +8,8 @@ user-invocable: true
 
 ## Instructions
 
-Coordinate build-review cycles to implement a plan with automated dual quality gates.
-This skill ensures implementations pass review by TWO independent reviewers before completion.
+Coordinate build-review cycles to implement a plan with automated quality gates.
+This skill ensures implementations pass review by a reviewer before completion.
 
 ### Workflow
 
@@ -18,33 +18,33 @@ Execute the following loop:
 ```
 Round 1:
   1. Delegate to builder -> Implement the plan
-  2. Delegate to reviewer #1 AND reviewer #2 concurrently -> Verify implementation
-  3. Wait for BOTH reviews to complete
-  4. Check combined verdict:
-     - If BOTH PASS -> Done, report success
-     - If ANY PARTIAL/FAIL -> Continue to Round 2
+  2. Delegate to reviewer -> Verify implementation
+  3. Wait for review to complete
+  4. Check verdict:
+     - If PASS -> Done, report success
+     - If PARTIAL/FAIL -> Continue to Round 2
 
 Round 2 (if needed):
-  1. Delegate to builder -> Fix issues from reviews
-  2. Delegate to reviewer #1 AND reviewer #2 concurrently -> Verify fixes
-  3. Wait for BOTH reviews to complete
-  4. Check combined verdict:
-     - If BOTH PASS -> Done, report success
-     - If ANY PARTIAL/FAIL -> Continue to Round 3
+  1. Delegate to builder -> Fix issues from review
+  2. Delegate to reviewer -> Verify fixes
+  3. Wait for review to complete
+  4. Check verdict:
+     - If PASS -> Done, report success
+     - If PARTIAL/FAIL -> Continue to Round 3
 
 Round 3 (if needed):
   1. Delegate to builder -> Final attempt to fix issues
-  2. Delegate to reviewer #1 AND reviewer #2 concurrently -> Verify fixes
-  3. Wait for BOTH reviews to complete
-  4. Check combined verdict:
-     - If BOTH PASS -> Done, report success
-     - If ANY PARTIAL/FAIL -> Stop, summarize issues
+  2. Delegate to reviewer -> Verify fixes
+  3. Wait for review to complete
+  4. Check verdict:
+     - If PASS -> Done, report success
+     - If PARTIAL/FAIL -> Stop, summarize issues
 ```
 
 ### Maximum Rounds
 
 - **Maximum**: 3 rounds
-- After 3 rounds without BOTH reviewers returning PASS, stop and provide issue summary
+- After 3 rounds without reviewer returning PASS, stop and provide issue summary
 
 ### Delegation Commands
 
@@ -52,17 +52,16 @@ Round 3 (if needed):
 
 ```
 Use the Task tool with subagent_type: "builder"
-Provide the plan path and any specific issues to address from previous reviews.
+Provide the plan path and any specific issues to address from previous review.
 ```
 
-**To reviewers (concurrent):**
+**To reviewer:**
 
 ```
-Use the Task tool TWICE with subagent_type: "reviewer"
-Provide the SAME plan path to both reviewers to verify implementation against.
-Both reviewers must receive identical prompts simultaneously.
+Use the Task tool with subagent_type: "reviewer"
+Provide the plan path to verify implementation against.
 
-BEFORE delegating to reviewers, the orchestrator should:
+BEFORE delegating to reviewer, the orchestrator should:
 1. Read AGENTS.md to discover Review-phase skills (e.g., golang-code-style, golang-security)
 2. Use the skill tool to load each Review-phase skill
 3. Embed the loaded skills' key guidance directly into the reviewer prompt
@@ -74,14 +73,12 @@ The reviewer prompt MUST include:
 
 ### Checking Review Verdict
 
-After BOTH reviewers complete, check both review reports' verdicts:
+After reviewer completes, check the review report's verdict:
 
-- **PASS + PASS**: Implementation matches plan, stop loop with success
-- **PASS + PARTIAL/FAIL**: Some issues remain, continue to next round
-- **PARTIAL + PASS/PARTIAL/FAIL**: Issues found, continue to next round
-- **FAIL + ANY**: Significant issues found, continue to next round
+- **PASS**: Implementation matches plan, stop loop with success
+- **PARTIAL/FAIL**: Issues found, continue to next round
 
-**The round is PASSED only when BOTH reviewers return PASS.**
+**The round is PASSED only when reviewer returns PASS.**
 
 ### Round Tracking
 
@@ -91,32 +88,32 @@ Track rounds explicitly in your response:
 ## Orchestrator Progress
 
 **Current Round**: 1/3
-**Status**: [Building / Reviewing (0/2) / Reviewing (1/2) / Complete]
+**Status**: [Building / Reviewing / Complete]
 
 ### Round History
 
-| Round | Build Status | Reviewer #1 | Reviewer #2 | Combined Verdict | Notes |
-|-------|--------------|-------------|-------------|------------------|-------|
-| 1 | Completed | PARTIAL | PASS | PARTIAL | Missing error handling in #1 |
+| Round | Build Status | Reviewer | Verdict | Notes |
+|-------|--------------|----------|---------|-------|
+| 1 | Completed | PARTIAL | PARTIAL | Missing error handling |
 ```
 
 ### Final Reporting
 
-**On Success (BOTH reviewers PASS):**
+**On Success (reviewer PASSES):**
 
 ```markdown
 ## Orchestrator Complete
 
 **Rounds Used**: X/3 **Final Status**: SUCCESS **Plan**: [link to plan]
 
-All implementations verified against plan by both reviewers.
+All implementations verified against plan by reviewer.
 
 ### Review Summary
-- Reviewer #1: PASS
-- Reviewer #2: PASS
+
+- Reviewer: PASS
 ```
 
-**On Failure (3 rounds without BOTH PASS):**
+**On Failure (3 rounds without PASS):**
 
 ```markdown
 ## Orchestrator Stopped
@@ -124,12 +121,12 @@ All implementations verified against plan by both reviewers.
 **Rounds Used**: 3/3 **Final Status**: FAILED **Plan**: [link to plan]
 
 ### Final Review Results
-- Reviewer #1: [verdict]
-- Reviewer #2: [verdict]
+
+- Reviewer: [verdict]
 
 ### Summary of Issues
 
-[List all unresolved issues from both reviewers across all rounds]
+[List all unresolved issues from reviewer across all rounds]
 
 ### Recommendations
 
@@ -141,7 +138,5 @@ All implementations verified against plan by both reviewers.
 - Always start with Round 1, do not skip ahead
 - Pass context from previous rounds to help agents focus on specific issues
 - Do not modify the plan during orchestration
-- If builder reports blocking obstacles, still proceed to dual review for visibility
-- Keep detailed notes of each reviewer's findings separately
-- **CRITICAL**: Both reviewers must receive the exact same prompt simultaneously
-- **CRITICAL**: Wait for BOTH reviews to complete before checking verdict and proceeding
+- If builder reports blocking obstacles, still proceed to review for visibility
+- Keep detailed notes of reviewer's findings
