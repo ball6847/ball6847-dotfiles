@@ -11,6 +11,9 @@ check_interval_hours = 24
 notify_in_cli = true
 web_poll_interval_minutes = 60
 
+[telemetry]
+enabled = true
+
 [worktree]
 enabled = false
 path_template = "../{repo-name}-worktrees/{branch}"
@@ -34,7 +37,9 @@ environment = [
 auto_cleanup = true
 default_terminal_mode = "host"
 volume_ignores = []
+volume_ignores_strategy = "anonymous"
 mount_ssh = false
+selinux_relabel = false
 container_runtime = "docker"
 
 [tmux]
@@ -46,18 +51,23 @@ clipboard = "auto"
 default_tool = "opencode"
 yolo_mode_default = true
 agent_status_hooks = true
+mouse_capture = true
 strict_hotkeys = false
 snooze_duration_minutes = 30
+auto_stop_idle_secs = 0
 restart_wake_message = "wake up: pick up what you were doing"
 row_tag = "none"
 session_id_poller_max_threads = 50
 live_send_exit_chord = "C-q"
+live_send_leader = "C-b"
 new_session_attach_mode = "tmux"
 default_attach_mode = "tmux"
 click_action = "live_send"
+confirm_before_quit = true
 
 [diff]
 context_lines = 3
+split_view = false
 
 [hooks]
 
@@ -72,6 +82,7 @@ enabled = false
 has_seen_welcome = true
 last_seen_version = "1.9.5"
 show_preview_info = false
+has_responded_to_telemetry = true
 has_seen_custom_instruction_warning = false
 has_acknowledged_agent_hooks = true
 sort_order = "newest"
@@ -98,6 +109,7 @@ max_concurrent_resumes = 4
 force_end_turn_threshold_secs = 30
 silent_orphan_grace_secs = 120
 silent_orphan_fast_grace_secs = 20
+auto_stop_idle_secs = 0
 
 [logging]
 default_level = "info"
