@@ -271,7 +271,6 @@
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
       "models": {}
-
     }
   },
   "mcp": {
@@ -297,9 +296,18 @@
     // }
   },
   "agent": {
+    "explore": {
+      "model": "mistral/devstral-small-latest"
+    },
+    "title": {
+      "model": "mistral/devstral-small-latest"
+    },
+    "compaction": {
+      "model": "mistral/mistral-vibe-cli-latest"
+    },
     "builder": {
       "mode": "subagent",
-      // "model": "streamlake/kat-coder-pro-v2",
+      "model": "mistral/mistral-vibe-cli-latest",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
@@ -313,7 +321,7 @@
     },
     "reviewer": {
       "mode": "subagent",
-      // "model": "synthetic/hf:zai-org/GLM-5",
+      "model": "bailian-token-plan/deepseek-v4-pro",
       "description": "Implementation review specialist. Reads plans and implementation reports, verifies builder's work against plans, creates review reports with verdicts (PASS/PARTIAL/FAIL), and updates plan timestamps. Use proactively after builder completes implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/reviewer/SKILL.md}",
       "tools": {
