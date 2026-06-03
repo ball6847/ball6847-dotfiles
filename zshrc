@@ -128,7 +128,7 @@ export TERM=xterm-256color
 export COLORTERM=truecolor
 export WINEARCH=win32
 export WINEPREFIX=$SUDO_HOME/.wine
-export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$PATH"
+export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$SUDO_HOME/.kimi-code/bin:$PATH"
 export TMUX_VERSION=$(tmux -V | grep -o '[0-9]\+\.[0-9]\+' | head -1)
 # export GIT_COMMIT_AI_MODEL="ollama-cloud/devstral-small-2:24b"
 
@@ -500,7 +500,3 @@ fi
 # if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
 #   exec tmux new -A -t main
 # fi
-
-
-# kimi-code
-export PATH="/Users/ball6847/.kimi-code/bin:$PATH"
