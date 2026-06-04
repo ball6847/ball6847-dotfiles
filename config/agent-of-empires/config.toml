@@ -81,6 +81,7 @@ enabled = false
 [app_state]
 has_seen_welcome = true
 last_seen_version = "1.9.5"
+dismissed_update_version = "1.10.0"
 show_preview_info = false
 has_responded_to_telemetry = true
 has_seen_custom_instruction_warning = false
