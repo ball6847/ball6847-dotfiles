@@ -63,7 +63,7 @@ live_send_leader = "C-b"
 new_session_attach_mode = "tmux"
 default_attach_mode = "tmux"
 click_action = "live_send"
-confirm_before_quit = true
+confirm_before_quit = false
 
 [diff]
 context_lines = 3
