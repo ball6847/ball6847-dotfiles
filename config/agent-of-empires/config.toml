@@ -77,10 +77,12 @@ mode = "random"
 
 [status_hooks]
 enabled = false
+debounce_ms = 100
 
 [app_state]
 has_seen_welcome = true
-last_seen_version = "1.9.5"
+has_seen_web_tour = false
+last_seen_version = "1.10.1"
 dismissed_update_version = "1.10.0"
 show_preview_info = false
 has_responded_to_telemetry = true
@@ -96,9 +98,10 @@ notify_on_idle = false
 notify_on_error = true
 notify_on_wake_fire = true
 
-[cockpit]
-enabled = true
-default_for_claude = true
+[auth]
+persist_sessions = true
+
+[acp]
 default_agent = "aoe-agent"
 max_concurrent_workers = 5
 replay_events = 0
@@ -111,6 +114,8 @@ force_end_turn_threshold_secs = 30
 silent_orphan_grace_secs = 120
 silent_orphan_fast_grace_secs = 20
 auto_stop_idle_secs = 0
+rate_limit_auto_resume = false
+rate_limit_auto_resume_grace_secs = 15
 
 [logging]
 default_level = "info"
