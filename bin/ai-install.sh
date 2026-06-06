@@ -33,7 +33,7 @@ npm install -g diffx-cli@latest &
 npm install -g skills@latest &
 npm install -g cachebro@latest &
 cargo install agent-browser &
-cargo install rtk &
+cargo install --git https://github.com/rtk-ai/rtk &
 npm install -g openrtk &
 
 wait

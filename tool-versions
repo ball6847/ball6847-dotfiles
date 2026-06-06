@@ -3,7 +3,7 @@ nodejs 24.15.0
 bun 1.3.11
 deno 2.8.2
 ruby 3.4.1
-rust 1.90.0
+rust 1.96.0
 neovim 0.11.5
 kubectl 1.33.0
 kubecm 0.33.0
