@@ -28,7 +28,7 @@ bun install --global @qwen-code/qwen-code@latest
 uv tool install --upgrade mistral-vibe
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
-npm install -g @qoder-ai/qodercli@latest &
+curl -fsSL https://qoder.com/install | bash &
 npm install -g diffx-cli@latest &
 npm install -g skills@latest &
 npm install -g cachebro@latest &
