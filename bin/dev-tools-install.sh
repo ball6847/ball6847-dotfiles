@@ -92,6 +92,7 @@ if [[ "$INSTALL_GO_PKG" = true ]]; then
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
     go install github.com/ball6847/aoex@latest
     go install github.com/google/wire/cmd/wire@latest
+    go install github.com/air-verse/air@latest
     # go install github.com/satococoa/wtp/v2/cmd/wtp@latest
     install_from_github_repo "ball6847/wtp" "./cmd/wtp"
     if command -v asdf &> /dev/null; then
