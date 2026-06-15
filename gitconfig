@@ -40,5 +40,8 @@ side-by-side = true
 [merge]
 conflictstyle = zdiff3
 
+[diff]
+	context = 20
+
 [protocol "file"]
 	allow = always

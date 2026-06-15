@@ -299,7 +299,7 @@
   },
   "agent": {
     "explore": {
-      "model": "mistral/devstral-small-latest"
+      "model": "mistral/mistral-vibe-cli-latest"
     },
     "title": {
       "model": "mistral/devstral-small-latest"
@@ -325,7 +325,7 @@
     "reviewer": {
       "mode": "subagent",
       // "model": "bailian-token-plan/deepseek-v4-pro",
-      "model": "kimi-for-coding/k2p6",
+      "model": "kimi-for-coding/k2p7",
       "description": "Implementation review specialist. Reads plans and implementation reports, verifies builder's work against plans, creates review reports with verdicts (PASS/PARTIAL/FAIL), and updates plan timestamps. Use proactively after builder completes implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/reviewer/SKILL.md}",
       "tools": {
