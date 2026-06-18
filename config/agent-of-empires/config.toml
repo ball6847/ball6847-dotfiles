@@ -95,6 +95,10 @@ has_acknowledged_volume_ignores_globs = false
 sort_order = "newest"
 group_by = "manual"
 
+[app_state.web_ui_state]
+aoe-web-settings = '{"mobileFontSize":12,"desktopFontSize":14,"autoOpenKeyboard":true,"persistentTerminals":false,"maxPersistentTerminals":5,"diffViewMode":"flat","diffViewLayout":"unified","collapsedDiffDirs":[]}'
+aoe-welcome-seen = "1"
+
 [web]
 notifications_enabled = true
 notify_on_waiting = true
