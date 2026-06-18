@@ -312,7 +312,8 @@
       // "model": "kimi-for-coding/k2p6",
       // "model": "opencode/minimax-m3-free",
       // "model": "kimi-for-coding/k2p7",
-      "model": "zai-coding-plan/glm-5.2",
+      // "model": "zai-coding-plan/glm-5.2",
+      "model": "minimax-coding-plan/MiniMax-M3",
       "description": "Plan-based implementation specialist. Reads plans from .context/plans/, implements features step-by-step, updates plan timestamps, and creates implementation reports when obstacles occur. Use proactively when a plan exists and needs implementation.",
       "prompt": "{file:~/.dotfiles/agents/skills/builder/SKILL.md}",
       "tools": {
