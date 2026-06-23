@@ -68,6 +68,15 @@
             }
           }
         },
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code",
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          }
+        },
         "kimi-k2.5": {
           "name": "Kimi K2.5",
           "options": {
@@ -79,6 +88,15 @@
         },
         "glm-5.1": {
           "name": "GLM-5.1",
+          "options": {
+            "thinking": {
+              "type": "enabled",
+              "budgetTokens": 8192
+            }
+          }
+        },
+        "glm-5.2": {
+          "name": "GLM-5.2",
           "options": {
             "thinking": {
               "type": "enabled",

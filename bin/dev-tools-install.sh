@@ -88,7 +88,7 @@ if [[ "$INSTALL_GO_PKG" = true ]]; then
     go install golang.org/x/tools/gopls@latest
     go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
     go install github.com/evilmartians/lefthook@latest
-    go install github.com/bufbuild/buf/cmd/buf@latest
+    go install github.com/bufbuild/buf/cmd/buf@1.70.0 # stick with 1.70.0 for now as 1.71.0 (current latest has format command behavior change)
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
     go install github.com/ball6847/aoex@latest
     go install github.com/google/wire/cmd/wire@latest
