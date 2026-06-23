@@ -51,6 +51,7 @@ clipboard = "auto"
 default_tool = "opencode"
 yolo_mode_default = true
 agent_status_hooks = true
+smart_rename = true
 mouse_capture = true
 strict_hotkeys = false
 snooze_duration_minutes = 30
@@ -64,6 +65,8 @@ new_session_attach_mode = "tmux"
 default_attach_mode = "tmux"
 click_action = "live_send"
 confirm_before_quit = false
+unread_indicator = true
+show_tips = true
 tie_workdir_to_name = true
 
 [diff]
@@ -85,15 +88,18 @@ debounce_ms = 100
 [app_state]
 has_seen_welcome = true
 has_seen_web_tour = false
-last_seen_version = "1.11.0"
+last_seen_version = "1.11.1"
 dismissed_update_version = "1.11.1"
 show_preview_info = false
 has_responded_to_telemetry = true
 has_seen_custom_instruction_warning = false
+has_seen_non_git_project_warning = false
 has_acknowledged_agent_hooks = true
 has_acknowledged_volume_ignores_globs = false
 sort_order = "newest"
 group_by = "manual"
+new_session_with_selection_count = 1
+used_new_from_selection = false
 
 [app_state.web_ui_state]
 aoe-web-settings = '{"mobileFontSize":12,"desktopFontSize":14,"autoOpenKeyboard":true,"persistentTerminals":false,"maxPersistentTerminals":5,"diffViewMode":"flat","diffViewLayout":"unified","collapsedDiffDirs":[]}'
@@ -124,6 +130,7 @@ silent_orphan_fast_grace_secs = 20
 auto_stop_idle_secs = 0
 rate_limit_auto_resume = false
 rate_limit_auto_resume_grace_secs = 15
+allow_agent_install = false
 
 [logging]
 default_level = "info"
