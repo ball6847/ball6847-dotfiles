@@ -18,7 +18,7 @@ silent_orphan_fast_grace_secs = 20
 silent_orphan_grace_secs = 120
 
 [app_state]
-dismissed_update_version = "1.11.1"
+dismissed_update_version = "1.11.3"
 group_by = "manual"
 has_acknowledged_agent_hooks = true
 has_acknowledged_volume_ignores_globs = false
@@ -28,14 +28,10 @@ has_seen_non_git_project_warning = false
 has_seen_web_tour = false
 has_seen_welcome = true
 last_seen_version = "1.11.2"
-new_session_with_selection_count = 1
+new_session_with_selection_count = 0
 show_preview_info = false
 sort_order = "newest"
 used_new_from_selection = false
-
-[app_state.web_ui_state]
-aoe-web-settings = '{"mobileFontSize":12,"desktopFontSize":14,"autoOpenKeyboard":true,"persistentTerminals":false,"maxPersistentTerminals":5,"diffViewMode":"flat","diffViewLayout":"unified","collapsedDiffDirs":[]}'
-aoe-welcome-seen = "1"
 
 [auth]
 persist_sessions = true
