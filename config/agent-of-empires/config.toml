@@ -27,11 +27,11 @@ has_seen_custom_instruction_warning = false
 has_seen_non_git_project_warning = false
 has_seen_web_tour = false
 has_seen_welcome = true
-last_seen_version = "1.11.2"
-new_session_with_selection_count = 0
+last_seen_version = "1.11.3"
+new_session_with_selection_count = 4
 show_preview_info = false
 sort_order = "newest"
-used_new_from_selection = false
+used_new_from_selection = true
 
 [auth]
 persist_sessions = true
@@ -80,8 +80,10 @@ click_action = "live_send"
 confirm_before_quit = false
 default_attach_mode = "tmux"
 default_tool = "opencode"
+delete_to_trash = true
 live_send_exit_chord = "C-q"
 live_send_leader = "C-b"
+merge_hooks_into_selected_agent = true
 mouse_capture = true
 new_session_attach_mode = "tmux"
 restart_wake_message = "wake up: pick up what you were doing"
@@ -93,6 +95,7 @@ smart_rename_agent = ""
 snooze_duration_minutes = 30
 strict_hotkeys = false
 tie_workdir_to_name = true
+trash_retention_days = 30
 unread_indicator = true
 yolo_mode_default = true
 
@@ -118,6 +121,7 @@ mouse = "auto"
 status_bar = "auto"
 
 [updates]
+auto_update_plugins = false
 check_interval_hours = 24
 notify_in_cli = true
 update_check_mode = "notify"
