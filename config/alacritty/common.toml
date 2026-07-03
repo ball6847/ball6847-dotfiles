@@ -61,6 +61,7 @@ style = "Bold Italic"
 [terminal]
 # ensure true color is enabled
 shell = "/bin/zsh"
+osc52 = "CopyPaste"
 
 [env]
 # Set environment variables for true color support

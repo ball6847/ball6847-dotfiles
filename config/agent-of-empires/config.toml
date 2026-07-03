@@ -18,7 +18,7 @@ silent_orphan_fast_grace_secs = 20
 silent_orphan_grace_secs = 120
 
 [app_state]
-dismissed_update_version = "1.11.3"
+dismissed_update_version = "1.12.0"
 group_by = "manual"
 has_acknowledged_agent_hooks = true
 has_acknowledged_volume_ignores_globs = false
