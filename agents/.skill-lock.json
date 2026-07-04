@@ -118,6 +118,15 @@
       "skillFolderHash": "5437ecf97d35f7a242f6cab180334beb6b69c79d",
       "installedAt": "2026-05-17T16:37:55.810Z",
       "updatedAt": "2026-05-17T16:37:55.810Z"
+    },
+    "opencode-ensemble": {
+      "source": "hueyexe/opencode-ensemble",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/hueyexe/opencode-ensemble.git",
+      "skillPath": "skills/opencode-ensemble/SKILL.md",
+      "skillFolderHash": "8ae54a94250fc405f572f92b65747e949be7de81",
+      "installedAt": "2026-07-04T16:02:31.965Z",
+      "updatedAt": "2026-07-04T16:02:31.965Z"
     }
   },
   "dismissed": {
@@ -126,17 +135,17 @@
   "lastSelectedAgents": [
     "amp",
     "antigravity",
+    "antigravity-cli",
     "cline",
     "codex",
     "cursor",
     "deepagents",
-    "dexto",
-    "firebender",
     "gemini-cli",
     "github-copilot",
-    "kimi-cli",
+    "kimi-code-cli",
     "opencode",
     "warp",
+    "zed",
     "qoder",
     "mistral-vibe",
     "qwen-code"
