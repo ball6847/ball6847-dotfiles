@@ -9,6 +9,7 @@
   "plugin": [
     // "openrtk"
     // "@tarquinen/opencode-dcp@latest"
+  "@hueyexe/opencode-ensemble@0.15.0"
   ],
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
