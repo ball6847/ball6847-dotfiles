@@ -127,6 +127,15 @@
       "skillFolderHash": "8ae54a94250fc405f572f92b65747e949be7de81",
       "installedAt": "2026-07-04T16:02:31.965Z",
       "updatedAt": "2026-07-04T16:02:31.965Z"
+    },
+    "visualize": {
+      "source": "careerhackeralex/visualize",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/careerhackeralex/visualize.git",
+      "skillPath": "skills/visualize/SKILL.md",
+      "skillFolderHash": "2288f0f716da5a2d8e1a59c058d96eff3518db1e",
+      "installedAt": "2026-07-04T16:23:14.222Z",
+      "updatedAt": "2026-07-04T16:23:14.222Z"
     }
   },
   "dismissed": {
