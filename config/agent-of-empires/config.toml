@@ -25,13 +25,17 @@ has_acknowledged_volume_ignores_globs = false
 has_responded_to_telemetry = true
 has_seen_custom_instruction_warning = false
 has_seen_non_git_project_warning = false
-has_seen_web_tour = false
+has_seen_web_tour = true
 has_seen_welcome = true
-last_seen_version = "1.11.3"
+last_seen_version = "1.12.0"
 new_session_with_selection_count = 4
 show_preview_info = false
 sort_order = "newest"
 used_new_from_selection = true
+
+[app_state.web_ui_state]
+aoe-web-settings = '{"mobileFontSize":8,"desktopFontSize":14,"terminalFontFamily":"","autoOpenKeyboard":true,"persistentTerminals":false,"maxPersistentTerminals":5,"diffViewMode":"tree","diffViewLayout":"unified","collapsedDiffDirs":[]}'
+aoe-welcome-seen = "1"
 
 [auth]
 persist_sessions = true
@@ -75,9 +79,11 @@ volume_ignores_strategy = "anonymous"
 
 [session]
 agent_status_hooks = true
+auto_resume_on_restart = true
 auto_stop_idle_secs = 0
 click_action = "live_send"
 confirm_before_quit = false
+confirm_delete = false
 default_attach_mode = "tmux"
 default_tool = "opencode"
 delete_to_trash = true
