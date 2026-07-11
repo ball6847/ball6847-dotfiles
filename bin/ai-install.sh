@@ -1,6 +1,59 @@
 #!/bin/bash
 
 # =============================================================================
+# FUNCTION DEFINITIONS
+# =============================================================================
+
+install_pi_packages() {
+    local script_dir repo_dir pi_settings pi_settings_fallback packages
+
+    echo "Installing pi packages from settings.json..."
+
+    if ! command -v pi &> /dev/null; then
+        echo "Warning: pi command not found. Skipping pi package installation."
+        echo "  Install pi first: curl -fsSL https://pi.dev/install.sh | sh"
+        return 0
+    fi
+
+    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    repo_dir="$(dirname "$script_dir")"
+
+    # Prefer the live symlink; fall back to the repo file if install.sh hasn't run yet
+    pi_settings="$HOME/.pi/agent/settings.json"
+    pi_settings_fallback="$repo_dir/pi/agent/settings.json"
+
+    if [[ ! -f "$pi_settings" && -f "$pi_settings_fallback" ]]; then
+        pi_settings="$pi_settings_fallback"
+    fi
+
+    if [[ ! -f "$pi_settings" ]]; then
+        echo "No pi settings.json found. Skipping pi package installation."
+        return 0
+    fi
+
+    # Read packages array from settings.json
+    if command -v jq &> /dev/null; then
+        packages=$(jq -r '.packages[]? // empty' "$pi_settings" 2>/dev/null)
+    elif command -v python3 &> /dev/null; then
+        packages=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("\n".join(d.get("packages",[])))' "$pi_settings" 2>/dev/null)
+    else
+        echo "Warning: jq or python3 not found. Cannot read pi packages from settings.json."
+        packages=""
+    fi
+
+    if [[ -z "$packages" ]]; then
+        echo "No packages configured in pi settings.json."
+        return 0
+    fi
+
+    echo "$packages" | while IFS= read -r pkg; do
+        [[ -z "$pkg" ]] && continue
+        echo "Installing pi package: $pkg"
+        pi install "$pkg"
+    done
+}
+
+# =============================================================================
 # CLEANUP SECTION - Remove previous installations
 # =============================================================================
 
@@ -38,6 +91,12 @@ cargo install --git https://github.com/rtk-ai/rtk &
 npm install -g openrtk &
 
 wait
+
+# =============================================================================
+# PI PACKAGES INSTALLATION
+# =============================================================================
+
+install_pi_packages
 
 # bun install --global @th0rgal/ralph-wiggum
 # npm install --global vibe-kanban@latest

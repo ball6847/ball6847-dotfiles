@@ -151,6 +151,7 @@ alias clipboard="xsel --clipboard"
 alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
 alias gs="git status"
 alias ga="git add -A"
+alias gan="git add -N"
 alias gcm="git commit -am"
 # alias gcmm='echo "$(cat ~/.config/opencode/command/git-commit.md)" | opencode run -m "openrouter/google/gemini-2.0-flash-exp:free"'
 alias gcmm="git-commit-ai g"
