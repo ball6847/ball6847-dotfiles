@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.6",
-  "defaultProvider": "minimax",
-  "defaultModel": "MiniMax-M3",
+  "defaultProvider": "mistral",
+  "defaultModel": "mistral-medium-3.5",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
