@@ -16,6 +16,30 @@
           "maxTokens": 32768
         }
       ]
+    },
+    "mistral": {
+      "models": [
+        {
+          "id": "mistral-vibe-cli-latest",
+          "name": "Mistral Vibe CLI Latest",
+          "api": "mistral-conversations",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 262144,
+          "maxTokens": 262144
+        },
+        {
+          "id": "devstral-small-latest",
+          "name": "Devstral Small Latest",
+          "api": "mistral-conversations",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 32768
+        }
+      ]
     }
   }
 }

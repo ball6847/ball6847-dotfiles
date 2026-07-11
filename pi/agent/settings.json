@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.6",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding-highspeed",
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax-M3",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
@@ -10,5 +10,7 @@
     "npm:@spences10/pi-themes",
     "https://github.com/gsanhueza/pi-token-speed"
   ],
-  "theme": "gruvbox-dark"
+  "theme": "gruvbox-dark",
+  "defaultThinkingLevel": "medium",
+  "quietStartup": true
 }
