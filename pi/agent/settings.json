@@ -1,16 +1,17 @@
 {
   "lastChangelogVersion": "0.80.6",
-  "defaultProvider": "maxplus",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:pi-subagents",
+    "npm:@heyhuynhgiabuu/pi-diff",
     "https://github.com/zeflq/pi-reviewer",
     "npm:pi-exit-command",
-    "npm:@spences10/pi-themes",
-    "https://github.com/gsanhueza/pi-token-speed"
+    "https://github.com/gsanhueza/pi-token-speed",
+    "git:github.com/lulucatdev/pi-themes"
   ],
-  "theme": "neon-afterglow",
-  "diffTheme": "midnight",
+  "theme": "opencode-system",
+  "diffTheme": "neon",
   "defaultThinkingLevel": "medium",
   "quietStartup": true
 }
