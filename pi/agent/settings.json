@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.6",
   "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",

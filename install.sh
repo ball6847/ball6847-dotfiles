@@ -26,6 +26,7 @@ files="
     config/vite
     config/agent-of-empires
     pi/agent/settings.json
+    pi/agent/models.json
     qwen/settings.json
     agents
     kimi

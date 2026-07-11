@@ -135,6 +135,8 @@ $files = @(
     "config/nvim"
     "config/opencode"
     "config/git-commit-ai"
+    "pi/agent/settings.json"
+    "pi/agent/models.json"
     "qwen/settings.json"
     "agents"
     "kimi"
