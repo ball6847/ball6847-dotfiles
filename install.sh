@@ -25,6 +25,7 @@ files="
     config/rio
     config/vite
     config/agent-of-empires
+    pi/agent/settings.json
     qwen/settings.json
     agents
     kimi
