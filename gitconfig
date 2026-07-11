@@ -41,7 +41,7 @@ side-by-side = true
 conflictstyle = zdiff3
 
 [diff]
-	context = 20
+	context = 10
 
 [protocol "file"]
 	allow = always

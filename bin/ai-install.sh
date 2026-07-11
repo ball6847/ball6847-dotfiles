@@ -22,10 +22,11 @@
 
 echo "Installing AI tools..."
 
-bun install --global @qwen-code/qwen-code@latest
+# bun install --global @qwen-code/qwen-code@latest
 # bun install --global @google/gemini-cli@latest
 # bun install --global @anthropic-ai/claude-code@latest
-uv tool install --upgrade mistral-vibe
+bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
+uv tool install --upgrade mistral-vibe &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 curl -fsSL https://qoder.com/install | bash &
