@@ -5,6 +5,10 @@
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
-    "https://github.com/zeflq/pi-reviewer"
-  ]
+    "https://github.com/zeflq/pi-reviewer",
+    "npm:pi-exit-command",
+    "npm:@spences10/pi-themes",
+    "https://github.com/gsanhueza/pi-token-speed"
+  ],
+  "theme": "gruvbox-dark"
 }
