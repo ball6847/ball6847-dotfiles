@@ -4,13 +4,13 @@
   "defaultModel": "deepseek-v4-pro",
   "packages": [
     "npm:pi-subagents",
-    "npm:@heyhuynhgiabuu/pi-diff",
     "https://github.com/zeflq/pi-reviewer",
     "npm:pi-exit-command",
     "npm:@spences10/pi-themes",
     "https://github.com/gsanhueza/pi-token-speed"
   ],
   "theme": "neon-afterglow",
+  "diffTheme": "midnight",
   "defaultThinkingLevel": "medium",
   "quietStartup": true
 }
