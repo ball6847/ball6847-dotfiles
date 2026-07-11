@@ -451,6 +451,17 @@
       "api": "https://api.synthetic.new/v1",
       "name": "Synthetic",
       "models": {}
+    },
+    "kimi-for-coding": {
+      "models": {
+        "kimi-for-coding-highspeed": {
+          "name": "Kimi K2.7 Code Highspeed",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
+        }
+      }
     }
   },
   "mcp": {
