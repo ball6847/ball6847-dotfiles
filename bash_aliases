@@ -20,4 +20,5 @@ alias oc="opencode"
 alias g="gemini -y"
 alias vb="vibe --agent auto-approve"
 alias qw="qwen -y"
+alias p="pi"
 
