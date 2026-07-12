@@ -8,7 +8,8 @@
     "https://github.com/zeflq/pi-reviewer",
     "npm:pi-exit-command",
     "https://github.com/gsanhueza/pi-token-speed",
-    "git:github.com/lulucatdev/pi-themes"
+    "git:github.com/lulucatdev/pi-themes",
+    "npm:pi-undo-redo"
   ],
   "theme": "opencode-system",
   "diffTheme": "neon",
