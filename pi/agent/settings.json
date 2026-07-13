@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.6",
-  "defaultProvider": "minimax",
-  "defaultModel": "MiniMax-M3",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:pi-subagents",
     "https://github.com/zeflq/pi-reviewer",
@@ -16,4 +16,3 @@
   "defaultThinkingLevel": "medium",
   "quietStartup": true
 }
-
