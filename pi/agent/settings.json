@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.6",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding",
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax-M3",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
@@ -9,7 +9,8 @@
     "npm:pi-exit-command",
     "https://github.com/gsanhueza/pi-token-speed",
     "git:github.com/lulucatdev/pi-themes",
-    "npm:pi-undo-redo"
+    "npm:pi-undo-redo",
+    "npm:@juicesharp/rpiv-todo"
   ],
   "theme": "opencode-system",
   "diffTheme": "neon",
