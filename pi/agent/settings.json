@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.80.7",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding-highspeed",
+  "lastChangelogVersion": "0.80.8",
+  "defaultProvider": "maxplus",
+  "defaultModel": "deepseek-v4-pro",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",

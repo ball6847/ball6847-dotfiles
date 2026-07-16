@@ -323,61 +323,6 @@
         }
       }
     },
-    // "ollama-cloud": {
-    //   "id": "ollama-cloud",
-    //   "models": {
-    //     "deepseek-v4-pro": {
-    //       "id": "deepseek-v4-pro",
-    //       "name": "deepseek-v4-pro",
-    //       "family": "deepseek-thinking",
-    //       "attachment": false,
-    //       "reasoning": true,
-    //       "tool_call": true,
-    //       "interleaved": {
-    //         "field": "reasoning_content"
-    //       },
-    //       "structured_output": true,
-    //       "temperature": true,
-    //       "knowledge": "2025-05",
-    //       "release_date": "2026-04-24",
-    //       "last_updated": "2026-04-24",
-    //       "modalities": {
-    //         "input": [
-    //           "text"
-    //         ],
-    //         "output": [
-    //           "text"
-    //         ]
-    //       },
-    //       "open_weights": true,
-    //       "cost": {
-    //         "input": 1.74,
-    //         "output": 3.48,
-    //         "cache_read": 0.145
-    //       },
-    //       "limit": {
-    //         "context": 1000000,
-    //         "output": 384000
-    //       }
-    //     }
-    //   }
-    // },
-    // "streamlake": {
-    //   "npm": "@ai-sdk/openai-compatible",
-    //   "name": "StreamLake Coding Plan",
-    //   "options": {
-    //     "baseURL": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
-    //     "apiKey": "{env:VC_API_KEY}"
-    //   },
-    //   "models": {
-    //     "kat-coder-pro-v1": {
-    //       "name": "kat-coder-pro-v1"
-    //     },
-    //     "kat-coder-pro-v2": {
-    //       "name": "kat-coder-pro-v2"
-    //     }
-    //   }
-    // },
     "mistral": {
       "id": "mistral",
       "models": {
@@ -454,10 +399,10 @@
     },
     "kimi-for-coding": {
       "models": {
-        "kimi-for-coding-highspeed": {
-          "id": "kimi-for-coding-highspeed",
-          "name": "Kimi K2.7 Code Highspeed",
-          "description": "Coding-focused Kimi model, stronger on long-horizon repo work with less overthinking",
+        "kimi-for-coding": {
+          "id": "kimi-for-coding",
+          "name": "K2.7 Coding",
+          "description": "Coding-focused Kimi K2.7 model with strong reasoning capabilities",
           "family": "kimi-k2",
           "attachment": true,
           "reasoning": true,
@@ -466,8 +411,8 @@
           "structured_output": true,
           "temperature": false,
           "knowledge": "2025-01",
-          "release_date": "2026-06-12",
-          "last_updated": "2026-06-12",
+          "release_date": "2025-10-24",
+          "last_updated": "2025-10-24",
           "modalities": {
             "input": [
               "text",
@@ -481,6 +426,80 @@
           "open_weights": true,
           "limit": {
             "context": 262144,
+            "output": 32768
+          },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+        "kimi-for-coding-highspeed": {
+          "id": "kimi-for-coding-highspeed",
+          "name": "K2.7 Coding Highspeed",
+          "description": "Coding-focused Kimi model, stronger on long-horizon repo work with less overthinking",
+          "family": "kimi-k2",
+          "attachment": true,
+          "reasoning": true,
+          "reasoning_options": [],
+          "tool_call": true,
+          "structured_output": true,
+          "temperature": false,
+          "knowledge": "2025-01",
+          "release_date": "2025-10-24",
+          "last_updated": "2025-10-24",
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "open_weights": true,
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+        "k3": {
+          "id": "k3",
+          "name": "K3",
+          "description": "Latest Kimi K3 model with 1M context window and max thinking effort",
+          "family": "kimi-k3",
+          "attachment": true,
+          "reasoning": true,
+          "reasoning_options": [
+            "max"
+          ],
+          "tool_call": true,
+          "structured_output": true,
+          "temperature": false,
+          "knowledge": "2025-01",
+          "release_date": "2025-10-24",
+          "last_updated": "2025-10-24",
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "open_weights": true,
+          "limit": {
+            "context": 1048576,
             "output": 32768
           },
           "cost": {
