@@ -10,7 +10,7 @@
           "thinkingLevelMap": {
             "off": null
           },
-          "input": ["text", "image", "video"],
+          "input": ["text", "image"],
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "contextWindow": 262144,
           "maxTokens": 32768
@@ -23,7 +23,7 @@
           "thinkingLevelMap": {
             "off": null
           },
-          "input": ["text", "image", "video"],
+          "input": ["text", "image"],
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "contextWindow": 262144,
           "maxTokens": 32768
@@ -42,7 +42,7 @@
             "xhigh": null,
             "max": "max"
           },
-          "input": ["text", "image", "video"],
+          "input": ["text", "image"],
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "contextWindow": 1048576,
           "maxTokens": 32768
