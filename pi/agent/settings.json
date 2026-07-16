@@ -4,6 +4,7 @@
   "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:pi-subagents",
+    "npm:@heyhuynhgiabuu/pi-diff",
     "https://github.com/zeflq/pi-reviewer",
     "npm:pi-exit-command",
     "https://github.com/gsanhueza/pi-token-speed",
