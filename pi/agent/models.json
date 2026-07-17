@@ -1,54 +1,5 @@
 {
   "providers": {
-    "kimi-coding": {
-      "models": [
-        {
-          "id": "kimi-for-coding",
-          "name": "K2.7 Coding",
-          "api": "anthropic-messages",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null
-          },
-          "input": ["text", "image"],
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "contextWindow": 262144,
-          "maxTokens": 32768
-        },
-        {
-          "id": "kimi-for-coding-highspeed",
-          "name": "K2.7 Coding Highspeed",
-          "api": "anthropic-messages",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null
-          },
-          "input": ["text", "image"],
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "contextWindow": 262144,
-          "maxTokens": 32768
-        },
-        {
-          "id": "k3",
-          "name": "K3",
-          "api": "anthropic-messages",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": null,
-            "low": null,
-            "medium": null,
-            "high": null,
-            "xhigh": null,
-            "max": "max"
-          },
-          "input": ["text", "image"],
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "contextWindow": 1048576,
-          "maxTokens": 32768
-        }
-      ]
-    },
     "mistral": {
       "models": [
         {
