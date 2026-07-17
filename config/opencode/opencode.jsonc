@@ -123,7 +123,8 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "MaxPlus DeepSeek",
       "options": {
-        "baseURL": "https://api.maxplus-ai.cc/deepseek/v1",
+        "baseURL": "https://api.maxplus-ai.cc/v1",
+        // "baseURL": "https://api.maxplus-ai.cc/deepseek/v1",
         "name": "maxplus-deepseek",
         "apiKey": "{env:MAXPLUS_API_KEY}",
         "timeout": 600000,
@@ -249,6 +250,441 @@
         },
         "glm-5.1": {
           "name": "GLM-5.1 (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "glm-5": {
+          "name": "GLM-5 (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "hy3-preview": {
+          "name": "HY3 Preview (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi K2.5 (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "kimi-k2.6": {
+          "name": "Kimi K2.6 (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "mimo-v2-omni": {
+          "name": "Mimo V2 Omni (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "mimo-v2-pro": {
+          "name": "Mimo V2 Pro (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "mimo-v2.5": {
+          "name": "Mimo V2.5 (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "mimo-v2.5-pro": {
+          "name": "Mimo V2.5 Pro (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "minimax-m2.5": {
+          "name": "MiniMax M2.5 (MaxPlus)",
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "minimax-m2.7": {
+          "name": "MiniMax M2.7 (MaxPlus)",
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "qwen3.5-plus": {
+          "name": "Qwen3.5 Plus (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "qwen3.6-plus": {
+          "name": "Qwen3.6 Plus (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "qwen3.7-max": {
+          "name": "Qwen3.7 Max (MaxPlus)",
+          "limit": {
+            "context": 262144,
+            "output": 16384
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        },
+        "qwen3.7-plus": {
+          "name": "Qwen3.7 Plus (MaxPlus)",
           "limit": {
             "context": 262144,
             "output": 16384

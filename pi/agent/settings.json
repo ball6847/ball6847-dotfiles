@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "k3",
+  "defaultProvider": "maxplus",
+  "defaultModel": "minimax-m3",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
@@ -14,6 +14,6 @@
   ],
   "theme": "opencode-system",
   "diffTheme": "neon",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "quietStartup": true
 }
