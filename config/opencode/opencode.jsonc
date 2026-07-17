@@ -119,6 +119,30 @@
         }
       }
     },
+    "streamlake": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "StreamLake Coding Plan",
+      "options": {
+        "baseURL": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+        "apiKey": "{env:VC_API_KEY}"
+      },
+      "models": {
+        "ep-rwhav0-1784285728467953790": {
+          "name": "KAT-Coder-Pro V2.5",
+          "limit": {
+            "context": 256000,
+            "output": 80000
+          }
+        },
+        "ep-g9jaqk-1784285728451215599": {
+          "name": "KAT-Coder-Air V2.5",
+          "limit": {
+            "context": 256000,
+            "output": 80000
+          }
+        }
+      }
+    },
     "maxplus-deepseek": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MaxPlus DeepSeek",

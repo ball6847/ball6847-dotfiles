@@ -448,6 +448,45 @@
           }
         }
       ]
+    },
+    "streamlake": {
+      "baseUrl": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+      "api": "openai-completions",
+      "apiKey": "$VC_API_KEY",
+      "models": [
+        {
+          "id": "ep-rwhav0-1784285728467953790",
+          "name": "KAT-Coder-Pro V2.5",
+          "reasoning": false,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text"],
+          "contextWindow": 256000,
+          "maxTokens": 80000,
+          "cost": { "input": 0.74, "output": 2.96, "cacheRead": 0.15, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": true,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "ep-g9jaqk-1784285728451215599",
+          "name": "KAT-Coder-Air V2.5",
+          "reasoning": false,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text"],
+          "contextWindow": 256000,
+          "maxTokens": 80000,
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "compat": {
+            "supportsDeveloperRole": true,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        }
+      ]
     }
   }
 }
