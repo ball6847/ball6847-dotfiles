@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "defaultProvider": "maxplus",
-  "defaultModel": "minimax-m3",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
