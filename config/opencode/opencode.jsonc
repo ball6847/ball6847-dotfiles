@@ -119,51 +119,6 @@
         }
       }
     },
-    "ollama-cloud-pay": {
-      "id": "ollama-pay.thaigqsoft.com",
-      "env": [
-        "OLLAMA_PAY_API_KEY"
-      ],
-      "npm": "@ai-sdk/openai-compatible",
-      "api": "https://ollama-pay.thaigqsoft.com/api/v1",
-      "name": "ollama-pay.thaigqsoft.com",
-      "models": {
-        "deepseek-v4-pro:cloud": {
-          "id": "deepseek-v4-pro:cloud",
-          "name": "deepseek-v4-pro",
-          "family": "deepseek-thinking",
-          "attachment": false,
-          "reasoning": true,
-          "tool_call": true,
-          "interleaved": {
-            "field": "reasoning_content"
-          },
-          "structured_output": true,
-          "temperature": true,
-          "knowledge": "2025-05",
-          "release_date": "2026-04-24",
-          "last_updated": "2026-04-24",
-          "modalities": {
-            "input": [
-              "text"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "open_weights": true,
-          "cost": {
-            "input": 1.74,
-            "output": 3.48,
-            "cache_read": 0.145
-          },
-          "limit": {
-            "context": 1000000,
-            "output": 384000
-          }
-        }
-      }
-    },
     "maxplus-deepseek": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "MaxPlus DeepSeek",
