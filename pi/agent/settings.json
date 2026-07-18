@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "defaultProvider": "maxplus",
+  "defaultModel": "mimo-v2.5-pro",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
@@ -14,7 +14,6 @@
   ],
   "theme": "opencode-system",
   "diffTheme": "neon",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "quietStartup": true
 }
-
