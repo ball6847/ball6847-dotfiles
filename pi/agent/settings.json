@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "k3",
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
@@ -17,3 +17,4 @@
   "defaultThinkingLevel": "max",
   "quietStartup": true
 }
+

@@ -133,13 +133,6 @@
             "context": 256000,
             "output": 80000
           }
-        },
-        "ep-g9jaqk-1784285728451215599": {
-          "name": "KAT-Coder-Air V2.5",
-          "limit": {
-            "context": 256000,
-            "output": 80000
-          }
         }
       }
     },
