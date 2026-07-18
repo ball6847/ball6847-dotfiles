@@ -505,3 +505,11 @@ fi
 # if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
 #   exec tmux new -A -t main
 # fi
+
+# >>> grok installer >>>
+if [ -x "$HOME/.grok/bin/grok" ]; then
+  export PATH="$HOME/.grok/bin:$PATH"
+  fpath=(~/.grok/completions/zsh $fpath)
+  autoload -Uz compinit && compinit -C
+fi
+# <<< grok installer <<<

@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
   "defaultProvider": "maxplus",
-  "defaultModel": "mimo-v2.5-pro",
+  "defaultModel": "deepseek-v4-flash",
   "packages": [
     "npm:pi-subagents",
     "npm:@heyhuynhgiabuu/pi-diff",
