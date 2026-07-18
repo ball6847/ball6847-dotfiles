@@ -54,22 +54,6 @@ install_pi_packages() {
 }
 
 # =============================================================================
-# CLEANUP SECTION - Remove previous installations
-# =============================================================================
-
-# echo "Cleaning previous npm installations..."
-#
-# # Clean up any existing npm installations
-# npm uninstall -g @qwen-code/qwen-code 2>/dev/null || true
-# npm uninstall -g @google/gemini-cli 2>/dev/null || true
-# npm uninstall -g @anthropic-ai/claude-code 2>/dev/null || true
-# npm uninstall -g opencode-ai 2>/dev/null || true
-# npm uninstall -g mongodb-mcp-server 2>/dev/null || true
-
-# Reshim nodejs to ensure npm is properly recognized
-# asdf reshim nodejs
-
-# =============================================================================
 # AI TOOLS INSTALLATION SECTION
 # =============================================================================
 
@@ -82,13 +66,13 @@ bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
 uv tool install --upgrade mistral-vibe &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
-curl -fsSL https://qoder.com/install | bash &
-npm install -g diffx-cli@latest &
-npm install -g skills@latest &
-npm install -g cachebro@latest &
+# curl -fsSL https://qoder.com/install | bash &
+# npm install -g diffx-cli@latest &
+# npm install -g skills@latest &
+# npm install -g cachebro@latest &
 cargo install agent-browser &
-cargo install --git https://github.com/rtk-ai/rtk &
-npm install -g openrtk &
+# cargo install --git https://github.com/rtk-ai/rtk &
+# npm install -g openrtk &
 
 wait
 
