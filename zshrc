@@ -70,6 +70,11 @@ plugins=(zsh-autosuggestions ansible kubectl helm asdf z golang)
 fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
 #fpath=($DOTFILES/desk/shell_plugins/zsh $fpath)
 
+# grok completions (must be before compinit)
+if [ -x "$HOME/.grok/bin/grok" ]; then
+  fpath=(~/.grok/completions/zsh $fpath)
+fi
+
 # init zsh-completions
 autoload -Uz compinit
 
@@ -432,11 +437,13 @@ fi
 # $ sudo apt install zoxide_0.9.8-1_amd64.deb
 # $ rm zoxide_0.9.8-1_amd64.deb
 #
-# fzf latest should be installed as well
+# fzf is required for interactive selection (zi) and tab completions.
+# Minimum fzf version required by zoxide: v0.51.0
+# https://github.com/ajeetdsouza/zoxide#3-install-fzf-optional
 # $ cd ~/.local/bin
-# $ wget https://github.com/junegunn/fzf/releases/download/v0.66.0/fzf-0.66.0-linux_amd64.tar.gz
-# $ tar zxf fzf-0.66.0-linux_amd64.tar.gz
-# $ rm fzf-0.66.0-linux_amd64.tar.gz
+# $ wget https://github.com/junegunn/fzf/releases/download/v0.51.0/fzf-0.51.0-linux_amd64.tar.gz
+# $ tar zxf fzf-0.51.0-linux_amd64.tar.gz
+# $ rm fzf-0.51.0-linux_amd64.tar.gz
 
 
 
@@ -509,7 +516,5 @@ fi
 # >>> grok installer >>>
 if [ -x "$HOME/.grok/bin/grok" ]; then
   export PATH="$HOME/.grok/bin:$PATH"
-  fpath=(~/.grok/completions/zsh $fpath)
-  autoload -Uz compinit && compinit -C
 fi
 # <<< grok installer <<<
