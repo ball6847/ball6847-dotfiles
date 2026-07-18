@@ -184,6 +184,7 @@ alias m="make"
 alias g="gemini -y"
 
 alias oc="opencode"
+alias gr="grok --always-approve"
 alias p="pi"
 alias w="wtp"
 
