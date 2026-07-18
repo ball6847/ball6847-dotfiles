@@ -62,7 +62,6 @@ style = "Bold Italic"
 # ensure true color is enabled
 shell = "/bin/zsh"
 osc52 = "CopyPaste"
-max_fps = 30
 
 [env]
 # Set environment variables for true color support
