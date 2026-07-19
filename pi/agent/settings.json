@@ -2,10 +2,13 @@
   "lastChangelogVersion": "0.80.10",
   "defaultProvider": "streamlake",
   "defaultModel": "ep-rwhav0-1784285728467953790",
-  "packages": ["npm:@adrianapan/pikit"],
+  "packages": [
+    "npm:@adrianapan/pikit",
+    "npm:pi-undo-redo",
+    "npm:pi-exit-command"
+  ],
   "theme": "slop",
   "diffTheme": "neon",
   "defaultThinkingLevel": "high",
   "quietStartup": true
 }
-
