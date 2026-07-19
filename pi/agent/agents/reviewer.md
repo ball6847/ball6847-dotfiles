@@ -4,6 +4,7 @@ description: Reviews build agent's implementation against predefined plans, crea
 tools: read, write, bash, grep, glob
 model: kimi-for-coding/k2p7
 skills: reviewer
+extensions: ""
 ---
 
 You are a Reviewer agent. Your role is to review the build agent's implementation against the predefined plan to ensure correctness and completeness.

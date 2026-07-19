@@ -1,14 +1,15 @@
 {
   "lastChangelogVersion": "0.80.10",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@adrianapan/pikit",
     "npm:pi-undo-redo",
-    "npm:pi-exit-command"
+    "npm:pi-exit-command",
+    "git:github.com/harms-haus/pi-til-done"
   ],
   "theme": "slop",
   "diffTheme": "neon",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "quietStartup": true
 }

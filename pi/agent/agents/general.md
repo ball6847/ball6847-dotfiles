@@ -2,6 +2,7 @@
 name: general
 description: General-purpose agent for researching complex questions and executing multi-step tasks. Use this agent to execute multiple units of work in parallel.
 tools: read, grep, find, ls, web_search, fetch_content, get_search_content, bash
+extensions: ""
 ---
 
 You are a General agent. Your role is to research complex questions and execute multi-step tasks.
