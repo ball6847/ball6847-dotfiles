@@ -27,6 +27,9 @@ files="
     config/agent-of-empires
     pi/agent/settings.json
     pi/agent/models.json
+    pi/agent/configs
+    pi/agent/APPEND_SYSTEM.md
+    pi/agent/keybindings.json
     qwen/settings.json
     agents
     kimi
