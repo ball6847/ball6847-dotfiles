@@ -1,0 +1,19 @@
+{
+  "lastChangelogVersion": "0.80.10",
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:@heyhuynhgiabuu/pi-diff",
+    "https://github.com/zeflq/pi-reviewer",
+    "npm:pi-exit-command",
+    "https://github.com/gsanhueza/pi-token-speed",
+    "git:github.com/lulucatdev/pi-themes",
+    "npm:pi-undo-redo",
+    "npm:@juicesharp/rpiv-todo"
+  ],
+  "theme": "opencode-system",
+  "diffTheme": "neon",
+  "defaultThinkingLevel": "high",
+  "quietStartup": true
+}
