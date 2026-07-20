@@ -95,3 +95,5 @@ Human “is the job done?” after interrupt happens **inside the pi chat**. The
 - **Script blocks. Agent does not.**  
 - Do not manage tmux yourself — only start `run-pi-agent.sh`  
 - Parallel agents: distinct `--session-id`, each script process in the background  
+- **Pane stays on the caller's window.** Split target is pinned via `$TMUX_PANE` / that pane's window id, so switching to another window after spawn does not move the new pane to the focused window.  
+

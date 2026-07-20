@@ -87,14 +87,33 @@ die() {
 # pick_split — choose the best pane to split and the direction, maximizing
 # the new pane's usable space. (Inlined from the former pick-split.sh.)
 # Sets: PICK_TARGET (pane id), PICK_DIR (h|v)
+#
+# Always targets the window that owns the parent process ($TMUX_PANE), NOT the
+# session's currently active window. Otherwise switching windows after spawn
+# would create the new pane on the focused window instead of the caller's.
 # ---------------------------------------------------------------------------
 pick_split() {
   local MIN_WIDTH="${MIN_WIDTH:-80}"
   local MIN_HEIGHT="${MIN_HEIGHT:-20}"
 
+  local parent_pane="${TMUX_PANE:-}"
+  if [[ -z "$parent_pane" ]]; then
+    echo "pick_split: TMUX_PANE is unset — cannot pin split to the parent window." >&2
+    echo "Run this script from inside a tmux pane (not via a bare tmux client)." >&2
+    return 1
+  fi
+
+  local parent_window parent_window_name
+  parent_window=$(tmux display-message -p -t "$parent_pane" '#{window_id}') || {
+    echo "pick_split: failed to resolve window for parent pane $parent_pane" >&2
+    return 1
+  }
+  parent_window_name=$(tmux display-message -p -t "$parent_pane" '#{window_name}')
+
   local best_pane="" best_dir="" best_score=0 best_nw=0 best_nh=0
   local pane_id w h nw nh score
 
+  # Scope to the parent's window only — never follow client focus / active window.
   while read -r pane_id w h; do
     nw=$((w / 2))
     if (( nw >= MIN_WIDTH )); then
@@ -119,22 +138,24 @@ pick_split() {
         best_nh=$nh
       fi
     fi
-  done < <(tmux list-panes -F "#{pane_id} #{pane_width} #{pane_height}")
+  done < <(tmux list-panes -t "$parent_window" -F "#{pane_id} #{pane_width} #{pane_height}")
 
   if [[ -z "$best_pane" ]]; then
-    echo "pick_split: terminal too small — no pane can be split while keeping" >&2
+    echo "pick_split: terminal too small — no pane on window $parent_window" \
+      "(${parent_window_name}) can be split while keeping" >&2
     echo "the new pane at least ${MIN_WIDTH} cols or ${MIN_HEIGHT} rows." >&2
     echo "Maximize the terminal window, or override MIN_WIDTH/MIN_HEIGHT." >&2
     return 1
   fi
 
-  if [[ "$(tmux display-message -p '#{window_zoomed_flag}')" == "1" ]]; then
-    echo "pick_split: note — the window is currently zoomed; splitting will unzoom it" >&2
+  if [[ "$(tmux display-message -p -t "$parent_window" '#{window_zoomed_flag}')" == "1" ]]; then
+    echo "pick_split: note — window $parent_window is zoomed; splitting will unzoom it" >&2
   fi
 
   local kind
   kind=$([[ "$best_dir" == "h" ]] && echo "horizontally (side-by-side)" || echo "vertically (stacked)")
-  echo "pick_split: splitting $best_pane $kind -> new pane ~${best_nw}x${best_nh}" >&2
+  echo "pick_split: parent pane=$parent_pane window=$parent_window (${parent_window_name});" \
+    "splitting $best_pane $kind -> new pane ~${best_nw}x${best_nh}" >&2
 
   PICK_TARGET=$best_pane
   PICK_DIR=$best_dir
