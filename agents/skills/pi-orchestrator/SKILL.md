@@ -156,3 +156,4 @@ All implementations verified against plan by reviewer.
 - If builder reports blocking obstacles, still proceed to review for visibility
 - Keep detailed notes of reviewer's findings
 - **Never manage tmux directly** — always use the **pi-tmux-agent** skill for agent runs (spawn, wait, output, cleanup)
+- **No subagents inside a tmux-agent session.** Once a pi-tmux-agent session has started, do **not** spawn another subagent (builder, reviewer, or any other pi instance) from within that session. The session is a single-agent boundary — nested agent runs corrupt output capture and break the completion contract.
