@@ -1,6 +1,6 @@
 ---
 name: pi-tmux-agent
-description: Spawn a pi agent instance in a tmux pane with smart layout decisions, poll for completion, and clean up. Use when you need to run a pi agent in a tmux pane — whether for orchestration, parallel tasks, or any scenario requiring a pi TUI session in a specific pane. Handles automatic split direction, pane id capture, output polling, and pane cleanup.
+description: Spawn a pi agent instance in a tmux pane with smart layout decisions, wait for completion, and clean up — in a single script call. Use when you need to run a pi agent in a tmux pane — whether for orchestration, parallel tasks, or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, output capture, and cleanup.
 user-invocable: true
 ---
 
@@ -8,75 +8,74 @@ user-invocable: true
 
 ## Instructions
 
-Spawn a pi agent in a tmux pane, wait for it to complete, and clean up. This is a reusable building block — it handles the tmux mechanics so callers can focus on what to ask the agent.
+Run a pi agent in a tmux pane via **one script call**. The script owns the full lifecycle (layout → spawn → wait → capture → cleanup) so you do not drive tmux or poll panes yourself.
 
 ### Prerequisites
 
-- tmux session must be active
-- `pi` CLI must be available in PATH (if `pi` is not found in new panes, use its absolute path, e.g. `~/.bun/bin/pi`)
+- Must be inside an active tmux session (`$TMUX` set)
+- `pi` CLI available in PATH (or `~/.bun/bin/pi`, or pass `--pi`)
 
-### Pane Layout — Automatic Split Decisions
+### Run an agent
 
-Do NOT hardcode a split direction. The right direction depends on the current terminal layout, which changes as panes are spawned and closed. Decide per spawn using these principles:
-
-- **Split the largest existing pane.** A new pane is created by splitting an existing one, so splitting the biggest pane gives the newcomer the most space. The orchestrator pane is a valid split target — minimum-size guards (below) prevent it from ever becoming cramped.
-- **Split along the longer visual dimension.** Terminal character cells are roughly twice as tall as they are wide, so a pane looks balanced when `width ≈ 2 × height` (in character cells). A horizontal split (`-h`, side-by-side) is right for wide panes; a vertical split (`-v`, stacked) is right for tall panes.
-- **Enforce minimum usable sizes.** A pi pane needs roughly 80 columns to render its TUI readably and 20 lines to show progress. Never create a pane smaller than that.
-
-Use the bundled helper script to make this decision deterministically. Resolve the path relative to the skill directory (e.g. `~/.agents/skills/pi-tmux-agent/scripts/pick-split.sh`):
+Resolve the path relative to the skill directory (e.g. `~/.agents/skills/pi-tmux-agent/scripts/run-pi-agent.sh`):
 
 ```bash
-read TARGET DIRECTION < <(bash <skill-dir>/scripts/pick-split.sh)
+bash <skill-dir>/scripts/run-pi-agent.sh "Your prompt here"
 ```
 
-The script prints the target pane id and direction (`h` or `v`), plus a human-readable rationale on stderr. It exits non-zero if no pane can be split without violating the minimums — in that case, warn the user that the terminal is too small and ask them to maximize the window before continuing.
+Stdout is pi's full output. The exit code is pi's exit code (`124` on timeout, `1` on setup errors).
 
-Minimums can be tuned via environment variables if a user has unusual needs:
+**Multiline / large prompts** — use stdin:
 
 ```bash
-MIN_WIDTH=100 MIN_HEIGHT=24 bash <skill-dir>/scripts/pick-split.sh
+bash <skill-dir>/scripts/run-pi-agent.sh <<'EOF'
+Implement the plan at .context/plans/...
+When done, summarize what changed.
+EOF
 ```
 
-### Spawning a Pane
+### Options
 
-Use this procedure to spawn a pi agent in a new pane. It captures the new pane's stable id (`%N`) directly from tmux, so there is no guessing of pane indices:
+| Flag                 | Meaning                                        |
+| -------------------- | ---------------------------------------------- |
+| `-t, --timeout SECS` | Max wait for completion (default `3600`)       |
+| `-k, --keep-pane`    | Leave the pane open after completion           |
+| `-C, --cwd DIR`      | Working directory for pi (default: caller cwd) |
+| `--pi PATH`          | Path to the pi binary                          |
+| `-v, --verbose`      | Progress messages on stderr                    |
 
-```bash
-# 1. Decide where and how to split
-read TARGET DIRECTION < <(bash <skill-dir>/scripts/pick-split.sh)
+Environment:
 
-# 2. Split and capture the new pane id
-PANE_ID=$(tmux split-window -"$DIRECTION" -t "$TARGET" -P -F '#{pane_id}' 'pi')
+| Var                        | Meaning                                                                        |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| `MIN_WIDTH` / `MIN_HEIGHT` | Minimum new-pane size for split selection (default `80` / `20`)                |
+| `PI_BIN`                   | Override pi binary                                                             |
+| `PI_ARGS`                  | Extra pi flags before the prompt (e.g. `PI_ARGS='--model foo --thinking low'`) |
 
-# 3. Send the prompt
-tmux send-keys -t "$PANE_ID" "<prompt>" C-m
-```
+### What the script does
 
-Keep track of the pane id in a variable so it can be polled and killed reliably.
+1. **pick_split** — chooses the largest usable pane and split direction (`h` or `v`) so the new pane stays readable
+2. **spawn** — `tmux split-window` running `pi -p` (print / non-interactive) with your prompt
+3. **wait** — blocks until pi exits (or `--timeout`)
+4. **output** — prints the captured log on stdout
+5. **cleanup** — kills the pane unless `--keep-pane`
 
-### Waiting and Capturing Results
+`pi -p` is intentional: completion is process-exit based, not TUI scraping or `send-keys` races. Output still streams live in the pane via `tee`.
 
-Poll the pane output until the agent's completion summary appears (look for the final summary text and the return of the empty input prompt):
+### Layout rules (handled for you)
 
-```bash
-sleep 5 && tmux capture-pane -t "$PANE_ID" -p -S -500 | tail -80
-```
+- Split the largest existing pane (orchestrator pane is a valid target)
+- Prefer the longer visual dimension (`width ≈ 2 × height` cells)
+- Enforce minimum usable size (~80 cols × 20 rows); override with `MIN_WIDTH` / `MIN_HEIGHT`
+- If no split fits, the script exits non-zero — tell the user to maximize the window
+- If the window is zoomed, splitting will unzoom it (script notes this on stderr)
 
-Repeat with longer sleeps for long-running tasks. Prefer several polls over one long sleep so you can report progress to the user.
+### Parallel agents
 
-### Closing a Pane
+Each invocation creates its own pane and blocks until that agent finishes. For parallel work, run multiple script invocations in the background (separate shell jobs) and `wait` on them — do not reimplement pane polling yourself.
 
-After the agent completes, close the pane by id. Tolerate panes that already exited:
+### Important notes
 
-```bash
-tmux kill-pane -t "$PANE_ID" 2>/dev/null || true
-```
-
-If the remaining layout feels lopsided after closing panes, you may rebalance with `tmux select-layout tiled` — but do this only if the user isn't actively reading the pane, since it resizes their view.
-
-## Important Notes
-
-- Decide split direction fresh at every spawn — a direction that was right for one agent may be wrong for the next once the layout has changed
-- If `pick-split.sh` reports the terminal is too small, tell the user rather than forcing a cramped split
-- If `pick-split.sh` notes the window is zoomed, tell the user their view will unzoom before spawning
-- The pane id (`%N`) is stable across polls — use it rather than pane indices which can shift
+- Do **not** call `tmux split-window` / `send-keys` / `capture-pane` for pi agents when this skill is in use — call `run-pi-agent.sh` only
+- Prefer several sequential script calls over one giant prompt when tasks are independent stages
+- After many panes close, you may rebalance with `tmux select-layout tiled` if the layout feels lopsided (only if the user isn't focused on reading a pane)
