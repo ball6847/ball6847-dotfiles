@@ -8,69 +8,69 @@ user-invocable: true
 
 ## Instructions
 
-Coordinate build-review cycles to implement a plan by delegating to builder and reviewer pi instances. This skill ensures implementations pass review before completion. It uses the **pi-tmux-agent** skill to spawn each agent in its own tmux pane with smart layout decisions.
+Coordinate build-review cycles to implement a plan by delegating to builder and reviewer pi instances. This skill ensures implementations pass review before completion.
+
+**Do not manage tmux yourself.** For every agent run (builder or reviewer), use the **pi-tmux-agent** skill only. That skill owns pane layout, spawning pi, waiting until the agent finishes, capturing output, and cleanup. Never call `tmux split-window`, `send-keys`, `capture-pane`, or `kill-pane` from this skill.
 
 ### Prerequisites
 
 - A plan file must exist at `.context/plans/YYYY-MM-DD/FEATURE_PLAN.md`
-- The **pi-tmux-agent** skill is available (used for spawning and managing panes)
+- The **pi-tmux-agent** skill is available
 
 ### Workflow
 
-Execute the following loop, up to 3 rounds:
+Execute the following loop, up to 3 rounds. Each agent step is a single **pi-tmux-agent** invocation that blocks until that agent is done, then returns its output.
 
 ```
 Round 1:
-  1. Spawn builder agent (via pi-tmux-agent) -> Implement the plan
-  2. Capture builder result -> Check for completion
-  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify implementation
-  4. Capture reviewer result -> Check verdict
+  1. Run builder via pi-tmux-agent (implement the plan)
+  2. Read builder output -> check for completion
+  3. Run reviewer via pi-tmux-agent (verify implementation)
+  4. Read reviewer output -> check verdict
   5. Check verdict:
-     - If PASS -> Close panes, report success
+     - If PASS -> report success
      - If PARTIAL/FAIL -> Continue to Round 2
 
 Round 2 (if needed):
-  1. Spawn builder agent (via pi-tmux-agent) -> Fix issues from review
-  2. Capture builder result -> Check for completion
-  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify fixes
-  4. Capture reviewer result -> Check verdict
+  1. Run builder via pi-tmux-agent (fix issues from review)
+  2. Read builder output -> check for completion
+  3. Run reviewer via pi-tmux-agent (verify fixes)
+  4. Read reviewer output -> check verdict
   5. Check verdict:
-     - If PASS -> Close panes, report success
+     - If PASS -> report success
      - If PARTIAL/FAIL -> Continue to Round 3
 
 Round 3 (if needed):
-  1. Spawn builder agent (via pi-tmux-agent) -> Final attempt to fix issues
-  2. Capture builder result -> Check for completion
-  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify fixes
-  4. Capture reviewer result -> Check verdict
+  1. Run builder via pi-tmux-agent (final attempt to fix issues)
+  2. Read builder output -> check for completion
+  3. Run reviewer via pi-tmux-agent (verify fixes)
+  4. Read reviewer output -> check verdict
   5. Check verdict:
-     - If PASS -> Close panes, report success
-     - If PARTIAL/FAIL -> Close panes, summarize issues
+     - If PASS -> report success
+     - If PARTIAL/FAIL -> summarize issues
 ```
+
+Run builder and reviewer **sequentially** (builder fully finishes before reviewer starts). Do not parallelize them within a round unless the user explicitly asks.
 
 ### Maximum Rounds
 
 - **Maximum**: 3 rounds
 - After 3 rounds without reviewer returning PASS, stop and provide issue summary
 
-### Spawning Agents
+### Running Agents (via pi-tmux-agent)
 
-Use the **pi-tmux-agent** skill to spawn both builder and reviewer panes. For each spawn:
-
-1. The pi-tmux-agent skill decides the optimal split target and direction automatically
-2. It captures the new pane's stable id (`%N`) directly from tmux
-3. You send the prompt template (see below) to the new pane
-
-Keep track of the pane ids in variables — `BUILDER_PANE`, `REVIEWER_PANE` — so they can be polled and closed reliably.
+Follow the **pi-tmux-agent** skill for how to invoke the agent. Pass the builder or reviewer prompt (templates below) as the prompt. Use the skill's returned stdout as that agent's result — do not poll panes or scrape tmux yourself.
 
 ### Builder Prompt Template
 
 For Round 1:
+
 ```
 Please use the builder skill to implement the plan at <plan_path>.
 ```
 
 For Rounds 2-3 (include issues from previous review):
+
 ```
 Please use the builder skill to implement the plan at <plan_path>. The previous review found these issues that need fixing: <list_of_issues>
 ```
@@ -81,35 +81,14 @@ Please use the builder skill to implement the plan at <plan_path>. The previous 
 Please use the reviewer skill to review the implementation of the plan at <plan_path> against the implementation report at <report_path>. Verify that all changes match the plan and that the codebase is correct.
 ```
 
-### Waiting and Capturing Results
-
-Poll the pane output until the agent's completion summary appears (look for the final summary text and the return of the empty input prompt):
-
-```bash
-sleep 5 && tmux capture-pane -t "$PANE_ID" -p -S -500 | tail -80
-```
-
-Repeat with longer sleeps for long-running tasks. Prefer several polls over one long sleep so you can report progress to the user.
-
 ### Checking Review Verdict
 
-After the reviewer completes, capture the pane output and look for the verdict in the final summary:
+After the reviewer finishes, inspect the **pi-tmux-agent** output for the verdict:
 
 - **PASS**: "Review complete. Verdict: PASS" or "Verdict: PASS"
 - **PARTIAL/FAIL**: "Verdict: PARTIAL" or "Verdict: FAIL" or missing PASS
 
 **The round is PASSED only when the reviewer returns PASS.**
-
-### Closing Panes
-
-After the round completes (success or failure), close both worker panes by id using the pi-tmux-agent cleanup procedure. Tolerate panes that already exited:
-
-```bash
-tmux kill-pane -t "$REVIEWER_PANE" 2>/dev/null || true
-tmux kill-pane -t "$BUILDER_PANE" 2>/dev/null || true
-```
-
-If the remaining layout feels lopsided after closing panes, you may rebalance with `tmux select-layout tiled` — but do this only if the user isn't actively reading the orchestrator pane, since it resizes their view.
 
 ### Round Tracking
 
@@ -176,5 +155,4 @@ All implementations verified against plan by reviewer.
 - Do not modify the plan during orchestration
 - If builder reports blocking obstacles, still proceed to review for visibility
 - Keep detailed notes of reviewer's findings
-- Always close tmux panes after each round to keep the workspace clean
-- The pi-tmux-agent skill handles split decisions — trust its `pick-split.sh` helper
+- **Never manage tmux directly** — always use the **pi-tmux-agent** skill for agent runs (spawn, wait, output, cleanup)
