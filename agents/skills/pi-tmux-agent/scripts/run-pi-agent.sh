@@ -41,14 +41,15 @@
 #   PI_CODING_AGENT_SESSION_DIR  Override session storage directory
 #
 # Exit codes:
-#   0    contract satisfied, or user confirmed job-done after an interrupt
-#   1    setup error, user said job not done, or finished without contract (no interrupt path)
+#   0    contract satisfied (<done>SESSION_ID</done> in a final assistant message)
+#   1    setup error
 #   124  timed out waiting for the contract
-#   125  interrupted — caller MUST ask the human user whether the job is done
-#        (non-interactive mode; message includes NEEDS_USER_CONFIRM)
 #
 # Stdout: final assistant text with the <done>…</done> tag stripped
 # Stderr: progress / diagnostics (errors always; progress with -v)
+#
+# After interrupt/abort the script KEEPS BLOCKING. Continue chatting in the
+# pi pane; only the completion tag unblocks the waiter (or timeout).
 #
 # Visibility: runs interactive pi (not -p) so the pane shows the full TUI.
 # Result extraction uses ~/.pi/agent/sessions/.../*_<session-id>.jsonl
@@ -389,17 +390,6 @@ def strip_done_tag(text: str, session_id: str) -> str:
     return cleaned
 
 
-def session_was_interrupted(msgs: list[dict]) -> bool:
-    """True if any assistant turn was aborted/errored (interrupt in this session)."""
-    for msg in msgs:
-        if msg.get("role") == "assistant" and msg.get("stopReason") in (
-            "error",
-            "aborted",
-        ):
-            return True
-    return False
-
-
 def last_assistant_text(msgs: list[dict]) -> str:
     for msg in reversed(msgs):
         if msg.get("role") == "assistant":
@@ -409,11 +399,12 @@ def last_assistant_text(msgs: list[dict]) -> str:
 
 def status(path: str, session_id: str) -> str:
     """
-    pending         — no session / no messages yet
-    running         — tools in flight or still generating
-    done            — contract tag present AND no interrupt in session history
-    needs_confirm   — interrupted (abort/error), or tag present only after interrupt
-    incomplete      — model stopped (stop/length) without tag (not an interrupt)
+    pending  — no session / no messages yet
+    running  — anything short of the completion contract (including after interrupt)
+    done     — an assistant message contains exact <done>{session-id}</done>
+
+    Interrupt/abort does NOT end the wait. The outer script keeps blocking so the
+    user can continue chatting in pi until the contract tag appears.
     """
     try:
         msgs = load_messages(path)
@@ -422,75 +413,38 @@ def status(path: str, session_id: str) -> str:
     if not msgs:
         return "pending"
 
-    interrupted = session_was_interrupted(msgs)
-    last = msgs[-1]
-    role = last.get("role")
-    text = extract_text(last) if role == "assistant" else ""
-    stop = last.get("stopReason") if role == "assistant" else None
+    # Contract can appear on the final message after continued chat post-interrupt.
+    for msg in reversed(msgs):
+        if msg.get("role") != "assistant":
+            continue
+        if has_done_tag(extract_text(msg), session_id):
+            return "done"
+        # Only need to inspect the latest assistant; older ones without the tag
+        # do not matter if a newer one has it (we already reversed).
+        break
 
-    # After any interrupt in this session, never auto-success — even if the
-    # model later prints the done tag. Human must confirm job-done.
-    if interrupted:
-        if role != "assistant":
-            return "running"
-        if stop == "toolUse":
-            return "running"
-        # Idle after interrupt (stop/length/error/aborted) or tag present → confirm
-        if stop in ("stop", "length", "error", "aborted") or has_done_tag(
-            text, session_id
-        ):
-            return "needs_confirm"
-        return "running"
-
-    # Clean path (never interrupted this session)
-    if role != "assistant":
-        return "running"
-    if has_done_tag(text, session_id):
-        return "done"
-    if stop in ("error", "aborted"):
-        return "needs_confirm"
-    if stop in ("stop", "length"):
-        return "incomplete"
     return "running"
 
 
-def extract(path: str, session_id: str, mode: str = "strict") -> tuple[str, int]:
-    """
-    strict  — only succeed when done tag is present
-    last    — last assistant text (for user-confirmed-after-interrupt)
-    """
+def extract(path: str, session_id: str) -> tuple[str, int]:
+    """Return text from the assistant message that carries the done tag."""
     msgs = load_messages(path)
-    if mode == "last":
-        text = last_assistant_text(msgs)
-        if not text:
-            return (
-                f"run-pi-agent: no assistant message found (session-id={session_id})\n",
-                2,
-            )
-        return strip_done_tag(text, session_id), 0
-
     for msg in reversed(msgs):
         if msg.get("role") != "assistant":
             continue
         text = extract_text(msg)
         if has_done_tag(text, session_id):
             return strip_done_tag(text, session_id), 0
-        stop = msg.get("stopReason")
-        if stop in ("error", "aborted"):
-            err = msg.get("errorMessage") or f"turn {stop} (no {done_tag(session_id)})"
-            return (err if str(err).endswith("\n") else str(err) + "\n"), 1
-        if stop in ("stop", "length"):
-            body = text.rstrip() + "\n" if text.strip() else ""
-            note = f"run-pi-agent: incomplete — final message missing {done_tag(session_id)}\n"
-            return body + note, 1
-    return f"run-pi-agent: no assistant message found (expected {done_tag(session_id)})\n", 2
+    return (
+        f"run-pi-agent: no assistant message with {done_tag(session_id)}\n",
+        1,
+    )
 
 
 def main() -> int:
-    if len(sys.argv) not in (4, 5):
+    if len(sys.argv) != 4:
         print(
-            "usage: session_helper.py status|extract|extract-last "
-            "<session.jsonl> <session-id>",
+            "usage: session_helper.py status|extract <session.jsonl> <session-id>",
             file=sys.stderr,
         )
         return 2
@@ -499,11 +453,7 @@ def main() -> int:
         print(status(path, session_id))
         return 0
     if cmd == "extract":
-        text, code = extract(path, session_id, mode="strict")
-        sys.stdout.write(text)
-        return code
-    if cmd == "extract-last":
-        text, code = extract(path, session_id, mode="last")
+        text, code = extract(path, session_id)
         sys.stdout.write(text)
         return code
     print(f"unknown command: {cmd}", file=sys.stderr)
@@ -525,21 +475,54 @@ cleanup() {
 }
 trap 'cleanup $?' EXIT
 
-# Interactive (visual) pi — no -p. Full TUI in the pane; completion via session log.
+# Interactive (visual) pi — no -p. Full TUI; completion only via session contract.
+# After pi exits (hard interrupt / quit), reopen the SAME session so the user can
+# keep chatting until they finish and emit the done tag. Outer script keeps blocking.
 {
   printf '%s\n' '#!/usr/bin/env bash'
   printf '%s\n' 'set -euo pipefail'
   printf 'cd %q || exit 1\n' "$CWD"
-  printf 'pi_cmd=( %q --session-id %q --name %q )\n' \
-    "$PI_BIN" "$SESSION_ID" "run-pi-agent"
+  printf '%s\n' 'tmux set-option -t "${TMUX_PANE}" -w remain-on-exit on 2>/dev/null || true'
+  printf 'PI_BIN=%q\n' "$PI_BIN"
+  printf 'SESSION_ID=%q\n' "$SESSION_ID"
+  printf 'PROMPT_FILE=%q\n' "$PROMPT_FILE"
+  printf 'DONE_TAG=%q\n' "$DONE_TAG"
   if [[ -n "${PI_ARGS:-}" ]]; then
-    # shellcheck disable=SC2206
-    printf 'pi_cmd+=( %s )\n' "$PI_ARGS"
+    printf 'PI_ARGS=%q\n' "$PI_ARGS"
+  else
+    printf 'PI_ARGS=\n'
   fi
-  # Initial user message = the prompt; pi processes it immediately in the TUI.
-  # Note: pi does not accept a bare "--" argv terminator (it treats it as Unknown option).
-  printf 'pi_cmd+=( "$(cat %q)" )\n' "$PROMPT_FILE"
-  printf 'exec "${pi_cmd[@]}"\n'
+  cat <<'INNER'
+set +e
+# First launch: initial prompt + contract appendix
+# shellcheck disable=SC2086
+first_cmd=( "$PI_BIN" --session-id "$SESSION_ID" --name "run-pi-agent" )
+# Intentional word-split of PI_ARGS
+if [[ -n "${PI_ARGS}" ]]; then
+  # shellcheck disable=SC2206
+  first_cmd+=( $PI_ARGS )
+fi
+first_cmd+=( "$(cat "$PROMPT_FILE")" )
+"${first_cmd[@]}"
+ec=$?
+
+# Reopen same session for continued chat after interrupt/exit until the outer
+# script kills this pane (contract met or timeout).
+while true; do
+  printf '\n[run-pi-agent] pi exited (code %s). session-id=%s\n' "$ec" "$SESSION_ID"
+  printf '[run-pi-agent] Reopening session for continued chat.\n'
+  printf '[run-pi-agent] Outer waiter is still blocked until: %s\n' "$DONE_TAG"
+  printf '[run-pi-agent] After any interrupt: ask the user if the job is done, then emit the tag only if they confirm yes.\n\n'
+  # shellcheck disable=SC2086
+  resume_cmd=( "$PI_BIN" --session-id "$SESSION_ID" --name "run-pi-agent" )
+  if [[ -n "${PI_ARGS}" ]]; then
+    # shellcheck disable=SC2206
+    resume_cmd+=( $PI_ARGS )
+  fi
+  "${resume_cmd[@]}"
+  ec=$?
+done
+INNER
 } >"$RUNNER"
 chmod +x "$RUNNER"
 
@@ -550,84 +533,12 @@ log "pane id: $PANE_ID"
 
 tmux set-option -t "$PANE_ID" -p history-limit 50000 2>/dev/null || true
 
-# Ask the human whether the job is done after an interrupt.
-# Interactive (TTY): prompt on /dev/tty.
-# Non-interactive (agent caller): exit 125 with NEEDS_USER_CONFIRM so the
-# caller asks the user and can re-invoke policy accordingly.
-ask_user_job_done() {
-  local reason=$1
-  printf 'run-pi-agent: INTERRUPTED — %s\n' "$reason" >&2
-  printf 'run-pi-agent: session-id=%s\n' "$SESSION_ID" >&2
-  printf 'run-pi-agent: After an interrupt the job is NOT auto-complete.\n' >&2
-  printf 'run-pi-agent: The human user must confirm whether the job for this session is done.\n' >&2
-
-  if [[ -r /dev/tty && -w /dev/tty ]]; then
-    local ans
-    printf '\n' >/dev/tty
-    printf 'Session %s was interrupted (%s).\n' "$SESSION_ID" "$reason" >/dev/tty
-    printf 'Is the job DONE for this session? [y/N] ' >/dev/tty
-    # Read from the real terminal, not the script's stdin (may be a prompt pipe).
-    if ! read -r ans </dev/tty; then
-      ans=""
-    fi
-    case "${ans,,}" in
-      y|yes)
-        printf 'run-pi-agent: user confirmed job DONE after interrupt\n' >&2
-        return 0
-        ;;
-      *)
-        printf 'run-pi-agent: user did NOT confirm job done after interrupt\n' >&2
-        return 1
-        ;;
-    esac
-  fi
-
-  # Caller (agent) must ask the human and not treat this as success.
-  printf 'run-pi-agent: NEEDS_USER_CONFIRM session-id=%s reason=%s\n' \
-    "$SESSION_ID" "$reason" >&2
-  printf 'run-pi-agent: Ask the user: "Session %s was interrupted. Is the job done for this session?"\n' \
-    "$SESSION_ID" >&2
-  printf 'run-pi-agent: Do NOT assume done. Do NOT invent %s. Wait for explicit user yes/no.\n' \
-    "$DONE_TAG" >&2
-  return 2
-}
-
-handle_interrupt_confirm() {
-  local reason=$1
-  local confirm_ec
-
-  set +e
-  ask_user_job_done "$reason"
-  confirm_ec=$?
-  set -e
-
-  if (( confirm_ec == 0 )); then
-    # User said yes — return last assistant text even without the done tag.
-    if [[ -n "${SESSION_FILE:-}" && -f "$SESSION_FILE" ]]; then
-      log "extracting last assistant message after user-confirmed done…"
-      python3 "$SESSION_HELPER" extract-last "$SESSION_FILE" "$SESSION_ID" || true
-    fi
-    exit 0
-  fi
-  if (( confirm_ec == 2 )); then
-    # Non-interactive: force the calling agent to ask the user.
-    if [[ -n "${SESSION_FILE:-}" && -f "$SESSION_FILE" ]]; then
-      # Best-effort partial context on stdout for the caller to show the user.
-      python3 "$SESSION_HELPER" extract-last "$SESSION_FILE" "$SESSION_ID" 2>/dev/null || true
-    fi
-    exit 125
-  fi
-  # User said no
-  exit 1
-}
-
-# Wait for session file, then for the completion contract tag in the final message.
-log "waiting for session file and contract ${DONE_TAG} (timeout ${TIMEOUT}s)…"
+# Wait ONLY for the completion contract. Interrupt/abort/idle without the tag
+# does not unblock — keep polling so the user can continue chatting in the pane.
+log "waiting for contract ${DONE_TAG} (timeout ${TIMEOUT}s; interrupt keeps waiting)…"
 deadline=$((SECONDS + TIMEOUT))
 turn_status="pending"
 prev_status=""
-PANE_GONE=0
-TIMED_OUT=0
 
 while (( SECONDS < deadline )); do
   if [[ -z "$SESSION_FILE" ]]; then
@@ -640,73 +551,49 @@ while (( SECONDS < deadline )); do
     turn_status=$(python3 "$SESSION_HELPER" status "$SESSION_FILE" "$SESSION_ID" 2>/dev/null || echo "pending")
     if [[ "$turn_status" != "$prev_status" ]]; then
       log "turn status: $turn_status"
+      if [[ "$turn_status" == "running" && "$prev_status" != "" ]]; then
+        log "still waiting for ${DONE_TAG} — continue in the pi pane (chat after interrupt is OK)"
+      fi
       prev_status=$turn_status
     fi
-    # Terminal states for the wait loop.
-    if [[ "$turn_status" == "done" || "$turn_status" == "needs_confirm" || "$turn_status" == "incomplete" ]]; then
+    if [[ "$turn_status" == "done" ]]; then
       break
     fi
   fi
 
   if ! tmux list-panes -F '#{pane_id}' 2>/dev/null | grep -Fxq "$PANE_ID"; then
-    PANE_GONE=1
-    # Pane died — try to salvage session status
+    # Pane fully gone (user closed it). Cannot chat further.
     if [[ -z "$SESSION_FILE" ]]; then
       SESSION_FILE=$(find_session_file "$SESSION_DIR" "$SESSION_ID" || true)
     fi
     if [[ -n "${SESSION_FILE:-}" && -f "$SESSION_FILE" ]]; then
       turn_status=$(python3 "$SESSION_HELPER" status "$SESSION_FILE" "$SESSION_ID" 2>/dev/null || echo "pending")
       if [[ "$turn_status" == "done" ]]; then
-        # Clean contract before pane died — accept success.
         break
       fi
     fi
-    # Interrupt path: pane gone without a clean done contract.
-    turn_status="needs_confirm"
-    break
+    die "pane $PANE_ID was closed before contract ${DONE_TAG} (session-id=$SESSION_ID)"
   fi
 
   sleep 0.5
 done
 
-if [[ "$turn_status" != "done" && "$turn_status" != "needs_confirm" && "$turn_status" != "incomplete" ]]; then
-  TIMED_OUT=1
-  printf 'run-pi-agent: timed out after %ss (session-id=%s status=%s expected %s)\n' \
-    "$TIMEOUT" "$SESSION_ID" "$turn_status" "$DONE_TAG" >&2
-  # Timeout is a form of external stop — require user confirmation, not auto-done.
-  turn_status="needs_confirm"
-fi
-
-if [[ "$turn_status" == "needs_confirm" ]]; then
-  reason="session interrupted or aborted"
-  if (( PANE_GONE )); then
-    reason="pi pane disappeared mid-run"
-  elif (( TIMED_OUT )); then
-    reason="timed out waiting for ${DONE_TAG}"
-  fi
-  handle_interrupt_confirm "$reason"
+if [[ "$turn_status" != "done" ]]; then
+  printf 'run-pi-agent: timed out after %ss waiting for %s (session-id=%s)\n' \
+    "$TIMEOUT" "$DONE_TAG" "$SESSION_ID" >&2
+  printf 'run-pi-agent: pane %s left open for inspection (--keep-pane semantics on timeout)\n' \
+    "${PANE_ID:-?}" >&2
+  KEEP_PANE=1
+  exit 124
 fi
 
 if [[ -z "${SESSION_FILE:-}" || ! -f "$SESSION_FILE" ]]; then
   die "session file not found for session-id=$SESSION_ID under $SESSION_DIR"
 fi
 
-if [[ "$turn_status" == "done" ]]; then
-  log "extracting final message (contract: $DONE_TAG)…"
-  set +e
-  python3 "$SESSION_HELPER" extract "$SESSION_FILE" "$SESSION_ID"
-  extract_ec=$?
-  set -e
-  exit "$extract_ec"
-fi
-
-# incomplete — model stopped without tag and no interrupt recorded
-if [[ "$turn_status" == "incomplete" ]]; then
-  printf 'run-pi-agent: incomplete — model stopped without %s\n' "$DONE_TAG" >&2
-  set +e
-  python3 "$SESSION_HELPER" extract "$SESSION_FILE" "$SESSION_ID"
-  set -e
-  exit 1
-fi
-
-die "unexpected turn status: $turn_status"
+log "contract satisfied — extracting final message…"
+set +e
+python3 "$SESSION_HELPER" extract "$SESSION_FILE" "$SESSION_ID"
+extract_ec=$?
+set -e
+exit "$extract_ec"

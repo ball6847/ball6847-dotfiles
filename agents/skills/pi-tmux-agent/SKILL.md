@@ -1,6 +1,6 @@
 ---
 name: pi-tmux-agent
-description: Spawn a pi agent instance in a tmux pane with smart layout decisions, wait for a hard completion contract, and clean up — in a single script call. Use when you need to run a pi agent in a tmux pane — whether for orchestration, parallel tasks, or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, session-based result capture, interrupt confirmation, and cleanup.
+description: Spawn a pi agent instance in a tmux pane with smart layout decisions, wait for a hard completion contract, and clean up — in a single script call. Use when you need to run a pi agent in a tmux pane — whether for orchestration, parallel tasks, or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, session-based result capture, continued chat after interrupt, and cleanup.
 user-invocable: true
 ---
 
@@ -8,89 +8,90 @@ user-invocable: true
 
 ## Instructions
 
-Run a pi agent in a tmux pane via **one script call**. The script owns the full lifecycle (layout → spawn → wait → capture → cleanup) so you do not drive tmux or poll panes yourself.
+Run a pi agent via **`run-pi-agent.sh`**. That **script** owns the lifecycle and **blocks until the completion contract** (or timeout). You (the calling agent) must **not** freeze the conversation waiting on it.
+
+### Separation of concerns
+
+| Layer | Role |
+|-------|------|
+| **`run-pi-agent.sh`** | Blocks in its **own process** until `<done>SESSION_ID</done>` (or timeout). Handles pane, pi, session poll, cleanup. |
+| **Calling agent / skill** | **Starts** the script (prefer background), stays free to talk to the user, later **collects** exit code + stdout. Never treat “agent tool blocked for minutes” as the wait mechanism. |
+
+Wrong: call the script in a long foreground tool and sit on it for the whole pi job.  
+Right: start the script in the background; the **script** keeps blocking; you only re-check when needed.
 
 ### Prerequisites
 
-- Must be inside an active tmux session (`$TMUX` set)
-- `pi` CLI available in PATH (or `~/.bun/bin/pi`, or pass `--pi`)
-- `python3` available (used to read the session log)
+- Active tmux session (`$TMUX` set)
+- `pi` on PATH (or `~/.bun/bin/pi`, or `--pi`)
+- `python3` (reads the session log)
 
-### Run an agent
+### How the calling agent should invoke it
 
-Resolve the path relative to the skill directory (e.g. `~/.agents/skills/pi-tmux-agent/scripts/run-pi-agent.sh`):
+**Preferred — background the script process:**
 
 ```bash
-bash <skill-dir>/scripts/run-pi-agent.sh "Your prompt here"
+SKILL_DIR=…/pi-tmux-agent   # resolve skill path
+OUT=/tmp/pi-agent-$$.out
+ERR=/tmp/pi-agent-$$.err
+
+bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 "Your prompt" \
+  >"$OUT" 2>"$ERR" &
+echo $! > /tmp/pi-agent-$$.pid
 ```
 
-Stdout is the **final assistant text** with the completion tag stripped. Exit `0` only on a clean contract **or** after the human confirms job-done following an interrupt.
+Then:
 
-### Completion contract (assertable)
+- Tell the user the pane is up / session-id (from `ERR` once available)
+- Keep chatting with the user while the **script** waits
+- When appropriate, check: `kill -0 $(cat pidfile)` or wait on that pid in a **short** poll — do not monopolize the turn for the full duration
+- On completion: read `$OUT` (result), `$ERR` (diagnostics), and the process exit code
 
-Done is **not** inferred from “model stopped talking” alone. On a clean (never interrupted) run, the final assistant message must contain this **exact** tag:
+**Foreground is OK only** when the caller is already a dedicated worker process whose only job is that one agent (e.g. a shell job the user started). Orchestrating agents in a chat UI should background.
+
+### Completion contract
+
+The **script** unblocks only when some assistant message contains exactly:
 
 ```text
 <done>SESSION_ID</done>
 ```
 
-The script appends contract instructions (including the exact tag) to the prompt automatically.
+(The script appends this contract + exact tag to the prompt automatically.)
 
-| Session state                                                  | Status          | Exit          |
-| -------------------------------------------------------------- | --------------- | ------------- |
-| Tag present, **no** interrupt in session                       | `done`          | `0`           |
-| Any abort/error in session history (even if tag appears later) | `needs_confirm` | see interrupt |
-| Pane killed / timeout mid-run without clean `done`             | `needs_confirm` | see interrupt |
-| Model `stop` without tag, never interrupted                    | `incomplete`    | `1`           |
-| Still tool-calling                                             | `running`       | (wait)        |
+| Event | Script behavior |
+|-------|-----------------|
+| Tools running | Keep blocking |
+| Idle without tag | Keep blocking |
+| Interrupt / abort | Keep blocking — user continues in the **pi pane** |
+| Pi process exits | Reopen same `--session-id` for more chat |
+| Tag appears | Write result to stdout, exit `0` |
+| Timeout | Exit `124`, leave pane open |
+| User closes pane | Exit `1` |
 
-### Interrupt → always ask the user
-
-If the session is **interrupted** (abort, error, pane gone, timeout), the job is **never** auto-complete.
-
-Rules enforced by the script **and** the prompt appendix:
-
-1. The pi agent must **not** only answer the original question and print `<done>…</done>` after an interrupt.
-2. After an interrupt it must **ask the human** whether the job for this session is done.
-3. The orchestrator/`run-pi-agent` path also requires human confirmation before success.
-
-| Environment                    | Behavior                                                  |
-| ------------------------------ | --------------------------------------------------------- |
-| Interactive TTY                | Script prompts: `Is the job DONE for this session? [y/N]` |
-| Non-interactive (agent caller) | Exit **`125`** + stderr `NEEDS_USER_CONFIRM`              |
-
-**When you see exit 125 / `NEEDS_USER_CONFIRM`:**
-
-1. Tell the user the session was interrupted (`session-id=…`).
-2. Ask explicitly: _“Is the job done for this session?”_
-3. **Do not** invent the done tag or assume success.
-4. If user says **yes** — treat the job as done (use any partial stdout the script printed as context).
-5. If user says **no** — treat as not done; resume, re-run, or stop per user guidance.
-
-Stdout on `125` may include the last assistant text as **context for the user**, not as a successful contract result.
+Human “is the job done?” after interrupt happens **inside the pi chat**. The script does not return early for that — it waits for the tag.
 
 ### Options
 
-| Flag                 | Meaning                                    |
-| -------------------- | ------------------------------------------ |
+| Flag | Meaning |
+|------|---------|
 | `-t, --timeout SECS` | Max wait for the contract (default `3600`) |
-| `-k, --keep-pane`    | Leave the pane open after completion       |
-| `-C, --cwd DIR`      | Working directory for pi                   |
-| `--session-id ID`    | Pin session id (default: generated UUID)   |
-| `--pi PATH`          | Path to the pi binary                      |
-| `-v, --verbose`      | Progress on stderr                         |
+| `-k, --keep-pane` | Leave pane open after success |
+| `-C, --cwd DIR` | Working directory |
+| `--session-id ID` | Pin session id |
+| `--pi PATH` | pi binary |
+| `-v, --verbose` | Progress on stderr (session-id, done-tag, status) |
 
 ### Exit codes
 
-| Code  | Meaning                                                                 |
-| ----- | ----------------------------------------------------------------------- |
-| `0`   | Clean contract, or user confirmed job-done after interrupt              |
-| `1`   | Incomplete / user said not done / setup error                           |
-| `124` | (reserved historically; timeout now goes through confirm → often `125`) |
-| `125` | Interrupted — **caller must ask the human** whether the job is done     |
+| Code | Meaning |
+|------|---------|
+| `0` | Contract satisfied — stdout is final answer (tag stripped) |
+| `1` | Setup error / pane closed early |
+| `124` | Timed out waiting for the tag |
 
 ### Important notes
 
-- Do **not** manage tmux yourself — only call `run-pi-agent.sh`
-- Clean success = exit `0` **and** (normally) a satisfied contract; after interrupt, success only via **user confirmation**
-- Parallel runs need distinct `--session-id` values
+- **Script blocks. Agent does not.**  
+- Do not manage tmux yourself — only start `run-pi-agent.sh`  
+- Parallel agents: distinct `--session-id`, each script process in the background  
