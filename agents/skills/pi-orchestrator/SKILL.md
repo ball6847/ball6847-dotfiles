@@ -1,6 +1,6 @@
 ---
 name: pi-orchestrator
-description: Orchestrates build-review cycles by delegating tasks to builder and reviewer pi instances running in tmux panes, with automatic pane layout decisions (horizontal vs vertical split) based on available terminal space to maximize visibility. Implements a plan with automated quality gates, looping until reviewer passes or maximum 3 rounds reached. Use whenever you need end-to-end plan execution with quality assurance in a tmux environment — especially when the user mentions orchestrating, delegating to builder/reviewer in tmux panes, running a plan through build and review, or wants agents working side by side in their terminal.
+description: Orchestrates build-review cycles by delegating tasks to builder and reviewer pi instances using the pi-tmux-agent skill. Implements a plan with automated quality gates, looping until reviewer passes or maximum 3 rounds reached. Use whenever you need end-to-end plan execution with quality assurance — especially when the user mentions orchestrating, delegating to builder/reviewer, running a plan through build and review, or wants agents working side by side.
 user-invocable: true
 ---
 
@@ -8,13 +8,12 @@ user-invocable: true
 
 ## Instructions
 
-Coordinate build-review cycles to implement a plan by delegating to builder and reviewer pi instances running in tmux panes. This skill ensures implementations pass review before completion. Pane placement is decided automatically so that every spawned pane gets the most usable space possible.
+Coordinate build-review cycles to implement a plan by delegating to builder and reviewer pi instances. This skill ensures implementations pass review before completion. It uses the **pi-tmux-agent** skill to spawn each agent in its own tmux pane with smart layout decisions.
 
 ### Prerequisites
 
-- tmux session must be active
-- `pi` CLI must be available in PATH (if `pi` is not found in new panes, use its absolute path, e.g. `~/.bun/bin/pi`)
 - A plan file must exist at `.context/plans/YYYY-MM-DD/FEATURE_PLAN.md`
+- The **pi-tmux-agent** skill is available (used for spawning and managing panes)
 
 ### Workflow
 
@@ -22,27 +21,27 @@ Execute the following loop, up to 3 rounds:
 
 ```
 Round 1:
-  1. Spawn builder pane (auto-layout) -> Implement the plan
+  1. Spawn builder agent (via pi-tmux-agent) -> Implement the plan
   2. Capture builder result -> Check for completion
-  3. Spawn reviewer pane (auto-layout) -> Verify implementation
+  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify implementation
   4. Capture reviewer result -> Check verdict
   5. Check verdict:
      - If PASS -> Close panes, report success
      - If PARTIAL/FAIL -> Continue to Round 2
 
 Round 2 (if needed):
-  1. Spawn builder pane (auto-layout) -> Fix issues from review
+  1. Spawn builder agent (via pi-tmux-agent) -> Fix issues from review
   2. Capture builder result -> Check for completion
-  3. Spawn reviewer pane (auto-layout) -> Verify fixes
+  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify fixes
   4. Capture reviewer result -> Check verdict
   5. Check verdict:
      - If PASS -> Close panes, report success
      - If PARTIAL/FAIL -> Continue to Round 3
 
 Round 3 (if needed):
-  1. Spawn builder pane (auto-layout) -> Final attempt to fix issues
+  1. Spawn builder agent (via pi-tmux-agent) -> Final attempt to fix issues
   2. Capture builder result -> Check for completion
-  3. Spawn reviewer pane (auto-layout) -> Verify fixes
+  3. Spawn reviewer agent (via pi-tmux-agent) -> Verify fixes
   4. Capture reviewer result -> Check verdict
   5. Check verdict:
      - If PASS -> Close panes, report success
@@ -54,44 +53,15 @@ Round 3 (if needed):
 - **Maximum**: 3 rounds
 - After 3 rounds without reviewer returning PASS, stop and provide issue summary
 
-### Pane Layout — Automatic Split Decisions
+### Spawning Agents
 
-Do NOT hardcode a split direction. The right direction depends on the current terminal layout, which changes as panes are spawned and closed. Decide per spawn using these principles:
+Use the **pi-tmux-agent** skill to spawn both builder and reviewer panes. For each spawn:
 
-- **Split the largest existing pane.** A new pane is created by splitting an existing one, so splitting the biggest pane gives the newcomer the most space. The orchestrator pane is a valid split target — minimum-size guards (below) prevent it from ever becoming cramped.
-- **Split along the longer visual dimension.** Terminal character cells are roughly twice as tall as they are wide, so a pane looks balanced when `width ≈ 2 × height` (in character cells). A horizontal split (`-h`, side-by-side) is right for wide panes; a vertical split (`-v`, stacked) is right for tall panes.
-- **Enforce minimum usable sizes.** A pi pane needs roughly 80 columns to render its TUI readably and 20 lines to show progress. Never create a pane smaller than that.
+1. The pi-tmux-agent skill decides the optimal split target and direction automatically
+2. It captures the new pane's stable id (`%N`) directly from tmux
+3. You send the prompt template (see below) to the new pane
 
-Use the bundled helper script to make this decision deterministically. Resolve the path relative to the skill directory (e.g. `~/.agents/skills/pi-orchestrator/scripts/pick-split.sh`):
-
-```bash
-read TARGET DIRECTION < <(bash <skill-dir>/scripts/pick-split.sh)
-```
-
-The script prints the target pane id and direction (`h` or `v`), plus a human-readable rationale on stderr. It exits non-zero if no pane can be split without violating the minimums — in that case, warn the user that the terminal is too small and ask them to maximize the window before continuing.
-
-Minimums can be tuned via environment variables if a user has unusual needs:
-
-```bash
-MIN_WIDTH=100 MIN_HEIGHT=24 bash <skill-dir>/scripts/pick-split.sh
-```
-
-### Spawning a Worker Pane (Builder or Reviewer)
-
-Use this procedure for both builder and reviewer spawns. It captures the new pane's stable id (`%N`) directly from tmux, so there is no guessing of pane indices:
-
-```bash
-# 1. Decide where and how to split
-read TARGET DIRECTION < <(bash <skill-dir>/scripts/pick-split.sh)
-
-# 2. Split and capture the new pane id
-PANE_ID=$(tmux split-window -"$DIRECTION" -t "$TARGET" -P -F '#{pane_id}' 'pi')
-
-# 3. Send the prompt (see templates below)
-tmux send-keys -t "$PANE_ID" "<prompt>" C-m
-```
-
-Keep track of the ids in variables — `BUILDER_PANE`, `REVIEWER_PANE` — so they can be polled and killed reliably.
+Keep track of the pane ids in variables — `BUILDER_PANE`, `REVIEWER_PANE` — so they can be polled and closed reliably.
 
 ### Builder Prompt Template
 
@@ -132,7 +102,7 @@ After the reviewer completes, capture the pane output and look for the verdict i
 
 ### Closing Panes
 
-After the round completes (success or failure), close both worker panes by id. Tolerate panes that already exited:
+After the round completes (success or failure), close both worker panes by id using the pi-tmux-agent cleanup procedure. Tolerate panes that already exited:
 
 ```bash
 tmux kill-pane -t "$REVIEWER_PANE" 2>/dev/null || true
@@ -207,6 +177,4 @@ All implementations verified against plan by reviewer.
 - If builder reports blocking obstacles, still proceed to review for visibility
 - Keep detailed notes of reviewer's findings
 - Always close tmux panes after each round to keep the workspace clean
-- Decide split direction fresh at every spawn — a direction that was right for the builder may be wrong for the reviewer once the layout has changed
-- If `pick-split.sh` reports the terminal is too small, tell the user rather than forcing a cramped split
-- If `pick-split.sh` notes the window is zoomed, tell the user their view will unzoom before spawning
+- The pi-tmux-agent skill handles split decisions — trust its `pick-split.sh` helper
