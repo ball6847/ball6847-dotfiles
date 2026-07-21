@@ -1,0 +1,6 @@
+{
+  "row1LeftSegments": ["pi", "separator", "model", "separator", "path"],
+  "row1RightSegments": ["context_pct"],
+  "row2LeftSegments": ["thinking", "separator", "caveman", "separator", "plan_mode", "separator", "chat_mode"],
+  "row2RightSegments": ["token_total", "separator", "cost"]
+}
