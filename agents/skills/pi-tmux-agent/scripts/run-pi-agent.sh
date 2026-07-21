@@ -582,7 +582,10 @@ while (( SECONDS < deadline )); do
     fi
   fi
 
-  if ! tmux list-panes -F '#{pane_id}' 2>/dev/null | grep -Fxq "$PANE_ID"; then
+  # Target the specific pane id — bare `list-panes` uses the "current" client pane,
+  # which can be a different window than where we split (e.g. agent shells with
+  # TMUX_PANE set but display-message resolving to another pane).
+  if ! tmux display-message -t "$PANE_ID" -p '#{pane_id}' 2>/dev/null | grep -Fxq "$PANE_ID"; then
     # Pane fully gone (user closed it). Cannot chat further.
     if [[ -z "$SESSION_FILE" ]]; then
       SESSION_FILE=$(find_session_file "$SESSION_DIR" "$SESSION_ID" || true)
