@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
   "defaultProvider": "kimi-coding",
-  "defaultModel": "k3",
+  "defaultModel": "kimi-for-coding",
   "packages": [
     "npm:@adrianapan/pikit",
     "npm:pi-undo-redo",
@@ -10,6 +10,6 @@
   ],
   "theme": "slop",
   "diffTheme": "neon",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "quietStartup": true
 }

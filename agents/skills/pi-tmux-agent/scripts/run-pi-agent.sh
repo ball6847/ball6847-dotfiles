@@ -503,7 +503,7 @@ trap 'cleanup $?' EXIT
   printf '%s\n' '#!/usr/bin/env bash'
   printf '%s\n' 'set -euo pipefail'
   printf 'cd %q || exit 1\n' "$CWD"
-  printf '%s\n' 'tmux set-option -t "${TMUX_PANE}" -w remain-on-exit on 2>/dev/null || true'
+  printf '%s\n' 'tmux set-option -t "${TMUX_PANE}" -p remain-on-exit on 2>/dev/null || true'
   printf 'PI_BIN=%q\n' "$PI_BIN"
   printf 'SESSION_ID=%q\n' "$SESSION_ID"
   printf 'PROMPT_FILE=%q\n' "$PROMPT_FILE"
@@ -594,6 +594,16 @@ while (( SECONDS < deadline )); do
       fi
     fi
     die "pane $PANE_ID was closed before contract ${DONE_TAG} (session-id=$SESSION_ID)"
+  fi
+
+  # If the inner runner died, remain-on-exit keeps the pane visible as "dead".
+  # In normal operation the runner loops forever; only an unexpected exit reaches this.
+  if [[ -n "${PANE_ID:-}" && "$(tmux display-message -p -t "$PANE_ID" '#{pane_dead}' 2>/dev/null || echo 0)" == "1" ]]; then
+    dead_pane="$PANE_ID"
+    log "pane $dead_pane died unexpectedly; cleaning up"
+    tmux kill-pane -t "$dead_pane" 2>/dev/null || true
+    PANE_ID=""
+    die "pane $dead_pane died before contract ${DONE_TAG} was met"
   fi
 
   sleep 0.5
