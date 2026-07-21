@@ -1,6 +1,6 @@
 ---
 name: pi-tmux-agent
-description: Spawn a pi agent instance in a tmux pane with smart layout decisions, wait for a hard completion contract, and clean up — in a single script call. Use when you need to run a pi agent in a tmux pane — whether for orchestration, parallel tasks, or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, session-based result capture, continued chat after interrupt, and cleanup.
+description: Spawn a pi agent instance in a tmux pane, wait for a hard completion contract, and clean up — in a single foreground script call. Use when you need to run a pi agent in a tmux pane for orchestration or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, session-based result capture, continued chat after interrupt, and cleanup.
 user-invocable: true
 ---
 
@@ -8,7 +8,7 @@ user-invocable: true
 
 ## Instructions
 
-Run a pi agent via **`run-pi-agent.sh`**. That **script** owns the lifecycle and **blocks until the completion contract** (or timeout). You (the calling agent) run it in the **foreground** by default.
+Run a pi agent via **`run-pi-agent.sh`**. That **script** owns the lifecycle and **blocks until the completion contract** (or timeout). You (the calling agent) run it in the **foreground**.
 
 ### Separation of concerns
 
@@ -16,8 +16,6 @@ Run a pi agent via **`run-pi-agent.sh`**. That **script** owns the lifecycle and
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`run-pi-agent.sh`**     | Blocks in its **own process** until `<done>SESSION_ID</done>` (or timeout). Handles pane, pi, session poll, cleanup.                          |
 | **Calling agent / skill** | **Starts** the script in the **foreground** and waits for it to return. The tool call blocks for the duration — this is expected and correct. |
-
-**Foreground by default.** Background only when there is a concrete, justified reason (e.g. the caller must remain interactive for the user while the agent runs for an extended period). If instructed to use background, push back unless the caller can articulate a specific need — foreground is simpler, more reliable, and avoids race conditions on output capture.
 
 ### Prerequisites
 
@@ -27,8 +25,6 @@ Run a pi agent via **`run-pi-agent.sh`**. That **script** owns the lifecycle and
 
 ### How the calling agent should invoke it
 
-**Default — foreground:**
-
 ```bash
 SKILL_DIR=…/pi-tmux-agent   # resolve skill path
 
@@ -36,21 +32,6 @@ bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 "Your prompt"
 ```
 
 The tool call blocks until the script returns. This is the expected behaviour — do not work around it. When the call returns, read stdout as the agent's result.
-
-**Background only with justification** — e.g. the caller must stay interactive for the user while the agent runs. If asked to background without a stated reason, push back and use foreground.
-
-If backgrounding is justified:
-
-```bash
-OUT=/tmp/pi-agent-$$.out
-ERR=/tmp/pi-agent-$$.err
-
-bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 "Your prompt" \
-  >"$OUT" 2>"$ERR" &
-echo $! > /tmp/pi-agent-$$.pid
-```
-
-Then poll the pidfile and collect `$OUT` / `$ERR` on completion.
 
 ### Completion contract
 
@@ -95,8 +76,6 @@ Human “is the job done?” after interrupt happens **inside the pi chat**. The
 
 ### Important notes
 
-- **Foreground by default.** Background only with a concrete, justified reason.
 - **No subagents inside a tmux-agent session.** Once a pi-tmux-agent session has started, do **not** spawn another subagent (builder, reviewer, or any other pi instance) from within that session. The session is a single-agent boundary — nested agent runs corrupt output capture and break the completion contract.
 - Do not manage tmux yourself — only start `run-pi-agent.sh`
-- Parallel agents: distinct `--session-id`, each script process independent
 - **Pane stays on the caller's window.** Split target is pinned via `$TMUX_PANE` / that pane's window id, so switching to another window after spawn does not move the new pane to the focused window.
