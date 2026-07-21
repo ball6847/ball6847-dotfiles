@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.80.10",
   "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@adrianapan/pikit",
     "npm:pi-undo-redo",
