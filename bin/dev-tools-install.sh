@@ -79,7 +79,7 @@ install_from_github_repo() {
 if [[ "$INSTALL_DENO_PKG" = true ]]; then
     deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/workspace-manager
     deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys jsr:@ball6847/git-commit-ai
-    deno install --global --min-dep-age=0 -fr --compile --allow-read --allow-net --allow-env --allow-run jsr:@ball6847/serve-md
+    deno install --global --min-dep-age=0 -fr --allow-read --allow-net --allow-env --allow-run jsr:@ball6847/serve-md
     if command -v asdf &> /dev/null; then
         asdf reshim deno
     fi
