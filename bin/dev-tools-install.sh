@@ -77,9 +77,12 @@ install_from_github_repo() {
 }
 
 if [[ "$INSTALL_DENO_PKG" = true ]]; then
-    deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net jsr:@ball6847/workspace-manager
-    deno install -fr --no-lock --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys jsr:@ball6847/git-commit-ai
-    deno install --global --min-dep-age=0 -fr --allow-read --allow-net --allow-env --allow-run jsr:@ball6847/serve-md
+    _deno_cfg=$(mktemp /tmp/deno-min-dep-age.XXXXXX.json)
+    echo '{"minimumDependencyAge": 0}' > "$_deno_cfg"
+    deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net -fr jsr:@ball6847/workspace-manager@0.4.5
+    deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/git-commit-ai@1.0.3
+    deno install --no-lock --config "$_deno_cfg" --global --allow-read --allow-net --allow-env --allow-run -fr jsr:@ball6847/serve-md@1.0.3
+    rm -f "$_deno_cfg"
     if command -v asdf &> /dev/null; then
         asdf reshim deno
     fi
