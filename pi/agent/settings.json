@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.81.1",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "lastChangelogVersion": "0.82.0",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@adrianapan/pikit",
     "npm:pi-undo-redo",
