@@ -554,6 +554,18 @@ log "pane id: $PANE_ID"
 
 tmux set-option -t "$PANE_ID" -p history-limit 50000 2>/dev/null || true
 
+# Apply tiled layout after spawn, unless the window only has 2 panes.
+# With exactly 2 panes from a vertical split, `select-layout tiled` would
+# rearrange them side-by-side (horizontal), which is undesirable.
+window_id=$(tmux display-message -p -t "$PANE_ID" '#{window_id}')
+pane_count=$(tmux list-panes -t "$window_id" | wc -l)
+if (( pane_count > 2 )); then
+  tmux select-layout -t "$window_id" tiled
+  log "applied tiled layout (panes=$pane_count)"
+else
+  log "skipping tiled layout (panes=$pane_count, would rearrange split)"
+fi
+
 # Wait ONLY for the completion contract. Interrupt/abort/idle without the tag
 # does not unblock — keep polling so the user can continue chatting in the pane.
 log "waiting for contract ${DONE_TAG} (timeout ${TIMEOUT}s; interrupt keeps waiting)…"
