@@ -476,6 +476,101 @@
           }
         }
       ]
+    },
+    "ark": {
+      "baseUrl": "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+      "api": "openai-completions",
+      "apiKey": "$ARK_API_KEY",
+      "models": [
+        {
+          "id": "seed-2-0-code-preview-260328",
+          "name": "Seed 2.0 Code Preview (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "seed-2-0-pro-260328",
+          "name": "Seed 2.0 Pro (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "seed-2-0-lite-260228",
+          "name": "Seed 2.0 Lite (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "glm-5-2-260617",
+          "name": "GLM-5.2 (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "deepseek-v4-flash-260425",
+          "name": "DeepSeek V4 Flash (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 393216,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "deepseek-v4-pro-260425",
+          "name": "DeepSeek V4 Pro (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 393216,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      ]
     }
   }
 }

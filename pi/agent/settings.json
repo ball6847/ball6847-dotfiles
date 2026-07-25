@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.0",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding-highspeed",
+  "defaultProvider": "ark",
+  "defaultModel": "deepseek-v4-pro-260425",
   "packages": [
     {
       "source": "npm:@adrianapan/pikit",
