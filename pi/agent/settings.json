@@ -3,7 +3,22 @@
   "defaultProvider": "kimi-coding",
   "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
-    "npm:@adrianapan/pikit",
+    {
+      "source": "npm:@adrianapan/pikit",
+      "extensions": [
+        "-agent/extensions/subagents/index.ts",
+        "-agent/extensions/llm-council/index.ts",
+        "-agent/extensions/caveman/index.ts",
+        "-agent/extensions/artifacts/index.ts",
+        "-agent/extensions/env-loader/index.ts"
+      ],
+      "skills": [
+        "-agent/skills/add-ollama-cloud-model/SKILL.md",
+        "-agent/skills/gh/SKILL.md",
+        "-agent/skills/pi-extension-builder/SKILL.md",
+        "-agent/skills/pr-review/SKILL.md"
+      ]
+    },
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done"
@@ -11,5 +26,20 @@
   "theme": "slop",
   "diffTheme": "neon",
   "defaultThinkingLevel": "high",
-  "quietStartup": true
+  "quietStartup": true,
+  "skills": [
+    "-skills/qa-test-planner/SKILL.md",
+    "-skills/opencode-ensemble/SKILL.md",
+    "-skills/open-ralph-wiggum/SKILL.md",
+    "-skills/maar/SKILL.md",
+    "-skills/bmad-orchestrator/SKILL.md",
+    "-skills/api-design-guide/SKILL.md",
+    "-skills/golang-error-handling/SKILL.md",
+    "-skills/golang-grpc/SKILL.md",
+    "-skills/golang-naming/SKILL.md",
+    "-skills/golang-performance/SKILL.md",
+    "-skills/golang-safety/SKILL.md",
+    "-skills/golang-security/SKILL.md",
+    "-skills/svelte-core-bestpractices/SKILL.md"
+  ]
 }
