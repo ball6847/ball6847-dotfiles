@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.0",
   "defaultProvider": "ark",
-  "defaultModel": "deepseek-v4-pro-260425",
+  "defaultModel": "seed-2-0-code-preview-260328",
   "packages": [
     {
       "source": "npm:@adrianapan/pikit",
