@@ -221,7 +221,7 @@ alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
 alias run="doppler_run"
 alias wm="workspace-manager"
-alias wms="workspace-manager sync -j 8"
+alias wms="workspace-manager sync -j 16"
 alias wme="workspace-manager enable"
 alias wmo="workspace-manager open"
 
