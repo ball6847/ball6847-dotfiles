@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.82.0",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "lastChangelogVersion": "0.82.1",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     {
       "source": "npm:@adrianapan/pikit",
