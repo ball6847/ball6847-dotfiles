@@ -1,6 +1,16 @@
 {
-  "model": "mistral/devstral-small-latest",
+  "model": "streamlake/ep-rwhav0-1784285728467953790",
   "providers": {
+    "streamlake": {
+      "npm": "@ai-sdk/openai-compatible",
+      "api": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+      "env": ["VC_API_KEY"],
+      "models": {
+        "ep-rwhav0-1784285728467953790": {
+          "name": "KAT-Coder-Pro V2.5"
+        }
+      }
+    },
     "mistral": {
       "extend": true,
       "models": {
