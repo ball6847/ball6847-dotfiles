@@ -32,10 +32,23 @@ install_pi_packages() {
     fi
 
     # Read packages array from settings.json
+    # Entries may be plain strings ("npm:foo") or objects ({"source": "npm:foo", ...})
     if command -v jq &> /dev/null; then
-        packages=$(jq -r '.packages[]? // empty' "$pi_settings" 2>/dev/null)
+        packages=$(jq -r '.packages[]? | if type == "object" then .source else . end // empty' "$pi_settings" 2>/dev/null)
     elif command -v python3 &> /dev/null; then
-        packages=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("\n".join(d.get("packages",[])))' "$pi_settings" 2>/dev/null)
+        packages=$(python3 -c '
+import json, sys
+pkg = sys.argv[1]
+with open(pkg) as f:
+    data = json.load(f)
+for entry in data.get("packages", []):
+    if isinstance(entry, dict):
+        src = entry.get("source", "")
+    else:
+        src = entry
+    if src:
+        print(src)
+' "$pi_settings" 2>/dev/null)
     else
         echo "Warning: jq or python3 not found. Cannot read pi packages from settings.json."
         packages=""
