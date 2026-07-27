@@ -7,7 +7,8 @@
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
-    "https://github.com/gsanhueza/pi-token-speed"
+    "https://github.com/gsanhueza/pi-token-speed",
+    "git:github.com/lmilojevicc/pi-zentui"
   ],
   "theme": "dark",
   "diffTheme": "midnight",
