@@ -5,9 +5,10 @@
   "packages": [
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
-    "git:github.com/harms-haus/pi-til-done"
+    "git:github.com/harms-haus/pi-til-done",
+    "https://github.com/gsanhueza/pi-token-speed"
   ],
-  "theme": "slop",
+  "theme": "dark",
   "diffTheme": "neon",
   "defaultThinkingLevel": "high",
   "quietStartup": true,
