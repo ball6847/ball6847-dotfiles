@@ -3,13 +3,14 @@
   "defaultProvider": "streamlake",
   "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
+    "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
     "https://github.com/gsanhueza/pi-token-speed"
   ],
   "theme": "dark",
-  "diffTheme": "neon",
+  "diffTheme": "midnight",
   "defaultThinkingLevel": "high",
   "quietStartup": true,
   "skills": [
