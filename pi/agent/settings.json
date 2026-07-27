@@ -8,7 +8,8 @@
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
     "https://github.com/gsanhueza/pi-token-speed",
-    "git:github.com/lmilojevicc/pi-zentui"
+    "git:github.com/lmilojevicc/pi-zentui",
+    "npm:pi-cc-header"
   ],
   "theme": "dark",
   "diffTheme": "midnight",
@@ -28,5 +29,6 @@
     "-skills/golang-safety/SKILL.md",
     "-skills/golang-security/SKILL.md",
     "-skills/svelte-core-bestpractices/SKILL.md"
-  ]
+  ],
+  "clearOnStart": true
 }
