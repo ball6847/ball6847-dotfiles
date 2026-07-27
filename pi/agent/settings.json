@@ -9,7 +9,8 @@
     "git:github.com/harms-haus/pi-til-done",
     "https://github.com/gsanhueza/pi-token-speed",
     "git:github.com/lmilojevicc/pi-zentui",
-    "npm:pi-cc-header"
+    "npm:pi-cc-header",
+    "npm:pi-lens"
   ],
   "theme": "dark",
   "diffTheme": "midnight",
