@@ -129,6 +129,8 @@ return {
         "php",
         "yaml",
         "terraform",
+        "markdown",
+        "markdown_inline",
       },
       highlight = {
         enable = true,

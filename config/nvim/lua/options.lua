@@ -46,3 +46,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.opt.termguicolors = true
   end,
 })
+
+-- WORKAROUND: Neovim 0.12.4 has a bug where markdown treesitter highlighting
+-- crashes with "attempt to call method 'range' (a nil value)" when code blocks
+-- with language injection are present. Disable treesitter for markdown and use
+-- regex-based syntax highlighting instead.
+--
+-- We override vim.treesitter.start to no-op for markdown, since NvChad's
+-- FileType autocmd will try to start it.
+local _ts_start = vim.treesitter.start
+vim.treesitter.start = function(lang, opts)
+  -- When called without args, it uses current buffer's filetype
+  local buf = opts and opts.buf or 0
+  local ft = vim.bo[buf].filetype
+  if ft == "markdown" then
+    return
+  end
+  return _ts_start(lang, opts)
+end
