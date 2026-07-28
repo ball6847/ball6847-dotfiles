@@ -4,38 +4,12 @@ default_profile = "default"
 allow_agent_install = false
 auto_stop_idle_secs = 0
 default_agent = "aoe-agent"
-force_end_turn_threshold_secs = 30
-max_concurrent_resumes = 4
 max_concurrent_workers = 5
 node_path = ""
-queue_drain_mode = "combined"
 rate_limit_auto_resume = false
-rate_limit_auto_resume_grace_secs = 15
-replay_bytes = 5242880
 replay_events = 0
 show_tool_durations = true
-silent_orphan_fast_grace_secs = 20
 silent_orphan_grace_secs = 120
-
-[app_state]
-dismissed_update_version = "1.12.0"
-group_by = "manual"
-has_acknowledged_agent_hooks = true
-has_acknowledged_volume_ignores_globs = false
-has_responded_to_telemetry = true
-has_seen_custom_instruction_warning = false
-has_seen_non_git_project_warning = false
-has_seen_web_tour = true
-has_seen_welcome = true
-last_seen_version = "1.12.0"
-new_session_with_selection_count = 4
-show_preview_info = false
-sort_order = "newest"
-used_new_from_selection = true
-
-[app_state.web_ui_state]
-aoe-web-settings = '{"mobileFontSize":8,"desktopFontSize":14,"terminalFontFamily":"","autoOpenKeyboard":true,"persistentTerminals":false,"maxPersistentTerminals":5,"diffViewMode":"tree","diffViewLayout":"unified","collapsedDiffDirs":[]}'
-aoe-welcome-seen = "1"
 
 [auth]
 persist_sessions = true
@@ -79,38 +53,29 @@ volume_ignores_strategy = "anonymous"
 
 [session]
 agent_status_hooks = true
-auto_resume_on_restart = true
 auto_stop_idle_secs = 0
 click_action = "live_send"
 confirm_before_quit = false
-confirm_delete = false
 default_attach_mode = "tmux"
 default_tool = "opencode"
-delete_to_trash = true
 live_send_exit_chord = "C-q"
 live_send_leader = "C-b"
-merge_hooks_into_selected_agent = true
 mouse_capture = true
-new_session_attach_mode = "tmux"
 restart_wake_message = "wake up: pick up what you were doing"
 row_tag = "none"
-session_id_poller_max_threads = 50
 show_tips = true
 smart_rename = true
 smart_rename_agent = ""
 snooze_duration_minutes = 30
 strict_hotkeys = false
 tie_workdir_to_name = true
-trash_retention_days = 30
 unread_indicator = true
 yolo_mode_default = true
 
 [sound]
 enabled = false
-mode = "random"
 
 [status_hooks]
-debounce_ms = 100
 enabled = false
 
 [telemetry]
@@ -127,11 +92,7 @@ mouse = "auto"
 status_bar = "auto"
 
 [updates]
-auto_update_plugins = false
-check_interval_hours = 24
-notify_in_cli = true
 update_check_mode = "notify"
-web_poll_interval_minutes = 60
 
 [web]
 notifications_enabled = true
@@ -147,5 +108,4 @@ delete_branch_on_cleanup = false
 enabled = false
 init_submodules = true
 path_template = "../{repo-name}-worktrees/{branch}"
-show_branch_in_tui = true
 workspace_path_template = "../{branch}-workspace-{session-id}"
