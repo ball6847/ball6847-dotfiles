@@ -14,7 +14,7 @@
     }
   ],
   "theme": "slop",
-  "diffTheme": "github",
+  "diffTheme": "ayu-dark",
   "defaultThinkingLevel": "high",
   "quietStartup": true,
   "skills": [
