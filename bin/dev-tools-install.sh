@@ -80,8 +80,8 @@ if [[ "$INSTALL_DENO_PKG" = true ]]; then
     _deno_cfg=$(mktemp /tmp/deno-min-dep-age.XXXXXX.json)
     echo '{"minimumDependencyAge": 0}' > "$_deno_cfg"
     deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/workspace-manager
-    deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/git-commit-ai@1.1.0
-    deno install --no-lock --config "$_deno_cfg" --global --allow-read --allow-net --allow-env --allow-run -fr jsr:@ball6847/serve-md@1.0.3
+    deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/git-commit-ai
+    deno install --no-lock --config "$_deno_cfg" --global --allow-read --allow-net --allow-env --allow-run -fr jsr:@ball6847/serve-md
     rm -f "$_deno_cfg"
     if command -v asdf &> /dev/null; then
         asdf reshim deno
