@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.1",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "defaultProvider": "ark",
+  "defaultModel": "seed-2-0-lite-260228",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
