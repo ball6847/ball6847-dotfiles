@@ -1,6 +1,14 @@
 {
-  "row1LeftSegments": ["pi", "separator", "model", "separator", "path"],
+  "row1LeftSegments": ["pi", "separator", "model", "separator", "path", "git"],
   "row1RightSegments": ["context_pct"],
   "row2LeftSegments": ["thinking", "separator", "caveman", "separator", "plan_mode", "separator", "chat_mode"],
-  "row2RightSegments": ["token_total", "separator", "cost"]
+  "row2RightSegments": ["token_total", "separator", "cost"],
+  "segmentOptions": {
+    "git": {
+      "showBranch": true,
+      "showStaged": false,
+      "showUnstaged": false,
+      "showUntracked": false
+    }
+  }
 }

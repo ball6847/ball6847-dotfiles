@@ -3,14 +3,14 @@
   "defaultProvider": "streamlake",
   "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
-    "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
-    "https://github.com/gsanhueza/pi-token-speed"
+    "https://github.com/gsanhueza/pi-token-speed",
+    "git:github.com/ball6847/pikit@feature/skip-git-status-when-not-requested"
   ],
-  "theme": "dark",
-  "diffTheme": "midnight",
+  "theme": "slop",
+  "diffTheme": "github",
   "defaultThinkingLevel": "high",
   "quietStartup": true,
   "skills": [
