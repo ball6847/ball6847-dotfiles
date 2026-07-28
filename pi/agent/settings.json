@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.1",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "defaultProvider": "ark",
+  "defaultModel": "seed-2-0-lite-260228",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -11,8 +11,19 @@
     {
       "source": "git:github.com/ball6847/pikit@patch",
       "extensions": [
-        "!agent/extensions/protected-paths/",
-        "!agent/extensions/styled-outputs/"
+        "-agent/extensions/protected-paths/",
+        "-agent/extensions/styled-outputs/",
+        "-agent/extensions/subagents/index.ts",
+        "-agent/extensions/llm-council/index.ts",
+        "-agent/extensions/caveman/index.ts",
+        "-agent/extensions/artifacts/index.ts",
+        "-agent/extensions/env-loader/index.ts"
+      ],
+      "skills": [
+        "-agent/skills/add-ollama-cloud-model/SKILL.md",
+        "-agent/skills/gh/SKILL.md",
+        "-agent/skills/pi-extension-builder/SKILL.md",
+        "-agent/skills/pr-review/SKILL.md"
       ]
     }
   ],
