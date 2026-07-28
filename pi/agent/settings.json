@@ -10,7 +10,10 @@
     "https://github.com/gsanhueza/pi-token-speed",
     {
       "source": "git:github.com/ball6847/pikit@patch",
-      "extensions": ["!agent/extensions/protected-paths/", "!agent/extensions/styled-outputs/"]
+      "extensions": [
+        "!agent/extensions/protected-paths/",
+        "!agent/extensions/styled-outputs/"
+      ]
     }
   ],
   "theme": "slop",
