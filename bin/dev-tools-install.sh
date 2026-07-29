@@ -54,8 +54,18 @@ install_from_github_repo() {
         git clone --depth 1 "https://github.com/$repo.git" "$tmp_dir" --quiet
     fi
 
+    # Verify we have a valid git repo before running git commands
+    if [[ ! -d "$tmp_dir/.git" ]]; then
+        echo "  ✗ $binary_name: failed to clone git repository"
+        return 1
+    fi
+
     local head_commit
     head_commit=$(git -C "$tmp_dir" rev-parse HEAD 2>/dev/null)
+    if [[ -z "$head_commit" ]]; then
+        echo "  ✗ $binary_name: failed to get HEAD commit"
+        return 1
+    fi
 
     local binary_path
     binary_path=$(command -v "$binary_name" 2>/dev/null || true)
@@ -78,11 +88,16 @@ install_from_github_repo() {
 
 if [[ "$INSTALL_DENO_PKG" = true ]]; then
     _deno_cfg=$(mktemp /tmp/deno-min-dep-age.XXXXXX.json)
+    if [[ ! -f "$_deno_cfg" ]]; then
+        echo "Failed to create temporary config file"
+        exit 1
+    fi
+    # Clean up temp file even if script exits early
+    trap 'rm -f "$_deno_cfg"' EXIT
     echo '{"minimumDependencyAge": 0}' > "$_deno_cfg"
     deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/workspace-manager
     deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/git-commit-ai
     deno install --no-lock --config "$_deno_cfg" --global --allow-read --allow-net --allow-env --allow-run -fr jsr:@ball6847/serve-md
-    rm -f "$_deno_cfg"
     if command -v asdf &> /dev/null; then
         asdf reshim deno
     fi
