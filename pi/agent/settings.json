@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.82.1",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "lastChangelogVersion": "0.83.0",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "k3-256k",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
