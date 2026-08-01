@@ -43,7 +43,7 @@ padding-x = 8
 # Possible choices: 'both', 'left' and 'right'.
 #
 # Example:
-# option-as-alt = 'left'
+option-as-alt = 'left'
 
 # Line height
 #
@@ -144,7 +144,7 @@ line-height = 1.1
 [window]
 mode = "Maximized"
 decorations = "enabled"
-colorspace = "srgb"
+colorspace = "display-p3"
 
 # Renderer
 #
@@ -172,7 +172,7 @@ colorspace = "srgb"
 # Example:
 [renderer]
 performance = "high"
-backend = "wgpu"
+backend = "automatic"
 # disable-unfocused-render = false
 # level = 1
 # filters = []
@@ -338,14 +338,8 @@ width = "Expanded"
 # program = "/opt/homebrew/bin/tmux"
 # args = ["new-session", "-c", "/var/www"]
 [shell]
-program = "wsl"
-# args = [
-#   "--cd",
-#   "~",
-#   "-e",
-#   "zsh -l -c \"source .zshrc && tmux new-session -A -s main\"",
-# ]
-args = ["--cd", "~"]
+program = "zsh"
+args = ["-l"]
 
 
 # Colors
@@ -381,6 +375,11 @@ args = ["--cd", "~"]
 keys = [
   # - shift-enter for new line (useful for agentic coder like opencode, kimi-cli)
   { key = "return", with = "shift", esc = "\u000a" },
+  # - additional keybindings from Alacritty
+  { key = "backspace", with = "control", esc = "\u0017" },
+  { key = "j", with = "super | shift", esc = "\u001b[74;4u" },
+  { key = "k", with = "super | shift", esc = "\u001b[75;4u" },
+  { key = "l", with = "super", esc = "\u001b[108;3u" },
   # - navigate between tabs
   { key = "[", with = "control | shift", action = "SelectPrevTab" },
   { key = "]", with = "control | shift", action = "SelectNextTab" },
