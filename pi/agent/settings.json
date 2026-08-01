@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.83.0",
-  "defaultProvider": "zenmux",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
