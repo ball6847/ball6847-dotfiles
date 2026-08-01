@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.83.0",
-  "defaultProvider": "zenmux",
-  "defaultModel": "inclusionai/ling-3.0-flash",
+  "defaultProvider": "ark",
+  "defaultModel": "deepseek-v4-flash-260425",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",

@@ -146,8 +146,7 @@ if is_termux; then
   export PATH="/data/data/com.termux/files/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/home/.cargo/bin:$PATH"
 fi
 
-# enable name-rev fix for workspace-manager v0.4.2+
-export WM_USE_NAME_REV=1 
+export WM_CONCURRENCY=16
 
 # ================================================
 # set up bash alias
@@ -223,7 +222,7 @@ alias cc="claude"
 alias cip="doppler run -p checkinplus -c dev_personal"
 alias run="doppler_run"
 alias wm="workspace-manager"
-alias wms="workspace-manager sync -j 16"
+alias wms="workspace-manager sync"
 alias wme="workspace-manager enable"
 alias wmo="workspace-manager open"
 
@@ -484,36 +483,6 @@ if [[ -n $ZSH_INIT_COMMAND ]]; then
     echo "Running: $ZSH_INIT_COMMAND"
     eval "$ZSH_INIT_COMMAND"
 fi
-
-# ================================================
-# grc zsh integration (generic colorizer)
-
-# [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
-
-# Added by Antigravity
-if [ -d "$SUDO_HOME/.antigravity/antigravity/bin" ] ; then
-  export PATH="$SUDO_HOME/.antigravity/antigravity/bin:$PATH"
-fi
-
-
-
-# # Only run in interactive shells, when not already in tmux, and not called by opencode extension
-# if [[ -z $OPENCODE_CALLER ]] && [[ $- == *i* ]] && [[ -z $TMUX ]]; then
-#   # If VSCODE_WORKSPACE environment variable is set (indicating we're in a VSCode workspace),
-#   # create or attach to a tmux session with the workspace name
-#   # Otherwise, create or attach to a default tmux session
-#   if [[ -n $VSCODE_WORKSPACE ]]; then
-#     exec tmux new -A -t "$VSCODE_WORKSPACE"
-#   else
-#     exec tmux new -A -t default
-#   fi
-# fi
-
-# Automatically start or attach to a tmux session when in an interactive shell,
-# not already in tmux, and not in VSCode
-# if [[ $- == *i* ]] && [[ -z $TMUX ]] && [[ -z $VSCODE_WORKSPACE ]]; then
-#   exec tmux new -A -t main
-# fi
 
 # >>> grok installer >>>
 if [ -x "$HOME/.grok/bin/grok" ]; then
