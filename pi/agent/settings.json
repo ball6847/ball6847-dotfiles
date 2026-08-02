@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.83.0",
   "defaultProvider": "zenmux",
-  "defaultModel": "meituan/longcat-2.0",
+  "defaultModel": "deepseek/deepseek-v4-flash",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -26,7 +26,8 @@
         "-agent/skills/pr-review/SKILL.md"
       ]
     },
-    "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env"
+    "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
+    "npm:@kdejaeger/pi-telegram-plus"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",

@@ -1,14 +1,17 @@
 /**
- * /recent-projects — Pick a recently opened project and show its path.
+ * /recent-projects — Pick a recently opened project and switch pi's working
+ * directory to it.
  *
  * Reads pi session directories under ~/.pi/agent/sessions/, decodes them back
  * to filesystem paths, sorts by most recent activity, and lets the user pick
- * one. The chosen path is shown in a notification; the user copies it
- * themselves.
+ * one. On pick, switches pi's working directory to the selected project using
+ * the same mechanism as pi-telegram-plus's /cd command: create a fresh session
+ * scoped to the target directory, then switch the runtime to it.
  */
 import { readdir, stat } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { SessionManager } from "@earendil-works/pi-coding-agent";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const SESSIONS_DIR = join(homedir(), ".pi", "agent", "sessions");
@@ -23,13 +26,15 @@ function decodeProjectDir(name: string): string | null {
 
 export default function (pi: ExtensionAPI) {
   pi.registerCommand("recent-projects", {
-    description: "Pick a recently opened project and show its path",
+    description: "Pick a recently opened project and switch pi's working directory to it",
     handler: async (_args, ctx) => {
+      const ui = ctx.ui;
+
       let entries;
       try {
         entries = await readdir(SESSIONS_DIR);
       } catch {
-        ctx.ui.notify(`Cannot read ${SESSIONS_DIR}`, "error");
+        ui.notify(`Cannot read ${SESSIONS_DIR}`, "error");
         return;
       }
 
@@ -48,16 +53,41 @@ export default function (pi: ExtensionAPI) {
         .sort((a, b) => b.mtime - a.mtime);
 
       if (projects.length === 0) {
-        ctx.ui.notify("No recent projects found", "info");
+        ui.notify("No recent projects found", "info");
         return;
       }
 
       const labels = projects.map((p) => p.path.replace(homedir(), "~"));
-      const choice = await ctx.ui.select("Recent projects:", labels);
+      const choice = await ui.select("Recent projects:", labels);
       if (!choice) return;
 
-      const selected = projects[labels.indexOf(choice)];
-      ctx.ui.notify(selected.path, "info");
+      const targetCwd = projects[labels.indexOf(choice)].path;
+      const info = await stat(targetCwd).catch(() => undefined);
+      if (!info?.isDirectory()) {
+        ui.notify(`Not a directory: ${targetCwd}`, "error");
+        return;
+      }
+
+      // Same switch-cwd mechanism as pi-telegram-plus's /cd: create a fresh
+      // session scoped to the target directory, then switch the runtime to it.
+      const currentSessionFile = ctx.sessionManager.getSessionFile();
+      const sessionManager = SessionManager.create(targetCwd, undefined, {
+        ...(currentSessionFile ? { parentSession: currentSessionFile } : {}),
+      });
+      // Ensure the header-only session file exists before switchSession opens it.
+      (sessionManager as unknown as { _rewriteFile?: () => void })._rewriteFile?.();
+      const sessionPath = sessionManager.getSessionFile();
+      if (!sessionPath) {
+        ui.notify("Cannot switch cwd from an ephemeral session.", "error");
+        return;
+      }
+
+      const result = await ctx.switchSession(sessionPath, {
+        withSession: async (nextCtx) => {
+          nextCtx.ui.notify(`✅ Switched to ${targetCwd}`, "info");
+        },
+      });
+      if (result.cancelled) ui.notify("Cwd switch cancelled.", "info");
     },
   });
 }
