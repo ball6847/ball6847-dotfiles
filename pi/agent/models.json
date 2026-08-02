@@ -25,7 +25,7 @@
       ]
     },
     "maxplus": {
-      "baseUrl": "https://api.maxplus-ai.cc/v1",
+      "baseUrl": "https://api.maxplus-ai.cc/deepseek/v1",
       "api": "openai-completions",
       "apiKey": "$MAXPLUS_API_KEY",
       "models": [
