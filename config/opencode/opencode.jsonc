@@ -140,8 +140,8 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "MaxPlus DeepSeek",
       "options": {
-        "baseURL": "https://api.maxplus-ai.cc/v1",
-        // "baseURL": "https://api.maxplus-ai.cc/deepseek/v1",
+        // "baseURL": "https://api.maxplus-ai.cc/v1",
+        "baseURL": "https://api.maxplus-ai.cc/deepseek/v1",
         "name": "maxplus-deepseek",
         "apiKey": "{env:MAXPLUS_API_KEY}",
         "timeout": 600000,
