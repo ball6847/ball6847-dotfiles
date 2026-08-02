@@ -34,6 +34,7 @@
   "defaultThinkingLevel": "high",
   "quietStartup": true,
   "skills": [
+    "-skills/agent-browser/SKILL.md",
     "-skills/qa-test-planner/SKILL.md",
     "-skills/opencode-ensemble/SKILL.md",
     "-skills/open-ralph-wiggum/SKILL.md",
