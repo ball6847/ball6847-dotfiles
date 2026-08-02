@@ -26,7 +26,8 @@
         "-agent/skills/pr-review/SKILL.md"
       ]
     },
-    "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env"
+    "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
+    "npm:pi-browser-harness"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
