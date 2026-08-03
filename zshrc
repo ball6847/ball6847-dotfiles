@@ -195,17 +195,13 @@ fi
 
 # Run kimi web with auto-detected tailscale hostname
 kmw() {
-  local tailscale_ip=$(tailscale status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
-  local hostname=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
-
-  if [ -z "$tailscale_ip" ] || [ -z "$hostname" ]; then
-    echo "Error: Could not detect Tailscale. Is tailscale running?"
-    return 1
-  fi
+  local tailscale_ip hostname auth_token port
+  tailscale_ip=$(ts_ip) || return 1
+  hostname=$(ts_fqdn) || return 1
 
   # Generate random token
-  local auth_token=$(openssl rand -hex 32)
-  local port=${KM_PORT:-5494}
+  auth_token=$(openssl rand -hex 32)
+  port=${KM_PORT:-5494}
 
   echo "================================================"
   echo "Kimi Web URL:"
@@ -213,6 +209,63 @@ kmw() {
   echo "================================================"
 
   kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" --no-restrict-sensitive-apis "$@"
+}
+
+# ================================================
+# tailscale helpers
+
+# Print the tailscale short hostname (e.g. porawits-macbook-pro)
+# First label of the MagicDNS name: porawits-macbook-pro.tail3baa84.ts.net. -> porawits-macbook-pro
+ts_hostname() {
+  local hostname
+  hostname=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | cut -d. -f1)
+
+  if [ -z "$hostname" ]; then
+    echo "Error: Could not detect Tailscale short hostname. Is tailscale running?" >&2
+    return 1
+  fi
+
+  echo "$hostname"
+}
+
+# Print the tailscale full MagicDNS name without trailing dot (e.g. porawits-macbook-pro.tail3baa84.ts.net)
+ts_fqdn() {
+  local fqdn
+  fqdn=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
+
+  if [ -z "$fqdn" ]; then
+    echo "Error: Could not detect Tailscale hostname. Is tailscale running?" >&2
+    return 1
+  fi
+
+  echo "$fqdn"
+}
+
+# Print the tailscale IPv4 address (e.g. 100.x.x.x)
+ts_ip() {
+  local ip
+  ip=$(tailscale status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
+
+  if [ -z "$ip" ]; then
+    echo "Error: Could not detect Tailscale IP. Is tailscale running?" >&2
+    return 1
+  fi
+
+  echo "$ip"
+}
+
+# Start pi-web bound to all interfaces, auto-detecting the tailscale short hostname
+# so the web UI is reachable at http://<tailscale-hostname>:9999
+pw() {
+  local hostname
+  hostname=$(ts_hostname) || return 1
+
+  echo "================================================"
+  echo "pi-web URL:"
+  echo "http://$hostname:9999"
+  echo "================================================"
+
+  PI_WEB_ALLOWED_HOSTS="$hostname" pi-web -p 9999 -H 0.0.0.0 "$@"
 }
 
 alias km="kimi --yolo" 
