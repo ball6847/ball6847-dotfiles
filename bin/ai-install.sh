@@ -79,6 +79,7 @@ bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
 uv tool install --upgrade mistral-vibe &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
+npm install -g @agegr/pi-web &
 # curl -fsSL https://qoder.com/install | bash &
 # npm install -g diffx-cli@latest &
 # npm install -g skills@latest &
