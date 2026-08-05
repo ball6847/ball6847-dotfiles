@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.83.0",
-  "defaultProvider": "zenmux",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -67,6 +67,7 @@
     "ark/deepseek-v4-flash-260425",
     "zenmux/deepseek/deepseek-v4-flash",
     "zenmux/inclusionai/ling-3.0-flash",
-    "streamlake/ep-rwhav0-1784285728467953790"
+    "streamlake/ep-rwhav0-1784285728467953790",
+    "ark/deepseek-v4-pro-260425"
   ]
 }

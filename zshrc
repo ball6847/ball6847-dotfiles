@@ -258,14 +258,20 @@ ts_ip() {
 # so the web UI is reachable at http://<tailscale-hostname>:9999
 pw() {
   local hostname
-  hostname=$(ts_hostname) || return 1
-
-  echo "================================================"
-  echo "pi-web URL:"
-  echo "http://$hostname:9999"
-  echo "================================================"
-
-  PI_WEB_ALLOWED_HOSTS="$hostname" pi-web -p 9999 -H 0.0.0.0 "$@"
+  if hostname=$(ts_hostname 2>/dev/null); then
+    echo "================================================"
+    echo "pi-web URL:"
+    echo "http://$hostname:9999"
+    echo "================================================"
+    PI_WEB_ALLOWED_HOSTS="$hostname" pi-web -p 9999 -H 0.0.0.0 "$@"
+  else
+    echo "Warning: Tailscale is not running. Falling back to 0.0.0.0" >&2
+    echo "================================================"
+    echo "pi-web URL:"
+    echo "http://0.0.0.0:9999"
+    echo "================================================"
+    pi-web -p 9999 -H 0.0.0.0 "$@"
+  fi
 }
 
 alias km="kimi --yolo" 
