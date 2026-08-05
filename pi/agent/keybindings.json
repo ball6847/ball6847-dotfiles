@@ -1,4 +1,5 @@
 {
-  "app.model.cycleForward": "ctrl+shift+m",
-  "app.thinking.cycle": "ctrl+shift+t"
+  "app.model.cycleForward": "alt+1",
+  "app.model.cycleBackward": "alt+2",
+  "app.thinking.cycle": "alt+`"
 }
