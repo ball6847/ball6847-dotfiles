@@ -4,66 +4,16 @@
 # FUNCTION DEFINITIONS
 # =============================================================================
 
-install_pi_packages() {
-    local script_dir repo_dir pi_settings pi_settings_fallback packages
-
-    echo "Installing pi packages from settings.json..."
+update_pi_extensions() {
+    echo "Updating pi extensions..."
 
     if ! command -v pi &> /dev/null; then
-        echo "Warning: pi command not found. Skipping pi package installation."
+        echo "Warning: pi command not found. Skipping pi extension update."
         echo "  Install pi first: curl -fsSL https://pi.dev/install.sh | sh"
         return 0
     fi
 
-    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    repo_dir="$(dirname "$script_dir")"
-
-    # Prefer the live symlink; fall back to the repo file if install.sh hasn't run yet
-    pi_settings="$HOME/.pi/agent/settings.json"
-    pi_settings_fallback="$repo_dir/pi/agent/settings.json"
-
-    if [[ ! -f "$pi_settings" && -f "$pi_settings_fallback" ]]; then
-        pi_settings="$pi_settings_fallback"
-    fi
-
-    if [[ ! -f "$pi_settings" ]]; then
-        echo "No pi settings.json found. Skipping pi package installation."
-        return 0
-    fi
-
-    # Read packages array from settings.json
-    # Entries may be plain strings ("npm:foo") or objects ({"source": "npm:foo", ...})
-    if command -v jq &> /dev/null; then
-        packages=$(jq -r '.packages[]? | if type == "object" then .source else . end // empty' "$pi_settings" 2>/dev/null)
-    elif command -v python3 &> /dev/null; then
-        packages=$(python3 -c '
-import json, sys
-pkg = sys.argv[1]
-with open(pkg) as f:
-    data = json.load(f)
-for entry in data.get("packages", []):
-    if isinstance(entry, dict):
-        src = entry.get("source", "")
-    else:
-        src = entry
-    if src:
-        print(src)
-' "$pi_settings" 2>/dev/null)
-    else
-        echo "Warning: jq or python3 not found. Cannot read pi packages from settings.json."
-        packages=""
-    fi
-
-    if [[ -z "$packages" ]]; then
-        echo "No packages configured in pi settings.json."
-        return 0
-    fi
-
-    echo "$packages" | while IFS= read -r pkg; do
-        [[ -z "$pkg" ]] && continue
-        echo "Installing pi package: $pkg"
-        pi install "$pkg"
-    done
+    pi update --extensions
 }
 
 # =============================================================================
@@ -91,10 +41,10 @@ cargo install agent-browser &
 wait
 
 # =============================================================================
-# PI PACKAGES INSTALLATION
+# PI EXTENSIONS UPDATE
 # =============================================================================
 
-install_pi_packages
+update_pi_extensions
 
 # bun install --global @th0rgal/ralph-wiggum
 # npm install --global vibe-kanban@latest
