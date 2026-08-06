@@ -1,4 +1,3 @@
-
 # Hide the cursor while typing
 #
 # Default is `false`
@@ -172,7 +171,7 @@ colorspace = "display-p3"
 # Example:
 [renderer]
 performance = "high"
-backend = "automatic"
+backend = "Metal"
 # disable-unfocused-render = false
 # level = 1
 # filters = []
@@ -250,16 +249,27 @@ backend = "automatic"
 # style = "Italic"
 # weight = 800
 [fonts]
-# family = "M+CodeLat60 Nerd Font"
-family = "M+1Code Nerd Font"
-# family = "M+CodeLat50 Nerd Font"
-# family = "ZedMono Nerd Font"
 size = 14
-# hinting = true
 
 [fonts.regular]
+family = "M+1Code Nerd Font"
+style = "default"
 weight = 500
-width = "Expanded"
+
+[fonts.bold]
+family = "M+1Code Nerd Font"
+style = "default"
+weight = 700
+
+[fonts.italic]
+family = "M+1Code Nerd Font"
+style = "Italic"
+weight = 500
+
+[fonts.bold-italic]
+family = "M+1Code Nerd Font"
+style = "Italic"
+weight = 700
 
 # Scroll
 #
