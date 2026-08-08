@@ -548,3 +548,8 @@ if [ -x "$HOME/.grok/bin/grok" ]; then
   export PATH="$HOME/.grok/bin:$PATH"
 fi
 # <<< grok installer <<<
+
+# QODER_DISPATCHER_PATH v1
+path=("$HOME/.qoder/entry" ${path:#"$HOME/.qoder/entry"})
+export PATH
+# END QODER_DISPATCHER_PATH v1
