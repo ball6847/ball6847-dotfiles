@@ -31,6 +31,9 @@ files="
     pi/agent/agents
     pi/agent/APPEND_SYSTEM.md
     pi/agent/keybindings.json
+    prime/agent/settings.json
+    prime/agent/models.json
+    prime/agent/keybindings.json
     qwen/settings.json
     agents
     kimi

@@ -1,0 +1,576 @@
+{
+  "providers": {
+    "mistral": {
+      "models": [
+        {
+          "id": "mistral-vibe-cli-latest",
+          "name": "Mistral Vibe CLI Latest",
+          "api": "mistral-conversations",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 262144,
+          "maxTokens": 262144
+        },
+        {
+          "id": "devstral-small-latest",
+          "name": "Devstral Small Latest",
+          "api": "mistral-conversations",
+          "reasoning": false,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "contextWindow": 200000,
+          "maxTokens": 32768
+        }
+      ]
+    },
+    "maxplus": {
+      "baseUrl": "https://api.maxplus-ai.cc/deepseek/v1",
+      "api": "openai-completions",
+      "apiKey": "MAXPLUS_API_KEY",
+      "models": [
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "deepseek-v4-pro",
+          "name": "DeepSeek V4 Pro (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "minimax-m3",
+          "name": "MiniMax M3 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1000000,
+          "maxTokens": 64000,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "glm-5.2",
+          "name": "GLM-5.2 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 204800,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "glm-5.1",
+          "name": "GLM-5.1 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "glm-5",
+          "name": "GLM-5 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "hy3-preview",
+          "name": "HY3 Preview (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "kimi-k2.5",
+          "name": "Kimi K2.5 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "kimi-k2.6",
+          "name": "Kimi K2.6 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "kimi-k2.7-code",
+          "name": "Kimi K2.7 Code (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "mimo-v2-omni",
+          "name": "Mimo V2 Omni (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "mimo-v2-pro",
+          "name": "Mimo V2 Pro (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "mimo-v2.5",
+          "name": "Mimo V2.5 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "mimo-v2.5-pro",
+          "name": "Mimo V2.5 Pro (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "minimax-m2.5",
+          "name": "MiniMax M2.5 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1000000,
+          "maxTokens": 64000,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "minimax-m2.7",
+          "name": "MiniMax M2.7 (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1000000,
+          "maxTokens": 64000,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "qwen3.5-plus",
+          "name": "Qwen3.5 Plus (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "qwen3.6-plus",
+          "name": "Qwen3.6 Plus (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "qwen3.7-max",
+          "name": "Qwen3.7 Max (MaxPlus)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 262144,
+          "maxTokens": 16384,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      ]
+    },
+    "streamlake": {
+      "baseUrl": "https://vanchin.streamlake.ai/api/gateway/coding/v1",
+      "api": "openai-completions",
+      "apiKey": "VC_API_KEY",
+      "models": [
+        {
+          "id": "ep-rwhav0-1784285728467953790",
+          "name": "KAT-Coder-Pro V2.5",
+          "reasoning": false,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text"],
+          "contextWindow": 256000,
+          "maxTokens": 80000,
+          "cost": {
+            "input": 0.74,
+            "output": 2.96,
+            "cacheRead": 0.15,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": true,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        }
+      ]
+    },
+    "ark": {
+      "baseUrl": "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+      "api": "openai-completions",
+      "apiKey": "ARK_API_KEY",
+      "models": [
+        {
+          "id": "seed-2-0-code-preview-260328",
+          "name": "Seed 2.0 Code Preview (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "seed-2-0-pro-260328",
+          "name": "Seed 2.0 Pro (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "seed-2-0-lite-260228",
+          "name": "Seed 2.0 Lite (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text", "image"],
+          "contextWindow": 262144,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "glm-5-2-260617",
+          "name": "GLM-5.2 (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        },
+        {
+          "id": "deepseek-v4-flash-260425",
+          "name": "DeepSeek V4 Flash (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 393216,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        {
+          "id": "deepseek-v4-pro-260425",
+          "name": "DeepSeek V4 Pro (Ark)",
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 393216,
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      ]
+    }
+  }
+}

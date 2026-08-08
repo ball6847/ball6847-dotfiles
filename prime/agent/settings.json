@@ -1,0 +1,17 @@
+{
+  "onboardingShown": true,
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "recentModels": [
+    "streamlake/ep-rwhav0-1784285728467953790",
+    "opencode/laguna-s-2.1-free",
+    "ark/seed-2-0-lite-260228",
+    "kimi-coding/kimi-for-coding-highspeed"
+  ],
+  "defaultThinkingLevel": "medium",
+  "theme": "prime",
+  "packages": [
+    "npm:pi-exit-command",
+    "npm:pi-undo-redo"
+  ]
+}
