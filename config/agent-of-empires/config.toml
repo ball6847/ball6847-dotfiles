@@ -2,13 +2,17 @@ default_profile = "default"
 
 [acp]
 allow_agent_install = false
+allowed_agents = []
 auto_stop_idle_secs = 0
+compaction_reminder = false
+compaction_reminder_percent = 75
 default_agent = "aoe-agent"
 max_concurrent_workers = 5
 node_path = ""
 offer_structured_in_new_session = false
 rate_limit_auto_resume = false
 replay_events = 0
+restrict_agents = false
 show_tool_durations = true
 silent_orphan_grace_secs = 120
 
@@ -60,10 +64,11 @@ click_action = "live_send"
 confirm_before_quit = false
 confirm_delete = false
 conversation_summary = false
-default_attach_mode = "tmux"
+default_attach_mode = "live_send"
 default_tool = "opencode"
 delete_to_trash = false
 favorites_first = true
+inherit_host_environment = false
 live_send_exit_chord = "C-q"
 live_send_leader = "C-b"
 live_send_on_view_switch = false
@@ -85,6 +90,9 @@ trash_retention_days = 30
 unread_indicator = true
 yolo_mode_default = true
 
+[skills]
+auto_propagate = false
+
 [sound]
 enabled = false
 
@@ -92,7 +100,7 @@ enabled = false
 enabled = false
 
 [telemetry]
-enabled = true
+enabled = false
 
 [theme]
 color_mode = "truecolor"
