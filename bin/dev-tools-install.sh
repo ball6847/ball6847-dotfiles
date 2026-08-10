@@ -110,6 +110,7 @@ if [[ "$INSTALL_GO_PKG" = true ]]; then
     go install github.com/bufbuild/buf/cmd/buf@v1.71.0
     go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
     go install github.com/ball6847/aoex@latest
+    GOPROXY=direct go install github.com/ball6847/mongo-ro-proxy@main
     go install github.com/google/wire/cmd/wire@latest
     go install github.com/air-verse/air@latest
     # go install github.com/satococoa/wtp/v2/cmd/wtp@latest
