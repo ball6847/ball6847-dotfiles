@@ -11,8 +11,7 @@
   "defaultThinkingLevel": "medium",
   "theme": "prime",
   "packages": [
-    "npm:pi-exit-command",
     "npm:pi-undo-redo",
-    "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env"
+    "git:github.com/ball6847/pi-zenmux.git@main"
   ]
 }
