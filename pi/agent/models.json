@@ -571,6 +571,32 @@
           }
         }
       ]
+    },
+    "local-llm-console": {
+      "baseUrl": "http://127.0.0.1:8082/v1",
+      "api": "openai-completions",
+      "apiKey": "$LOCAL_LLM_API_KEY",
+      "models": [
+        {
+          "id": "muse-glimmer-30b-ud-q4_k_xl-9daed4e5",
+          "name": "Muse Glimmer 30B UD Q4 K XL",
+          "reasoning": false,
+          "input": ["text"],
+          "contextWindow": 81920,
+          "maxTokens": 32768,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false,
+            "supportsReasoningEffort": false,
+            "thinkingFormat": null
+          }
+        }
+      ]
     }
   }
 }
