@@ -26,7 +26,8 @@ function Get-SymlinkTarget {
 function Remove-Target {
     param (
         [string]$Path,
-        [string]$SourcePath
+        [string]$SourcePath,
+        [string]$BackupPath
     )
 
     if (-not (Test-Path $Path)) {
@@ -34,32 +35,32 @@ function Remove-Target {
     }
 
     if (Test-IsSymlink $Path) {
-        if (Get-SymlinkTarget $Path -eq $SourcePath) {
+        if ((Get-SymlinkTarget $Path) -eq $SourcePath) {
             Write-Host "Symlink already correct: $Path"
             return $false  # skip, already correct
         }
-        Write-Host "Removing existing symlink: $Path"
-        Remove-Item $Path -Force
-        return $true
+        Write-Host "Backing up existing symlink: $Path"
+    }
+    elseif (Test-IsDirectory $Path) {
+        Write-Host "Backing up existing directory: $Path"
+    }
+    else {
+        Write-Host "Backing up existing file: $Path"
     }
 
-    if (Test-IsDirectory $Path) {
-        Write-Host "Removing existing directory: $Path"
-        Remove-Item $Path -Force -Recurse
-        return $true
-    }
-
-    # Regular file - backup first
-    Write-Host "Backing up existing: $Path"
-    $backupParent = Split-Path $backupPath -Parent
+    # Ensure backup parent directory exists
+    $backupParent = Split-Path $BackupPath -Parent
     if ($backupParent -and -not (Test-Path $backupParent)) {
         New-Item -ItemType Directory -Path $backupParent -Force | Out-Null
     }
-    if (Test-Path $backupPath) {
-        Remove-Item $backupPath -Force -Recurse
+
+    # Remove any existing backup at this path to avoid collisions
+    if (Test-Path $BackupPath) {
+        Remove-Item $BackupPath -Force -Recurse
     }
-    Move-Item $Path $backupPath -Force
-    Write-Host "  -> $backupPath"
+
+    Move-Item $Path $BackupPath -Force
+    Write-Host "  -> $BackupPath"
     return $true
 }
 
@@ -74,33 +75,27 @@ function New-Symlink {
 }
 
 function Install-ClaudeSkillsLink {
-    $claudeDir = Join-Path $homeDir ".claude"
     $source = Join-Path $homeDir ".agents\skills"
-    $target = Join-Path $claudeDir "skills"
+    $target = Join-Path $homeDir ".claude\skills"
+    $claudeBackupPath = Join-Path $backupDir ".claude\skills"
 
     if (-not (Test-Path $source)) {
         Write-Host "Note: ~/.agents/skills does not exist, skipping"
         return
     }
 
+    $claudeDir = Split-Path $target -Parent
     if (-not (Test-Path $claudeDir)) {
         New-Item -ItemType Directory -Path $claudeDir -Force | Out-Null
     }
 
-    if (Test-IsSymlink $target) {
-        if (Get-SymlinkTarget $target -eq $source) {
-            Write-Host "Claude skills symlink already correct"
-            return
-        }
-        Write-Host "Removing existing symlink: $target"
-        Remove-Item $target -Force
+    if (-not (Remove-Target -Path $target -SourcePath $source -BackupPath $claudeBackupPath)) {
+        return  # already correct
     }
 
-    if (-not (Test-Path $target)) {
-        Write-Host "Creating Claude skills symlink"
-        New-Symlink -Target $target -Source $source
-        Write-Host "  ~/.claude/skills -> ~/.agents/skills"
-    }
+    Write-Host "Creating Claude skills symlink"
+    New-Symlink -Target $target -Source $source
+    Write-Host "  ~/.claude/skills -> ~/.agents/skills"
 }
 
 # ============================================
@@ -137,6 +132,13 @@ $files = @(
     "config/git-commit-ai"
     "pi/agent/settings.json"
     "pi/agent/models.json"
+    "pi/agent/configs"
+    "pi/agent/agents"
+    "pi/agent/APPEND_SYSTEM.md"
+    "pi/agent/keybindings.json"
+    "prime/agent/settings.json"
+    "prime/agent/models.json"
+    "prime/agent/keybindings.json"
     "qwen/settings.json"
     "agents"
     "kimi"
@@ -166,7 +168,7 @@ foreach ($file in $files) {
     }
 
     # Handle existing target
-    if (-not (Remove-Target -Path $targetPath -SourcePath $sourcePath)) {
+    if (-not (Remove-Target -Path $targetPath -SourcePath $sourcePath -BackupPath $backupPath)) {
         continue  # symlink was already correct
     }
 
