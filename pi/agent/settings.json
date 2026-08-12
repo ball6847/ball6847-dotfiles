@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "streamlake",
-  "defaultModel": "ep-rwhav0-1784285728467953790",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",

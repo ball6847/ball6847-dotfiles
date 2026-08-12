@@ -121,7 +121,7 @@
             "supportsReasoningEffort": false,
             "thinkingFormat": null
           },
-          "contextWindow": 81920,
+          "contextWindow": 131072,
           "cost": {
             "cacheRead": 0,
             "cacheWrite": 0,
@@ -650,7 +650,7 @@
       },
       "models": [
         {
-          "contextWindow": 65536,
+          "contextWindow": 131072,
           "cost": {
             "cacheRead": 0,
             "cacheWrite": 0,
