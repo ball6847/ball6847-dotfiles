@@ -1,0 +1,33 @@
+[extend]
+useDefault = true
+
+# Allowlist for vendored/ignored working-tree content that produces false positives.
+# IMPORTANT: In gitleaks 8.x, [allowlist] paths apply to ALL scan modes: `dir`, `git`, and `git --staged`.
+# Any allowlisted path is a blind spot for every scan type. Therefore, entries are limited to
+# vendored or gitignored local-runtime paths only. Do NOT allowlist tracked source paths.
+[allowlist]
+paths = [
+    # kimi: gitignored local runtime data (credentials/sessions/telemetry)
+    "kimi",
+    # qoder: gitignored local runtime data
+    "qoder",
+    # vibe: gitignored local runtime data
+    "vibe",
+    # agent-browser: gitignored local runtime data
+    "agent-browser",
+    # cc-skills-golang: vendored submodule / third-party content
+    "cc-skills-golang",
+    # zsh_custom/plugins/: vendored submodule content
+    "zsh_custom/plugins/",
+    # alacritty-theme: vendored theme
+    "alacritty-theme",
+    # config/rio/themes: vendored themes
+    "config/rio/themes",
+    # xclip-win32yank-wrapper: vendored tool
+    "xclip-win32yank-wrapper",
+    # config/agent-of-empires/: gitignored local runtime data (VAPID key false positive)
+    "config/agent-of-empires/"
+]
+
+# Note: The allowlist above is intentionally narrow. Do NOT add per-rule regex
+# allowlists here unless a tracked file false positive is confirmed.

@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "k3",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -70,6 +70,7 @@
     "zenmux/deepseek/deepseek-v4-flash",
     "zenmux/inclusionai/ling-3.0-flash",
     "streamlake/ep-rwhav0-1784285728467953790",
-    "ark/deepseek-v4-pro-260425"
+    "ark/deepseek-v4-pro-260425",
+    "muse-rocm/muse-glimmer-30b"
   ]
 }

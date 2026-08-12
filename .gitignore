@@ -12,3 +12,6 @@ auto-update.log
 .env
 
 arms_cache
+
+# Gitleaks local scan reports
+gitleaks-report.*

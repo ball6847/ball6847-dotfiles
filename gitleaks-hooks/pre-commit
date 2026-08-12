@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+# gitleaks-hook
+# Pre-commit hook: scan staged changes for secrets
+
+set -eu
+
+# Resolve repo root
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+config_path="$repo_root/.gitleaks.toml"
+
+# Check gitleaks availability
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "Warning: gitleaks not found in PATH. Skipping secret scan." >&2
+  exit 0
+fi
+
+# Run gitleaks on staged changes
+echo "Running gitleaks on staged changes..."
+if ! gitleaks git --staged --no-banner --config "$config_path" --redact; then
+  echo ""
+  echo "Gitleaks found potential secrets. Commit aborted."
+  echo "Review findings above. To allow a specific finding, add it to .gitleaksignore or use gitleaks:allow inline comment."
+  exit 1
+fi
+
+# Chain existing pre-commit.bak if present
+bak="$repo_root/.git/hooks/pre-commit.bak"
+if [ -f "$bak" ]; then
+  exec sh "$bak"
+fi
+
+exit 0

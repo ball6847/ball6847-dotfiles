@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+# gitleaks-hook
+# Pre-push hook: scan full history for secrets
+
+set -eu
+
+# Resolve repo root
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+config_path="$repo_root/.gitleaks.toml"
+
+# Check gitleaks availability
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "Warning: gitleaks not found in PATH. Skipping secret scan." >&2
+  exit 0
+fi
+
+# Run gitleaks on full history
+echo "Running gitleaks on full history..."
+if ! gitleaks git --no-banner --config "$config_path" --redact; then
+  echo ""
+  echo "Gitleaks found potential secrets in history. Push aborted."
+  echo "Review findings above."
+  exit 1
+fi
+
+# Chain existing pre-push.bak if present
+bak="$repo_root/.git/hooks/pre-push.bak"
+if [ -f "$bak" ]; then
+  exec sh "$bak"
+fi
+
+exit 0

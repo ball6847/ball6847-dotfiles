@@ -1,0 +1,6 @@
+# .gitleaksignore
+# Format: commit:file:rule
+# Example: abc123:myfile.txt:generic-api-key
+#
+# Entries here must be reviewed and accepted. Do not bulk-add false positives
+# without verification. The repo baseline is currently clean.
