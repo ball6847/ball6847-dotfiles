@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "local-llm-console",
-  "defaultModel": "muse-glimmer-30b-ud-q4_k_xl-9daed4e5",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "k3-256k",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
