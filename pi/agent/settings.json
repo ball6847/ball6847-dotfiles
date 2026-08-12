@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "k3-256k",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -58,7 +58,6 @@
     "kimi-coding/k3",
     "kimi-coding/k3-256k",
     "kimi-coding/kimi-for-coding-highspeed",
-    "maxplus/minimax-m3",
     "maxplus/deepseek-v4-flash",
     "maxplus/deepseek-v4-pro",
     "maxplus/glm-5.2",
