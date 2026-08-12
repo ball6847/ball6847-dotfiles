@@ -69,7 +69,7 @@ default_tool = "opencode"
 delete_to_trash = false
 favorites_first = true
 inherit_host_environment = false
-live_send_exit_chord = "M-="
+live_send_exit_chord = "M-o"
 live_send_leader = "C-b"
 live_send_on_view_switch = false
 merge_hooks_into_selected_agent = true
