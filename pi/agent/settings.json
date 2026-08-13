@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "maxplus",
-  "defaultModel": "deepseek-v4-flash",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -71,5 +71,6 @@
     "streamlake/ep-rwhav0-1784285728467953790",
     "ark/deepseek-v4-pro-260425",
     "muse-rocm/muse-glimmer-30b"
-  ]
+  ],
+  "hideThinkingBlock": false
 }
