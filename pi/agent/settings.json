@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "streamlake",
+  "defaultModel": "ep-rwhav0-1784285728467953790",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -30,7 +30,8 @@
     },
     "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
     "npm:pi-browser-harness",
-    "npm:pi-btw"
+    "npm:pi-btw",
+    "npm:pi-goal"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
