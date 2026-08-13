@@ -106,3 +106,6 @@ unlink ~/.opencode/opencode.json 2>/dev/null || true
 # this is incorrect, must specify -C <directory> to git checkout
 git -C ~/.dotfiles checkout config/kitty
 
+# Link rio per-OS config (macOS/Linux)
+bash "$dir/link-rio.sh"
+
