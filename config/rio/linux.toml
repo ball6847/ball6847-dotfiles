@@ -252,22 +252,22 @@ backend = "Vulkan"
 size = 14
 
 [fonts.regular]
-family = "M+1Code Nerd Font Mono"
+family = "M+1Code Nerd Font"
 style = "default"
 weight = 500
 
 [fonts.bold]
-family = "M+1Code Nerd Font Mono"
+family = "M+1Code Nerd Font"
 style = "default"
 weight = 700
 
 [fonts.italic]
-family = "M+1Code Nerd Font Mono"
+family = "M+1Code Nerd Font"
 style = "Italic"
 weight = 500
 
 [fonts.bold-italic]
-family = "M+1Code Nerd Font Mono"
+family = "M+1Code Nerd Font"
 style = "Italic"
 weight = 700
 
