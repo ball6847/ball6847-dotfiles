@@ -32,7 +32,8 @@
     "npm:pi-browser-harness",
     "npm:pi-btw",
     "npm:pi-goal",
-    "npm:pi-prompt-template-model"
+    "npm:pi-prompt-template-model",
+    "npm:@johnnywu/pi-webfetch"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
