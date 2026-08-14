@@ -34,6 +34,47 @@ Run this loop, refining the plan after each agent returns data.
 7. VERIFY & REPORT — confirm the goal against evidence, then report
 ```
 
+## Model selection
+
+Choose a model for each delegation based on the task's complexity. You size the job; the config maps each size to a concrete model.
+
+### Config
+
+Read the size→model map from `~/.pi/agent/configs/pi-mastermind.json` (this is the global pi dir; it syncs with dotfiles via the `configs` symlink):
+
+```json
+{
+  "default": "small",
+  "sizes": {
+    "small": "zenmux/deepseek/deepseek-v4-flash",
+    "large": "zenmux/deepseek/deepseek-v4-pro"
+  }
+}
+```
+
+- `sizes` maps a size label to a `provider/model` pattern (optionally `:<thinking>`).
+- `default` is the size to use when you have no reason to pick otherwise.
+- Add any sizes you like (`medium`, `xlarge`, …) — read whatever is present.
+
+If the file is missing, fall back to the sizes shown above. Read it once at the start of the run — this is config lookup, not exploration.
+
+### Sizing heuristics
+
+- **small** — cheap, focused, low-stakes: exploring/reading files, searching code, one-off fact-finding, summarizing, verifying a small change, drafting simple content.
+- **large** — capable, thorough, high-stakes: multi-file implementation, architectural reasoning, debugging hard failures, complex design, reviewing large changes, anything where correctness or depth outweighs speed.
+
+Default to **small**; escalate to **large** when the task requires deep reasoning, spans many files, or sits on the critical path of the goal. Pick one size per delegation — don't overthink it.
+
+### Passing the model
+
+Pass the chosen size's model as `-m/--model` to `run-pi-agent.sh`:
+
+```bash
+bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 -m "zenmux/deepseek/deepseek-v4-flash" "Your crafted prompt"
+```
+
+The script forwards it to pi as `--model <value>`. (`-m` is the clean way; the `PI_ARGS` env var also works if you need other flags at the same time.)
+
 ### 1. Set goal
 
 Establish a concrete, evidence-checkable objective before delegating anything. State it in your own terms:
@@ -82,9 +123,11 @@ Follow the **pi-tmux-agent** skill exactly. Resolve its script path and call it 
 
 ```bash
 SKILL_DIR=<path-to-pi-tmux-agent-skill>
-bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 "Your crafted prompt"
+MODEL=<model for this task's size>
+bash "$SKILL_DIR/scripts/run-pi-agent.sh" -v -t 3600 -m "$MODEL" "Your crafted prompt"
 ```
 
+- Select the model by task size before each run (see **Model selection**), then pass it with `-m/--model`.
 - The call **blocks** until the agent returns — this is expected; do not work around it.
 - The agent's result is the script's **stdout** (final assistant message, completion tag already stripped). That stdout is the data you assess in step 4.
 - Set `-t/--timeout` to match the task's expected size. Use `-C` to pin the working directory when the task targets a specific project.

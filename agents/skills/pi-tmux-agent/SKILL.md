@@ -64,6 +64,7 @@ Human “is the job done?” after interrupt happens **inside the pi chat**. The
 | `-C, --cwd DIR`      | Working directory                                 |
 | `--session-id ID`    | Pin session id                                    |
 | `--pi PATH`          | pi binary                                         |
+| `-m, --model MODEL`  | Model pattern passed as `--model` to pi (e.g. `zenmux/deepseek/deepseek-v4-flash`) |
 | `-v, --verbose`      | Progress on stderr (session-id, done-tag, status) |
 
 ### Exit codes

@@ -29,6 +29,7 @@
 #   -C, --cwd DIR          Working directory for pi (default: caller cwd)
 #   --session-id ID        Use this session id (default: generated UUID)
 #   --pi PATH              pi binary (default: $PI_BIN, else pi on PATH, else ~/.bun/bin/pi)
+#   -m, --model MODEL       Model pattern passed as --model to pi (e.g. zenmux/deepseek/deepseek-v4-flash)
 #   -v, --verbose          Progress messages on stderr
 #   -h, --help             Show this help
 #
@@ -62,6 +63,7 @@ VERBOSE=0
 CWD="$(pwd)"
 PI_BIN="${PI_BIN:-}"
 SESSION_ID="${SESSION_ID:-}"
+MODEL="${MODEL:-}"
 PROMPT=""
 
 # Filled by pick_split
@@ -246,6 +248,11 @@ while [[ $# -gt 0 ]]; do
     --pi)
       [[ $# -ge 2 ]] || die "$1 requires a value"
       PI_BIN=$2
+      shift 2
+      ;;
+    -m|--model)
+      [[ $# -ge 2 ]] || die "$1 requires a value"
+      MODEL=$2
       shift 2
       ;;
     -v|--verbose)
@@ -513,11 +520,19 @@ trap 'cleanup $?' EXIT
   else
     printf 'PI_ARGS=\n'
   fi
+  if [[ -n "${MODEL:-}" ]]; then
+    printf 'MODEL=%q\n' "$MODEL"
+  else
+    printf 'MODEL=\n'
+  fi
   cat <<'INNER'
 set +e
 # First launch: initial prompt + contract appendix
 # shellcheck disable=SC2086
 first_cmd=( "$PI_BIN" --session-id "$SESSION_ID" --name "run-pi-agent" )
+if [[ -n "${MODEL}" ]]; then
+  first_cmd+=( --model "$MODEL" )
+fi
 # Intentional word-split of PI_ARGS
 if [[ -n "${PI_ARGS}" ]]; then
   # shellcheck disable=SC2206
@@ -536,6 +551,9 @@ while true; do
   printf '[run-pi-agent] After any interrupt: ask the user if the job is done, then emit the tag only if they confirm yes.\n\n'
   # shellcheck disable=SC2086
   resume_cmd=( "$PI_BIN" --session-id "$SESSION_ID" --name "run-pi-agent" )
+  if [[ -n "${MODEL}" ]]; then
+    resume_cmd+=( --model "$MODEL" )
+  fi
   if [[ -n "${PI_ARGS}" ]]; then
     # shellcheck disable=SC2206
     resume_cmd+=( $PI_ARGS )
