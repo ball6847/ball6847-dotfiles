@@ -21,7 +21,7 @@ persist_sessions = true
 
 [diff]
 context_lines = 3
-split_view = false
+split_view = true
 
 [hooks]
 
@@ -65,7 +65,7 @@ confirm_before_quit = false
 confirm_delete = false
 conversation_summary = false
 default_attach_mode = "live_send"
-default_tool = "opencode"
+default_tool = "pi"
 delete_to_trash = false
 favorites_first = true
 inherit_host_environment = false
@@ -94,7 +94,7 @@ yolo_mode_default = true
 auto_propagate = false
 
 [sound]
-enabled = false
+enabled = true
 
 [status_hooks]
 enabled = false
@@ -129,6 +129,6 @@ auto_cleanup = true
 bare_repo_path_template = "./{branch}"
 delete_branch_on_cleanup = false
 enabled = false
-init_submodules = false
+init_submodules = true
 path_template = "../{repo-name}-worktrees/{branch}"
 workspace_path_template = "../{branch}-workspace-{session-id}"
