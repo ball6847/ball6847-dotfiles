@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
-  "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "zenmux",
-  "defaultModel": "deepseek/deepseek-v4-pro",
+  "lastChangelogVersion": "0.84.2",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -31,7 +31,6 @@
     "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
     "npm:pi-browser-harness",
     "npm:pi-btw",
-    "npm:pi-goal",
     "npm:pi-prompt-template-model",
     "npm:@johnnywu/pi-webfetch"
   ],
