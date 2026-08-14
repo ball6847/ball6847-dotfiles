@@ -31,6 +31,7 @@ files="
     pi/agent/agents
     pi/agent/APPEND_SYSTEM.md
     pi/agent/keybindings.json
+    pi/agent/model-aliases.json
     prime/agent/settings.json
     prime/agent/models.json
     prime/agent/keybindings.json

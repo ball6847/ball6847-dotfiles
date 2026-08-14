@@ -34,7 +34,8 @@
     "npm:pi-goal",
     "npm:pi-prompt-template-model",
     "npm:@johnnywu/pi-webfetch",
-    "npm:pi-model-alias"
+    "npm:pi-model-alias",
+    "npm:pi-disable-model-skill-invocation"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
