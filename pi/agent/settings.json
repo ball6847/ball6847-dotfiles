@@ -31,7 +31,8 @@
     "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
     "npm:pi-browser-harness",
     "npm:pi-btw",
-    "npm:pi-goal"
+    "npm:pi-goal",
+    "npm:pi-prompt-template-model"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
