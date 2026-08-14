@@ -1,4 +1,25 @@
 {
   "version": 1,
-  "aliases": []
+  "aliases": [
+    {
+      "targetProvider": "muse-rocm",
+      "targetModel": "muse-glimmer-30b",
+      "alias": "local"
+    },
+    {
+      "targetProvider": "streamlake",
+      "targetModel": "ep-rwhav0-1784285728467953790",
+      "alias": "small"
+    },
+    {
+      "targetProvider": "zenmux",
+      "targetModel": "deepseek/deepseek-v4-flash",
+      "alias": "medium"
+    },
+    {
+      "targetProvider": "zenmux",
+      "targetModel": "deepseek/deepseek-v4-pro",
+      "alias": "large"
+    }
+  ]
 }

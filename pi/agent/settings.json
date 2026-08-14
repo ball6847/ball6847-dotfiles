@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.1",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "",
+  "defaultModel": "medium",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -59,23 +59,10 @@
   ],
   "clearOnStart": true,
   "enabledModels": [
-    "kimi-coding/kimi-for-coding",
-    "kimi-coding/k3",
-    "kimi-coding/k3-256k",
-    "kimi-coding/kimi-for-coding-highspeed",
-    "maxplus/deepseek-v4-flash",
-    "maxplus/deepseek-v4-pro",
-    "maxplus/glm-5.2",
-    "ark/glm-5-2-260617",
-    "ark/seed-2-0-pro-260328",
-    "ark/seed-2-0-lite-260228",
-    "ark/seed-2-0-code-preview-260328",
-    "ark/deepseek-v4-flash-260425",
-    "zenmux/deepseek/deepseek-v4-flash",
-    "zenmux/inclusionai/ling-3.0-flash",
-    "streamlake/ep-rwhav0-1784285728467953790",
-    "ark/deepseek-v4-pro-260425",
-    "muse-rocm/muse-glimmer-30b"
+    "local",
+    "small",
+    "medium",
+    "large"
   ],
   "hideThinkingBlock": false
 }
