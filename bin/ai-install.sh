@@ -27,6 +27,8 @@ echo "Installing AI tools..."
 # bun install --global @anthropic-ai/claude-code@latest
 bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
 uv tool install --upgrade mistral-vibe &
+uv tool install scrapling &
+uv tool install "scrapling[shell]" &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @agegr/pi-web &
@@ -115,6 +117,21 @@ fi
 # Check if grpcurl is installed
 if ! command -v grpcurl &> /dev/null; then
     echo "Warning: grpcurl is not installed. This may be needed for gRPC testing and debugging. Consider installing it with your package manager (e.g., 'sudo apt install grpcurl' on Ubuntu)."
+fi
+
+# Check if scrapling is installed (required for pi-webfetch general web page fetching)
+if ! command -v scrapling &> /dev/null; then
+    echo "Warning: scrapling is not installed. pi-webfetch needs it for general web page fetching. Run: uv tool install scrapling && uv tool install 'scrapling[shell]'"
+fi
+
+# Check if gh (GitHub CLI) is installed (required for pi-webfetch GitHub URL fetching)
+if ! command -v gh &> /dev/null; then
+    echo "Warning: gh (GitHub CLI) is not installed. pi-webfetch needs it for GitHub URL fetching. Install with: sudo apt install gh OR brew install gh"
+fi
+
+# Check if yt-dlp is installed (required for pi-webfetch YouTube URL fetching)
+if ! command -v yt-dlp &> /dev/null; then
+    echo "Warning: yt-dlp is not installed. pi-webfetch needs it for YouTube URL fetching. Install with: sudo apt install yt-dlp OR brew install yt-dlp"
 fi
 
 # =============================================================================
