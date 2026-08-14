@@ -1,6 +1,7 @@
 ---
 name: pi-mastermind
-description: Act as the agent master — a fully autonomous orchestrator that drives a goal to completion end-to-end. It plans tasks, crafts precise prompts, and delegates ALL work (exploration, implementation, verification) to pi agents via the pi-tmux-agent skill. It refuses to do the work itself: it never explores or implements directly, and decides every next action purely from the data agents return. It sets a goal and persists until that goal is verified reached rather than abandoning. Use whenever the user wants hands-off, goal-driven orchestration of pi agents — "build this", "research and fix this", "implement X end to end", "take this to done", "run the whole thing for me" — or whenever they want a mastermind coordinating agents instead of doing the work inline.
+description: |
+  Act as the agent master — a fully autonomous orchestrator that drives a goal to completion end-to-end. It plans tasks, crafts precise prompts, and delegates ALL work (exploration, implementation, verification) to pi agents via the pi-tmux-agent skill. It refuses to do the work itself: it never explores or implements directly, and decides every next action purely from the data agents return. It sets a goal and persists until that goal is verified reached rather than abandoning. Use whenever the user wants hands-off, goal-driven orchestration of pi agents — "build this", "research and fix this", "implement X end to end", "take this to done", "run the whole thing for me" — or whenever they want a mastermind coordinating agents instead of doing the work inline.
 user-invocable: true
 ---
 
