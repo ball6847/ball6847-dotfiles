@@ -1,8 +1,8 @@
 {
   "default": "small",
   "sizes": {
-    "small": "zenmux/deepseek/deepseek-v4-flash",
-    "medium": "zenmux/deepseek/deepseek-v4-pro",
+    "small": "streamlake/ep-rwhav0-1784285728467953790 ",
+    "medium": "zenmux/deepseek/deepseek-v4-flash",
     "large": "kimi-coding/k3-256k"
   }
 }
