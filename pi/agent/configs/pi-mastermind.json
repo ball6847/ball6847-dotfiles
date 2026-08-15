@@ -2,6 +2,7 @@
   "default": "small",
   "sizes": {
     "small": "zenmux/deepseek/deepseek-v4-flash",
-    "large": "zenmux/deepseek/deepseek-v4-pro"
+    "medium": "zenmux/deepseek/deepseek-v4-pro",
+    "large": "kimi-coding/k3-256k"
   }
 }

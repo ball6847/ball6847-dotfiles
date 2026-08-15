@@ -1,8 +1,8 @@
 {
   "shellPath": "/bin/zsh",
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "qwen3.8-27b",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "k3",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
