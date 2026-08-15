@@ -129,6 +129,37 @@
         }
       ]
     },
+    "nvidia": {
+      "models": [
+        {
+          "api": "openai-completions",
+          "baseUrl": "https://integrate.api.nvidia.com/v1",
+          "compat": {
+            "maxTokensField": "max_tokens",
+            "supportsDeveloperRole": false,
+            "supportsLongCacheRetention": false,
+            "supportsReasoningEffort": false,
+            "supportsStore": false,
+            "supportsStrictMode": false
+          },
+          "contextWindow": 131072,
+          "cost": {
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "input": 0,
+            "output": 0
+          },
+          "headers": {
+            "NVCF-POLL-SECONDS": "3600"
+          },
+          "id": "meta/muse-glimmer-30b",
+          "input": ["text", "image"],
+          "maxTokens": 131072,
+          "name": "Muse Glimmer 30B (NVIDIA)",
+          "reasoning": true
+        }
+      ]
+    },
     "streamlake": {
       "api": "openai-completions",
       "apiKey": "$VC_API_KEY",
