@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "qwen3.8-27b",
+  "defaultProvider": "maxplus",
+  "defaultModel": "deepseek-v4-pro",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
