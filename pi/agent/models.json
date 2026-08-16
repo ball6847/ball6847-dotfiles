@@ -250,6 +250,33 @@
           "tool_call": true
         }
       ]
+    },
+    "empiriolabs": {
+      "api": "openai-completions",
+      "apiKey": "$EMPIRIOLABS_API_KEY",
+      "baseUrl": "https://api.empiriolabs.ai/v1",
+      "models": [
+        {
+          "contextWindow": 262144,
+          "id": "qwen3-8-27b",
+          "input": ["text", "image"],
+          "maxTokens": 32768,
+          "name": "Qwen3.8 27B (EmpirioLabs)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true
+        },
+        {
+          "contextWindow": 131072,
+          "id": "muse-glimmer-30b",
+          "input": ["text", "image"],
+          "maxTokens": 32768,
+          "name": "Muse Glimmer 30B (EmpirioLabs)",
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true
+        }
+      ]
     }
   }
 }
