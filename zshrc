@@ -214,11 +214,16 @@ kmw() {
 # ================================================
 # tailscale helpers
 
+# Resolve the tailscale CLI: prefer $PATH, fall back to the macOS app bundle
+ts_bin() {
+  command -v tailscale || echo /Applications/Tailscale.app/Contents/MacOS/tailscale
+}
+
 # Print the tailscale short hostname (e.g. porawits-macbook-pro)
 # First label of the MagicDNS name: porawits-macbook-pro.tail3baa84.ts.net. -> porawits-macbook-pro
 ts_hostname() {
   local hostname
-  hostname=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | cut -d. -f1)
+  hostname=$($(ts_bin) status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | cut -d. -f1)
 
   if [ -z "$hostname" ]; then
     echo "Error: Could not detect Tailscale short hostname. Is tailscale running?" >&2
@@ -231,7 +236,7 @@ ts_hostname() {
 # Print the tailscale full MagicDNS name without trailing dot (e.g. porawits-macbook-pro.tail3baa84.ts.net)
 ts_fqdn() {
   local fqdn
-  fqdn=$(tailscale status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
+  fqdn=$($(ts_bin) status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
 
   if [ -z "$fqdn" ]; then
     echo "Error: Could not detect Tailscale hostname. Is tailscale running?" >&2
@@ -244,7 +249,7 @@ ts_fqdn() {
 # Print the tailscale IPv4 address (e.g. 100.x.x.x)
 ts_ip() {
   local ip
-  ip=$(tailscale status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
+  ip=$($(ts_bin) status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
 
   if [ -z "$ip" ]; then
     echo "Error: Could not detect Tailscale IP. Is tailscale running?" >&2

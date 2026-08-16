@@ -58,17 +58,13 @@
   ],
   "clearOnStart": true,
   "enabledModels": [
-    "kimi-coding/kimi-for-coding",
     "kimi-coding/k3",
     "kimi-coding/k3-256k",
     "kimi-coding/kimi-for-coding-highspeed",
-    "maxplus/deepseek-v4-flash",
-    "maxplus/deepseek-v4-pro",
-    "maxplus/glm-5.2",
     "zenmux/deepseek/deepseek-v4-flash",
-    "zenmux/inclusionai/ling-3.0-flash",
     "streamlake/ep-rwhav0-1784285728467953790",
-    "muse-rocm/muse-glimmer-30b"
+    "muse-rocm/muse-glimmer-30b",
+    "vastai-5090-poc/qwen3.8-27b"
   ],
   "hideThinkingBlock": false
 }
