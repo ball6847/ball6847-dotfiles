@@ -137,34 +137,6 @@
         }
       ]
     },
-    "vastai-qwen38": {
-      "api": "openai-completions",
-      "apiKey": "$LLAMA_API_KEY",
-      "baseUrl": "http://localhost:3000/v1",
-      "compat": {
-        "supportsDeveloperRole": false,
-        "supportsReasoningEffort": false
-      },
-      "models": [
-        {
-          "id": "qwen3.8-27b",
-          "name": "Qwen3.8 27B (Vast.ai serverless proxy)",
-          "contextWindow": 131072,
-          "maxTokens": 8192,
-          "reasoning": true,
-          "input": ["text"],
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "samplingParams": {
-            "temperature": 0.7,
-            "top_p": 0.9,
-            "top_k": 40,
-            "presence_penalty": 1.2,
-            "repetition_penalty": 1.1,
-            "min_p": 0.0
-          }
-        }
-      ]
-    },
     "vastai-5090-poc": {
       "api": "openai-completions",
       "apiKey": "$LLAMA_API_KEY",
