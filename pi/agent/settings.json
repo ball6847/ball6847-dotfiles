@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "vastai-5090-poc",
+  "defaultModel": "qwen3.8-27b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
