@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "maxplus",
-  "defaultModel": "deepseek-v4-pro",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -11,14 +11,17 @@
     {
       "source": "git:github.com/ball6847/pikit@patch",
       "extensions": [
-        "-agent/extensions/protected-paths/",
         "-agent/extensions/styled-outputs/",
         "-agent/extensions/subagents/index.ts",
         "-agent/extensions/llm-council/index.ts",
         "-agent/extensions/caveman/index.ts",
         "-agent/extensions/artifacts/index.ts",
         "-agent/extensions/env-loader/index.ts",
-        "-agent/extensions/web-access/index.ts"
+        "-agent/extensions/web-access/index.ts",
+        "-agent/extensions/chat-mode/index.ts",
+        "-agent/extensions/plan-mode/index.ts",
+        "-agent/extensions/permission-gate/index.ts",
+        "-agent/extensions/mcp/index.ts"
       ],
       "skills": [
         "-agent/skills/add-ollama-cloud-model/SKILL.md",

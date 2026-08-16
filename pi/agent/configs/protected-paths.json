@@ -1,0 +1,7 @@
+{
+  "paths": [
+    { "path": ".git/",                 "deny": ["read", "write", "edit"] },
+    { "path": "node_modules/",         "deny": ["write", "edit"] },
+    { "path": "~/.pi/agent/auth.json", "deny": ["read", "write", "edit", "bash"] }
+  ]
+}
