@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "vastai-5090-poc",
-  "defaultModel": "qwen3.8-27b",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
@@ -38,7 +38,7 @@
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "low",
   "quietStartup": true,
   "skills": [
     "-skills/agent-browser/SKILL.md",
