@@ -2,7 +2,7 @@
   "default": "small",
   "sizes": {
     "small": "streamlake/ep-rwhav0-1784285728467953790 ",
-    "medium": "zenmux/deepseek/deepseek-v4-flash",
-    "large": "zenmux/deepseek/deepseek-v4-pro"
+    "medium": "kimi-coding/kimi-for-coding-highspeed",
+    "large": "kimi-coding/kimi-for-coding-highspeed"
   }
 }

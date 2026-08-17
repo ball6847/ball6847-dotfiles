@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "zenmux",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultProvider": "kimi-coding",
+  "defaultModel": "kimi-for-coding-highspeed",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
