@@ -1,5 +1,5 @@
 {
-  "model": "streamlake/ep-rwhav0-1784285728467953790",
+  "model": "zenmux/sapiens-ai/agnes-2.0-flash",
   "providers": {
     "streamlake": {
       "npm": "@ai-sdk/openai-compatible",
@@ -16,6 +16,16 @@
       "models": {
         "devstral-small-latest": {
           "name": "devstral-small-latest"
+        }
+      }
+    },
+    "zenmux": {
+      "npm": "@ai-sdk/openai-compatible",
+      "api": "https://zenmux.ai/api/v1",
+      "env": ["ZENMUX_API_KEY"],
+      "models": {
+        "sapiens-ai/agnes-2.0-flash": {
+          "name": "Agnes 2.0 Flash"
         }
       }
     }

@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "kimi-coding",
-  "defaultModel": "kimi-for-coding-highspeed",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
