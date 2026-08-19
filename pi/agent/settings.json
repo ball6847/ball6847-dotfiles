@@ -1,9 +1,9 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "nvidia",
-  "defaultModel": "nvidia/nemotron-3.5-lightning-30b-a3b",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
-    "npm:@heyhuynhgiabuu/pi-diff",
+    "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
