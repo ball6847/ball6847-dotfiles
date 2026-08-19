@@ -1,13 +1,19 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "nvidia",
+  "defaultModel": "nvidia/nemotron-3.5-lightning-30b-a3b",
   "packages": [
     "npm:@heyhuynhgiabuu/pi-diff",
     "npm:pi-undo-redo",
     "npm:pi-exit-command",
     "git:github.com/harms-haus/pi-til-done",
-    "https://github.com/gsanhueza/pi-token-speed",
+    {
+      "source": "https://github.com/gsanhueza/pi-token-speed",
+      "extensions": [],
+      "skills": [],
+      "prompts": [],
+      "themes": []
+    },
     {
       "source": "git:github.com/ball6847/pikit@patch",
       "extensions": [
