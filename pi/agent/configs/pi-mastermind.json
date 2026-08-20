@@ -1,8 +1,9 @@
 {
   "default": "small",
   "sizes": {
-    "small": "streamlake/ep-rwhav0-1784285728467953790 ",
-    "medium": "kimi-coding/kimi-for-coding-highspeed",
-    "large": "kimi-coding/kimi-for-coding-highspeed"
+    "local": "muse-rocm/muse-glimmer-30b ",
+    "small": "zenmux/sapiens-ai/agnes-2.5-flash",
+    "medium": "zenmux/deepseek/deepseek-v4-flash",
+    "large": "zenmux/deepseek/deepseek-v4-pro"
   }
 }
