@@ -1,5 +1,5 @@
 {
-  "model": "zenmux/sapiens-ai/agnes-2.0-flash",
+  "model": "zenmux/sapiens-ai/agnes-2.5-flash",
   "providers": {
     "streamlake": {
       "npm": "@ai-sdk/openai-compatible",
