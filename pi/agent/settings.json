@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "zenmux",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultProvider": "muse-rocm",
+  "defaultModel": "muse-glimmer-30b",
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
@@ -62,14 +62,5 @@
     "-skills/svelte-core-bestpractices/SKILL.md"
   ],
   "clearOnStart": true,
-  "enabledModels": [
-    "kimi-coding/k3",
-    "kimi-coding/k3-256k",
-    "kimi-coding/kimi-for-coding-highspeed",
-    "zenmux/deepseek/deepseek-v4-flash",
-    "streamlake/ep-rwhav0-1784285728467953790",
-    "muse-rocm/muse-glimmer-30b",
-    "vastai-5090-poc/qwen3.8-27b"
-  ],
   "hideThinkingBlock": false
 }

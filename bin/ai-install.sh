@@ -48,6 +48,21 @@ wait
 
 update_pi_extensions
 
+# Build pi-diff fork (TypeScript -> JS) so the extension can run
+PI_DIFF_DIR="$HOME/.pi/agent/git/github.com/ball6847/pi-diff"
+if [ -d "$PI_DIFF_DIR" ]; then
+    echo "Building pi-diff fork at $PI_DIFF_DIR ..."
+    (
+        cd "$PI_DIFF_DIR"
+        if command -v npm &> /dev/null; then
+            npm install
+            npm run build
+        else
+            echo "Warning: npm not found, skipping pi-diff build"
+        fi
+    )
+fi
+
 # bun install --global @th0rgal/ralph-wiggum
 # npm install --global vibe-kanban@latest
 # npm install -g opencode-orchestrator
