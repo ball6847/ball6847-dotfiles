@@ -3,6 +3,7 @@
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
+
 - State your assumptions explicitly. If uncertain, ask.
 - If multiple interpretations exist, present them - don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
@@ -25,12 +26,14 @@ Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, sim
 **Touch only what you must. Clean up only your own mess.**
 
 When editing existing code:
+
 - Don't "improve" adjacent code, comments, or formatting.
 - Don't refactor things that aren't broken.
 - Match existing style, even if you'd do it differently.
 - If you notice unrelated dead code, mention it - don't delete it.
 
 When your changes create orphans:
+
 - Remove imports/variables/functions that YOUR changes made unused.
 - Don't remove pre-existing dead code unless asked.
 
@@ -41,34 +44,15 @@ The test: Every changed line should trace directly to the user's request.
 **Define success criteria. Loop until verified.**
 
 Transform tasks into verifiable goals:
+
 - "Add validation" → "Write tests for invalid inputs, then make them pass"
 - "Fix the bug" → "Write a test that reproduces it, then make it pass"
 - "Refactor X" → "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan:
+
 ```
 1. [Step] → verify: [check]
 2. [Step] → verify: [check]
 3. [Step] → verify: [check]
 ```
-
-## 5. Visual Output → Artifacts
-
-When output is inherently visual or longer than a screen — reports, diagrams,
-rendered diffs, comparison tables — prefer emitting it via the `artifact` tool
-over printing it in the terminal. The `artifact` tool renders markdown (with
-`diff`/`mermaid`/code fences handled) or raw HTML to a styled page opened in
-the browser, with live reload on `update`. Use `kind: "markdown"` for prose,
-tables, and diffs; `kind: "html"` only when markdown can't express it.
-
-When writing `kind: "html"` fragments: the shell already provides the design
-system — system fonts, light/dark scheme, and CSS variables (`--bg`, `--fg`,
-`--muted`, `--border`, `--code-bg`, `--accent`). Write clean semantic HTML,
-use those variables in any scoped `<style>`, never hardcode colors or fonts.
-Aim for quiet, minimal, document-like pages: hairline borders, generous
-whitespace, one accent. No CSS frameworks, no resets, no `<html>`/`<head>`
-boilerplate (fragments are injected into the shell).
-
-For Chart.js pages: put each canvas in its own container div with an explicit
-height and `width: 100%`, and set `maintainAspectRatio: false` so charts fill
-the available width instead of stopping at their intrinsic size.
