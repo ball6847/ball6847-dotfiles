@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultProvider": "zenmux",
+  "defaultModel": "inclusionai/ling-3.0-tiny",
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
