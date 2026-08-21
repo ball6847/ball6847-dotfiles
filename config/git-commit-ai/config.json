@@ -1,6 +1,17 @@
 {
-  "model": "zenmux/sapiens-ai/agnes-2.5-flash",
+  "model": "synthetic/syn:small:text",
   "providers": {
+    "synthetic": {
+      "npm": "@ai-sdk/openai-compatible",
+      "api": "https://api.synthetic.new/openai/v1",
+      "env": ["SYNTHETIC_API_KEY"],
+      "models": {
+        "syn:small:text": {
+          "name": "Synthetic Small Text",
+          "reasoning": true
+        }
+      }
+    },
     "streamlake": {
       "npm": "@ai-sdk/openai-compatible",
       "api": "https://vanchin.streamlake.ai/api/gateway/coding/v1",

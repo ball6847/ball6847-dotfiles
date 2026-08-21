@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "zenmux",
-  "defaultModel": "xiaomi/mimo-v2.5-pro",
+  "defaultProvider": "synthetic",
+  "defaultModel": "hf:Qwen/Qwen3.8-27B",
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
@@ -39,7 +39,8 @@
     "npm:pi-browser-harness",
     "npm:pi-btw",
     "npm:pi-prompt-template-model",
-    "npm:@johnnywu/pi-webfetch"
+    "npm:@johnnywu/pi-webfetch",
+    "npm:@aliou/pi-synthetic"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
