@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "qwen3.8-27b",
+  "defaultProvider": "zenmux",
+  "defaultModel": "deepseek/deepseek-v4-flash",
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
@@ -39,8 +39,7 @@
     "npm:pi-browser-harness",
     "npm:pi-btw",
     "npm:pi-prompt-template-model",
-    "npm:@johnnywu/pi-webfetch",
-    "npm:pi-compaction-model"
+    "npm:@johnnywu/pi-webfetch"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
