@@ -44,13 +44,29 @@
     },
     "vastai-5090-poc": {
       "api": "openai-completions",
-      "apiKey": "$LLAMA_API_KEY",
+      "apiKey": "$VAST_INSTANCE_API_KEY",
       "baseUrl": "http://ball6847-hp-probook-440-g6.tail3baa84.ts.net:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
         "supportsReasoningEffort": false
       },
       "models": [
+        {
+          "id": "muse-glimmer",
+          "name": "Muse Glimmer (Vast.ai RTX 5090 POC)",
+          "contextWindow": 92000,
+          "reasoning": true,
+          "input": ["text"],
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+          "samplingParams": {
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "top_k": 40,
+            "presence_penalty": 1.2,
+            "repetition_penalty": 1.1,
+            "min_p": 0.0
+          }
+        },
         {
           "id": "qwen3.8-27b",
           "name": "Qwen3.8 27B (Vast.ai RTX 5090 POC)",
