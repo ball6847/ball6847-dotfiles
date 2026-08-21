@@ -1,7 +1,7 @@
 {
   "default": "small",
   "sizes": {
-    "local": "muse-rocm/muse-glimmer-30b ",
+    "local": "muse-rocm/muse-glimmer-30b",
     "small": "zenmux/inclusionai/ling-3.0-tiny",
     "medium": "zenmux/deepseek/deepseek-v4-flash",
     "large": "zenmux/deepseek/deepseek-v4-pro"
