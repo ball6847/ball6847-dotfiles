@@ -27,8 +27,7 @@ echo "Installing AI tools..."
 # bun install --global @anthropic-ai/claude-code@latest
 bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
 uv tool install --upgrade mistral-vibe &
-uv tool install scrapling &
-uv tool install "scrapling[shell]" &
+uv tool install "scrapling[fetchers,shell]" &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @agegr/pi-web &
@@ -136,7 +135,7 @@ fi
 
 # Check if scrapling is installed (required for pi-webfetch general web page fetching)
 if ! command -v scrapling &> /dev/null; then
-    echo "Warning: scrapling is not installed. pi-webfetch needs it for general web page fetching. Run: uv tool install scrapling && uv tool install 'scrapling[shell]'"
+    echo "Warning: scrapling is not installed. pi-webfetch needs it for general web page fetching. Run: uv tool install 'scrapling[fetchers,shell]'"
 fi
 
 # Check if gh (GitHub CLI) is installed (required for pi-webfetch GitHub URL fetching)
