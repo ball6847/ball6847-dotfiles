@@ -1,5 +1,5 @@
 {
-  "model": "zenmux/inclusionai/ling-3.0-tiny",
+  "model": "zenmux/sapiens-ai/agnes-2.5-flash",
   "providers": {
     "synthetic": {
       "npm": "@ai-sdk/openai-compatible",
