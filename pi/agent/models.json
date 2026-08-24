@@ -6,7 +6,7 @@
       "baseUrl": "http://desktop-768jptn:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
-        "supportsReasoningEffort": false
+        "supportsReasoningEffort": true
       },
       "models": [
         {
@@ -21,7 +21,15 @@
           "input": ["text"],
           "maxTokens": 8192,
           "name": "Muse-Glimmer 30B (ROCm llama.cpp)",
-          "reasoning": true
+          "reasoning": true,
+          "samplingParams": {
+            "temperature": 0.6,
+            "top_p": 0.9,
+            "top_k": 40,
+            "presence_penalty": 1.2,
+            "repetition_penalty": 1.1,
+            "min_p": 0.0
+          }
         },
         {
           "id": "qwen3.8-27b",
@@ -53,7 +61,7 @@
       "baseUrl": "http://ball6847-hp-probook-440-g6.tail3baa84.ts.net:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
-        "supportsReasoningEffort": false
+        "supportsReasoningEffort": true
       },
       "models": [
         {
