@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.2",
+  "lastChangelogVersion": "0.84.3",
   "defaultProvider": "muse-rocm",
   "defaultModel": "muse-glimmer-30b",
   "packages": [
