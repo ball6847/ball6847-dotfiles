@@ -2,7 +2,7 @@
   "providers": {
     "muse-rocm": {
       "api": "openai-completions",
-      "apiKey": "$LLAMA_MANAGER_API_KEY",
+      "apiKey": "$LLAMA_API_KEY",
       "baseUrl": "http://desktop-768jptn:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
