@@ -37,7 +37,6 @@
     },
     "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
     "npm:pi-browser-harness",
-    "npm:pi-btw",
     "npm:pi-prompt-template-model",
     "npm:@johnnywu/pi-webfetch",
     "npm:@aliou/pi-synthetic",
@@ -50,11 +49,7 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "skills": [
     "-skills/agent-browser/SKILL.md",
