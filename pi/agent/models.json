@@ -6,7 +6,8 @@
       "baseUrl": "http://desktop-768jptn:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
-        "supportsReasoningEffort": true
+        "supportsReasoningEffort": true,
+        "sendSessionAffinityHeaders": true
       },
       "models": [
         {
