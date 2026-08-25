@@ -133,6 +133,9 @@
       ]
     },
     "nvidia": {
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      },
       "models": [
         {
           "api": "openai-completions",
@@ -143,7 +146,8 @@
             "supportsLongCacheRetention": false,
             "supportsReasoningEffort": false,
             "supportsStore": false,
-            "supportsStrictMode": false
+            "supportsStrictMode": false,
+            "sendSessionAffinityHeaders": true
           },
           "contextWindow": 131072,
           "cost": {
