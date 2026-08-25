@@ -84,7 +84,8 @@
       "baseUrl": "http://ball6847-hp-probook-440-g6.tail3baa84.ts.net:8088/v1",
       "compat": {
         "supportsDeveloperRole": false,
-        "supportsReasoningEffort": true
+        "supportsReasoningEffort": true,
+        "sendSessionAffinityHeaders": true
       },
       "models": [
         {
