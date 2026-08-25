@@ -167,6 +167,9 @@
       "api": "openai-completions",
       "apiKey": "$EMPIRIOLABS_API_KEY",
       "baseUrl": "https://api.empiriolabs.ai/v1",
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      },
       "models": [
         {
           "contextWindow": 262144,
