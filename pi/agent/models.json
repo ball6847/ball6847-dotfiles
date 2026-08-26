@@ -45,9 +45,9 @@
             "minimal": "low",
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "xhigh": "high",
-            "max": "high"
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
           },
           "input": ["text"],
           "cost": {
@@ -76,9 +76,9 @@
             "minimal": "low",
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "xhigh": "high",
-            "max": "high"
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
           },
           "input": ["text"],
           "cost": {
@@ -141,9 +141,9 @@
             "minimal": "low",
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "xhigh": "high",
-            "max": "high"
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
           },
           "input": ["text"],
           "cost": {
@@ -172,9 +172,9 @@
             "minimal": "low",
             "low": "low",
             "medium": "medium",
-            "high": "high",
-            "xhigh": "high",
-            "max": "high"
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
           },
           "input": ["text"],
           "cost": {
