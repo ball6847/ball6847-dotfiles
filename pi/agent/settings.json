@@ -44,7 +44,7 @@
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "minimal",
   "quietStartup": true,
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
