@@ -1,5 +1,10 @@
 {
   "providers": {
+    "synthetic": {
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      }
+    },
     "muse-rocm": {
       "api": "openai-completions",
       "apiKey": "$LLAMA_API_KEY",
