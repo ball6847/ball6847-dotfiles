@@ -263,6 +263,22 @@
           "structured_output": true
         }
       ]
+    },
+    "zenmux": {
+      "modelOverrides": {
+        "qwen/qwen3.8-flash": {
+          "reasoning": false,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": null,
+            "xhigh": null,
+            "max": null
+          }
+        }
+      }
     }
   }
 }

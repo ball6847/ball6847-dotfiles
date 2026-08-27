@@ -46,6 +46,12 @@
   "diffTheme": "ayu-dark",
   "defaultThinkingLevel": "minimal",
   "quietStartup": true,
+  "thinkingBudgets": {
+    "minimal": 1024,
+    "low": 4096,
+    "medium": 10240,
+    "high": 32768
+  },
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
