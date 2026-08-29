@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.3",
+  "lastChangelogVersion": "0.84.4",
   "defaultProvider": "muse-rocm",
   "defaultModel": "muse-glimmer-30b",
   "packages": [
@@ -55,7 +55,11 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": ["manual", "threshold", "overflow"]
+    "reasons": [
+      "manual",
+      "threshold",
+      "overflow"
+    ]
   },
   "skills": [
     "-skills/agent-browser/SKILL.md",
