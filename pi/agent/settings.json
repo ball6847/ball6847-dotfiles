@@ -1,7 +1,19 @@
 {
   "lastChangelogVersion": "0.84.4",
   "defaultProvider": "muse-rocm",
-  "defaultModel": "muse-glimmer-30b",
+  "defaultModel": "tiel-coder-35b-a3b-mtp",
+  "defaultThinkingLevel": "high",
+  "compactionModel": {
+    "model": "zenmux/inclusionai/ling-3.0-tiny",
+    "thinkingLevel": "minimal",
+    "reasons": ["manual", "threshold", "overflow"]
+  },
+  "thinkingBudgets": {
+    "minimal": 1024,
+    "low": 4096,
+    "medium": 10240,
+    "high": 32768
+  },
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-undo-redo",
@@ -44,23 +56,7 @@
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
-  "defaultThinkingLevel": "minimal",
   "quietStartup": true,
-  "thinkingBudgets": {
-    "minimal": 1024,
-    "low": 4096,
-    "medium": 10240,
-    "high": 32768
-  },
-  "compactionModel": {
-    "model": "zenmux/inclusionai/ling-3.0-tiny",
-    "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
-  },
   "skills": [
     "-skills/agent-browser/SKILL.md",
     "-skills/qa-test-planner/SKILL.md",
