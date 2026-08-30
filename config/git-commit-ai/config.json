@@ -1,5 +1,5 @@
 {
-  "model": "zenmux/inclusionai/ling-3.0-tiny",
+  "model": "synthetic/syn:small:text",
   "providers": {
     "synthetic": {
       "npm": "@ai-sdk/openai-compatible",
