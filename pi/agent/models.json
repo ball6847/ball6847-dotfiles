@@ -311,6 +311,36 @@
         "supportsReasoningEffort": false,
         "sendSessionAffinityHeaders": true
       },
+      "modelOverrides": {
+        "deepseek-v4-flash": {
+          "compat": {
+            "supportsLongCacheRetention": true,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        "deepseek-v4-flash-0731": {
+          "compat": {
+            "supportsLongCacheRetention": true,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        "deepseek-v4-pro": {
+          "compat": {
+            "supportsLongCacheRetention": true,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        },
+        "deepseek-v4-pro-0813": {
+          "compat": {
+            "supportsLongCacheRetention": true,
+            "requiresReasoningContentOnAssistantMessages": true,
+            "thinkingFormat": "deepseek"
+          }
+        }
+      },
       "models": [
         { "id": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
         { "id": "deepseek-v4-flash-0731", "name": "DeepSeek V4 Flash 0731", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
