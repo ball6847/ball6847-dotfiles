@@ -56,3 +56,17 @@ For multi-step tasks, state a brief plan:
 2. [Step] → verify: [check]
 3. [Step] → verify: [check]
 ```
+
+## 5. Filesystem and Skill Discovery
+
+**Never scan from `/` or `~`.**
+
+- Do not run `find` (or `grep -r`, `ls -R`, `du`) against the filesystem root `/` or the user's home directory `~`. These traverse huge trees (`~/.cache`, `~/.local/share`, `node_modules`, browser profiles), are slow, and pollute context with noise.
+- Scope searches to the current working directory, or to a named path you already have reason to believe exists. Widen only after a targeted search fails.
+
+**Where skills live:**
+
+- User/global skills: `~/.agents/skills/<name>/SKILL.md`
+- Project-local skills: `./.agents/skills/<name>/SKILL.md` (relative to the current working directory)
+
+Check both before concluding a skill does not exist; project-local skills take precedence for the repo you are in. The set of skills injected into your context may not be exhaustive of what is on disk.
