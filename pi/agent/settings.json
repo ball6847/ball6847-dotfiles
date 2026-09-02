@@ -6,11 +6,7 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -57,7 +53,7 @@
     "npm:@johnnywu/pi-webfetch",
     "npm:@aliou/pi-synthetic",
     "npm:pi-cache-optimizer",
-    "npm:@tintinweb/pi-tasks"
+    "npm:@harms-haus/pi-til-done"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
