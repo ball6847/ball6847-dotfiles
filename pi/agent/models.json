@@ -361,6 +361,9 @@
       "api": "openai-completions",
       "apiKey": "$META_MODEL_API_KEY",
       "baseUrl": "https://api.meta.ai/v1",
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      },
       "models": [
         {
           "id": "muse-spark-1.3",
