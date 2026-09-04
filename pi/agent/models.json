@@ -118,7 +118,7 @@
         }
       ]
     },
-    "vastai-5090-poc": {
+    "vastai": {
       "api": "openai-completions",
       "apiKey": "$LLAMA_API_KEY",
       "baseUrl": "http://127.0.0.1:0/v1",
