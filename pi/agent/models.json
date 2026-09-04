@@ -26,9 +26,7 @@
             "output": 0
           },
           "id": "muse-glimmer-30b",
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "maxTokens": 8192,
           "name": "Muse-Glimmer 30B (ROCm llama.cpp)",
           "reasoning": true,
@@ -56,9 +54,7 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "cost": {
             "input": 0,
             "output": 0,
@@ -89,9 +85,7 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "cost": {
             "input": 0,
             "output": 0,
@@ -112,9 +106,7 @@
           "name": "Tiel-Coder 35B-A3B-MTP (ROCm llama.cpp)",
           "contextWindow": 131072,
           "reasoning": true,
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "samplingParams": {
             "temperature": 0.4,
             "top_p": 0.9,
@@ -143,9 +135,7 @@
           "name": "Muse Glimmer (Vast.ai RTX 5090 POC)",
           "contextWindow": 131072,
           "reasoning": true,
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "cost": {
             "input": 0,
             "output": 0,
@@ -175,9 +165,7 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "cost": {
             "input": 0,
             "output": 0,
@@ -208,9 +196,7 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": [
-            "text"
-          ],
+          "input": ["text"],
           "cost": {
             "input": 0,
             "output": 0,
@@ -256,10 +242,7 @@
             "NVCF-POLL-SECONDS": "3600"
           },
           "id": "meta/muse-glimmer-30b",
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "maxTokens": 131072,
           "name": "Muse Glimmer 30B (NVIDIA)",
           "reasoning": true
@@ -277,10 +260,7 @@
         {
           "contextWindow": 262144,
           "id": "qwen3-8-27b",
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "maxTokens": 32768,
           "name": "Qwen3.8 27B (EmpirioLabs)",
           "reasoning": true,
@@ -290,10 +270,7 @@
         {
           "contextWindow": 131072,
           "id": "muse-glimmer-30b",
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "maxTokens": 32768,
           "name": "Muse Glimmer 30B (EmpirioLabs)",
           "reasoning": true,
@@ -342,84 +319,96 @@
         }
       },
       "models": [
-        { "id": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "deepseek-v4-flash-0731", "name": "DeepSeek V4 Flash 0731", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "deepseek-v4-pro", "name": "DeepSeek V4 Pro", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "deepseek-v4-pro-0813", "name": "DeepSeek V4 Pro 0813", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "kimi-k2.5", "name": "Kimi K2.5", "contextWindow": 262144, "reasoning": true, "tool_call": true },
-        { "id": "kimi-k2.6", "name": "Kimi K2.6", "contextWindow": 262144, "reasoning": true, "tool_call": true },
-        { "id": "kimi-k2.7-code", "name": "Kimi K2.7 Code", "contextWindow": 262144, "reasoning": true, "tool_call": true },
-        { "id": "kimi-k3", "name": "Kimi K3", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "minimax-m3", "name": "MiniMax M3", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "mimo-v2.5-pro", "name": "MIMO V2.5 Pro", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "glm-5.2", "name": "GLM 5.2", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "glm-5.3", "name": "GLM 5.3", "contextWindow": 1048576, "reasoning": true, "tool_call": true },
-        { "id": "glm-5.3-flash", "name": "GLM 5.3 Flash", "contextWindow": 1048576, "reasoning": true, "tool_call": true }
-      ]
-    },
-    "meta": {
-      "api": "openai-completions",
-      "apiKey": "$META_MODEL_API_KEY",
-      "baseUrl": "https://api.meta.ai/v1",
-      "compat": {
-        "sendSessionAffinityHeaders": true
-      },
-      "models": [
         {
-          "id": "muse-spark-1.3",
-          "name": "Muse Spark 1.3",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": "minimal",
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "xhigh": "xhigh",
-            "max": null
-          },
-          "input": [
-            "text",
-            "image"
-          ],
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
           "contextWindow": 1048576,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 1.25,
-            "output": 4.25,
-            "cacheRead": 0.15,
-            "cacheWrite": 0
-          },
-          "tool_call": true,
-          "structured_output": true
+          "reasoning": true,
+          "tool_call": true
         },
         {
-          "id": "muse-spark-1.3-contributor",
-          "name": "Muse Spark 1.3 Contributor",
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": "minimal",
-            "low": "low",
-            "medium": "medium",
-            "high": "high",
-            "xhigh": "xhigh",
-            "max": null
-          },
-          "input": [
-            "text",
-            "image"
-          ],
+          "id": "deepseek-v4-flash-0731",
+          "name": "DeepSeek V4 Flash 0731",
           "contextWindow": 1048576,
-          "maxTokens": 131072,
-          "cost": {
-            "input": 0.1,
-            "output": 0.2,
-            "cacheRead": 0.002,
-            "cacheWrite": 0
-          },
-          "tool_call": true,
-          "structured_output": true
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "deepseek-v4-pro",
+          "name": "DeepSeek V4 Pro",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "deepseek-v4-pro-0813",
+          "name": "DeepSeek V4 Pro 0813",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "kimi-k2.5",
+          "name": "Kimi K2.5",
+          "contextWindow": 262144,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "kimi-k2.6",
+          "name": "Kimi K2.6",
+          "contextWindow": 262144,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "kimi-k2.7-code",
+          "name": "Kimi K2.7 Code",
+          "contextWindow": 262144,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "kimi-k3",
+          "name": "Kimi K3",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "minimax-m3",
+          "name": "MiniMax M3",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "mimo-v2.5-pro",
+          "name": "MIMO V2.5 Pro",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "glm-5.2",
+          "name": "GLM 5.2",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "glm-5.3",
+          "name": "GLM 5.3",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
+        },
+        {
+          "id": "glm-5.3-flash",
+          "name": "GLM 5.3 Flash",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true
         }
       ]
     },
