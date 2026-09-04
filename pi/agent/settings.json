@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "0.85.0",
   "defaultProvider": "muse-rocm",
   "defaultModel": "tiel-coder-35b-a3b-mtp",
   "defaultThinkingLevel": "high",
