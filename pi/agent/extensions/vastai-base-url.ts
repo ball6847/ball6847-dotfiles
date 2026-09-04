@@ -13,12 +13,12 @@ export default function (pi: ExtensionAPI) {
   const url = process.env.VASTAI_INSTANCE_API_URL?.trim();
   if (!url) {
     console.warn(
-      "[vastai-base-url] VASTAI_INSTANCE_API_URL is not set — vastai will be unreachable until it is exported."
+      "[vastai-base-url] VASTAI_INSTANCE_API_URL is not set — vastai will be unreachable until it is exported.",
     );
     return;
   }
   pi.registerProvider("vastai", {
-    name: "Vast.ai RTX 5090 POC",
+    name: "Vast.ai",
     baseUrl: url,
   });
 }
