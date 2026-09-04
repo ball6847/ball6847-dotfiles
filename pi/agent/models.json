@@ -121,7 +121,7 @@
     "vastai-5090-poc": {
       "api": "openai-completions",
       "apiKey": "$LLAMA_API_KEY",
-      "baseUrl": "http://ball6847-hp-probook-440-g6.tail3baa84.ts.net:8088/v1",
+      "baseUrl": "http://127.0.0.1:0/v1",
       "compat": {
         "supportsDeveloperRole": false,
         "supportsReasoningEffort": true,
@@ -154,7 +154,7 @@
         {
           "id": "qwen3.8-27b",
           "name": "Qwen3.8 27B (Vast.ai RTX 5090 POC)",
-          "contextWindow": 92000,
+          "contextWindow": 131072,
           "reasoning": true,
           "thinkingLevelMap": {
             "off": "none",
