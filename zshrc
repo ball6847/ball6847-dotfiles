@@ -148,51 +148,153 @@ fi
 
 export WM_CONCURRENCY=16
 
-# ================================================
-# set up bash alias
-
+# =========================================================================
+# General aliases
+# =========================================================================
+# alphabetical
 alias c="clear"
 alias chmodfix='sudo find -type d -print0 | xargs -0 -I {} chmod 755 {} && sudo find -type f -print0 | xargs -0 -I {} chmod 644 {}'
 alias clipboard="xsel --clipboard"
-alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
-alias gs="git status"
-alias ga="git add -A"
-alias gan="git add -N"
-alias gcm="git commit -am"
-# alias gcmm='echo "$(cat ~/.config/opencode/command/git-commit.md)" | opencode run -m "openrouter/google/gemini-2.0-flash-exp:free"'
-alias gcmm="git-commit-ai g --thinking-effort low"
-alias gco="git checkout"
-alias gp="git push -u"
-alias gd="git diff"
-alias gdd="git diff --cached"
-alias gl="git log --oneline"
-alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
-alias git-clean="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
-alias tm-reload="tmux source-file ~/.tmux.conf"
-alias dc="docker-compose"
-alias dcx="docker-compose exec"
-alias dcl="docker-compose logs -f"
-alias a="ansible-playbook"
-alias ap="ansible-playbook"
-alias direnv-init-node="(echo \"layout node\" > .envrc) && direnv allow"
-alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
 alias gen-cert="openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
 alias gen-prettier="cp ~/.dotfiles/prettierrc .prettierrc"
-alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
-alias v="nvim"
-alias t="task"
 alias m="SERVE_MD_DOT_WHITELIST=.agents,.context,.pi serve-md serve --network --watch"
-alias g="gemini -y"
-alias oc="opencode"
-alias gr="grok --always-approve"
-alias p="pi"
+alias software-update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
+alias t="task"
+alias v="nvim"
 alias w="wtp"
+alias wsl2-reclaim="sudo sh -c \"echo 1 > /proc/sys/vm/drop_caches; echo 1 > /proc/sys/vm/compact_memory\""
 
+# =========================================================================
+# WSL-specific (conditional)
+# =========================================================================
+# add custom alias for wsl
+if is_wsl; then
+  alias open="explorer.exe"
+  alias explorer="explorer.exe"
+fi
+
+# =========================================================================
+# Optional tooling (conditional)
+# =========================================================================
+# fall back to batcat if the binary is installed under that name
 if command -v batcat >/dev/null 2>&1; then
   alias bat="batcat"
 fi
 
+# =========================================================================
+# Git aliases
+# =========================================================================
+# alphabetical
+alias ga="git add -A"
+alias gan="git add -N"
+alias gb="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+alias gcm="git commit -am"
+alias gcmm="git-commit-ai g --thinking-effort low"
+alias gco="git checkout"
+alias gd="git diff"
+alias gdd="git diff --cached"
+alias git-clean="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
+alias gl="git log --oneline"
+alias gp="git push -u"
+alias gs="git status"
 
+# =========================================================================
+# Docker aliases
+# =========================================================================
+# alphabetical
+alias dc="docker compose"
+alias dcl="docker compose logs -f"
+alias dcx="docker compose exec"
+
+# =========================================================================
+# Tmux aliases
+# =========================================================================
+# alphabetical
+alias tm-reload="tmux source-file ~/.tmux.conf"
+
+# =========================================================================
+# start or attach to a tmux session (default name "main")
+# =========================================================================
+tm() {
+  local session_name="main"
+  if [[ -n "$1" ]]; then
+    session_name="$1"
+  fi
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session_name" 2>/dev/null || tmux new-session -d -s "$session_name" \; switch-client -t "$session_name"
+  else
+    tmux new-session -A -s "$session_name"
+  fi
+}
+
+# =========================================================================
+# AI tools aliases
+# =========================================================================
+
+# helper functions for the split-pane aliases below
+# attach to a session (or start one) then run the command inside tmux
+in_tmux() {
+  if [ -z "$TMUX" ]; then
+    # Not in tmux, create a new session and run the function properly
+    local cmd_str="${(j: :)${@:q}}"
+    # Create session, run the command, and keep session alive
+    tmux new-session -s main "zsh -c 'source ~/.zshrc; $cmd_str; exec zsh'"
+  else
+    # Already in tmux, execute directly
+    "$@"
+  fi
+}
+
+# open nvim on the left pane and a command on the right pane
+_ai_split() {
+  local cmd="$1"
+  tmux split-window -h -c "$(pwd)" -l 40%
+  tmux select-pane -t 0
+  tmux send-keys 'v' C-m
+  tmux select-pane -t 1
+  tmux send-keys "$cmd" C-m
+  tmux select-pane -t 0
+}
+
+# split-pane helpers: nvim left + AI tool right (run inside tmux)
+alias voc='in_tmux _ai_split "oc"'
+alias vqw='in_tmux _ai_split "qw"'
+alias vg='in_tmux _ai_split "g"'
+alias vcc='in_tmux _ai_split "cc"'
+
+# =========================================================================
+# model aliases
+# =========================================================================
+# alphabetical
+alias cc="claude"
+alias claude='claude --allow-dangerously-skip-permissions'
+alias g="gemini -y"
+alias gr="grok --always-approve"
+alias km="kimi --yolo"
+alias muse="muse --yolo"
+alias oc="opencode"
+alias p="pi"
+alias pa="prime-agent"
+alias qodercli='qodercli --yolo'
+alias qw="qwen --yolo"
+alias vb="vibe --agent auto-approve"
+
+# =========================================================================
+# Workspace / project tool aliases
+# =========================================================================
+# alphabetical
+alias ap="ansible-playbook"
+alias cip="doppler run -p checkinplus -c dev_personal"
+alias direnv-init-node="(echo \"layout node\" > .envrc) && direnv allow"
+alias direnv-init-python="(echo \"layout python\" > .envrc) && direnv allow"
+alias wm="workspace-manager"
+alias wme="workspace-manager enable"
+alias wmo="workspace-manager open"
+alias wms="workspace-manager sync"
+
+# =========================================================================
+# Tailscale helpers
+# =========================================================================
 # Run kimi web with auto-detected tailscale hostname
 kmw() {
   local tailscale_ip hostname auth_token port
@@ -211,8 +313,6 @@ kmw() {
   kimi web --host "$tailscale_ip" --port "$port" --no-open --public --auth-token "$auth_token" --allowed-origins "http://$hostname:$port,https://$hostname:$port" --no-restrict-sensitive-apis "$@"
 }
 
-# ================================================
-# tailscale helpers
 
 # Resolve the tailscale CLI: prefer $PATH, fall back to the macOS app bundle
 ts_bin() {
@@ -279,182 +379,13 @@ pw() {
   fi
 }
 
-alias km="kimi --yolo" 
-alias vb="vibe --agent auto-approve"
-alias qw="qwen --yolo"
-alias cc="claude"
-alias cip="doppler run -p checkinplus -c dev_personal"
-alias run="doppler_run"
-alias wm="workspace-manager"
-alias wms="workspace-manager sync"
-alias wme="workspace-manager enable"
-alias wmo="workspace-manager open"
-
-# add custom alias for wsl
-if is_wsl; then
-  alias open="explorer.exe"
-  alias explorer="explorer.exe"
-fi
-
-# ================================================
-# doppler wrapper
-
-# wrap doppler run with our default project and config without loading from server and use local cache only, so we save time starting the process
-doppler_run() {
-
-  if [[ "$DOPPLER_LOADED" == "true" ]]; then
-    # Remove leading -- from arguments if present
-    if [[ "$1" == "--" ]]; then
-      shift
-      "$@"
-    else
-      echo "Command must be prefixed with -- when DOPPLER_LOADED is true"
-      return 1
-    fi
-  else
-    doppler run -p personal -c dev --fallback-readonly --fallback-only --no-liveness-ping --silent "$@"
-  fi
-}
-
-# force update doppler secrets cache
-doppler_update() {
-  doppler run -p personal -c dev -- echo "doppler secrets updated"
-}
-
-# ================================================
-# wrap some frequently used tools with doppler_run
-
-_CLAUDE_BIN="`which claude`"
-
-claude() {
-  doppler_run -- $_CLAUDE_BIN --allow-dangerously-skip-permissions "$@"
-}
-
-_QODERCLI_BIN="`which qodercli`"
-
-# qodercli: manual model override (for non-standard models not in TUI)
-# 
-# Available models:
-#   auto        - Auto selection
-#   efficient   - Efficient models
-#   gmodel      - Google models
-#   kmodel      - Kimi models
-#   lite        - Lite models
-#   mmodel      - Mistral models
-#   performance - Performance models
-#   q35model    - Qwen 3.5 models
-#   qmodel      - Qwen models
-#   ultimate    - Ultimate models
-#
-# Usage: qodercli --model <model_name>
-# Example: qodercli --model ultimate
-
-qodercli() {
-  if [[ ! -f "$_QODERCLI_BIN" ]]; then
-    echo "qodercli not found. Installing automatically..."
-    npm install -g @qoder-ai/qodercli
-    _QODERCLI_BIN="`which qodercli`"
-  fi
-  doppler_run -- $_QODERCLI_BIN --yolo "$@"
-}
-
-# ================================================
-# tmux alias for open new window in pre-configured view
-
-# Helper function to ensure we're in tmux
-in_tmux() {
-  if [ -z "$TMUX" ]; then
-    # Not in tmux, create a new session and run the function properly
-    local cmd_str="${(j: :)${@:q}}"
-    # Create session, run the command, and keep session alive
-    tmux new-session -s main "zsh -c 'source ~/.zshrc; $cmd_str; exec zsh'"
-  else
-    # Already in tmux, execute directly
-    "$@"
-  fi
-}
-
-# Helper function to open neovim on left pane and specified command on right pane
-_ai_split() {
-  local cmd="$1"
-  tmux split-window -h -c "$(pwd)" -l 40%
-  tmux select-pane -t 0
-  tmux send-keys 'v' C-m
-  tmux select-pane -t 1
-  tmux send-keys "$cmd" C-m
-  tmux select-pane -t 0
-}
-
-# open nvim on left pane, and opencode on right pane
-voc() {
-  in_tmux _ai_split "oc"
-}
-
-# open nvim on left pane, and qwen on right pane
-vqw() {
-  in_tmux _ai_split "qw"
-}
-
-# open nvim on left pane, and gemini on right pane
-vg() {
-  in_tmux _ai_split "g"
-}
-
-# open nvim on left pane, and claude code on right pane
-vcc() {
-  in_tmux _ai_split "cc"
-}
-
-# ================================================
-# make ai ide tools work in wsl
-
-qq() {
-  if is_wsl; then
-    qoder --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    qoder . "$@"
-  fi
-}
-
-tt() {
-  if is_wsl; then
-    trae --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    trae . "$@"
-  fi
-}
-
-aa() {
-  if is_wsl; then
-    antigravity --remote "wsl+${WSL_DISTRO_NAME}" "$(wslpath -a .)" "$@"
-  else
-    antigravity . "$@"
-  fi
-}
-
-# ================================================
-# start or attach to tmux session
-
-tm() {
-  local session_name="main"
-  if [[ -n "$1" ]]; then
-    session_name="$1"
-  fi
-  if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$session_name" 2>/dev/null || tmux new-session -d -s "$session_name" \; switch-client -t "$session_name"
-  else
-    tmux new-session -A -s "$session_name"
-  fi
-}
-
-# ================================================
 # asdf bin linker as some IDE lsp doesn't work with asdf shims
 
 asdf_link_bin() {
   local plugin="$1"
   local bin_path=`asdf which $plugin`
   if [ -f "$bin_path" ]; then
-    ln -sfn "$bin_path" "$SUDO_HOME/.local/bin/$bin_name"
+    ln -sfn "$bin_path" "$SUDO_HOME/.local/bin/$plugin"
   fi
 }
 
@@ -558,5 +489,3 @@ fi
 path=("$HOME/.qoder/entry" ${path:#"$HOME/.qoder/entry"})
 export PATH
 # END QODER_DISPATCHER_PATH v1
-
-alias pa="prime-agent"
