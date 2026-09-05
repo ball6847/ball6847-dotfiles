@@ -154,7 +154,7 @@
         {
           "id": "qwen3.8-27b",
           "name": "Qwen3.8 27B (Vast.ai RTX 5090 POC)",
-          "contextWindow": 131072,
+          "contextWindow": 153600,
           "reasoning": true,
           "thinkingLevelMap": {
             "off": "none",
