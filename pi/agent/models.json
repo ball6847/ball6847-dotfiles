@@ -254,6 +254,12 @@
       "apiKey": "$EMPIRIOLABS_API_KEY",
       "baseUrl": "https://api.empiriolabs.ai/v1",
       "compat": {
+        "maxTokensField": "max_tokens",
+        "supportsDeveloperRole": false,
+        "supportsLongCacheRetention": false,
+        "supportsReasoningEffort": false,
+        "supportsStore": false,
+        "supportsStrictMode": false,
         "sendSessionAffinityHeaders": true
       },
       "models": [
