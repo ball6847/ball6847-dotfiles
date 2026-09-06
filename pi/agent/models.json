@@ -42,7 +42,7 @@
         {
           "id": "qwen3.8-27b",
           "name": "Qwen3.8 27B (ROCm llama.cpp)",
-          "contextWindow": 65536,
+          "contextWindow": 131072,
           "reasoning": true,
           "thinkingLevelMap": {
             "off": "none",
