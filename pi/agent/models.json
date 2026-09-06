@@ -299,6 +299,12 @@
       "apiKey": "$EMPIRIOLABS_API_KEY",
       "baseUrl": "https://api.empiriolabs.ai/v1",
       "compat": {
+        "maxTokensField": "max_tokens",
+        "supportsDeveloperRole": false,
+        "supportsLongCacheRetention": false,
+        "supportsReasoningEffort": false,
+        "supportsStore": false,
+        "supportsStrictMode": false,
         "sendSessionAffinityHeaders": true
       },
       "models": [
@@ -319,6 +325,31 @@
           "maxTokens": 32768,
           "name": "Muse Glimmer 30B (EmpirioLabs)",
           "reasoning": true,
+          "tool_call": true,
+          "structured_output": true
+        },
+        {
+          "contextWindow": 1048576,
+          "id": "glm-5-3-flash",
+          "input": ["text", "image"],
+          "maxTokens": 131072,
+          "name": "GLM 5.3 Flash (EmpirioLabs)",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "low",
+            "minimal": "low",
+            "low": "low",
+            "medium": "high",
+            "high": "high",
+            "xhigh": "max",
+            "max": "max"
+          },
+          "cost": {
+            "input": 0.075,
+            "output": 0.25,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
           "tool_call": true,
           "structured_output": true
         }
