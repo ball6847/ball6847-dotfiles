@@ -156,4 +156,5 @@ All implementations verified against plan by reviewer.
 - If builder reports blocking obstacles, still proceed to review for visibility
 - Keep detailed notes of reviewer's findings
 - **Never manage tmux directly** — always use the **pi-tmux-agent** skill for agent runs (spawn, wait, output, cleanup)
+- **On builder/reviewer timeout (exit `124`):** follow the pi-tmux-agent "On timeout" procedure — resume via the same `--session-id` from stderr (with a larger `-t`), or confirm the old pane is dead before retrying. When retrying the builder, paste the partial tail from stderr into the builder prompt so completed steps are not redone. Never start a replacement builder/reviewer for the same work while the timed-out one may still be alive.
 - **No subagents inside a tmux-agent session.** Once a pi-tmux-agent session has started, do **not** spawn another subagent (builder, reviewer, or any other pi instance) from within that session. The session is a single-agent boundary — nested agent runs corrupt output capture and break the completion contract.

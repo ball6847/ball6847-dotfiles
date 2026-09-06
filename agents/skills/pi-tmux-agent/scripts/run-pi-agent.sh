@@ -25,7 +25,8 @@
 #
 # Options:
 #   -t, --timeout SECS     Max seconds to wait for completion (default: 3600)
-#   -k, --keep-pane        Leave the pane open after completion
+#   --on-timeout kill|keep Pane policy on timeout: kill it (default) or leave open
+#   -k, --keep-pane        Leave the pane open after completion (success path only)
 #   -C, --cwd DIR          Working directory for pi (default: caller cwd)
 #   --session-id ID        Use this session id (default: generated UUID)
 #   --pi PATH              pi binary (default: $PI_BIN, else pi on PATH, else ~/.bun/bin/pi)
@@ -44,7 +45,8 @@
 # Exit codes:
 #   0    contract satisfied (<done>SESSION_ID</done> in a final assistant message)
 #   1    setup error
-#   124  timed out waiting for the contract
+#   124  timed out waiting for the contract (pane killed unless --on-timeout keep;
+#        stdout is empty — resume with the same --session-id printed on stderr)
 #
 # Stdout: final assistant text with the <done>…</done> tag stripped
 # Stderr: progress / diagnostics (errors always; progress with -v)
@@ -58,6 +60,7 @@
 set -euo pipefail
 
 TIMEOUT="${TIMEOUT:-3600}"
+ON_TIMEOUT="${ON_TIMEOUT:-kill}"
 KEEP_PANE=0
 VERBOSE=0
 CWD="$(pwd)"
@@ -71,7 +74,7 @@ PICK_TARGET=""
 PICK_DIR=""
 
 usage() {
-  sed -n '2,45p' "$0" | sed 's/^# \?//'
+  sed -n '2,47p' "$0" | sed 's/^# \?//'
 }
 
 log() {
@@ -231,6 +234,11 @@ while [[ $# -gt 0 ]]; do
       TIMEOUT=$2
       shift 2
       ;;
+    --on-timeout)
+      [[ $# -ge 2 ]] || die "$1 requires a value"
+      ON_TIMEOUT=$2
+      shift 2
+      ;;
     -k|--keep-pane)
       KEEP_PANE=1
       shift
@@ -302,6 +310,7 @@ command -v tmux >/dev/null 2>&1 || die "tmux not found in PATH"
 command -v python3 >/dev/null 2>&1 || die "python3 is required to read the session log"
 
 [[ "$TIMEOUT" =~ ^[1-9][0-9]*$ ]] || die "timeout must be a positive integer (got: $TIMEOUT)"
+[[ "$ON_TIMEOUT" == "kill" || "$ON_TIMEOUT" == "keep" ]] || die "--on-timeout must be kill or keep (got: $ON_TIMEOUT)"
 
 # Session ids must be alphanumeric with optional ._- in the middle (pi validates this)
 if [[ -n "$SESSION_ID" ]] && [[ ! "$SESSION_ID" =~ ^[A-Za-z0-9]([A-Za-z0-9._-]*[A-Za-z0-9])?$ ]]; then
@@ -317,6 +326,7 @@ log "cwd: $CWD"
 log "session-id: $SESSION_ID"
 log "session-dir: $SESSION_DIR"
 log "timeout: ${TIMEOUT}s"
+log "on-timeout: $ON_TIMEOUT"
 
 pick_split || exit 1
 log "split target=$PICK_TARGET dir=$PICK_DIR"
@@ -454,6 +464,18 @@ def status(path: str, session_id: str) -> str:
     return "running"
 
 
+def last(path: str) -> tuple[str, int]:
+    """Return the latest assistant text (no contract required; may be partial)."""
+    try:
+        msgs = load_messages(path)
+    except FileNotFoundError:
+        return ("", 1)
+    text = last_assistant_text(msgs)
+    if not text.strip():
+        return ("", 1)
+    return (text, 0)
+
+
 def extract(path: str, session_id: str) -> tuple[str, int]:
     """Return text from the assistant message that carries the done tag."""
     msgs = load_messages(path)
@@ -472,7 +494,7 @@ def extract(path: str, session_id: str) -> tuple[str, int]:
 def main() -> int:
     if len(sys.argv) != 4:
         print(
-            "usage: session_helper.py status|extract <session.jsonl> <session-id>",
+            "usage: session_helper.py status|extract|last <session.jsonl> <session-id>",
             file=sys.stderr,
         )
         return 2
@@ -482,6 +504,10 @@ def main() -> int:
         return 0
     if cmd == "extract":
         text, code = extract(path, session_id)
+        sys.stdout.write(text)
+        return code
+    if cmd == "last":
+        text, code = last(path)
         sys.stdout.write(text)
         return code
     print(f"unknown command: {cmd}", file=sys.stderr)
@@ -645,9 +671,34 @@ done
 if [[ "$turn_status" != "done" ]]; then
   printf 'run-pi-agent: timed out after %ss waiting for %s (session-id=%s)\n' \
     "$TIMEOUT" "$DONE_TAG" "$SESSION_ID" >&2
-  printf 'run-pi-agent: pane %s left open for inspection (--keep-pane semantics on timeout)\n' \
-    "${PANE_ID:-?}" >&2
-  KEEP_PANE=1
+  printf 'run-pi-agent: stdout is empty — the agent did NOT finish (exit 124).\n' >&2
+  if [[ -n "${SESSION_FILE:-}" && -f "$SESSION_FILE" ]]; then
+    printf 'run-pi-agent: partial work preserved in: %s\n' "$SESSION_FILE" >&2
+    if partial=$(python3 "$SESSION_HELPER" last "$SESSION_FILE" "$SESSION_ID" 2>/dev/null); then
+      if [[ -n "$partial" ]]; then
+        printf 'run-pi-agent: --- last assistant text (partial, NOT final) ---\n' >&2
+        printf '%s\n' "$partial" | tail -c 2000 >&2
+        printf 'run-pi-agent: --- end partial ---\n' >&2
+      fi
+    fi
+  fi
+  printf 'run-pi-agent: resume with: run-pi-agent.sh --session-id %q "<follow-up prompt>"\n' \
+    "$SESSION_ID" >&2
+  if [[ "$ON_TIMEOUT" == "keep" ]]; then
+    printf 'run-pi-agent: pane %s left open (--on-timeout keep); the agent may still be working.\n' \
+      "${PANE_ID:-?}" >&2
+    printf 'run-pi-agent: before doing this work yourself or spawning a new agent, kill it: tmux kill-pane -t %s\n' \
+      "${PANE_ID:-?}" >&2
+    KEEP_PANE=1
+    exit 124
+  fi
+  # Fail closed (default): kill the pane so the orphan cannot race the caller.
+  # The pi session itself survives in the session file — resume via --session-id.
+  if [[ -n "${PANE_ID:-}" ]]; then
+    tmux kill-pane -t "$PANE_ID" 2>/dev/null || true
+    PANE_ID=""
+  fi
+  printf 'run-pi-agent: pane killed (--on-timeout kill). Session survives; resume with --session-id above.\n' >&2
   exit 124
 fi
 
