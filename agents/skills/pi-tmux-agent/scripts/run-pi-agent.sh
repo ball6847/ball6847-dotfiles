@@ -20,6 +20,7 @@
 #
 # Usage:
 #   run-pi-agent.sh [options] <prompt>
+#   run-pi-agent.sh [options] -- <prompt>    # prompt starting with '-'
 #   run-pi-agent.sh [options] -              # read prompt from stdin
 #   echo "prompt" | run-pi-agent.sh [options]
 #
@@ -74,7 +75,7 @@ PICK_TARGET=""
 PICK_DIR=""
 
 usage() {
-  sed -n '2,47p' "$0" | sed 's/^# \?//'
+  sed -n '2,59p' "$0" | sed -E 's/^# ?//'
 }
 
 log() {
@@ -273,6 +274,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --)
       shift
+      # Everything after `--` is the prompt verbatim, even if it starts with `-`.
+      [[ $# -ge 1 ]] || die "-- requires the prompt as the next argument"
+      PROMPT=$1
+      shift
       break
       ;;
     -)
@@ -281,7 +286,14 @@ while [[ $# -gt 0 ]]; do
       break
       ;;
     -*)
-      die "unknown option: $1 (try --help)"
+      # An argv element starting with `-` that contains whitespace cannot be a
+      # flag — treat it as the prompt (e.g. bullet-style "- continue ..." text).
+      if [[ "$1" =~ [[:space:]] ]]; then
+        PROMPT=$1
+        shift
+        break
+      fi
+      die "unknown option: $1 (try --help; if this is a prompt starting with '-', put '--' before it)"
       ;;
     *)
       PROMPT=$1
@@ -321,10 +333,19 @@ resolve_pi_bin
 gen_session_id
 SESSION_DIR=$(session_dir_for_cwd "$CWD")
 
+# Resume detection: a session file already existing for this id means this run
+# is an orchestrated resume (a human continuing after an in-run interrupt chats
+# in the live pane via the inner reopen loop instead of starting a new run).
+IS_RESUME=0
+if find_session_file "$SESSION_DIR" "$SESSION_ID" >/dev/null 2>&1; then
+  IS_RESUME=1
+fi
+
 log "using pi binary: $PI_BIN"
 log "cwd: $CWD"
 log "session-id: $SESSION_ID"
 log "session-dir: $SESSION_DIR"
+log "resume: $IS_RESUME"
 log "timeout: ${TIMEOUT}s"
 log "on-timeout: $ON_TIMEOUT"
 
@@ -344,6 +365,12 @@ log "done-tag: $DONE_TAG"
 
 # User prompt + mandatory contract appendix (appended by this script, not the caller).
 {
+  # Guard: pi treats a leading "@..." argument as a file reference even after
+  # `--`, so a prompt starting with "@" would be misparsed. A single leading
+  # blank line keeps the prompt intact (whitespace is harmless to the model).
+  if [[ "$PROMPT" == @* ]]; then
+    printf '\n'
+  fi
   printf '%s\n' "$PROMPT"
   printf '\n'
   printf '%s\n' '---'
@@ -358,13 +385,22 @@ log "done-tag: $DONE_TAG"
   printf '%s\n' "- Do not emit the tag mid-task or while you still plan to call tools."
   printf '%s\n' "- Put any summary/answer before the tag; the tag should be the last non-empty line."
   printf '\n'
-  printf '%s\n' 'INTERRUPT RULES (mandatory):'
-  printf '%s\n' "- If this session was interrupted, aborted, cancelled, or the pane/process was killed mid-work, you MUST NOT simply answer the original question and print the completion tag."
-  printf '%s\n' "- After ANY interrupt, always ask the human user to confirm whether the job for this session is done, e.g.:"
-  printf '%s\n' '  "This session was interrupted. Is the job done for this session? (yes/no)"'
-  printf '%s\n' "- Wait for the user's explicit confirmation in this session."
-  printf '%s\n' "- Only if the user clearly confirms YES may you then emit the completion tag."
-  printf '%s\n' "- If the user says NO (or is unsure), do NOT emit the tag; summarize remaining work instead."
+  if (( IS_RESUME )); then
+    printf '%s\n' 'RESUME RULES (mandatory — this run is an automated resume; no human is watching the pane):'
+    printf '%s\n' "- The previous run was killed (timeout/pane kill); its partial work is in this session's history."
+    printf '%s\n' "- Do NOT ask the user whether the job is done — nobody will answer and this run will stall until timeout."
+    printf '%s\n' "- These resume rules supersede the INTERRUPT RULES from the earlier prompt in this session's history."
+    printf '%s\n' "- Treat the user request above as the remaining work: continue it to completion now."
+    printf '%s\n' "- When fully finished WITHOUT any further interrupt, end your FINAL assistant message with the exact tag above."
+  else
+    printf '%s\n' 'INTERRUPT RULES (mandatory):'
+    printf '%s\n' "- If this session was interrupted, aborted, cancelled, or the pane/process was killed mid-work, you MUST NOT simply answer the original question and print the completion tag."
+    printf '%s\n' "- After ANY interrupt, always ask the human user to confirm whether the job for this session is done, e.g.:"
+    printf '%s\n' '  "This session was interrupted. Is the job done for this session? (yes/no)"'
+    printf '%s\n' "- Wait for the user's explicit confirmation in this session."
+    printf '%s\n' "- Only if the user clearly confirms YES may you then emit the completion tag."
+    printf '%s\n' "- If the user says NO (or is unsure), do NOT emit the tag; summarize remaining work instead."
+  fi
 } >"$PROMPT_FILE"
 
 # Session JSONL helper: status|extract <session.jsonl> <session-id>
@@ -564,7 +600,11 @@ if [[ -n "${PI_ARGS}" ]]; then
   # shellcheck disable=SC2206
   first_cmd+=( $PI_ARGS )
 fi
-first_cmd+=( "$(cat "$PROMPT_FILE")" )
+# NOTE: `--` ends option parsing — without it a prompt starting with `-`
+# is rejected as "Unknown option" and pi exits immediately (exit 1).
+# The runner then reopens a bare session and the follow-up prompt is
+# silently lost, which strands resumes whose prompt starts with `-`.
+first_cmd+=( -- "$(cat "$PROMPT_FILE")" )
 "${first_cmd[@]}"
 ec=$?
 

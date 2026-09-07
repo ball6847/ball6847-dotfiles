@@ -45,37 +45,37 @@ The **script** unblocks only when some assistant message contains exactly:
 
 (The script appends this contract + exact tag to the prompt automatically.)
 
-| Event             | Script behavior                                   |
-| ----------------- | ------------------------------------------------- |
-| Tools running     | Keep blocking                                     |
-| Idle without tag  | Keep blocking                                     |
-| Interrupt / abort | Keep blocking — user continues in the **pi pane** |
-| Pi process exits  | Reopen same `--session-id` for more chat          |
-| Tag appears       | Write result to stdout, exit `0`                  |
+| Event             | Script behavior                                                         |
+| ----------------- | ----------------------------------------------------------------------- |
+| Tools running     | Keep blocking                                                           |
+| Idle without tag  | Keep blocking                                                           |
+| Interrupt / abort | Keep blocking — user continues in the **pi pane**                       |
+| Pi process exits  | Reopen same `--session-id` for more chat                                |
+| Tag appears       | Write result to stdout, exit `0`                                        |
 | Timeout           | Exit `124`, pane killed by default (`--on-timeout keep` leaves it open) |
-| User closes pane  | Exit `1`                                          |
+| User closes pane  | Exit `1`                                                                |
 
-Human “is the job done?” after interrupt happens **inside the pi chat**. The script does not return early for that — it waits for the tag.
+Human “is the job done?” after interrupt happens **inside the pi chat**. The script does not return early for that — it waits for the tag. That gate applies to in-run interrupts only; an automated resume (new invocation with an existing `--session-id`) gets resume-rules instead — continue the remaining work directly, no confirmation question — because no human is watching the pane.
 
 ### Options
 
-| Flag                 | Meaning                                           |
-| -------------------- | ------------------------------------------------- |
-| `-t, --timeout SECS` | Max wait for the contract (default `3600`)        |
-| `--on-timeout kill\|keep` | Pane policy on timeout (default `kill`; `keep` leaves pane open) |
-| `-k, --keep-pane`    | Leave pane open after success (success path only) |
-| `-C, --cwd DIR`      | Working directory                                 |
-| `--session-id ID`    | Pin session id                                    |
-| `--pi PATH`          | pi binary                                         |
-| `-m, --model MODEL`  | Model pattern passed as `--model` to pi (e.g. `zenmux/deepseek/deepseek-v4-flash`) |
-| `-v, --verbose`      | Progress on stderr (session-id, done-tag, status) |
+| Flag                      | Meaning                                                                            |
+| ------------------------- | ---------------------------------------------------------------------------------- |
+| `-t, --timeout SECS`      | Max wait for the contract (default `3600`)                                         |
+| `--on-timeout kill\|keep` | Pane policy on timeout (default `kill`; `keep` leaves pane open)                   |
+| `-k, --keep-pane`         | Leave pane open after success (success path only)                                  |
+| `-C, --cwd DIR`           | Working directory                                                                  |
+| `--session-id ID`         | Pin session id                                                                     |
+| `--pi PATH`               | pi binary                                                                          |
+| `-m, --model MODEL`       | Model pattern passed as `--model` to pi (e.g. `zenmux/deepseek/deepseek-v4-flash`) |
+| `-v, --verbose`           | Progress on stderr (session-id, done-tag, status)                                  |
 
 ### Exit codes
 
-| Code  | Meaning                                                    |
-| ----- | ---------------------------------------------------------- |
-| `0`   | Contract satisfied — stdout is final answer (tag stripped) |
-| `1`   | Setup error / pane closed early                            |
+| Code  | Meaning                                                                                 |
+| ----- | --------------------------------------------------------------------------------------- |
+| `0`   | Contract satisfied — stdout is final answer (tag stripped)                              |
+| `1`   | Setup error / pane closed early                                                         |
 | `124` | Timed out waiting for the tag — stdout is empty; pane killed unless `--on-timeout keep` |
 
 ### On timeout (exit `124`)
@@ -84,7 +84,8 @@ Exit `124` means the agent did **not** finish. Stdout is empty (a partial tail i
 
 1. Do **not** do the delegated work yourself and do **not** spawn a new agent for it yet.
 2. Recover the incomplete task — first break what remains into small todo items (even if there is only one: track them on your side and include the list in the resume/retry prompt), then pick exactly one owner:
-   - **Resume** (preferred when the partial work looks right): re-invoke with the same session id from stderr — `run-pi-agent.sh --session-id <id> "<what remains, plus any correction>"`. Session history survives the killed pane, so the new run continues where the old one stopped. Give it a generous `-t`: a task that timed out once usually needs more time, not a new worker.
+   - **Resume** (preferred when the partial work looks right): re-invoke with the same session id from stderr — `run-pi-agent.sh --session-id <id> "<what remains, plus any correction>"`. Session history survives the killed pane, so the new run continues where the old one stopped. Give it a generous `-t`: a task that timed out once usually needs more time, not a new worker. Use the same `-C`: with a different cwd pi silently creates an EMPTY session with the same id (history lost, duplicate id). State the remaining work as direct instructions; the script detects the existing session and swaps the interrupt gate for resume-rules.
+   - **Fork** (old session file itself seems wedged but its history is valuable): fork full history into a new id, then resume that — from the same cwd run `pi --fork <session-file> --session-id "$NEW_ID" -p "Summarize where the previous session stopped in 3 bullets"` (use the `partial work preserved in:` path from stderr and a fresh uuid for `$NEW_ID`), then `run-pi-agent.sh --session-id "$NEW_ID" "<what remains>"`. Forking also drops malformed lines, so it sanitizes a corrupt tail.
    - **Retry fresh** (partial work is wrong or the approach was bad): start a new run without `--session-id`, pasting only the still-valid bits of the partial tail into the new prompt. Allowed immediately under the default kill policy (the script already killed the pane); with `--on-timeout keep`, `tmux kill-pane -t <pane>` first.
    - **Take over yourself**: same precondition as retry fresh — old pane dead — then you own the files. Use the partial tail plus the session file (`partial work preserved in: …` on stderr) as starting context instead of redoing completed steps.
 3. One owner at a time — never resume AND retry/take-over concurrently for the same task.
