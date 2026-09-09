@@ -11,6 +11,288 @@
   ],
   "small_model": "mistral/mistral-vibe-cli-latest",
   "provider": {
+    "muse-rocm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Muse ROCm (llama.cpp)",
+      "options": {
+        "baseURL": "http://desktop-768jptn:8088/v1",
+        "apiKey": "{env:LLAMA_API_KEY}"
+      },
+      "models": {
+        "muse-glimmer-30b": {
+          "name": "Muse-Glimmer 30B (ROCm llama.cpp)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          },
+          "reasoning": true
+        },
+        "qwen3.8-27b": {
+          "name": "Qwen3.8 27B (ROCm llama.cpp)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          },
+          "reasoning": true,
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "xhigh"
+            }
+          }
+        },
+        "jack-3.8-27b-coder": {
+          "name": "Jack-3.8-27B-Coder (ROCm llama.cpp)",
+          "limit": {
+            "context": 196608,
+            "output": 8192
+          },
+          "reasoning": true,
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "xhigh"
+            }
+          }
+        },
+        "tiel-coder-35b-a3b-mtp": {
+          "name": "Tiel-Coder 35B-A3B-MTP (ROCm llama.cpp)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          },
+          "reasoning": true
+        }
+      }
+    },
+    "vastai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Vast.ai RTX 5090",
+      "options": {
+        "baseURL": "http://127.0.0.1:0/v1",
+        "apiKey": "{env:LLAMA_API_KEY}"
+      },
+      "models": {
+        "muse-glimmer": {
+          "name": "Muse Glimmer (Vast.ai RTX 5090 POC)",
+          "limit": {
+            "context": 131072,
+            "output": 8192
+          },
+          "reasoning": true
+        },
+        "qwen3.8-27b": {
+          "name": "Qwen3.8 27B (Vast.ai RTX 5090 POC)",
+          "limit": {
+            "context": 153600,
+            "output": 8192
+          },
+          "reasoning": true,
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "xhigh"
+            }
+          }
+        },
+        "jack-3.8-27b-coder": {
+          "name": "Jack-3.8-27B-Coder (Vast.ai RTX 5090 POC)",
+          "limit": {
+            "context": 196608,
+            "output": 8192
+          },
+          "reasoning": true,
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "xhigh"
+            }
+          }
+        }
+      }
+    },
+    "vastai-serverless": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Vast.ai Serverless",
+      "options": {
+        "baseURL": "https://openai.vast.ai/qwen38-27b-sl",
+        "apiKey": "{env:VAST_API_KEY}"
+      },
+      "models": {
+        "qwen3.8-27b": {
+          "name": "Qwen3.8 27B (Vast.ai Serverless)",
+          "limit": {
+            "context": 153600,
+            "output": 8192
+          },
+          "reasoning": true,
+          "variants": {
+            "none": {
+              "reasoningEffort": "none"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "medium"
+            },
+            "high": {
+              "reasoningEffort": "xhigh"
+            }
+          }
+        }
+      }
+    },
+    "nvidia": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NVIDIA",
+      "options": {
+        "baseURL": "https://integrate.api.nvidia.com/v1",
+        "headers": {
+          "NVCF-POLL-SECONDS": "3600"
+        }
+      },
+      "models": {
+        "meta/muse-glimmer-30b": {
+          "name": "Muse Glimmer 30B (NVIDIA)",
+          "limit": {
+            "context": 131072,
+            "output": 131072
+          },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      }
+    },
+    "empiriolabs": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "EmpirioLabs",
+      "options": {
+        "baseURL": "https://api.empiriolabs.ai/v1",
+        "apiKey": "{env:EMPIRIOLABS_API_KEY}"
+      },
+      "models": {
+        "qwen3-8-27b": {
+          "name": "Qwen3.8 27B (EmpirioLabs)",
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "attachment": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "muse-glimmer-30b": {
+          "name": "Muse Glimmer 30B (EmpirioLabs)",
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "attachment": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "glm-5.3-flash": {
+          "name": "GLM 5.3 Flash (EmpirioLabs)",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          },
+          "reasoning": true,
+          "tool_call": true,
+          "structured_output": true,
+          "cost": {
+            "input": 0.075,
+            "output": 0.25
+          },
+          "attachment": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "low"
+            },
+            "low": {
+              "reasoningEffort": "low"
+            },
+            "medium": {
+              "reasoningEffort": "high"
+            },
+            "high": {
+              "reasoningEffort": "high"
+            }
+          }
+        }
+      }
+    },
     "bailian-token-plan": {
       "env": [
         "QWEN_CLOUD_API_KEY"
