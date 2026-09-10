@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.85.1",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "tiel-coder-35b-a3b-mtp",
+  "defaultProvider": "vastai-serverless",
+  "defaultModel": "qwen3.8-27b",
   "defaultThinkingLevel": "high",
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
