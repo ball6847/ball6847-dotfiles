@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.85.1",
-  "defaultProvider": "vastai-serverless",
-  "defaultModel": "qwen3.8-27b",
+  "defaultProvider": "zenmux",
+  "defaultModel": "qwen/qwen3.7-flash",
   "defaultThinkingLevel": "high",
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
@@ -58,7 +58,8 @@
     "npm:@aliou/pi-synthetic",
     "npm:pi-cache-optimizer",
     "npm:@harms-haus/pi-til-done",
-    "npm:pi-meta-oauth"
+    "npm:pi-meta-oauth",
+    "npm:pi-loop-police"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
