@@ -361,21 +361,7 @@
         "sendSessionAffinityHeaders": true
       },
       "modelOverrides": {
-        "deepseek-v4-flash": {
-          "compat": {
-            "supportsLongCacheRetention": true,
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          }
-        },
         "deepseek-v4-flash-0731": {
-          "compat": {
-            "supportsLongCacheRetention": true,
-            "requiresReasoningContentOnAssistantMessages": true,
-            "thinkingFormat": "deepseek"
-          }
-        },
-        "deepseek-v4-pro": {
           "compat": {
             "supportsLongCacheRetention": true,
             "requiresReasoningContentOnAssistantMessages": true,
@@ -392,22 +378,8 @@
       },
       "models": [
         {
-          "id": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "contextWindow": 1048576,
-          "reasoning": true,
-          "tool_call": true
-        },
-        {
           "id": "deepseek-v4-flash-0731",
           "name": "DeepSeek V4 Flash 0731",
-          "contextWindow": 1048576,
-          "reasoning": true,
-          "tool_call": true
-        },
-        {
-          "id": "deepseek-v4-pro",
-          "name": "DeepSeek V4 Pro",
           "contextWindow": 1048576,
           "reasoning": true,
           "tool_call": true
@@ -416,27 +388,6 @@
           "id": "deepseek-v4-pro-0813",
           "name": "DeepSeek V4 Pro 0813",
           "contextWindow": 1048576,
-          "reasoning": true,
-          "tool_call": true
-        },
-        {
-          "id": "kimi-k2.5",
-          "name": "Kimi K2.5",
-          "contextWindow": 262144,
-          "reasoning": true,
-          "tool_call": true
-        },
-        {
-          "id": "kimi-k2.6",
-          "name": "Kimi K2.6",
-          "contextWindow": 262144,
-          "reasoning": true,
-          "tool_call": true
-        },
-        {
-          "id": "kimi-k2.7-code",
-          "name": "Kimi K2.7 Code",
-          "contextWindow": 262144,
           "reasoning": true,
           "tool_call": true
         },
@@ -455,18 +406,34 @@
           "tool_call": true
         },
         {
-          "id": "mimo-v2.5-pro",
-          "name": "MIMO V2.5 Pro",
+          "id": "hy4-preview",
+          "name": "HY4 Preview",
           "contextWindow": 1048576,
           "reasoning": true,
           "tool_call": true
         },
         {
-          "id": "glm-5.2",
-          "name": "GLM 5.2",
+          "id": "qwen3.8-max",
+          "name": "Qwen3.8 Max",
           "contextWindow": 1048576,
           "reasoning": true,
           "tool_call": true
+        },
+        {
+          "id": "qwen3.8-flash",
+          "name": "Qwen3.8 Flash",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text", "image"]
+        },
+        {
+          "id": "deepseek-v4.1-flash",
+          "name": "DeepSeek V4.1 Flash",
+          "contextWindow": 1048576,
+          "reasoning": true,
+          "tool_call": true,
+          "input": ["text", "image"]
         },
         {
           "id": "glm-5.3",
