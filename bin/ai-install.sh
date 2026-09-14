@@ -31,6 +31,7 @@ uv tool install "scrapling[fetchers,shell]" &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @agegr/pi-web &
+npm install -g @deepseek-ai/dsh &
 # curl -fsSL https://qoder.com/install | bash &
 # npm install -g diffx-cli@latest &
 # npm install -g skills@latest &
