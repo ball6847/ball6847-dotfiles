@@ -1,5 +1,5 @@
 {
-  "model": "zenmux/google/gemma-4-31b-it",
+  "model": "zenmux/qwen/qwen3.7-flash",
   "providers": {
     "synthetic": {
       "npm": "@ai-sdk/openai-compatible",
@@ -40,6 +40,9 @@
         },
         "inclusionai/ling-3.0-tiny": {
           "name": "inclusionAI: Ling-3.0-tiny"
+        },
+        "qwen/qwen3.7-flash": {
+          "name": "Qwen 3.7 Flash"
         }
       }
     }
