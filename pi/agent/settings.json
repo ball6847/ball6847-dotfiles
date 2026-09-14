@@ -59,7 +59,8 @@
     "npm:pi-cache-optimizer",
     "npm:@harms-haus/pi-til-done",
     "npm:pi-meta-oauth",
-    "npm:pi-loop-police"
+    "npm:pi-loop-police",
+    "npm:pi-loop-mode"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
