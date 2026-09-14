@@ -145,7 +145,8 @@ $files = @(
     "vibe"
     "agent-browser"
     "qoder"
-    "gemini"
+    "gemini",
+    "dsh/settings.yaml"
 )
 
 # Process each file
