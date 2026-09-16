@@ -18,3 +18,7 @@ gitleaks-report.*
 
 # Rio per-OS deployed config (created by link-rio.sh)
 config/rio/config.toml
+
+# Python bytecode
+__pycache__/
+*.pyc
