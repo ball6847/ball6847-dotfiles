@@ -109,7 +109,7 @@
             "temperature": 0.4,
             "top_p": 0.9,
             "top_k": 40,
-            "presence_penalty": 1.2,
+            "presence_penalty": 1.5,
             "repetition_penalty": 1.1,
             "min_p": 0.0
           }
