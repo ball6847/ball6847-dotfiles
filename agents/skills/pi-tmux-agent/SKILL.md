@@ -45,6 +45,8 @@ The **script** unblocks only when some assistant message contains exactly:
 
 (The script appends this contract + exact tag to the prompt automatically.)
 
+⚠️ **Do not include any completion-contract language in your prompt.** The script injects the contract (`COMPLETION CONTRACT` section with `INTERRUPT RULES` or `RESUME RULES`) automatically behind the scenes. Adding your own contract instructions on top will create multiple contracts and confuse the agent.
+
 | Event             | Script behavior                                                         |
 | ----------------- | ----------------------------------------------------------------------- |
 | Tools running     | Keep blocking                                                           |
