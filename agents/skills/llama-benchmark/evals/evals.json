@@ -1,0 +1,42 @@
+{
+  "skill_name": "llama-benchmark",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "my llama-server only does like 8 tok/s on an RTX 4070 with a 13B Q4_K_M model and the GPU looks basically idle. help me figure out what's wrong and fix it.",
+      "expected_output": "Diagnoses partial/absent GPU offload as the primary cause, checks the backend and -ngl/served layer log, and gives concrete fixes (raise -ngl, reduce -c, enable -fa + q8_0 KV, or drop quant) plus a way to verify with llama-bench.",
+      "files": [],
+      "expectations": [
+        "Asks for or determines the backend/build (CUDA vs CPU-only) before recommending flags",
+        "Identifies missing or partial GPU offload (-ngl) as the likely cause",
+        "Recommends verifying via the llama.cpp startup log 'offloaded X/Y layers' and/or llama-bench baseline",
+        "Gives an actual corrective launch command with -ngl and -fa included"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to find the best context size and KV cache type for my 8B Q4_K_M model on a 24GB 4090. Set me up a benchmark I can actually run.",
+      "expected_output": "Sets up a reproducible llama-bench sweep over -c and matched KV cache types, reminds that KV types must match, and produces a launch command from the winner.",
+      "files": [],
+      "expectations": [
+        "Uses llama-bench (not guesses) to compare configurations",
+        "Sweeps context size with -c values",
+        "Keeps KV cache key and value types matched (never mixes q8_0 with q4_0)",
+        "Captures a baseline and repeats runs rather than trusting a single measurement",
+        "Ends with a concrete llama-server launch command"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "we're serving a Qwen2.5-14B Q5_K_M on one 24GB GPU via llama-server for a small team (~4 people using it at once). How should I configure --parallel and context, and how do I know if it's actually coping?",
+      "expected_output": "Explains --parallel slot allocation and that --ctx-size is total across slots (so per-slot = ctx/parallel), suggests a reference config, and describes checking the /metrics queue-depth and slot utilization to know when to add slots or switch to vLLM.",
+      "files": [],
+      "expectations": [
+        "Explains that --ctx-size is the total across all slots, not per slot",
+        "Recommends a --parallel value matched to the ~4 concurrent users",
+        "Mentions monitoring via --metrics (queue depth / slot utilization) or equivalent",
+        "Notes the ~5-10 concurrent user threshold where vLLM becomes the better choice"
+      ]
+    }
+  ]
+}
