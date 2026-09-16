@@ -17,3 +17,4 @@ golangci-lint 2.13.1
 redis-cli 8.2.2
 doppler 3.75.1
 uv 0.9.17
+gitleaks 8.30.1
