@@ -17,7 +17,6 @@ export default function (pi: ExtensionAPI) {
     );
     return;
   }
-  console.log("[vastai-base-url] ", url);
   pi.registerProvider("vastai", {
     name: "Vast.ai",
     baseUrl: url,
