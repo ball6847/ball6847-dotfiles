@@ -9,7 +9,6 @@ files="
     bashrc
     bash_aliases
     zshrc
-    npmrc
     direnvrc
     gitconfig
     xbindkeysrc

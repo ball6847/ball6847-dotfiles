@@ -125,7 +125,6 @@ $files = @(
     "bashrc"
     "bash_aliases"
     "profile"
-    "npmrc"
     "gitconfig"
     "config/nvim"
     "config/opencode"
