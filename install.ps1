@@ -133,6 +133,7 @@ $files = @(
     "pi/agent/models.json"
     "pi/agent/configs"
     "pi/agent/agents"
+    "pi/agent/extensions"
     "pi/agent/APPEND_SYSTEM.md"
     "pi/agent/keybindings.json"
     "prime/agent/settings.json"

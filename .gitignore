@@ -22,3 +22,7 @@ config/rio/config.toml
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Per-extension settings JSON written at runtime into ~/.pi/agent/extensions/
+# (symlinked to pi/agent/extensions, e.g. synthetic.json)
+pi/agent/extensions/*.json
