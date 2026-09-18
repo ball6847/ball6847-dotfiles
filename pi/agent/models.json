@@ -118,6 +118,7 @@
           "id": "bonsai2-27b",
           "name": "Bonsai 2 27B (ROCm llama.cpp)",
           "contextWindow": 196608,
+          "maxTokens": 196608,
           "reasoning": true,
           "compat": {
             "thinkingFormat": "chat-template",
