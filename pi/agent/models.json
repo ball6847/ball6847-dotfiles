@@ -113,6 +113,43 @@
             "repetition_penalty": 1.1,
             "min_p": 0.0
           }
+        },
+        {
+          "id": "bonsai2-27b",
+          "name": "Bonsai 2 27B (ROCm llama.cpp)",
+          "contextWindow": 196608,
+          "reasoning": true,
+          "compat": {
+            "thinkingFormat": "chat-template",
+            "chatTemplateKwargs": {
+              "enable_thinking": { "$var": "thinking.enabled" },
+              "preserve_thinking": true,
+              "reasoning_effort": { "$var": "thinking.effort", "omitWhenOff": true }
+            }
+          },
+          "thinkingLevelMap": {
+            "minimal": null,
+            "low": null,
+            "medium": "medium",
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
+          },
+          "input": ["text", "image"],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "samplingParams": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repetition_penalty": 1.0
+          }
         }
       ]
     },
