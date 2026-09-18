@@ -1,3 +1,11 @@
+## 0. Session Start: Activate i-have-adhd
+
+At the very beginning of every session, before responding to the first request, read `~/.agents/skills/i-have-adhd/SKILL.md` and apply it to every response for the rest of the session.
+
+- Do this automatically; do not wait to be asked and do not announce it at length.
+- It stays active across the whole session, including after topic changes.
+- Turn it off only when the user says "stop adhd mode" or "normal mode" — confirm in one line, then return to the default style.
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
