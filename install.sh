@@ -22,6 +22,7 @@ files="
     config/opencode
     config/git-commit-ai
     config/rio
+    config/ghostty
     config/vite
     config/agent-of-empires
     pi/agent/settings.json
