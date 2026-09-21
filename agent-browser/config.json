@@ -1,3 +1,4 @@
 {
-  "headed": true
+  "headed": true,
+  "args": ["--no-sandbox"]
 }
