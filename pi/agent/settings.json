@@ -1,12 +1,16 @@
 {
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.86.1",
   "defaultProvider": "zenmux",
   "defaultModel": "deepseek/deepseek-v4.1-flash",
   "defaultThinkingLevel": "high",
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": ["manual", "threshold", "overflow"]
+    "reasons": [
+      "manual",
+      "threshold",
+      "overflow"
+    ]
   },
   "thinkingBudgets": {
     "minimal": 1024,
