@@ -82,5 +82,5 @@
     "-skills/svelte-core-bestpractices/SKILL.md"
   ],
   "clearOnStart": true,
-  "hideThinkingBlock": true
+  "hideThinkingBlock": false
 }
