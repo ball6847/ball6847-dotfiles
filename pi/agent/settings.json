@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.86.1",
+  "lastChangelogVersion": "0.87.1",
   "defaultProvider": "zenmux",
   "defaultModel": "deepseek/deepseek-v4.1-flash",
   "defaultThinkingLevel": "high",
