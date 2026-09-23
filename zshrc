@@ -146,7 +146,7 @@ if is_termux; then
   export PATH="/data/data/com.termux/files/bin:/data/data/com.termux/files/usr/bin:/data/data/com.termux/files/home/.cargo/bin:$PATH"
 fi
 
-export WM_CONCURRENCY=16
+export WM_CONCURRENCY=8
 
 # =========================================================================
 # General aliases

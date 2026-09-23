@@ -46,4 +46,4 @@ conflictstyle = zdiff3
 [protocol "file"]
 	allow = always
 [submodule]
-	fetchJobs = 16
+	fetchJobs = 4
