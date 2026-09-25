@@ -145,6 +145,15 @@
       "skillFolderHash": "5f9aed51e473d34f38962ac270ada0b1e3ff2a4a",
       "installedAt": "2026-08-06T16:23:24.925Z",
       "updatedAt": "2026-08-06T16:23:24.925Z"
+    },
+    "revealjs-skill": {
+      "source": "podo/design-agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/podo/design-agent-skills.git",
+      "skillPath": "skills/revealjs-skill/SKILL.md",
+      "skillFolderHash": "8eafb017c7094ef936c6badc6d2e439535e44d7f",
+      "installedAt": "2026-09-25T07:58:44.787Z",
+      "updatedAt": "2026-09-25T07:58:44.787Z"
     }
   },
   "dismissed": {

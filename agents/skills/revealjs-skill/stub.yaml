@@ -1,0 +1,7 @@
+type: package
+tier: experimental
+category: presentations
+rank: 2
+upstream: https://github.com/ryanbbrown/revealjs-skill
+version: latest
+install_default: "/plugin marketplace add ryanbbrown/revealjs-skill"
