@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.87.1",
-  "defaultProvider": "synthetic",
-  "defaultModel": "hf:deepseek-ai/DeepSeek-V4.1-Flash",
+  "defaultProvider": "zenmux",
+  "defaultModel": "meta/muse-spark-1.3",
   "defaultThinkingLevel": "high",
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",

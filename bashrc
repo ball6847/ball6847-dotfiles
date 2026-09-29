@@ -210,4 +210,4 @@ eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
 # Added by MiniMax Code
-export PATH="/home/ball6847/.minimax/bin:$PATH"
+export PATH="/Users/ball6847/.minimax/bin:$PATH"

@@ -489,3 +489,6 @@ fi
 path=("$HOME/.qoder/entry" ${path:#"$HOME/.qoder/entry"})
 export PATH
 # END QODER_DISPATCHER_PATH v1
+
+# Added by MiniMax Code
+export PATH="/Users/ball6847/.minimax/bin:$PATH"
