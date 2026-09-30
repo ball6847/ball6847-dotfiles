@@ -1,5 +1,5 @@
 {
-  "model": "zenmux/google/gemma-4-31b-it",
+  "model": "zenmux/deepseek/deepseek-v4.1-flash",
   "providers": {
     "synthetic": {
       "npm": "@ai-sdk/openai-compatible",
