@@ -492,3 +492,6 @@ export PATH
 
 # Added by MiniMax Code
 export PATH="/Users/ball6847/.minimax/bin:$PATH"
+
+# MiniMax Code CLI
+export PATH="/Users/ball6847/.minimax-code/bin:$PATH"
