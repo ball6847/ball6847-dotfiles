@@ -26,3 +26,6 @@ __pycache__/
 # Per-extension settings JSON written at runtime into ~/.pi/agent/extensions/
 # (symlinked to pi/agent/extensions, e.g. synthetic.json)
 pi/agent/extensions/*.json
+
+# ...but committed placeholder templates stay tracked (no real endpoint in them).
+!pi/agent/extensions/*.example.json
