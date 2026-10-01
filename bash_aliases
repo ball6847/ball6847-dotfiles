@@ -118,6 +118,10 @@ alias muse="muse --yolo"
 alias oc="opencode"
 alias p="pi"
 alias pa="prime-agent"
+# list pi models as provider/model, one per line
+pim() {
+  pi --list-models 2>/dev/null | tail -n +2 | awk '{print $1"/"$2}'
+}
 alias qodercli='qodercli --yolo'
 alias qw="qwen --yolo"
 alias vb="vibe --agent auto-approve"
