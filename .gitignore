@@ -29,3 +29,9 @@ pi/agent/extensions/*.json
 
 # ...but committed placeholder templates stay tracked (no real endpoint in them).
 !pi/agent/extensions/*.example.json
+
+# The real Vast.ai config (live endpoint + API key) belongs at
+# ~/.pi/agent/vastai-base-url.json, which is outside this repo entirely.
+# Catch it anywhere it is mistakenly created inside the worktree.
+# Basename-only, so it does not match *.example.json above.
+vastai-base-url.json
