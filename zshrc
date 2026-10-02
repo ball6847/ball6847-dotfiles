@@ -139,6 +139,8 @@ export PI_LENS_FORMAT_ENABLED=false
 export PI_STYLED_OUTPUTS_DISABLED=1
 export PATH="/opt/homebrew/bin:/usr/local/bin:$SUDO_HOME/.dotfiles/bin:$SUDO_HOME/.local/bin:$ASDF_DATA_DIR/shims:$ASDF_RUST_DIR/bin:$SUDO_HOME/.composer/vendor/bin:$SUDO_HOME/.config/composer/vendor/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/mnt/c/Users/ball6/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin:$SUDO_HOME/.exo/bin:$SUDO_HOME/.opencode/bin:$SUDO_HOME/.bun/bin:$SUDO_HOME/.kimi-code/bin:$PATH"
 export TMUX_VERSION=$(tmux -V | grep -o '[0-9]\+\.[0-9]\+' | head -1)
+export TMUX_AGENT_LABEL_MODEL="zenmux/deepseek/deepseek-v4.1-flash"
+export TMUX_AGENT_LABEL_EXTENSION="~/.pi/agent/git/github.com/ball6847/pi-zenmux"
 # export GIT_COMMIT_AI_MODEL="ollama-cloud/devstral-small-2:24b"
 
 # Set up PATH for Termux if we're in a Termux session
