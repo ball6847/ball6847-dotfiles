@@ -1,5 +1,10 @@
 {
   "providers": {
+    "xiaomi-token-plan-sgp": {
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      }
+    },
     "synthetic": {
       "compat": {
         "sendSessionAffinityHeaders": true
@@ -125,7 +130,10 @@
             "chatTemplateKwargs": {
               "enable_thinking": { "$var": "thinking.enabled" },
               "preserve_thinking": true,
-              "reasoning_effort": { "$var": "thinking.effort", "omitWhenOff": true }
+              "reasoning_effort": {
+                "$var": "thinking.effort",
+                "omitWhenOff": true
+              }
             }
           },
           "thinkingLevelMap": {
