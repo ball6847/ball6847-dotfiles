@@ -64,6 +64,7 @@
   "theme": "slop",
   "diffTheme": "ayu-dark",
   "quietStartup": true,
+  "shellCommandPrefix": "[ -f \"$HOME/.lzshrc\" ] && source \"$HOME/.lzshrc\"",
   "skills": [
     "-skills/agent-browser/SKILL.md",
     "-skills/qa-test-planner/SKILL.md",
