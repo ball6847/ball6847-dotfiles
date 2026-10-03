@@ -6,7 +6,11 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": ["manual", "threshold", "overflow"]
+    "reasons": [
+      "manual",
+      "threshold",
+      "overflow"
+    ]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -55,7 +59,8 @@
     "npm:pi-cache-optimizer",
     "npm:@harms-haus/pi-til-done",
     "npm:pi-meta-oauth",
-    "npm:pi-loop-mode"
+    "npm:pi-loop-mode",
+    "https://github.com/monotykamary/pi-double-esc@main"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
