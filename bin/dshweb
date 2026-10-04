@@ -1,0 +1,85 @@
+#!/bin/bash
+# dshweb — boot dsh web exposed over the Tailscale tailnet, tear both down on exit.
+#
+# dsh web refuses --host 0.0.0.0 (by design), so it stays on 127.0.0.1 and
+# tailscale serve forwards the tailnet to it. Only tailnet members can reach it.
+# Usage:  dshweb [extra dsh web args...]
+# Env:    DSH_WEB_PORT  listen port (default 3080)
+# Ctrl+C  kills dsh and removes the serve entry (existing entries untouched).
+
+set -euo pipefail
+
+PORT="${DSH_WEB_PORT:-3080}"
+TS_BIN="$(command -v tailscale || echo /Applications/Tailscale.app/Contents/MacOS/tailscale)"
+
+# --- preflight -------------------------------------------------------------
+hostname=$("$TS_BIN" status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')
+ts_ip=$("$TS_BIN" status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')
+if [ -z "$hostname" ] || [ -z "$ts_ip" ]; then
+    echo "Error: Could not detect Tailscale hostname/IP. Is tailscale running?" >&2
+    exit 1
+fi
+command -v dsh >/dev/null 2>&1 || { echo "Error: dsh not found in PATH." >&2; exit 1; }
+if lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+    echo "Error: port $PORT is already in use (another dsh web running?)." >&2
+    exit 1
+fi
+
+LOG="$(mktemp -t dshweb)"
+DSH_PID=""
+SERVE_ADDED=0
+
+cleanup() {
+    trap - EXIT INT TERM
+    if [ -n "$DSH_PID" ] && kill -0 "$DSH_PID" 2>/dev/null; then
+        kill "$DSH_PID" 2>/dev/null || true
+        wait "$DSH_PID" 2>/dev/null || true
+    fi
+    if [ "$SERVE_ADDED" = 1 ]; then
+        "$TS_BIN" serve --tcp="$PORT" off >/dev/null 2>&1 || true
+    fi
+    rm -f "$LOG"
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+# --- start dsh on loopback, capture its token URL --------------------------
+# --trusted-host entries are port-less, so they match any port (incl. a later
+# switch to tailscale serve HTTPS on 443).
+dsh web --no-open --port "$PORT" \
+    --trusted-host "$hostname" --trusted-host "$ts_ip" \
+    "$@" >"$LOG" 2>&1 &
+DSH_PID=$!
+
+token=""
+for _ in $(seq 1 120); do
+    if ! kill -0 "$DSH_PID" 2>/dev/null; then
+        echo "Error: dsh exited during startup. Log tail:" >&2
+        tail -20 "$LOG" >&2
+        exit 1
+    fi
+    if grep -q '^dsh web: ' "$LOG"; then
+        token=$(grep -m1 '^dsh web: ' "$LOG" | sed 's/.*[?&]token=//; s/[& ].*//')
+        break
+    fi
+    sleep 0.5
+done
+if [ -z "$token" ]; then
+    echo "Error: timed out waiting for dsh web startup URL. Log tail:" >&2
+    tail -20 "$LOG" >&2
+    exit 1
+fi
+
+# --- forward the tailnet to loopback (surgical: only our port) -------------
+"$TS_BIN" serve --bg --tcp="$PORT" "tcp://localhost:$PORT" >/dev/null
+SERVE_ADDED=1
+
+echo "================================================"
+echo "dsh web (Tailscale, tailnet-only):"
+echo "http://$hostname:$PORT/?token=$token"
+echo "  fallback: http://$ts_ip:$PORT/?token=$token"
+echo "================================================"
+echo "Press Ctrl+C to stop dsh and remove the serve entry."
+
+wait "$DSH_PID" || true
