@@ -175,10 +175,18 @@
       },
       "models": [
         {
-          "id": "muse-glimmer",
-          "name": "Muse Glimmer (Vast.ai RTX 5090 POC)",
-          "contextWindow": 131072,
+          "id": "qwen-3.8-flash-next",
+          "name": "Qwen 3.8 Flash Next",
+          "contextWindow": 264000,
           "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh",
+            "xhigh": "xhigh"
+          },
           "input": ["text"],
           "cost": {
             "input": 0,
@@ -218,36 +226,6 @@
           },
           "samplingParams": {
             "temperature": 0.6,
-            "top_p": 0.9,
-            "top_k": 40,
-            "presence_penalty": 1.2,
-            "repetition_penalty": 1.1,
-            "min_p": 0.0
-          }
-        },
-        {
-          "id": "jack-3.8-27b-coder",
-          "name": "Jack-3.8-27B-Coder (Vast.ai RTX 5090 POC)",
-          "contextWindow": 196608,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none",
-            "minimal": "low",
-            "low": "low",
-            "medium": "medium",
-            "high": "xhigh",
-            "xhigh": "xhigh",
-            "max": "xhigh"
-          },
-          "input": ["text"],
-          "cost": {
-            "input": 0,
-            "output": 0,
-            "cacheRead": 0,
-            "cacheWrite": 0
-          },
-          "samplingParams": {
-            "temperature": 0.4,
             "top_p": 0.9,
             "top_k": 40,
             "presence_penalty": 1.2,
