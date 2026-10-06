@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.0.2",
+  "lastChangelogVersion": "1.0.4",
   "defaultProvider": "meta",
   "defaultModel": "muse-spark-1.3",
   "defaultThinkingLevel": "high",
@@ -60,7 +60,9 @@
     "npm:@harms-haus/pi-til-done",
     "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
-    "https://github.com/monotykamary/pi-double-esc@main"
+    "https://github.com/monotykamary/pi-double-esc@main",
+    "npm:pi-goal-x",
+    "npm:pi-loop-police"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
