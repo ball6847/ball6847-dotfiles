@@ -6,11 +6,7 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -20,7 +16,6 @@
   },
   "packages": [
     "git:github.com/ball6847/pi-diff@main",
-    "npm:pi-undo-redo",
     "npm:pi-exit-command",
     {
       "source": "https://github.com/gsanhueza/pi-token-speed",
