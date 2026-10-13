@@ -1,16 +1,12 @@
 {
-  "lastChangelogVersion": "1.1.0",
-  "defaultProvider": "muse-rocm",
-  "defaultModel": "qwen3.8-27b",
+  "lastChangelogVersion": "1.2.0",
+  "defaultProvider": "xiaomi-token-plan-sgp",
+  "defaultModel": "mimo-v2.6-flash",
   "defaultThinkingLevel": "high",
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -85,5 +81,5 @@
     "-skills/svelte-core-bestpractices/SKILL.md"
   ],
   "clearOnStart": true,
-  "hideThinkingBlock": false
+  "hideThinkingBlock": true
 }
