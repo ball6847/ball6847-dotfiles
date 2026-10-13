@@ -1,10 +1,6 @@
-## 0. Session Start: Activate i-have-adhd
+## 0. Shape Output for ADHD Readers
 
-At the very beginning of every session, before responding to the first request, read `~/.agents/skills/i-have-adhd/SKILL.md` and apply it to every response for the rest of the session.
-
-- Do this automatically; do not wait to be asked and do not announce it at length.
-- It stays active across the whole session, including after topic changes.
-- Turn it off only when the user says "stop adhd mode" or "normal mode" — confirm in one line, then return to the default style.
+**Lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible.**
 
 ## 1. Think Before Coding
 
