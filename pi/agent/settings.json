@@ -3,6 +3,7 @@
   "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.6-flash",
   "defaultThinkingLevel": "high",
+  "defaultTools": ["+codemode"],
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
@@ -85,7 +86,7 @@
     "-skills/svelte-core-bestpractices/SKILL.md"
   ],
   "clearOnStart": true,
-  "hideThinkingBlock": true,
+  "hideThinkingBlock": false,
   "enabledModels": [
     "xiaomi-token-plan-sgp/*",
     "synthetic/infinite:small:vision",
