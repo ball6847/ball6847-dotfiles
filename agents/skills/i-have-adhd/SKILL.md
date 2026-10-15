@@ -8,6 +8,7 @@ metadata:
     tags: [ADHD, Output Style, Productivity, Formatting]
     category: productivity
     related_skills: []
+pinned: true
 ---
 
 # i-have-adhd
@@ -50,6 +51,7 @@ Use the fewest steps that still work. Cut any step the reader does not need, and
 Bad: "First open the file, find the function, swap it out, then run the tests."
 
 Good:
+
 ```
 1. Open `src/auth.ts`
 2. Replace `verifyToken` (lines 42 to 58) with the snippet below

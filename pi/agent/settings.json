@@ -6,7 +6,11 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": ["manual", "threshold", "overflow"]
+    "reasons": [
+      "manual",
+      "threshold",
+      "overflow"
+    ]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -57,7 +61,8 @@
     "https://github.com/monotykamary/pi-double-esc@main",
     "npm:pi-goal-x",
     "npm:pi-loop-police",
-    "npm:pi-hermes-memory"
+    "npm:pi-hermes-memory",
+    "npm:pi-skill-palette"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
@@ -80,5 +85,23 @@
     "-skills/svelte-core-bestpractices/SKILL.md"
   ],
   "clearOnStart": true,
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "enabledModels": [
+    "xiaomi-token-plan-sgp/*",
+    "synthetic/infinite:small:vision",
+    "synthetic/hf:zai-org/GLM-5.3",
+    "synthetic/hf:zai-org/GLM-5.3-Flash",
+    "synthetic/hf:deepseek-ai/DeepSeek-V4.1-Flash",
+    "synthetic/hf:moonshotai/Kimi-K3",
+    "synthetic/hf:Qwen/Qwen3.8-27B",
+    "synthetic/hf:zai-org/GLM-4.7-Flash",
+    "synthetic/hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+    "muse-rocm/qwen3.8-27b",
+    "muse-rocm/tiel-coder-35b-a3b-mtp",
+    "vastai-serverless/*",
+    "inco-ai/*",
+    "zenmux/qwen/qwen3.7-flash",
+    "zenmux/deepseek/deepseek-v4.1-flash",
+    "zenmux/openai/gpt-6-luna"
+  ]
 }

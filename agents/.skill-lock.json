@@ -173,6 +173,15 @@
       "skillFolderHash": "1dec83cee40e4c86be926bea6b40482dfda8d593",
       "installedAt": "2026-10-12T07:41:57.525Z",
       "updatedAt": "2026-10-12T07:41:57.525Z"
+    },
+    "git-issues": {
+      "source": "steviee/git-issues",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/steviee/git-issues.git",
+      "skillPath": "skills/git-issues/SKILL.md",
+      "skillFolderHash": "817f68644f3c906d8d9758f7cc544917a0de40c7",
+      "installedAt": "2026-10-15T04:24:02.205Z",
+      "updatedAt": "2026-10-15T04:24:02.205Z"
     }
   },
   "dismissed": {
