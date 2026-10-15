@@ -3,7 +3,9 @@
   "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.6-flash",
   "defaultThinkingLevel": "high",
-  "defaultTools": ["+codemode"],
+  "defaultTools": [
+    "+codemode"
+  ],
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
@@ -103,10 +105,8 @@
     "inco-ai/*",
     "zenmux/qwen/qwen3.7-flash",
     "zenmux/deepseek/deepseek-v4.1-flash",
-    "zenmux/openai/gpt-6-luna"
-  ],
-  "defaultTools": [
-    "+codemode"
+    "zenmux/openai/gpt-6-luna",
+    "zenmux/z-ai/glm-5.3-flash"
   ],
   "codemode": {
     "mode": "only"
