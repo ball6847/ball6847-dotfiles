@@ -106,7 +106,8 @@
     "zenmux/qwen/qwen3.7-flash",
     "zenmux/deepseek/deepseek-v4.1-flash",
     "zenmux/openai/gpt-6-luna",
-    "zenmux/z-ai/glm-5.3-flash"
+    "zenmux/z-ai/glm-5.3-flash",
+    "strata/qwen3.8-flash-next-coder-iq1_m"
   ],
   "codemode": {
     "mode": "only"
