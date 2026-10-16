@@ -3,17 +3,10 @@
   "defaultProvider": "xiaomi-token-plan-sgp",
   "defaultModel": "mimo-v2.6-flash",
   "defaultThinkingLevel": "high",
-  "defaultTools": [
-    "+codemode"
-  ],
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -109,7 +102,5 @@
     "zenmux/z-ai/glm-5.3-flash",
     "strata/qwen3.8-flash-next-coder-iq1_m"
   ],
-  "codemode": {
-    "mode": "only"
-  }
+  "showCacheMissNotices": true
 }
