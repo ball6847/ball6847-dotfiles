@@ -103,7 +103,6 @@
     "zenmux/deepseek/deepseek-v4.1-flash",
     "zenmux/openai/gpt-6-luna",
     "zenmux/z-ai/glm-5.3-flash",
-    "strata/qwen3.8-flash-next-coder-iq1_m",
-    "lemonade/E:\\LlamaCppWindowsManager\\hub/models--LiquidAI--LFM2-24B-A2B-GGUF\\snapshots\\6247d03b87c27c05a258feb5acdfb4d5efbf0bd8\\LFM2-24B-A2B-Q4_K_M.gguf"
+    "lemonade/*"
   ]
 }
