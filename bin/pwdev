@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+# pwdev — build a pi-web worktree and serve it over the tailnet.
+#
+# Serves the CURRENT directory when it is a pi-web checkout, otherwise the main
+# checkout. Binds 0.0.0.0 and allows the Tailscale hostnames, so the UI is
+# reachable at http://<tailscale-hostname>:9998 over the tailnet/LAN. No funnel.
+#
+# Usage:
+#   pwdev                  serve the worktree, building only if not yet built
+#   pwdev --build          rebuild first, then serve
+#   pwdev --dir <path>     operate on <path> instead of the current directory
+#   pwdev <extra args...>  forwarded to pi-web (e.g. --no-open)
+#
+# Env:
+#   PWDEV_PORT             listen port (default 9998)
+#   PWDEV_DIR              worktree to build and serve (default: $PWD)
+
+set -euo pipefail
+
+PORT="${PWDEV_PORT:-9998}"
+DEFAULT_DIR="${PWDEV_DIR:-$HOME/Projects/personal/pi-web}"
+TS_BIN="$(command -v tailscale || echo /Applications/Tailscale.app/Contents/MacOS/tailscale)"
+
+command -v node >/dev/null 2>&1 || { echo "pwdev: node not found in PATH." >&2; exit 1; }
+command -v npm  >/dev/null 2>&1 || { echo "pwdev: npm not found in PATH." >&2; exit 1; }
+
+# --- arguments -------------------------------------------------------------
+do_build=0
+dir=""
+pass=()
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --build)
+            do_build=1
+            shift
+            ;;
+        --dir)
+            if [ $# -lt 2 ] || [ -z "${2:-}" ]; then
+                echo "pwdev: --dir needs a path." >&2
+                exit 2
+            fi
+            dir="$2"
+            shift 2
+            ;;
+        --dir=*)
+            dir="${1#--dir=}"
+            [ -n "$dir" ] || { echo "pwdev: --dir needs a path." >&2; exit 2; }
+            shift
+            ;;
+        *)
+            pass+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# --- pick the worktree: --dir, else the current dir, else the main checkout --
+is_checkout() { [ -f "$1/bin/pi-web.js" ]; }
+
+if [ -n "$dir" ]; then
+    WORKTREE="$(cd "$dir" 2>/dev/null && pwd)" || {
+        echo "pwdev: no such directory: $dir" >&2
+        exit 1
+    }
+elif is_checkout "$PWD"; then
+    WORKTREE="$PWD"
+elif is_checkout "$DEFAULT_DIR"; then
+    WORKTREE="$DEFAULT_DIR"
+else
+    echo "pwdev: not a pi-web checkout." >&2
+    echo "  cd into one, or use --dir <path> (checked: $PWD, $DEFAULT_DIR)." >&2
+    exit 1
+fi
+
+cd "$WORKTREE"
+is_checkout "$WORKTREE" || {
+    echo "pwdev: $WORKTREE has no bin/pi-web.js — not a pi-web checkout." >&2
+    exit 1
+}
+
+# --- port preflight --------------------------------------------------------
+if lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+    echo "pwdev: port $PORT is already in use. Stop that server or set PWDEV_PORT." >&2
+    exit 1
+fi
+
+echo "worktree: $WORKTREE"
+
+# --- dependencies ----------------------------------------------------------
+if [ ! -d ./node_modules ]; then
+    echo "=== Installing dependencies (npm install) ==="
+    npm install
+fi
+
+# --- build -----------------------------------------------------------------
+if [ "$do_build" -eq 1 ] || [ ! -f ./.next/BUILD_ID ]; then
+    if [ -d ./.next/dev ]; then
+        echo "note: .next/dev exists — a build may disturb a running 'next dev' here." >&2
+    fi
+    echo "=== Building pi-web (npm run build) ==="
+    npm run build
+else
+    echo "=== Using existing build (.next/BUILD_ID) — pass --build to force ==="
+fi
+
+# --- resolve tailscale names to allow --------------------------------------
+fqdn="$("$TS_BIN" status --json 2>/dev/null | jq -r '.Self.DNSName // empty' | sed 's/\.$//')"
+ts_ip="$("$TS_BIN" status --json 2>/dev/null | jq -r '.TailscaleIPs[0] // empty')"
+
+if [ -n "$fqdn" ]; then
+    short="${fqdn%%.*}"
+    allowed="$short,$fqdn"
+    [ -n "$ts_ip" ] && allowed="$allowed,$ts_ip"
+    echo "================================================"
+    echo "pi-web (local build) URL:"
+    echo "http://$short:$PORT"
+    echo "  fallback: http://$ts_ip:$PORT"
+    echo "================================================"
+    PI_WEB_ALLOWED_HOSTS="$allowed" exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 "${pass[@]}"
+else
+    echo "Warning: Tailscale is not running. Falling back to 0.0.0.0" >&2
+    echo "================================================"
+    echo "pi-web (local build) URL:"
+    echo "http://0.0.0.0:$PORT"
+    echo "================================================"
+    exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 "${pass[@]}"
+fi
