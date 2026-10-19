@@ -11,8 +11,8 @@ run_in_background: false
 prompt_mode: append
 skills: false
 extensions: false
-model: muse-rocm/tiel-coder-35b-a3b-mtp
-thinking: max
+model: lemonade/tiel-coder
+thinking: high
 ---
 
 Explore the codebase to answer the delegated question. Do not modify files. Report concrete findings with file paths and relevant symbols.

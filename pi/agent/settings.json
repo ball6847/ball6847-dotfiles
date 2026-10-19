@@ -58,10 +58,7 @@
     "npm:pi-cache-optimizer",
     "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
-    "https://github.com/monotykamary/pi-double-esc@main",
-    "npm:pi-goal-x",
-    "npm:pi-loop-police",
-    "npm:pi-hermes-memory"
+    "https://github.com/monotykamary/pi-double-esc@main"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",

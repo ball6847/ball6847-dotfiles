@@ -29,3 +29,18 @@ These rules apply to every response for the rest of the session.
 ## Pre-send check
 
 If the reader reads only the first and last line, do they know (a) what to do next and (b) what just happened? If yes, send.
+
+## Subagents
+
+The Agent tool has fixed types. Choose explicitly each call; the harness never auto-selects.
+
+| subagent_type | Use it for |
+|---|---|
+| `explore-codebase` | Read-only inspection that must return concrete findings (file paths, symbols) |
+| `plan` | Designing an implementation plan / architecture before coding |
+| `builder` | Implementing features or fixes against a predefined plan |
+| `reviewer` | Reviewing a build against a plan, producing a review report |
+| `general` | General research or multi-step work needing several parallel units |
+| `builder` + `reviewer` in a loop | Orchestrate build-review cycles with quality gates (`orchestrator`) |
+
+Delegation rule: delegate only for work that benefits from an isolated context — a focused task, or independent units worth running in parallel (`run_in_background: true`). Do not spawn one for chit-chat or trivial reads you can do inline.
