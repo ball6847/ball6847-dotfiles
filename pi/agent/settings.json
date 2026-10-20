@@ -58,7 +58,8 @@
     "npm:pi-cache-optimizer",
     "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
-    "https://github.com/monotykamary/pi-double-esc@main"
+    "https://github.com/monotykamary/pi-double-esc@main",
+    "npm:pi-prefix-cache-compaction"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
