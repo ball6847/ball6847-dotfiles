@@ -9,7 +9,7 @@
 #   pwdev                  serve the worktree, building only if not yet built
 #   pwdev --build          rebuild first, then serve
 #   pwdev --dir <path>     operate on <path> instead of the current directory
-#   pwdev <extra args...>  forwarded to pi-web (e.g. --no-open)
+#   pwdev <extra args...>  forwarded to pi-web (browser never auto-opens)
 #
 # Env:
 #   PWDEV_PORT             listen port (default 9998)
@@ -117,12 +117,12 @@ if [ -n "$fqdn" ]; then
     echo "http://$short:$PORT"
     echo "  fallback: http://$ts_ip:$PORT"
     echo "================================================"
-    PI_WEB_ALLOWED_HOSTS="$allowed" exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 "${pass[@]}"
+    PI_WEB_ALLOWED_HOSTS="$allowed" exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 --no-open "${pass[@]}"
 else
     echo "Warning: Tailscale is not running. Falling back to 0.0.0.0" >&2
     echo "================================================"
     echo "pi-web (local build) URL:"
     echo "http://0.0.0.0:$PORT"
     echo "================================================"
-    exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 "${pass[@]}"
+    exec node ./bin/pi-web.js -p "$PORT" -H 0.0.0.0 --no-open "${pass[@]}"
 fi
