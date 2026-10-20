@@ -31,7 +31,10 @@
             "output": 0
           },
           "id": "muse-glimmer-30b",
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "maxTokens": 8192,
           "name": "Muse-Glimmer 30B (ROCm llama.cpp)",
           "reasoning": true,
@@ -58,7 +61,10 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "cost": {
             "input": 0,
             "output": 0,
@@ -88,7 +94,9 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "cost": {
             "input": 0,
             "output": 0,
@@ -109,7 +117,10 @@
           "name": "Tiel-Coder 35B-A3B-MTP (ROCm llama.cpp)",
           "contextWindow": 131072,
           "reasoning": true,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "samplingParams": {
             "temperature": 0.4,
             "top_p": 0.9,
@@ -146,7 +157,10 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "cost": {
             "input": 0,
             "output": 0,
@@ -189,7 +203,9 @@
             "high": "xhigh",
             "xhigh": "xhigh"
           },
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "cost": {
             "input": 0,
             "output": 0,
@@ -219,7 +235,9 @@
             "xhigh": "xhigh",
             "max": "xhigh"
           },
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "cost": {
             "input": 0,
             "output": 0,
@@ -254,7 +272,10 @@
         {
           "contextWindow": 262144,
           "id": "qwen3-8-27b",
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "maxTokens": 32768,
           "name": "Qwen3.8 27B (EmpirioLabs)",
           "reasoning": true,
@@ -264,7 +285,10 @@
         {
           "contextWindow": 131072,
           "id": "muse-glimmer-30b",
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "maxTokens": 32768,
           "name": "Muse Glimmer 30B (EmpirioLabs)",
           "reasoning": true,
@@ -274,7 +298,10 @@
         {
           "contextWindow": 1048576,
           "id": "glm-5-3-flash",
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "maxTokens": 131072,
           "name": "GLM 5.3 Flash (EmpirioLabs)",
           "reasoning": true,
@@ -372,7 +399,10 @@
           "contextWindow": 1048576,
           "reasoning": true,
           "tool_call": true,
-          "input": ["text", "image"]
+          "input": [
+            "text",
+            "image"
+          ]
         },
         {
           "id": "deepseek-v4.1-flash",
@@ -380,7 +410,10 @@
           "contextWindow": 1048576,
           "reasoning": true,
           "tool_call": true,
-          "input": ["text", "image"]
+          "input": [
+            "text",
+            "image"
+          ]
         },
         {
           "id": "glm-5.3",
@@ -433,7 +466,10 @@
             "cacheRead": 0.3,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -454,7 +490,10 @@
             "cacheRead": 0.03,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -475,7 +514,10 @@
             "cacheRead": 0.006,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -496,7 +538,10 @@
             "cacheRead": 0.6,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -517,7 +562,10 @@
             "cacheRead": 0.012,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -538,7 +586,10 @@
             "cacheRead": 0.26,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -559,7 +610,10 @@
             "cacheRead": 0.52,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -580,7 +634,10 @@
             "cacheRead": 0.06,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -601,7 +658,10 @@
             "cacheRead": 0.06,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
@@ -622,7 +682,10 @@
             "cacheRead": 0.12,
             "cacheWrite": 0
           },
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "thinkingLevelMap": {
             "minimal": "minimal",
             "low": "low",
