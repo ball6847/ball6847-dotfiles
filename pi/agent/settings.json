@@ -6,11 +6,7 @@
   "compactionModel": {
     "model": "zenmux/inclusionai/ling-3.0-tiny",
     "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
+    "reasons": ["manual", "threshold", "overflow"]
   },
   "thinkingBudgets": {
     "minimal": 1024,
@@ -100,7 +96,6 @@
     "zenmux/deepseek/deepseek-v4.1-flash",
     "zenmux/openai/gpt-6-luna",
     "zenmux/z-ai/glm-5.3-flash",
-    "lemonade/*",
-    "dgx-spark/*"
+    "lemonade/*"
   ]
 }
