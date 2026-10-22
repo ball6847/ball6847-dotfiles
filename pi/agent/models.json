@@ -723,6 +723,20 @@
             "minimal": null,
             "high": "xhigh"
           }
+        },
+        {
+          "id": "k2-horizon",
+          "contextWindow": 131072,
+          "reasoning": true
+        },
+        {
+          "id": "minicpm-v4.7",
+          "contextWindow": 131072,
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ]
         }
       ]
     }

@@ -101,7 +101,9 @@
     "zenmux/deepseek/deepseek-v4.1-flash",
     "zenmux/openai/gpt-6-luna",
     "zenmux/z-ai/glm-5.3-flash",
-    "lemonade/*",
-    "synthetic/syn:large:text"
+    "synthetic/syn:large:text",
+    "lemonade/tiel-coder",
+    "lemonade/qwen-3.8-27b",
+    "lemonade/minicpm-v4.7"
   ]
 }
