@@ -32,6 +32,7 @@ files="
     pi/agent/extensions
     pi/agent/APPEND_SYSTEM.md
     pi/agent/keybindings.json
+    pi/agent/mcode-token.mjs
     prime/agent/settings.json
     prime/agent/models.json
     prime/agent/keybindings.json

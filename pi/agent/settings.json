@@ -104,6 +104,7 @@
     "synthetic/syn:large:text",
     "lemonade/tiel-coder",
     "lemonade/qwen-3.8-27b",
-    "lemonade/minicpm-v4.7"
+    "lemonade/minicpm-v4.7",
+    "mcode/*"
   ]
 }
