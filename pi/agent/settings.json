@@ -19,6 +19,7 @@
     "high": 32768
   },
   "packages": [
+    "./extensions/goal-root-per-session.ts",
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-exit-command",
     {
@@ -59,7 +60,8 @@
     "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
     "https://github.com/monotykamary/pi-double-esc@main",
-    "npm:pi-prefix-cache-compaction"
+    "npm:pi-prefix-cache-compaction",
+    "npm:pi-goal-x"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
