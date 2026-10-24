@@ -20,6 +20,7 @@
  */
 import type { ExtensionAPI, ProviderConfig } from "@earendil-works/pi-coding-agent";
 import type { OAuthCredentials, OAuthLoginCallbacks } from "@earendil-works/pi-ai";
+import { anthropicMessagesApi } from "@earendil-works/pi-ai/compat";
 import {
 	apiBaseUrlFor,
 	DEFAULT_REGION,
@@ -38,6 +39,7 @@ import {
 	type McodeGrant,
 } from "./oauth.ts";
 import { cliNamespace, readCliCredential, saveToCliStore } from "./store.ts";
+import { createRetryFetch } from "./transport.ts";
 import { MCODE_MODELS } from "./models.ts";
 
 /** Mirroring into the CLI store can be disabled with MCODE_MIRROR_CLI=0. */
@@ -47,6 +49,15 @@ function mirroringEnabled(): boolean {
 
 let registeredRegion: McodeRegion | undefined;
 let extensionApi: ExtensionAPI | undefined;
+
+/**
+ * The freshest grant this process knows about.
+ *
+ * pi's credential store holds the canonical token, but a 401 retry mints a new
+ * one that pi does not know about yet. getApiKey() hands this token to pi so
+ * the next request does not repeat the failed round trip.
+ */
+let latestGrant: McodeGrant | undefined;
 
 /** Region the provider is currently registered for. */
 async function detectRegion(): Promise<McodeRegion> {
@@ -64,6 +75,60 @@ async function detectRegion(): Promise<McodeRegion> {
 	return best ?? DEFAULT_REGION;
 }
 
+const anthropic = anthropicMessagesApi();
+
+/**
+ * Mint a new access token after the server rejected the current one.
+ *
+ * The mirror store holds the freshest rotated refresh token (the `mcode` CLI
+ * writes the same file), so it is tried first; the in-memory grant is the
+ * fallback when mirroring is disabled.
+ */
+let refreshInFlight: Promise<string | undefined> | undefined;
+
+async function forceRefreshToken(): Promise<string | undefined> {
+	if (refreshInFlight) return refreshInFlight;
+	refreshInFlight = (async () => {
+		const region = registeredRegion ?? DEFAULT_REGION;
+		const config = regionConfig(region);
+		const stored = await readCliCredential(region).catch(() => undefined);
+		const candidates = [stored?.refreshToken, latestGrant?.refreshToken].filter(
+			(value): value is string => Boolean(value),
+		);
+		for (const refreshToken of new Set(candidates)) {
+			try {
+				const grant = await refreshAccessToken(
+					config,
+					refreshToken,
+					undefined,
+					stored?.scopes ?? latestGrant?.scopes,
+				);
+				latestGrant = grant;
+				await mirror(grant, region);
+				return grant.accessToken;
+			} catch {
+				// Try the next candidate refresh token.
+			}
+		}
+		return undefined;
+	})();
+	try {
+		return await refreshInFlight;
+	} finally {
+		refreshInFlight = undefined;
+	}
+}
+
+/**
+ * Replay a request that the account service answered with 401.
+ *
+ * The token was rotated away or revoked - pi would not recover on its own
+ * because it only refreshes inside the 5-minute expiry window.
+ */
+function providerFetch(base: typeof globalThis.fetch) {
+	return createRetryFetch(base, forceRefreshToken);
+}
+
 function providerConfig(region: McodeRegion): ProviderConfig {
 	return {
 		name: MCODE_PROVIDER_NAME,
@@ -73,12 +138,28 @@ function providerConfig(region: McodeRegion): ProviderConfig {
 		// The catalog lives in the extension: pi-web's Models panel rewrites
 		// models.json and would otherwise leave the provider without models.
 		models: MCODE_MODELS,
+		// Same Anthropic adapter pi uses, but with a transport that recovers
+		// from a rejected access token.
+		streamSimple: (model, context, options) =>
+			anthropic.streamSimple(model, context, {
+				...options,
+				fetch: providerFetch(options?.fetch ?? globalThis.fetch),
+			}),
 		oauth: {
 			name: MCODE_PROVIDER_NAME,
 			isSubscription: true,
 			login: loginMcode,
 			refreshToken: refreshMcodeToken,
-			getApiKey: (credentials: OAuthCredentials) => credentials.access,
+			// Prefer the in-memory grant when it is the newer of the two: a 401
+			// retry mints a token that pi's credential store does not have yet.
+			getApiKey: (credentials: OAuthCredentials) => {
+				const grant = latestGrant;
+				if (!grant) return credentials.access;
+				if (typeof credentials.expires === "number" && credentials.expires > grant.expiresAtMs) {
+					return credentials.access;
+				}
+				return grant.accessToken;
+			},
 		},
 	};
 }
@@ -169,6 +250,7 @@ async function loginMcode(callbacks: OAuthLoginCallbacks): Promise<OAuthCredenti
 				};
 				await mirror(grant, region);
 				await applyRegion(region);
+				latestGrant = grant;
 				return toCredentials(grant, region);
 			}
 		}
@@ -185,6 +267,7 @@ async function loginMcode(callbacks: OAuthLoginCallbacks): Promise<OAuthCredenti
 		const grant = await pollDeviceToken(config, authorization, signal);
 		await mirror(grant, region);
 		await applyRegion(region);
+		latestGrant = grant;
 		return toCredentials(grant, region);
 	} catch (error) {
 		if (signal?.aborted) throw new Error(LOGIN_CANCELLED_MESSAGE, { cause: error });
@@ -206,6 +289,7 @@ async function refreshMcodeToken(
 		const grant = await refreshAccessToken(config, current, signal, previousScopes);
 		await mirror(grant, region);
 		await applyRegion(region);
+		latestGrant = grant;
 		return toCredentials(grant, region);
 	} catch (error) {
 		if (signal?.aborted) throw error;
@@ -216,6 +300,7 @@ async function refreshMcodeToken(
 				const grant = await refreshAccessToken(config, cli.refreshToken, signal, previousScopes);
 				await mirror(grant, region);
 				await applyRegion(region);
+				latestGrant = grant;
 				return toCredentials(grant, region);
 			} catch (recoveryError) {
 				throw new Error(

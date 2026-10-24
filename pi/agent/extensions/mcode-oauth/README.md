@@ -11,6 +11,7 @@ the token on its own.
 | `index.ts` | Provider registration, `/login` + refresh wiring, `/mcode-status` |
 | `oauth.ts` | Device-code flow + refresh-token grant against the MiniMax account service |
 | `store.ts` | Mirror into the mcode CLI credential store (`~/.minimax/auth/...`, 0600) |
+| `transport.ts` | HTTP transport: replay a request the account service answered with 401 |
 | `models.ts` | The model catalog (`MiniMax-M3.1-Flash`, `MiniMax-M3`) |
 | `constants.ts` | Client id, scopes, regions, endpoints |
 
@@ -26,6 +27,35 @@ the token on its own.
 
 If the CLI rotates the refresh token first, `refreshToken()` picks the newer
 copy from the CLI store instead of failing.
+
+## Token lifetimes
+
+The account service decides both lifetimes; the extension only reads what the
+server sends.
+
+| Token | Lifetime |
+| --- | --- |
+| Access token | `expires_in` = 3600 s (1 h). Measured from the token endpoint and from the mirror store (issue time to expiry = exactly 3600 s). Opaque (`mmoat_…`), not a JWT |
+| Refresh token | No expiry field in the response - the server enforces it and signals the end with `invalid_grant`. Rotated on every refresh (`mmort_…`) |
+| Device code | `expires_in` from `/oauth2/device/code`, seconds |
+
+pi refreshes when the access token has less than **5 minutes** left
+(`DEFAULT_OAUTH_MINIMUM_VALIDITY_MS` in pi-ai).
+
+## 401 recovery
+
+The account service invalidates the previous access token when a new one is
+issued. Anything that refreshes the mcode session - the `mcode` CLI, the
+MiniMax app, another pi session - therefore kills the token pi is holding,
+even though it has not expired yet. pi only refreshes inside the 5-minute
+expiry window, so such a request failed with `401 {"error":"invalid access
+token"}` and the turn was lost.
+
+`transport.ts` fixes this: the provider runs pi's own Anthropic adapter behind
+a fetch wrapper that, on a 401, mints a new access token (refresh-token grant,
+freshest rotated token from the mirror store first) and replays the request
+once with it. `getApiKey()` then hands that token to pi so the next request
+does not repeat the round trip.
 
 ## Environment overrides
 
