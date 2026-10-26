@@ -19,6 +19,7 @@
     "high": 32768
   },
   "packages": [
+    "./extensions/goal-root-per-session.ts",
     "git:github.com/ball6847/pi-diff@main",
     "npm:pi-exit-command",
     {
@@ -59,7 +60,9 @@
     "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
     "https://github.com/monotykamary/pi-double-esc@main",
-    "npm:pi-prefix-cache-compaction"
+    "npm:pi-prefix-cache-compaction",
+    "npm:pi-goal-x",
+    "npm:pi-provider-qoder"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
@@ -85,26 +88,21 @@
   "hideThinkingBlock": false,
   "enabledModels": [
     "xiaomi-token-plan-sgp/*",
-    "synthetic/infinite:small:vision",
-    "synthetic/hf:zai-org/GLM-5.3",
-    "synthetic/hf:zai-org/GLM-5.3-Flash",
-    "synthetic/hf:deepseek-ai/DeepSeek-V4.1-Flash",
-    "synthetic/hf:moonshotai/Kimi-K3",
-    "synthetic/hf:Qwen/Qwen3.8-27B",
-    "synthetic/hf:zai-org/GLM-4.7-Flash",
-    "synthetic/hf:nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
-    "muse-rocm/qwen3.8-27b",
-    "muse-rocm/tiel-coder-35b-a3b-mtp",
     "vastai-serverless/*",
     "inco-ai/*",
     "zenmux/qwen/qwen3.7-flash",
     "zenmux/deepseek/deepseek-v4.1-flash",
     "zenmux/openai/gpt-6-luna",
     "zenmux/z-ai/glm-5.3-flash",
-    "synthetic/syn:large:text",
     "lemonade/tiel-coder",
     "lemonade/qwen-3.8-27b",
     "lemonade/minicpm-v4.7",
-    "mcode/*"
+    "minimax/MiniMax-M3.1-Flash",
+    "mcode/*",
+    "qoder/DeepSeek-Flash",
+    "qoder/GLM-5.3-Flash",
+    "qoder/Qwen3.8-Flash",
+    "qoder/Sonus",
+    "qoder/MiniMax-M3.1-Flash"
   ]
 }

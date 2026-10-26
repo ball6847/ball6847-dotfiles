@@ -26,7 +26,7 @@ echo "Installing AI tools..."
 # bun install --global @google/gemini-cli@latest
 # bun install --global @anthropic-ai/claude-code@latest
 bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
-uv tool install --upgrade mistral-vibe &
+# uv tool install --upgrade mistral-vibe &
 uv tool install "scrapling[fetchers,shell]" &
 # uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &

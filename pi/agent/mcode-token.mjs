@@ -1,8 +1,17 @@
 #!/usr/bin/env node
 // Prints the current MiniMax Code (mcode) OAuth access token.
-// Used by ~/.pi/agent/models.json (provider "mcode"):
-//   "apiKey": "!node ~/.pi/agent/mcode-token.mjs"
-// Runs at request time, so it always picks up the token mcode last refreshed.
+//
+// The provider "mcode" is registered by the pi extension
+// ~/.pi/agent/extensions/mcode-oauth/ — it stores the credential in pi's own
+// credential store and refreshes it automatically. This script is a manual
+// helper for shell use: it reads the mcode CLI store, which the extension
+// mirrors on every login and refresh.
+//
+//   node ~/.pi/agent/mcode-token.mjs
+//
+// (The old models.json wiring — "apiKey": "!node ~/.pi/agent/mcode-token.mjs" —
+// is gone: the provider is OAuth-only now, so /login mcode opens the browser
+// instead of asking for an API key.)
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";

@@ -1,4 +1,9 @@
 {
   "disableTasks": true,
-  "hideUnfocusedPrompt": true
+  "hideUnfocusedPrompt": true,
+  "hideUnfocusedBanner": true,
+  "autoSelectSingleGoal": false,
+  "auditorProjectResources": false,
+  "stallTimeoutMinutes": 0,
+  "strictExecutionContract": true
 }
