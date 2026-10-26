@@ -101,6 +101,8 @@
     "mcode/*",
     "qoder/DeepSeek-Flash",
     "qoder/GLM-5.3-Flash",
-    "qoder/Qwen3.8-Flash"
+    "qoder/Qwen3.8-Flash",
+    "qoder/Sonus",
+    "qoder/MiniMax-M3.1-Flash"
   ]
 }
