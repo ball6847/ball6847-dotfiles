@@ -30,17 +30,12 @@ These rules apply to every response for the rest of the session.
 
 If the reader reads only the first and last line, do they know (a) what to do next and (b) what just happened? If yes, send.
 
-## Subagents
+## Kanban
 
-The Agent tool has fixed types. Choose explicitly each call; the harness never auto-selects.
+If this session is attached to a Kanban board (a linked card exists — check with the `kanban` tool, `action: read`), keep its status current without being asked.
 
-| subagent_type | Use it for |
-|---|---|
-| `explore-codebase` | Read-only inspection that must return concrete findings (file paths, symbols) |
-| `plan` | Designing an implementation plan / architecture before coding |
-| `builder` | Implementing features or fixes against a predefined plan |
-| `reviewer` | Reviewing a build against a plan, producing a review report |
-| `general` | General research or multi-step work needing several parallel units |
-| `builder` + `reviewer` in a loop | Orchestrate build-review cycles with quality gates (`orchestrator`) |
-
-Delegation rule: delegate only for work that benefits from an isolated context — a focused task, or independent units worth running in parallel (`run_in_background: true`). Do not spawn one for chit-chat or trivial reads you can do inline.
+1. When work starts on the card's objective → move the card to the in-progress lane.
+2. On each meaningful milestone → update the card description with what changed (files touched, decisions, blockers).
+3. When the objective is done or blocked → move the card to the matching done/blocked lane and state the outcome.
+4. Never leave a card in a stale lane at the end of a turn. If the board is not attached (`kanban` returns no linked card), skip this entirely — do not create one.
+5. Lane changes use explicit lane IDs from `kanban read`; never guess lane names.
