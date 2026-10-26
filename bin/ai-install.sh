@@ -120,6 +120,17 @@ fi
 # Download Chrome for Testing (safe to run multiple times)
 agent-browser install
 
+# Download Playwright + Patchright Chromium for Scrapling's DynamicFetcher/StealthyFetcher
+# (pi-webfetch falls back to these for JS-rendered pages)
+SCRAPLING_PY="$(dirname "$(command -v scrapling)")/../share/uv/tools/scrapling/bin/python"
+if [ -x "$SCRAPLING_PY" ]; then
+    echo "Installing Scrapling browsers (Playwright + Patchright Chromium)..."
+    "$SCRAPLING_PY" -m playwright install chromium
+    "$SCRAPLING_PY" -m patchright install chromium
+else
+    echo "Warning: scrapling python not found at $SCRAPLING_PY, skipping browser install"
+fi
+
 # =============================================================================
 # DEPENDENCY CHECKS SECTION
 # =============================================================================
@@ -137,6 +148,15 @@ fi
 # Check if scrapling is installed (required for pi-webfetch general web page fetching)
 if ! command -v scrapling &> /dev/null; then
     echo "Warning: scrapling is not installed. pi-webfetch needs it for general web page fetching. Run: uv tool install 'scrapling[fetchers,shell]'"
+elif [ -x "${SCRAPLING_PY:-/nonexistent}" ]; then
+    # Verify Chromium is actually present, not just the scrapling CLI
+    CHROMIUM_PATH=$("$SCRAPLING_PY" -c "
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p: print(p.chromium.executable_path)
+" 2>/dev/null | tail -1)
+    if [ -z "$CHROMIUM_PATH" ] || [ ! -e "$CHROMIUM_PATH" ]; then
+        echo "Warning: scrapling's Chromium is missing. Run: $SCRAPLING_PY -m playwright install chromium && $SCRAPLING_PY -m patchright install chromium"
+    fi
 fi
 
 # Check if gh (GitHub CLI) is installed (required for pi-webfetch GitHub URL fetching)
