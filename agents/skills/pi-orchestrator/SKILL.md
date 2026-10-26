@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: pi-orchestrator
 description: Orchestrates build-review cycles by delegating tasks to builder and reviewer pi instances using the pi-tmux-agent skill. Implements a plan with automated quality gates, looping until reviewer passes or maximum 3 rounds reached. Use whenever you need end-to-end plan execution with quality assurance — especially when the user mentions orchestrating, delegating to builder/reviewer, running a plan through build and review, or wants agents working side by side.
 user-invocable: true

@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: llama-benchmark
 description: >
   Benchmark and tune llama-server / llama.cpp for maximum speed (tokens/sec, TTFT, throughput).

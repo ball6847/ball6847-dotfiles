@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: pi-tmux-agent
 description: Spawn a pi agent instance in a tmux pane, wait for a hard completion contract, and clean up — in a single foreground script call. Use when you need to run a pi agent in a tmux pane for orchestration or any scenario requiring a pi session in a specific pane. Handles automatic split direction, pane lifecycle, session-based result capture, continued chat after interrupt, and cleanup.
 user-invocable: true

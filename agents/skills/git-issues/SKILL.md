@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: git-issues
 description: >
   Task management, issue tracking, and work planning using git-issues.

@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: orchestrator
 description: Orchestrates build-review cycles to implement a plan with automated quality gates. Delegates to builder for implementation and a reviewer for verification. Loops until reviewer passes or maximum rounds reached. Use when you need end-to-end plan execution with quality assurance.
 user-invocable: true

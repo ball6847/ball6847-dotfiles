@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: revealjs-skill
 description: |
   Generates professional Reveal.js presentations with themed designs, multi-column layouts,

@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: builder
 description: Implements features or fixes according to a predefined plan, creating implementation reports with timestamps and bidirectional links to plans. Updates plan's implementedAt field upon completion. Generates reports in `.context/implementation-reports/YYYY-MM-DD/FEATURE_NAME_REPORT.md` format.
 user-invocable: true
