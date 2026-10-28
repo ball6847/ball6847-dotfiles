@@ -16,9 +16,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
       "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "b6f762bf402cdfaf6a06514e9ce4142ce3e4fb4c",
+      "skillFolderHash": "82def67855a0d2aad7794207951820fa5422fdb0",
       "installedAt": "2026-04-03T11:40:12.604Z",
-      "updatedAt": "2026-04-11T10:31:53.851Z"
+      "updatedAt": "2026-10-27T12:50:14.004Z"
     },
     "ascii-visualizer": {
       "source": "yonatangross/orchestkit",
