@@ -29,3 +29,7 @@ These rules apply to every response for the rest of the session.
 ## Pre-send check
 
 If the reader reads only the first and last line, do they know (a) what to do next and (b) what just happened? If yes, send.
+
+## Kanban board sync
+
+If this session has a Kanban board attached, keep the linked card in the lane that matches the real work state every turn — move it along the board's lanes as work starts, progresses, and finishes (lane names vary per board). Never let the lane lag behind the work.
