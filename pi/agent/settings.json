@@ -1,17 +1,8 @@
 {
   "lastChangelogVersion": "1.4.0",
-  "defaultProvider": "xiaomi-token-plan-sgp",
-  "defaultModel": "mimo-v2.6-flash",
+  "defaultProvider": "minimax",
+  "defaultModel": "MiniMax-M3.1-Flash",
   "defaultThinkingLevel": "high",
-  "compactionModel": {
-    "model": "zenmux/inclusionai/ling-3.0-tiny",
-    "thinkingLevel": "minimal",
-    "reasons": [
-      "manual",
-      "threshold",
-      "overflow"
-    ]
-  },
   "thinkingBudgets": {
     "minimal": 1024,
     "low": 4096,

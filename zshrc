@@ -499,3 +499,6 @@ export PATH
 
 # MiniMax Code CLI
 export PATH="$HOME/.minimax-code/bin:$PATH"
+
+# Added by MiniMax Code
+export PATH="$HOME/.minimax/bin:$PATH"
