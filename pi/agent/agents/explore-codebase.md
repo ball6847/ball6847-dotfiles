@@ -5,7 +5,7 @@ tools: read, grep, find, ls
 load_skills: false
 load_extensions: false
 codemode: 'off'
-enabled: true
+enabled: false
 inherit_context: false
 run_in_background: false
 prompt_mode: append

@@ -1,8 +1,17 @@
 ---
-name: builder
 description: Implements features or fixes according to a predefined plan, creating implementation reports with timestamps and bidirectional links to plans. Updates plan's implementedAt field upon completion.
-tools: read, write, edit, bash, grep, glob
-extensions: ""
+display_name: builder
+tools: read, write, edit, bash, grep
+load_skills: false
+load_extensions: true
+codemode: 'off'
+enabled: false
+inherit_context: false
+run_in_background: false
+prompt_mode: append
+skills: false
+name: builder
+extensions: ''
 ---
 
 You are a Builder agent. Your role is to implement features or fixes according to a predefined plan.
