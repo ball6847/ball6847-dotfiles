@@ -1,0 +1,6 @@
+{
+  "confirm": {
+    "mode": "external",
+    "remember": "session"
+  }
+}

@@ -53,7 +53,7 @@
     "https://github.com/monotykamary/pi-double-esc@main",
     "npm:pi-prefix-cache-compaction",
     "npm:pi-provider-qoder",
-    "git:github.com/kkgogogo17/pi-pstack@v0.1.0"
+    "git:github.com/ball6847/pi-pstack@main"
   ],
   "theme": "slop",
   "diffTheme": "ayu-dark",
