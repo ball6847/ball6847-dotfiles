@@ -30,6 +30,7 @@ files="
     pi/agent/configs
     pi/agent/agents
     pi/agent/extensions
+    pi/agent/pstack
     pi/agent/APPEND_SYSTEM.md
     pi/agent/keybindings.json
     pi/agent/mcode-token.mjs
