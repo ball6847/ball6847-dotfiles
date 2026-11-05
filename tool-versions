@@ -1,7 +1,7 @@
 golang 1.27.3
 nodejs 24.15.0
 bun 1.4.3
-deno 2.9.7
+deno 2.9.8
 ruby 3.4.1
 rust 1.96.0
 neovim 0.12.4
