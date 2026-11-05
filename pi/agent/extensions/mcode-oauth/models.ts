@@ -10,6 +10,23 @@
  */
 import type { ProviderModelConfig } from "@earendil-works/pi-coding-agent";
 
+/**
+ * Compatibility overrides for MiniMax's Anthropic-shaped endpoints, verified
+ * against api.minimax.io/anthropic on 2026-11-03:
+ * - tools accept the `eager_input_streaming` field and the fine-grained
+ *   tool-streaming beta header, so pi can keep sending them;
+ * - `strict: true` on a tool is accepted but not honoured, so pi omits it;
+ * - `cache_control` (including `ttl: "1h"`) is ignored: a cached request
+ *   still reports cache_creation_input_tokens = 0, so pi drops the markers.
+ */
+const MCODE_COMPAT = {
+	sendSessionAffinityHeaders: true,
+	supportsEagerToolInputStreaming: true,
+	supportsStrictTools: false,
+	supportsLongCacheRetention: false,
+	supportsCacheControlOnTools: false,
+} as const;
+
 export const MCODE_MODELS: ProviderModelConfig[] = [
 	{
 		id: "MiniMax-M3.1-Flash",
@@ -26,6 +43,7 @@ export const MCODE_MODELS: ProviderModelConfig[] = [
 			cacheRead: 0.06,
 			cacheWrite: 0,
 		},
+		compat: { ...MCODE_COMPAT },
 	},
 	{
 		id: "MiniMax-M3",
@@ -40,5 +58,6 @@ export const MCODE_MODELS: ProviderModelConfig[] = [
 			cacheRead: 0.06,
 			cacheWrite: 0,
 		},
+		compat: { ...MCODE_COMPAT },
 	},
 ];

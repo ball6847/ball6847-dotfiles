@@ -739,6 +739,37 @@
           ]
         }
       ]
+    },
+    "minimax": {
+      "compat": {
+        "sendSessionAffinityHeaders": true,
+        "supportsEagerToolInputStreaming": true,
+        "supportsStrictTools": false,
+        "supportsLongCacheRetention": false,
+        "supportsCacheControlOnTools": false
+      }
+    },
+    "mcode": {
+      "modelOverrides": {
+        "MiniMax-M3": {
+          "compat": {
+            "sendSessionAffinityHeaders": true,
+            "supportsEagerToolInputStreaming": true,
+            "supportsStrictTools": false,
+            "supportsLongCacheRetention": false,
+            "supportsCacheControlOnTools": false
+          }
+        },
+        "MiniMax-M3.1-Flash": {
+          "compat": {
+            "sendSessionAffinityHeaders": true,
+            "supportsEagerToolInputStreaming": true,
+            "supportsStrictTools": false,
+            "supportsLongCacheRetention": false,
+            "supportsCacheControlOnTools": false
+          }
+        }
+      }
     }
   }
 }
