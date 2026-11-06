@@ -10,57 +10,20 @@
     "high": 32768
   },
   "packages": [
-    "./extensions/goal-root-per-session.ts",
-    "git:github.com/ball6847/pi-diff@main",
     "npm:pi-exit-command",
-    {
-      "source": "https://github.com/gsanhueza/pi-token-speed",
-      "extensions": [],
-      "skills": [],
-      "prompts": [],
-      "themes": []
-    },
-    {
-      "source": "git:github.com/ball6847/pikit@patch",
-      "extensions": [
-        "-agent/extensions/styled-outputs/",
-        "-agent/extensions/subagents/index.ts",
-        "-agent/extensions/llm-council/index.ts",
-        "-agent/extensions/caveman/index.ts",
-        "-agent/extensions/artifacts/index.ts",
-        "-agent/extensions/env-loader/index.ts",
-        "-agent/extensions/web-access/index.ts",
-        "-agent/extensions/chat-mode/index.ts",
-        "-agent/extensions/plan-mode/index.ts",
-        "-agent/extensions/permission-gate/index.ts",
-        "-agent/extensions/mcp/index.ts"
-      ],
-      "skills": [
-        "-agent/skills/add-ollama-cloud-model/SKILL.md",
-        "-agent/skills/gh/SKILL.md",
-        "-agent/skills/pi-extension-builder/SKILL.md",
-        "-agent/skills/pr-review/SKILL.md"
-      ]
-    },
     "git:github.com/ball6847/pi-zenmux.git@fix/api-key-env",
     "npm:pi-browser-harness",
-    "npm:pi-prompt-template-model",
     "npm:@johnnywu/pi-webfetch",
-    "npm:@aliou/pi-synthetic",
     "npm:pi-cache-optimizer",
-    "npm:pi-meta-oauth",
     "npm:pi-loop-mode",
     "https://github.com/monotykamary/pi-double-esc@main",
     "npm:pi-prefix-cache-compaction",
     "npm:pi-provider-qoder",
     "git:github.com/ball6847/pi-pstack@main"
   ],
-  "theme": "slop",
-  "diffTheme": "ayu-dark",
   "quietStartup": true,
   "shellCommandPrefix": "[ -f \"$HOME/.lzshrc\" ] && source \"$HOME/.lzshrc\"",
   "skills": [
-    "-skills/agent-browser/SKILL.md",
     "-skills/qa-test-planner/SKILL.md",
     "-skills/opencode-ensemble/SKILL.md",
     "-skills/open-ralph-wiggum/SKILL.md",
