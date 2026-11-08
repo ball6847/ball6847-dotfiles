@@ -722,7 +722,11 @@
             "max": null,
             "minimal": null,
             "high": "xhigh"
-          }
+          },
+          "input": [
+            "text",
+            "image"
+          ]
         },
         {
           "id": "k2-horizon",
