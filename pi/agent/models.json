@@ -1,5 +1,58 @@
 {
   "providers": {
+    "agnes": {
+      "name": "Agnes AI",
+      "api": "openai-completions",
+      "baseUrl": "https://apihub.agnes-ai.com/v1",
+      "apiKey": "$AGNES_API_KEY",
+      "authHeader": true,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "compat": {
+        "maxTokensField": "max_tokens",
+        "supportsDeveloperRole": false,
+        "supportsStore": false,
+        "supportsReasoningEffort": false,
+        "sendSessionAffinityHeaders": false
+      },
+      "models": [
+        {
+          "id": "agnes-3.0-flash",
+          "name": "Agnes 3.0 Flash",
+          "contextWindow": 524288,
+          "maxTokens": 65536,
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "samplingParams": {
+            "chat_template_kwargs": {
+              "enable_thinking": true
+            }
+          },
+          "thinkingLevelMap": {
+            "max": null,
+            "xhigh": "xhigh",
+            "high": "high",
+            "medium": "medium",
+            "low": "low",
+            "off": "off",
+            "minimal": null
+          },
+          "compat": {
+            "supportsDeveloperRole": true
+          }
+        }
+      ]
+    },
     "xiaomi-token-plan-sgp": {
       "compat": {
         "sendSessionAffinityHeaders": true

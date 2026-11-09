@@ -2,7 +2,7 @@
   "lastChangelogVersion": "1.5.0",
   "defaultProvider": "minimax",
   "defaultModel": "MiniMax-M3.1-Flash",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "xhigh",
   "thinkingBudgets": {
     "minimal": 1024,
     "low": 4096,
@@ -52,7 +52,8 @@
     "qoder/GLM-5.3-Flash",
     "qoder/Qwen3.8-Flash",
     "qoder/Sonus",
-    "qoder/MiniMax-M3.1-Flash"
+    "qoder/MiniMax-M3.1-Flash",
+    "agnes/agnes-3.0-flash"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",
