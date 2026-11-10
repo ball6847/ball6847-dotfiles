@@ -53,7 +53,8 @@
     "qoder/Qwen3.8-Flash",
     "qoder/Sonus",
     "qoder/MiniMax-M3.1-Flash",
-    "agnes/agnes-3.0-flash"
+    "agnes/agnes-3.0-flash",
+    "ant-ling/*"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",

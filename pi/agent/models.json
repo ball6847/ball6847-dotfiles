@@ -813,6 +813,29 @@
           }
         }
       }
+    },
+    "ant-ling": {
+      "api": "openai-completions",
+      "baseUrl": "https://api.ant-ling.com/v1",
+      "apiKey": "$ANT_API_KEY",
+      "models": [
+        {
+          "id": "Ling-3.2-flash",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 1048576,
+          "thinkingLevelMap": {
+            "off": "off",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh"
+          }
+        }
+      ]
     }
   }
 }
