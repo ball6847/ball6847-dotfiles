@@ -192,9 +192,22 @@ else
     AD_SCREEN=$(echo "$AD_PERMS" | grep -o '"screen_recording":{"state":"[a-z_]*"' | head -1 | sed 's/.*"state":"//; s/"$//')
     if [ "$AD_ACCESSIBILITY" != "granted" ] && [ "$AD_ACCESSIBILITY" != "not_required" ]; then
         echo "Warning: agent-desktop accessibility permission is '${AD_ACCESSIBILITY:-unknown}'. Grant it with: agent-desktop permissions --guide"
+        AD_NEEDS_PROMPT=1
     fi
     if [ "$AD_SCREEN" != "granted" ] && [ "$AD_SCREEN" != "not_required" ]; then
         echo "Warning: agent-desktop screen recording permission is '${AD_SCREEN:-unknown}'. Grant it with: agent-desktop permissions --guide"
+        AD_NEEDS_PROMPT=1
+    fi
+
+    # `agent-desktop permissions --request` asks macOS to show the system prompts.
+    # Only a GUI (Aqua) session can display them: over SSH the prompt is refused
+    # ("does not allow prompting"), macOS auto-denies it, and the request lands in
+    # System Settings under /usr/libexec/sshd-keygen-wrapper - the SSH session
+    # ancestor - instead of the agent-desktop binary. Grant the launching app
+    # (Terminal, Ghostty, ...) under Privacy & Security > Accessibility, and add
+    # the agent-desktop binary too when macOS lists it separately.
+    if [ "${AD_NEEDS_PROMPT:-0}" = "1" ] && [ "$(launchctl managername 2> /dev/null)" = "Aqua" ]; then
+        agent-desktop permissions --request
     fi
 fi
 
