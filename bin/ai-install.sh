@@ -36,11 +36,25 @@ npm install -g @deepseek-ai/dsh &
 # npm install -g diffx-cli@latest &
 # npm install -g skills@latest &
 # npm install -g cachebro@latest &
-cargo install agent-browser &
+# agent-browser: crates.io is stuck at 0.19.0, npm/bun ship the current release.
+# Drop the old cargo install and its asdf shim (the shim shadows ~/.bun/bin on PATH).
+cargo uninstall agent-browser 2> /dev/null || true
+rm -f "$HOME"/.asdf/installs/rust/*/bin/agent-browser
+rm -f "$HOME/.asdf/shims/agent-browser"
+bun add -g agent-browser@latest &
 # cargo install --git https://github.com/rtk-ai/rtk &
 # npm install -g openrtk &
 
 wait
+
+# =============================================================================
+# AGENT-DESKTOP INSTALLATION SECTION
+# =============================================================================
+
+# Runs after `wait` so it does not race the other bun global installs.
+# --trust runs the postinstall script, which downloads the native binary and the
+# macOS helper. Without it the CLI aborts with "Native binary not found".
+bun add -g agent-desktop@latest --trust
 
 # =============================================================================
 # PI EXTENSIONS UPDATE
@@ -167,6 +181,21 @@ fi
 # Check if yt-dlp is installed (required for pi-webfetch YouTube URL fetching)
 if ! command -v yt-dlp &> /dev/null; then
     echo "Warning: yt-dlp is not installed. pi-webfetch needs it for YouTube URL fetching. Install with: sudo apt install yt-dlp OR brew install yt-dlp"
+fi
+
+# Check if agent-desktop is installed and holds the macOS permissions it needs
+if ! command -v agent-desktop &> /dev/null; then
+    echo "Warning: agent-desktop is not installed. Install with: bun add -g agent-desktop@latest --trust"
+else
+    AD_PERMS=$(agent-desktop permissions 2> /dev/null)
+    AD_ACCESSIBILITY=$(echo "$AD_PERMS" | grep -o '"accessibility":{"state":"[a-z_]*"' | head -1 | sed 's/.*"state":"//; s/"$//')
+    AD_SCREEN=$(echo "$AD_PERMS" | grep -o '"screen_recording":{"state":"[a-z_]*"' | head -1 | sed 's/.*"state":"//; s/"$//')
+    if [ "$AD_ACCESSIBILITY" != "granted" ] && [ "$AD_ACCESSIBILITY" != "not_required" ]; then
+        echo "Warning: agent-desktop accessibility permission is '${AD_ACCESSIBILITY:-unknown}'. Grant it with: agent-desktop permissions --guide"
+    fi
+    if [ "$AD_SCREEN" != "granted" ] && [ "$AD_SCREEN" != "not_required" ]; then
+        echo "Warning: agent-desktop screen recording permission is '${AD_SCREEN:-unknown}'. Grant it with: agent-desktop permissions --guide"
+    fi
 fi
 
 # =============================================================================
