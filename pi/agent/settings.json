@@ -2,7 +2,7 @@
   "lastChangelogVersion": "1.5.1",
   "defaultProvider": "minimax",
   "defaultModel": "MiniMax-M3.1-Flash",
-  "defaultThinkingLevel": "xhigh",
+  "defaultThinkingLevel": "high",
   "thinkingBudgets": {
     "minimal": 1024,
     "low": 4096,
