@@ -1,4 +1,5 @@
 ---
+disable-model-invocation: true
 name: visualize
 description: >
   Create beautiful, self-contained HTML visualizations from any content or idea.
