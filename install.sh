@@ -1,9 +1,9 @@
 #!/bin/bash
 
-dir=~/.dotfiles         # dotfiles directory
-olddir=~/.dotfiles_old  # old dotfiles backup directory
+dir=~/.dotfiles
+olddir=~/.dotfiles_old
 
-# list of files/folders to symlink in homedir
+# symlinked into the home dir
 files="
     profile
     bashrc
@@ -46,70 +46,54 @@ files="
     gemini
     dsh/settings.yaml"
 
-# create dotfiles_old in homedir
-echo "Creating $olddir for backup of any existing dotfiles in ~"
-mkdir -p $olddir
-echo "...done"
+echo "Backing up existing dotfiles to $olddir"
+mkdir -p "$olddir"
 
-# create ~/.agent-browser directory if it doesn't exist
 [ ! -d ~/.agent-browser ] && mkdir -p ~/.agent-browser
 
-# change to the dotfiles directory
-echo "Changing to the $dir directory"
-cd $dir || exit
-echo "...done"
+cd "$dir" || exit
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
     basedir="$(dirname "$file")"
 
     if [[ "$basedir" != "." ]]; then
-        [ ! -d $olddir/"$basedir" ] && mkdir -p $olddir/"$basedir"
+        [ ! -d "$olddir/$basedir" ] && mkdir -p "$olddir/$basedir"
         [ ! -d ~/."$basedir" ] && mkdir -p ~/."$basedir"
     fi
 
-    # backup to $olddir if neccessary
-    echo "Moving any existing dotfiles from ~ to $olddir"
+    # move the old copy aside, then link the repo version in its place
+    [ -e "$olddir/$file" ] && rm -rf "$olddir/$file"
+    [ -e ~/."$file" ] || [ -L ~/."$file" ] && mv -f ~/."$file" "$olddir/$file"
 
-    # Remove existing backup if it exists to avoid conflicts with nested symlinks
-    [ -e $olddir/"$file" ] && rm -rf $olddir/"$file"
-    # Move existing file/symlink to backup (use -h to detect symlinks before following)
-    [ -e ~/."$file" ] || [ -L ~/."$file" ] && mv -f ~/."$file" $olddir/"$file"
-
-    # create link at home directory
-    echo "Creating symlink to $file in home directory."
-    ln -sf $dir/"$file" ~/."$file"
+    ln -sf "$dir/$file" ~/."$file"
 done
 
-# exclusively create link from ~/.claude/skills to ~/.agents/skills
-# check if already linked, then make sure ~/.claude exists the create a link inside
+# claude reads skills from ~/.agents/skills
 if [ ! -L ~/.claude/skills ]; then
     mkdir -p ~/.claude
     ln -sf ~/.agents/skills ~/.claude/skills
 fi
 
-# create symlink from ~/.agent-of-empires to ~/.config/agent-of-empires/ if running on mac
+# agent-of-empires lives in ~/.config on mac
 if [ "$(uname)" = "Darwin" ] && [ ! -L ~/.agent-of-empires ]; then
     ln -sf ~/.config/agent-of-empires ~/.agent-of-empires
 fi
 
-# Fix nested symlinks created by the loop above
+# the loop above can leave a link pointing at a nested copy of itself
 fix_nested_symlinks() {
     for subdir in config/*/; do
-        dirname="$(basename "$subdir")"
-        nested="$subdir$dirname"
+        nested="$subdir$(basename "$subdir")"
         [ -L "$nested" ] && rm -f "$nested"
     done
     [ -L "agents/agents" ] && rm -f agents/agents
 }
 fix_nested_symlinks
 
-# Cleanup deprecated opencode.json symlink (renamed to opencode.jsonc)
+# opencode.json was renamed to opencode.jsonc
 unlink ~/.opencode/opencode.json 2>/dev/null || true
 
-# this is incorrect, must specify -C <directory> to git checkout
+# git checkout needs -C, without it it runs in the wrong directory
 git -C ~/.dotfiles checkout config/kitty
 
-# Link rio per-OS config (macOS/Linux)
+# per-OS rio config (macOS/Linux)
 bash "$dir/link-rio.sh"
-

@@ -34,6 +34,8 @@ if [[ "$INSTALL_DENO_PKG" = false && "$INSTALL_GO_PKG" = false ]]; then
     INSTALL_GO_PKG=true
 fi
 
+# install a Go binary straight from a GitHub repo, skipping the work when the
+# checked out commit is the one we built last time
 install_from_github_repo() {
     local repo="$1"
     local go_package="$2"
@@ -54,7 +56,6 @@ install_from_github_repo() {
         git clone --depth 1 "https://github.com/$repo.git" "$tmp_dir" --quiet
     fi
 
-    # Verify we have a valid git repo before running git commands
     if [[ ! -d "$tmp_dir/.git" ]]; then
         echo "  ✗ $binary_name: failed to clone git repository"
         return 1
@@ -92,7 +93,6 @@ if [[ "$INSTALL_DENO_PKG" = true ]]; then
         echo "Failed to create temporary config file"
         exit 1
     fi
-    # Clean up temp file even if script exits early
     trap 'rm -f "$_deno_cfg"' EXIT
     echo '{"minimumDependencyAge": 0}' > "$_deno_cfg"
     deno install --reload --no-lock --config "$_deno_cfg" --global --allow-run --allow-env --allow-read --allow-write --allow-net --allow-sys -fr jsr:@ball6847/workspace-manager
@@ -113,7 +113,6 @@ if [[ "$INSTALL_GO_PKG" = true ]]; then
     GOPROXY=direct go install github.com/ball6847/mongo-ro-proxy@main
     go install github.com/google/wire/cmd/wire@latest
     go install github.com/air-verse/air@latest
-    # go install github.com/satococoa/wtp/v2/cmd/wtp@latest
     install_from_github_repo "ball6847/wtp" "./cmd/wtp"
     if command -v asdf &> /dev/null; then
         asdf reshim golang

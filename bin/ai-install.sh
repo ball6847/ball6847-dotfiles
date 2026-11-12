@@ -1,14 +1,10 @@
 #!/bin/bash
 
-# =============================================================================
-# FUNCTION DEFINITIONS
-# =============================================================================
-
 update_pi_extensions() {
     echo "Updating pi extensions..."
 
     if ! command -v pi &> /dev/null; then
-        echo "Warning: pi command not found. Skipping pi extension update."
+        echo "Warning: pi command not found, skipping extension update."
         echo "  Install pi first: curl -fsSL https://pi.dev/install.sh | sh"
         return 0
     fi
@@ -16,53 +12,31 @@ update_pi_extensions() {
     pi update --extensions
 }
 
-# =============================================================================
-# AI TOOLS INSTALLATION SECTION
-# =============================================================================
-
 echo "Installing AI tools..."
 
-# bun install --global @qwen-code/qwen-code@latest
-# bun install --global @google/gemini-cli@latest
-# bun install --global @anthropic-ai/claude-code@latest
 bun add -g --ignore-scripts @earendil-works/pi-coding-agent &
-# uv tool install --upgrade mistral-vibe &
 uv tool install "scrapling[fetchers,shell]" &
-# uv tool install --upgrade kimi-cli
 npm install -g opencode-ai@latest &
 npm install -g @agegr/pi-web &
 npm install -g @deepseek-ai/dsh &
-# curl -fsSL https://qoder.com/install | bash &
-# npm install -g diffx-cli@latest &
-# npm install -g skills@latest &
-# npm install -g cachebro@latest &
-# agent-browser: crates.io is stuck at 0.19.0, npm/bun ship the current release.
-# Drop the old cargo install and its asdf shim (the shim shadows ~/.bun/bin on PATH).
+
+# agent-browser ships on npm/bun, crates.io is stuck at 0.19.0.
+# The asdf shim shadows ~/.bun/bin on PATH, so drop the cargo install too.
 cargo uninstall agent-browser 2> /dev/null || true
 rm -f "$HOME"/.asdf/installs/rust/*/bin/agent-browser
 rm -f "$HOME/.asdf/shims/agent-browser"
 bun add -g agent-browser@latest &
-# cargo install --git https://github.com/rtk-ai/rtk &
-# npm install -g openrtk &
 
 wait
 
-# =============================================================================
-# AGENT-DESKTOP INSTALLATION SECTION
-# =============================================================================
-
-# Runs after `wait` so it does not race the other bun global installs.
+# runs after wait so it does not race the other bun installs.
 # --trust runs the postinstall script, which downloads the native binary and the
 # macOS helper. Without it the CLI aborts with "Native binary not found".
 bun add -g agent-desktop@latest --trust
 
-# =============================================================================
-# PI EXTENSIONS UPDATE
-# =============================================================================
-
 update_pi_extensions
 
-# Build pi-diff fork (TypeScript -> JS) so the extension can run
+# build the pi-diff fork (TypeScript -> JS) so the extension can run
 PI_DIFF_DIR="$HOME/.pi/agent/git/github.com/ball6847/pi-diff"
 if [ -d "$PI_DIFF_DIR" ]; then
     echo "Building pi-diff fork at $PI_DIFF_DIR ..."
@@ -77,53 +51,7 @@ if [ -d "$PI_DIFF_DIR" ]; then
     )
 fi
 
-# bun install --global @th0rgal/ralph-wiggum
-# npm install --global vibe-kanban@latest
-# npm install -g opencode-orchestrator
-# bun add -g opencode-swarm-plugin@latest
-
-# curl -fsSL https://raw.githubusercontent.com/njbrake/agent-of-empires/main/scripts/install.sh | bash
-
-# =============================================================================
-# MCP SERVERS INSTALLATION SECTION
-# =============================================================================
-
-# echo "Installing MCP Language Server..."
-# go install github.com/isaacphi/mcp-language-server@latest
-
-# echo "Installing MCP gRPCurl..."
-# go install github.com/wricardo/mcp-grpcurl@latest
-# grpcurl-mcp cannot be isntalled via `go install`
-# need to clone, build and add to PATH
-# git clone https://github.com/wricardo/grpcurl-mcp.git && cd grpcurl-mcp && go build -o ~/.local/bin/grpcurl-mcp ./main.go
-# TODO: make this idempotent so we can run multiple times without issues
-
-# echo "Installing MCP Kafka Server..."
-# go install github.com/kanapuli/mcp-kafka@latest
-#
-# echo "Installing MCP MongoDB Server..."
-# bun install --global mongodb-mcp-server@latest
-#
-# echo "Installing vibe-mcp..."
-# VIBE_MCP_DIR="$HOME/.local/share/mcp-servers/vibe-mcp"
-# if [ -d "$VIBE_MCP_DIR/.git" ]; then
-#     # Directory exists and is a git repo, pull latest changes
-#     (cd "$VIBE_MCP_DIR" && git pull)
-# else
-#     # Directory doesn't exist or isn't a git repo, clone fresh
-#     mkdir -p "$(dirname "$VIBE_MCP_DIR")"
-#     rm -rf "$VIBE_MCP_DIR"
-#     git clone https://github.com/DarkPhilosophy/vibe-mcp.git "$VIBE_MCP_DIR"
-# fi
-
-# echo "Installing opencode plugin manager (ocx)..."
-# npm install -g ocx
-
-# =============================================================================
-# RESHIM SECTION - Update PATH for newly installed binaries
-# =============================================================================
-
-# reshim golang, bun, and nodejs to make sure newly installed binaries are available
+# reshim so the new binaries are on PATH
 if command -v asdf &> /dev/null; then
     asdf reshim golang
     asdf reshim bun
@@ -131,11 +59,11 @@ if command -v asdf &> /dev/null; then
     asdf reshim rust
 fi
 
-# Download Chrome for Testing (safe to run multiple times)
+# Chrome for Testing, safe to run more than once
 agent-browser install
 
-# Download Playwright + Patchright Chromium for Scrapling's DynamicFetcher/StealthyFetcher
-# (pi-webfetch falls back to these for JS-rendered pages)
+# Playwright + Patchright Chromium for Scrapling's DynamicFetcher/StealthyFetcher.
+# pi-webfetch falls back to these for JS-rendered pages.
 SCRAPLING_PY="$(dirname "$(command -v scrapling)")/../share/uv/tools/scrapling/bin/python"
 if [ -x "$SCRAPLING_PY" ]; then
     echo "Installing Scrapling browsers (Playwright + Patchright Chromium)..."
@@ -145,25 +73,20 @@ else
     echo "Warning: scrapling python not found at $SCRAPLING_PY, skipping browser install"
 fi
 
-# =============================================================================
-# DEPENDENCY CHECKS SECTION
-# =============================================================================
-
-# Check if ripgrep is installed
+# dependency checks
 if ! command -v rg &> /dev/null; then
-    echo "Warning: ripgrep (rg) is not installed. This may degrade opencode's file searching capabilities. Consider installing it with your package manager (e.g., 'sudo apt install ripgrep' on Ubuntu)."
+    echo "Warning: ripgrep (rg) is missing. Install: brew install ripgrep | sudo apt install ripgrep"
 fi
 
-# Check if grpcurl is installed
 if ! command -v grpcurl &> /dev/null; then
-    echo "Warning: grpcurl is not installed. This may be needed for gRPC testing and debugging. Consider installing it with your package manager (e.g., 'sudo apt install grpcurl' on Ubuntu)."
+    echo "Warning: grpcurl is missing. Install: brew install grpcurl | sudo apt install grpcurl"
 fi
 
-# Check if scrapling is installed (required for pi-webfetch general web page fetching)
+# scrapling is required by pi-webfetch for general web page fetching
 if ! command -v scrapling &> /dev/null; then
-    echo "Warning: scrapling is not installed. pi-webfetch needs it for general web page fetching. Run: uv tool install 'scrapling[fetchers,shell]'"
+    echo "Warning: scrapling is missing. Install: uv tool install 'scrapling[fetchers,shell]'"
 elif [ -x "${SCRAPLING_PY:-/nonexistent}" ]; then
-    # Verify Chromium is actually present, not just the scrapling CLI
+    # the CLI can exist while Chromium is missing
     CHROMIUM_PATH=$("$SCRAPLING_PY" -c "
 from playwright.sync_api import sync_playwright
 with sync_playwright() as p: print(p.chromium.executable_path)
@@ -173,19 +96,19 @@ with sync_playwright() as p: print(p.chromium.executable_path)
     fi
 fi
 
-# Check if gh (GitHub CLI) is installed (required for pi-webfetch GitHub URL fetching)
+# gh is required by pi-webfetch for GitHub URL fetching
 if ! command -v gh &> /dev/null; then
-    echo "Warning: gh (GitHub CLI) is not installed. pi-webfetch needs it for GitHub URL fetching. Install with: sudo apt install gh OR brew install gh"
+    echo "Warning: gh (GitHub CLI) is missing. Install: brew install gh | sudo apt install gh"
 fi
 
-# Check if yt-dlp is installed (required for pi-webfetch YouTube URL fetching)
+# yt-dlp is required by pi-webfetch for YouTube URL fetching
 if ! command -v yt-dlp &> /dev/null; then
-    echo "Warning: yt-dlp is not installed. pi-webfetch needs it for YouTube URL fetching. Install with: sudo apt install yt-dlp OR brew install yt-dlp"
+    echo "Warning: yt-dlp is missing. Install: brew install yt-dlp | sudo apt install yt-dlp"
 fi
 
-# Check if agent-desktop is installed and holds the macOS permissions it needs
+# agent-desktop needs macOS permissions for screen and UI work
 if ! command -v agent-desktop &> /dev/null; then
-    echo "Warning: agent-desktop is not installed. Install with: bun add -g agent-desktop@latest --trust"
+    echo "Warning: agent-desktop is missing. Install: bun add -g agent-desktop@latest --trust"
 else
     AD_PERMS=$(agent-desktop permissions 2> /dev/null)
     AD_ACCESSIBILITY=$(echo "$AD_PERMS" | grep -o '"accessibility":{"state":"[a-z_]*"' | head -1 | sed 's/.*"state":"//; s/"$//')
@@ -199,24 +122,12 @@ else
         AD_NEEDS_PROMPT=1
     fi
 
-    # `agent-desktop permissions --request` asks macOS to show the system prompts.
-    # Only a GUI (Aqua) session can display them: over SSH the prompt is refused
-    # ("does not allow prompting"), macOS auto-denies it, and the request lands in
-    # System Settings under /usr/libexec/sshd-keygen-wrapper - the SSH session
-    # ancestor - instead of the agent-desktop binary. Grant the launching app
-    # (Terminal, Ghostty, ...) under Privacy & Security > Accessibility, and add
-    # the agent-desktop binary too when macOS lists it separately.
+    # `agent-desktop permissions --request` asks macOS to show the prompts, and only
+    # an Aqua session can show them. Over SSH macOS refuses to prompt and auto-denies,
+    # so the request lands in System Settings under the SSH session instead of the
+    # agent-desktop binary. Grant Terminal/Ghostty under Privacy & Security >
+    # Accessibility, and the agent-desktop binary too when macOS lists it separately.
     if [ "${AD_NEEDS_PROMPT:-0}" = "1" ] && [ "$(launchctl managername 2> /dev/null)" = "Aqua" ]; then
         agent-desktop permissions --request
     fi
 fi
-
-# =============================================================================
-# PLUGIN UPDATES SECTION
-# =============================================================================
-
-# # update opencode-gemini-auth plugin https://github.com/jenslys/opencode-gemini-auth
-# sh -c "(cd ~ && sed -i.bak '/\"opencode-gemini-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-gemini-auth && echo \"[Plugin] opencode-gemini-auth - update script finished successfully.\")"
-#
-# # update opencode-alibaba-qwen3-auth plugin https://github.com/geoh/opencode-alibaba-qwen3-auth
-# sh -c "(cd ~ && sed -i.bak '/\"opencode-alibaba-qwen3-auth\"/d' .cache/opencode/package.json && rm -rf .cache/opencode/node_modules/opencode-alibaba-qwen3-auth && echo \"[Plugin] opencode-alibaba-qwen3-auth - update script finished successfully.\")"
