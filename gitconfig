@@ -47,3 +47,6 @@ conflictstyle = zdiff3
 	allow = always
 [submodule]
 	fetchJobs = 4
+[gpg "ssh"]
+	# git expands ~ in path config values, so this resolves on macOS and Linux
+	allowedSignersFile = ~/.ssh/allowed_signers
