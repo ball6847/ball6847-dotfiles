@@ -60,11 +60,12 @@
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",
-    "{\"source\":\"npm:pi-browser-harness\",\"scope\":\"user\"}": "0.17.0",
+    "{\"source\":\"npm:pi-browser-harness\",\"scope\":\"user\"}": "0.19.1",
     "{\"source\":\"npm:pi-prompt-template-model\",\"scope\":\"user\"}": "0.12.3",
     "{\"source\":\"npm:@johnnywu/pi-webfetch\",\"scope\":\"user\"}": "3.0.0",
     "{\"source\":\"npm:pi-loop-mode\",\"scope\":\"user\"}": "2.5.4",
     "{\"source\":\"npm:pi-prefix-cache-compaction\",\"scope\":\"user\"}": "0.6.1",
-    "{\"source\":\"npm:@aliou/pi-synthetic\",\"scope\":\"user\"}": "0.31.0"
+    "{\"source\":\"npm:@aliou/pi-synthetic\",\"scope\":\"user\"}": "0.31.0",
+    "{\"source\":\"npm:pi-cache-optimizer\",\"scope\":\"user\"}": "2.10.6"
   }
 }
