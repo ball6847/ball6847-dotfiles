@@ -50,3 +50,9 @@ conflictstyle = zdiff3
 [gpg "ssh"]
 	# git expands ~ in path config values, so this resolves on macOS and Linux
 	allowedSignersFile = ~/.ssh/allowed_signers
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
