@@ -791,6 +791,23 @@
             "max": null,
             "minimal": null,
             "high": "xhigh"
+          }
+        },
+        {
+          "id": "qwen-3.8-27b-v",
+          "reasoning": true,
+          "contextWindow": 98304,
+          "thinkingLevelMap": {
+            "xhigh": "xhigh",
+            "high": "xhigh",
+            "medium": "medium",
+            "low": "low",
+            "off": "off",
+            "max": null,
+            "minimal": null
+          },
+          "compat": {
+            "supportsDeveloperRole": true
           },
           "input": [
             "text",
