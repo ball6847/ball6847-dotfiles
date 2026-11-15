@@ -763,7 +763,7 @@
       },
       "models": [
         {
-          "id": "tiel-coder-q3",
+          "id": "tiel-coder-q3-v",
           "contextWindow": 262144,
           "reasoning": true,
           "thinkingLevelMap": {
@@ -772,6 +772,31 @@
             "medium": "medium",
             "low": "low",
             "off": "off",
+            "minimal": null,
+            "max": null
+          },
+          "compat": {
+            "supportsDeveloperRole": true
+          },
+          "input": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "tiel-coder-q4-v",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 98304,
+          "thinkingLevelMap": {
+            "off": "off",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
             "minimal": null,
             "max": null
           },
