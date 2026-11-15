@@ -763,8 +763,8 @@
       },
       "models": [
         {
-          "id": "tiel-coder",
-          "contextWindow": 131072,
+          "id": "tiel-coder-q3",
+          "contextWindow": 262144,
           "reasoning": true,
           "thinkingLevelMap": {
             "xhigh": "xhigh",
@@ -777,11 +777,7 @@
           },
           "compat": {
             "supportsDeveloperRole": true
-          },
-          "input": [
-            "text",
-            "image"
-          ]
+          }
         },
         {
           "id": "qwen-3.8-27b",
