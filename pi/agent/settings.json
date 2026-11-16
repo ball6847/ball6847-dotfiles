@@ -51,12 +51,11 @@
     "qoder/DeepSeek-Flash",
     "qoder/GLM-5.3-Flash",
     "qoder/Qwen3.8-Flash",
-    "qoder/Sonus",
     "qoder/MiniMax-M3.1-Flash",
     "agnes/agnes-3.0-flash",
     "ant-ling/*",
-    "qoder/Qwen4-Max-Preview",
-    "zenmux/baidu/ernie-5.5-flash-preview"
+    "zenmux/baidu/ernie-5.5-flash-preview",
+    "qoder/Qwen4-Max"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",

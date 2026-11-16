@@ -812,7 +812,8 @@
             "max": null,
             "minimal": null,
             "high": "xhigh"
-          }
+          },
+          "maxTokens": 32768
         },
         {
           "id": "qwen-3.8-27b-v",
@@ -833,7 +834,8 @@
           "input": [
             "text",
             "image"
-          ]
+          ],
+          "maxTokens": 32768
         }
       ]
     },
