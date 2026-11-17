@@ -11,6 +11,7 @@ Before you begin, ensure you have the following installed:
 - Git
 - Bash (for Linux/macOS)
 - PowerShell (for Windows)
+- Python 3.9 or newer (every platform)
 - Zsh (optional, for enhanced shell experience)
 
 ### Clone the Repository
@@ -39,14 +40,36 @@ git submodule update --init --recursive --remote
 
 ## Installation
 
+The installer lives in `install.py` and behaves the same on Linux, macOS and Windows.
+`install.sh` and `install.ps1` are thin wrappers that call it.
+
 ### Linux/macOS
 ```bash
-./install.sh  # Creates symlinks and sets up the environment
+./install.sh  # creates the links in the home directory
 ```
 
 ### Windows
 ```powershell
-.\auto-update-setup.ps1  # Sets up a scheduler to automatically pull dotfiles on startup
+.\install.ps1  # creates the links in the home directory
+```
+
+Existing files are moved to `~/.dotfiles_old` before a link is put in place, so nothing is lost.
+Running the installer twice is safe: links that already point at the repository are left alone.
+
+| Flag | Effect |
+|---|---|
+| `--dry-run` | print what would happen, change nothing |
+| `--verbose` | print every action |
+| `--copy-mode` | copy files instead of linking them |
+| `--no-rio` | skip the rio config link |
+
+On Windows, directories are linked with a junction, which needs no special permission.
+Files use a symlink, which needs Developer Mode or an elevated shell. Without it the installer
+copies the file instead and says so.
+
+### Tests
+```bash
+python -m unittest discover -s tests -t tests
 ```
 
 ## Automatic Updates
@@ -106,7 +129,7 @@ These dotfiles are highly customizable. The main configuration files you might w
 
 ### Common Issues
 
-- **Symlink errors**: Ensure you have the necessary permissions to create symlinks. On Windows, you may need to run PowerShell as Administrator.
+- **Symlink errors**: On Windows, file links need Developer Mode or an elevated shell. Directory links always work. Run with `--copy-mode` to copy instead of linking.
 - **Submodule errors**: If you encounter issues with submodules, try running `git submodule update --init --recursive --remote` to initialize and update all submodules.
 - **Script execution errors**: Make sure scripts have executable permissions (`chmod +x script.sh` on Linux/macOS).
 
