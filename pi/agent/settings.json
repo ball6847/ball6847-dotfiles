@@ -56,7 +56,9 @@
     "ant-ling/*",
     "zenmux/baidu/ernie-5.5-flash-preview",
     "qoder/Qwen4-Max",
-    "qoder/Qwen4-Max-Preview"
+    "qoder/Qwen4-Max-Preview",
+    "zenmux/tencent/hy4-flash",
+    "zenmux/tencent/hy4"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",
