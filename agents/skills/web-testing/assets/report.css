@@ -1,0 +1,931 @@
+    /*
+      Report styling, self-contained so a generated report opens from disk with
+      no build step and no network access.
+
+      Colour roles. Every colour has exactly one job, no colour carries two
+      meanings.
+        --chrome   deep blue, the frame of the report: masthead, links, rules,
+                   step numbers. Set it from the manifest so a report can wear
+                   the product's own accent.
+        --success  green, the result passed
+        --failed   red, the result failed
+        --warning  amber, a finding that needs a human decision
+      Red is reserved for failure only. A product brand red is never used as a
+      structural colour here, because a reader has to be able to trust that red
+      always means failed.
+    */
+    @font-face {
+      font-family: "Inter";
+      src: url("fonts/inter-latin-var.woff2") format("woff2");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    :root {
+      color-scheme: light;
+      /* light theme surface tokens */
+      --canvas: #f6f7f9;
+      --background: #ffffff;
+      --foreground: #263244;
+      --card: #ffffff;
+      --card-foreground: #263244;
+      --muted: #f6f7f9;
+      --muted-foreground: #536173;
+      --accent: #edf0f5;
+      --accent-foreground: #263244;
+      --border: #e6e8ee;
+      --radius: 0.5rem;
+      /* the frame of the report, deep blue. Never the product brand red:
+         red is held back so it can only mean failed */
+      --chrome: #16408f;
+      --chrome-deep: #0c2a63;
+      --chrome-soft: #eef2fb;
+      --chrome-line: #c9d6f0;
+      --on-chrome: #ffffff;
+      --ring: #16408f;
+      /* green means passed, red means failed, amber means needs a decision */
+      --success: #127337;
+      --failed: #d92d20;
+      --failed-soft: #fdf0ef;
+      --failed-line: #f0c4c0;
+      --warning: #925600;
+      /* soft fills derived from the strong tokens above */
+      --success-soft: #ecf4ef;
+      --success-line: #c1dbcb;
+      --warning-soft: #f5f0e8;
+      --warning-line: #deccb2;
+      /* a lighter rule than --border */
+      --border-soft: #f0f1f5;
+      /* scrollbar thumb */
+      --scroll-thumb: #b3b9c3;
+      /* scrim behind the full screen image, fully opaque so the report's own
+         floating nav cannot bleed through */
+      --scrim: #263244;
+      --pad: clamp(20px, 5vw, 64px);
+      --spine: 72px;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-6: 48px;
+      --space-8: 64px;
+      --space-12: 96px;
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      scroll-padding-block-start: 84px;
+      scrollbar-color: var(--scroll-thumb) var(--canvas);
+    }
+    /* lock background scroll while a full screen image is open, pure CSS */
+    html:has(.overlay:target) { overflow: hidden; }
+    @media (prefers-reduced-motion: no-preference) {
+    }
+    ::-webkit-scrollbar { inline-size: 12px; block-size: 12px; }
+    ::-webkit-scrollbar-track { background: var(--canvas); }
+    ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 6px; border: 3px solid var(--canvas); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--foreground);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.85;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    a { color: var(--chrome); text-underline-offset: 0.22em; }
+    a:hover { color: var(--foreground); text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.88em;
+      overflow-wrap: anywhere;
+    }
+    h1, h2, h3, p, figure, dl, dd { margin: 0; }
+    h1, h2, h3 { text-wrap: balance; }
+    h1 {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+    }
+    h2 { font-size: clamp(27px, 3vw, 38px); font-weight: 750; line-height: 1.45; letter-spacing: -0.01em; }
+    h3 { font-size: 20px; font-weight: 700; line-height: 1.65; }
+    p + p { margin-block-start: var(--space-2); }
+    [id] { scroll-margin-block-start: 84px; }
+    .document {
+      max-inline-size: 1400px;
+      margin-inline: auto;
+      background: var(--card);
+      border-block-start: 6px solid var(--chrome);
+      border-inline: 1px solid var(--border);
+    }
+    .skip-link {
+      position: absolute;
+      inset-block-start: -100px;
+      inset-inline-start: var(--space-2);
+      padding: var(--space-1) var(--space-2);
+      background: var(--card);
+      z-index: 30;
+    }
+    .skip-link:focus { inset-block-start: var(--space-2); }
+    .eyebrow { color: var(--muted-foreground); font-size: 14px; font-weight: 700; }
+
+    /* masthead, deep blue gradient, all text white.
+       Size and weight carry the hierarchy so every contrast pair passes */
+    .masthead {
+      padding: var(--space-6) var(--pad) var(--space-6);
+      background:
+        radial-gradient(120% 90% at 85% -10%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 62%),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 56px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 56px),
+        linear-gradient(150deg, var(--chrome) 55%, var(--chrome-deep));
+      color: var(--on-chrome);
+    }
+    .masthead .eyebrow { color: var(--on-chrome); font-weight: 500; }
+    .header-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-4);
+      justify-content: space-between;
+      padding-block-end: var(--space-3);
+      border-block-end: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .header-line time { font-variant-numeric: tabular-nums; }
+    .overline {
+      margin-block-start: var(--space-4);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--on-chrome);
+    }
+    .title-block { margin-block-start: var(--space-1); }
+    .title-block p { margin-block-start: var(--space-2); color: var(--on-chrome); font-weight: 400; font-size: 20px; }
+    .masthead-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-2);
+      margin-block-start: var(--space-4);
+    }
+    .chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 4px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--on-chrome);
+      line-height: 1.8;
+    }
+    .chip code { color: var(--on-chrome); }
+
+    /* nav pinned to the top, the verdict stays on the left, section links right */
+    .contents-wrap {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 20;
+      background: var(--card);
+      border-block-end: 1px solid var(--border);
+    }
+    .contents {
+      display: flex;
+      align-items: center;
+      gap: 4px var(--space-3);
+      padding: 6px var(--pad);
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .progress {
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: -1px;
+      block-size: 2px;
+      background: var(--chrome);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    [dir="rtl"] .progress { transform-origin: right; }
+    .contents a {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 44px;
+      padding-inline: 10px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+    .contents a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+    .pass-pill {
+      flex: 0 0 auto;
+      gap: 8px;
+      padding: 0 16px;
+      margin-inline-end: var(--space-1);
+      background: var(--success-soft);
+      border: 1px solid var(--success-line);
+      border-radius: 999px;
+      color: var(--success);
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: 0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+    .pass-pill::before {
+      content: "";
+      inline-size: 9px;
+      block-size: 9px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+    .pass-pill:hover { color: var(--on-chrome); background: var(--success); border-color: var(--success); }
+    .pass-pill:hover::before { background: var(--on-chrome); }
+    .pass-pill.is-fail { background: var(--failed-soft); border-color: var(--failed-line); color: var(--failed); }
+    .pass-pill.is-fail::before { background: var(--failed); }
+    .pass-pill.is-fail:hover { background: var(--failed); border-color: var(--failed); }
+
+    main { padding: 0 var(--pad); }
+    .section { margin-block-start: var(--space-12); }
+    .section > .eyebrow { margin-block-end: var(--space-1); }
+    .section-intro { max-inline-size: 880px; margin-block: var(--space-2) var(--space-4); color: var(--muted-foreground); }
+
+    /* the verdict banner */
+    #summary { margin-block-start: var(--space-6); }
+    .result-panel {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: var(--space-6);
+      align-items: center;
+      padding: var(--space-6);
+      background: linear-gradient(135deg, var(--success-soft), var(--background));
+      border: 1px solid var(--success-line);
+      border-inline-start: 6px solid var(--success);
+      border-radius: var(--radius);
+    }
+    .verdict {
+      color: var(--success);
+      font-size: clamp(60px, 8vw, 96px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .result-count {
+      margin-block-start: var(--space-2);
+      color: var(--success);
+      font-size: 20px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    .segments { display: flex; gap: 4px; margin-block-start: var(--space-2); }
+    .segments span { flex: 1; block-size: 8px; border-radius: 2px; background: var(--success); }
+    .segments span.seg-fail { background: var(--failed); }
+    .segments span.seg-blocked { background: var(--warning); }
+    .result-panel.is-fail {
+      background: linear-gradient(135deg, var(--failed-soft), var(--background));
+      border-color: var(--failed-line);
+      border-inline-start-color: var(--failed);
+    }
+    .result-panel.is-fail .verdict,
+    .result-panel.is-fail .result-count { color: var(--failed); }
+    .result-copy { max-inline-size: 820px; }
+    .result-copy h2 { font-size: clamp(24px, 2.4vw, 32px); margin-block-end: var(--space-2); }
+    .contents-title { font-weight: 700; white-space: nowrap; margin-inline-end: var(--space-2); }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-4);
+      margin: var(--space-3) 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+    .legend li { display: inline-flex; align-items: center; gap: 8px; }
+    .legend-swatch {
+      inline-size: 12px;
+      block-size: 12px;
+      border-radius: 3px;
+      flex: 0 0 auto;
+    }
+    .swatch-pass { background: var(--success); }
+    .swatch-fail { background: var(--failed); }
+    .swatch-decision { background: var(--warning); }
+    .decision-summary {
+      margin-block-start: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--border);
+      border-inline-start: 3px solid var(--warning);
+      border-radius: var(--radius);
+      background: var(--background);
+    }
+    .decision-summary .eyebrow { margin-block-end: var(--space-2); }
+    .decision-summary ol {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-1) var(--space-4);
+      margin: 0;
+      padding-inline-start: 1.3em;
+    }
+    .decision-summary a { color: var(--foreground); min-block-size: 24px; display: inline-flex; align-items: baseline; }
+    .decision-summary .finding-id { color: var(--warning); margin-inline-end: 2px; }
+    .summary-note { margin-block-start: var(--space-3); color: var(--muted-foreground); }
+    .summary-note a { font-weight: 700; }
+    .metadata { margin-block-start: var(--space-4); display: grid; gap: var(--space-2); }
+    .metadata > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: var(--space-2); }
+    .metadata dt { color: var(--muted-foreground); font-weight: 600; }
+    .metadata dd { max-inline-size: 1020px; }
+
+    /* the paths under test, side by side */
+    .paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin-block-start: var(--space-4); }
+    .path {
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--border);
+      border-block-start: 3px solid var(--chrome);
+      border-radius: var(--radius);
+    }
+    .path h3 { margin-block-end: var(--space-1); font-size: 21px; }
+    .path code { color: var(--chrome); }
+
+    /* index of every step, scannable at a glance and clickable */
+    .step-map { margin-block-end: var(--space-6); }
+    .step-map ol {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-1) var(--space-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .step-map a {
+      display: grid;
+      grid-template-columns: 2.4em minmax(0, 1fr);
+      gap: var(--space-2);
+      align-items: baseline;
+      min-block-size: 28px;
+      padding: 3px 8px;
+      border-radius: var(--radius);
+      color: var(--foreground);
+      text-decoration: none;
+    }
+    .step-map a:hover { background: var(--chrome-soft); }
+    .step-map .step-n {
+      color: var(--chrome);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      text-align: end;
+    }
+
+    /* the spine of the step sequence, the rule lines up with the number circles */
+    .steps { list-style: none; margin: 0; padding: 0; }
+    .step { position: relative; padding-inline-start: var(--spine); }
+    .step + .step { margin-block-start: var(--space-8); }
+    .step::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 21px;
+      inset-block-start: 48px;
+      inset-block-end: calc(-1 * var(--space-8));
+      inline-size: 2px;
+      background: var(--chrome-line);
+    }
+    .step:last-child::before { display: none; }
+    .step-number {
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-start: 0;
+      display: grid;
+      place-items: center;
+      inline-size: 44px;
+      block-size: 44px;
+      border: 2px solid var(--chrome);
+      border-radius: 50%;
+      background: var(--card);
+      color: var(--chrome);
+      font-size: 18px;
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .step-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-1) var(--space-2);
+      min-block-size: 44px;
+      margin-block-end: var(--space-3);
+      padding-block-start: 6px;
+    }
+    .step-heading h3 { flex: 1; min-inline-size: 0; }
+    .step-note {
+      max-inline-size: 900px;
+      margin-block: -4px 0 var(--space-2);
+      color: var(--muted-foreground);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .step-note-label {
+      display: inline-block;
+      min-inline-size: 92px;
+      color: var(--chrome);
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .step-count {
+      flex: 0 0 auto;
+      color: var(--muted-foreground);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      line-height: 2.3;
+    }
+    .pass {
+      flex: 0 0 auto;
+      color: var(--success);
+      background: var(--success-soft);
+      border: 1px solid var(--success);
+      padding: 2px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+      margin-block-start: 4px;
+    }
+    .pass.fail { color: var(--failed); background: var(--failed-soft); border-color: var(--failed); }
+    .pass.blocked { color: var(--warning); background: var(--warning-soft); border-color: var(--warning); }
+
+    /* evidence: one frame, caption attached to the frame.
+       The preview is height capped, the full size image opens in an overlay
+       driven by :target so it works with no JavaScript at all.
+       The script at the end of the document only adds Esc to close and focus
+       management. */
+    .evidence {
+      margin-block: 0 var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(38, 50, 68, 0.07);
+    }
+    .evidence:has(.preview:hover), .evidence:has(.preview:focus-visible) { border-color: var(--ring); }
+    .preview {
+      position: relative;
+      display: block;
+      background: var(--accent);
+      cursor: zoom-in;
+    }
+    .preview:focus-visible { outline-offset: -3px; border-radius: 0; }
+    .preview img {
+      display: block;
+      inline-size: 100%;
+      block-size: auto;
+      max-block-size: 400px;
+      object-fit: contain;
+    }
+    .preview::after {
+      content: "Click to expand";
+      position: absolute;
+      inset-block-end: 12px;
+      inset-inline-end: 12px;
+      padding: 2px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--foreground);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.8;
+      pointer-events: none;
+    }
+    .preview:hover::after, .preview:focus-visible::after {
+      background: var(--chrome);
+      border-color: var(--chrome);
+      color: var(--on-chrome);
+    }
+    figcaption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px var(--space-3);
+      padding: 8px 16px;
+      border-block-start: 1px solid var(--border-soft);
+      background: var(--muted);
+      font-size: 14.5px;
+      color: var(--muted-foreground);
+    }
+    figcaption a {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 44px;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+      padding: 0 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--foreground);
+      text-decoration: none;
+      transition: border-color 150ms ease, color 150ms ease;
+    }
+    figcaption a:hover { border-color: var(--ring); color: var(--chrome); }
+    figcaption a code { font-size: 13px; }
+    .supplement { margin-block: var(--space-4); }
+    .supplement-label { color: var(--muted-foreground); margin-block-end: var(--space-2); font-size: 14px; font-weight: 600; }
+    .step .supplement { padding-inline-start: var(--space-3); border-inline-start: 2px solid var(--border-soft); }
+
+    /* full screen image: opens when the id matches :target, closes with a link
+       back to its own figure. Clicking the scrim closes it too, the close
+       button lives in the top bar and is always visible */
+    .overlay { display: none; }
+    .overlay:target {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      padding: 12px 16px 16px;
+      background: var(--scrim);
+      overscroll-behavior: contain;
+    }
+    .overlay-backdrop {
+      position: absolute;
+      inset: 0;
+      cursor: zoom-out;
+    }
+    /* top bar of the full screen image: on the left what this shot is, on the
+       right the position, the step buttons and the close button.
+       No "press Esc" hint, people already know Esc closes an overlay. */
+    .overlay-bar {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2) var(--space-3);
+      padding-block-end: 12px;
+      color: var(--on-chrome);
+    }
+    .overlay-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-inline-size: 0;
+    }
+    .overlay-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .overlay-file {
+      font-size: 12px;
+      color: var(--chrome-line);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .overlay-tools {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .overlay-count {
+      font-size: 13px;
+      color: var(--chrome-line);
+      font-variant-numeric: tabular-nums;
+    }
+    .overlay-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 44px;
+      block-size: 44px;
+      border: 1px solid var(--chrome-line);
+      border-radius: 999px;
+      color: var(--on-chrome);
+      font-size: 22px;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .overlay-step:hover { background: var(--chrome); border-color: var(--chrome); }
+    .overlay-step.is-disabled { opacity: 0.3; }
+    .overlay-close {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 44px;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: var(--chrome);
+      color: var(--on-chrome);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .overlay-close:hover { background: var(--chrome-deep); color: var(--on-chrome); }
+    .overlay a:focus-visible { outline-color: var(--on-chrome); }
+    .overlay-img {
+      position: relative;
+      place-self: center;
+      /* the image box keeps the shot's own aspect ratio, no empty side bands.
+         Wide screen: full height, width follows the image.
+         Narrow screen: width follows the image, height is set in the narrow
+         screen rule below */
+      block-size: 100%;
+      inline-size: auto;
+      max-inline-size: 100%;
+      max-block-size: 100%;
+      object-fit: contain;
+      background: transparent;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* findings: a thin amber edge says a decision is needed, no need to paint
+       the whole wall amber */
+    .findings-header {
+      padding: var(--space-4) var(--space-6);
+      background: var(--warning-soft);
+      border: 1px solid var(--warning-line);
+      border-inline-start: 6px solid var(--warning);
+      border-radius: var(--radius);
+    }
+    .findings-header .eyebrow { color: var(--warning); }
+    .finding-index {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2px var(--space-3);
+      margin-block-start: var(--space-3);
+    }
+    .finding-index a {
+      display: flex;
+      gap: var(--space-2);
+      align-items: baseline;
+      min-block-size: 44px;
+      padding: 6px 10px;
+      border-radius: var(--radius);
+      color: var(--foreground);
+      text-decoration: none;
+    }
+    .finding-index a:hover { background: rgba(255, 255, 255, 0.75); text-decoration: underline; text-decoration-thickness: 2px; }
+    .finding-index a > span:first-child {
+      color: var(--warning);
+      font-weight: 750;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+    }
+    .finding {
+      margin-block-start: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--border);
+      border-inline-start: 3px solid var(--warning);
+      border-radius: var(--radius);
+    }
+    .finding h3 { margin-block-end: var(--space-2); font-size: 22px; }
+    .finding-id {
+      display: inline-block;
+      color: var(--warning);
+      background: var(--warning-soft);
+      border: 1px solid var(--warning-line);
+      border-radius: 6px;
+      padding: 0 8px;
+      margin-inline-end: var(--space-1);
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.82em;
+      font-weight: 700;
+      vertical-align: 2px;
+    }
+    .finding-copy { max-inline-size: 940px; }
+    .finding-copy .impact {
+      margin-block-start: var(--space-2);
+      padding-block-start: var(--space-2);
+      border-block-start: 1px solid var(--border-soft);
+    }
+    .finding .evidence { margin-block-start: var(--space-3); }
+    .finding .supplement-label { margin-block-start: var(--space-3); }
+
+    .notes { max-inline-size: 1020px; }
+    .notes ul { padding-inline-start: var(--space-3); margin-block: var(--space-3) 0; }
+    .notes li::marker { color: var(--chrome); }
+    .notes li + li { margin-block-start: var(--space-3); }
+    footer {
+      margin-block-start: var(--space-12);
+      padding: var(--space-3) var(--pad) var(--space-6);
+      border-block-start: 1px solid var(--border);
+      color: var(--muted-foreground);
+      font-size: 14px;
+    }
+
+    /* reading progress and the current marker use CSS scroll driven timelines.
+       A browser without support skips these blocks and gets the plain page.
+       Opening a full screen image is :target only, Esc is the one thing that
+       needs JavaScript */
+    @keyframes read-progress { to { transform: scaleX(1); } }
+    @keyframes marker-fill { to { background: var(--chrome); border-color: var(--chrome); color: var(--on-chrome); } }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes stage {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes nav-chrome {
+      from, to { background: var(--chrome-soft); color: var(--chrome); box-shadow: inset 0 -2px 0 var(--chrome); }
+    }
+    @keyframes nav-amber {
+      from, to { background: var(--warning-soft); color: var(--warning); box-shadow: inset 0 -2px 0 var(--warning); }
+    }
+    @keyframes nav-neutral {
+      from, to { background: var(--accent); color: var(--accent-foreground); box-shadow: inset 0 -2px 0 var(--muted-foreground); }
+    }
+    @supports (animation-timeline: view()) {
+      .document { timeline-scope: --sec-paths, --sec-steps, --sec-findings, --sec-notes; }
+      #paths { view-timeline: --sec-paths block; view-timeline-inset: 60% 0; }
+      #steps { view-timeline: --sec-steps block; view-timeline-inset: 60% 0; }
+      #findings { view-timeline: --sec-findings block; view-timeline-inset: 60% 0; }
+      #notes { view-timeline: --sec-notes block; view-timeline-inset: 60% 0; }
+      .contents a[href="#paths"] { animation: nav-chrome linear; animation-timeline: --sec-paths; animation-range: entry 100% cover 100%; }
+      .contents a[href="#steps"] { animation: nav-chrome linear; animation-timeline: --sec-steps; animation-range: entry 100% cover 100%; }
+      .contents a[href="#findings"] { animation: nav-amber linear; animation-timeline: --sec-findings; animation-range: entry 100% cover 100%; }
+      .contents a[href="#notes"] { animation: nav-neutral linear; animation-timeline: --sec-notes; animation-range: entry 100% cover 100%; }
+      .progress { animation: read-progress linear; animation-timeline: scroll(root); }
+      .step-number { animation: marker-fill linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+      .evidence, .finding, .path { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .header-line, .overline, .title-block, .masthead-meta { animation: stage 480ms ease-out both; }
+      .overline { animation-delay: 60ms; }
+      .title-block { animation-delay: 120ms; }
+      .masthead-meta { animation-delay: 200ms; }
+      .result-panel { animation: stage 520ms ease-out 160ms both; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step-map a, figcaption a { transition: none; }
+      .header-line, .overline, .title-block, .masthead-meta, .result-panel,
+      .evidence, .finding, .path, .step-number, .progress, .contents a { animation: none; }
+      .evidence, .finding, .path { opacity: 1; transform: none; }
+    }
+
+    @media screen and (max-width: 900px) {
+      .result-panel { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding: var(--space-4); align-items: start; }
+      .verdict-block { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); }
+      .result-count { margin-block-start: 0; }
+      .segments { flex-basis: 100%; }
+    }
+
+    @media screen and (max-width: 760px) {
+      :root { --spine: 56px; }
+      .paths, .finding-index { grid-template-columns: minmax(0, 1fr); }
+      .metadata > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+      .step-number { inline-size: 36px; block-size: 36px; font-size: 16px; }
+      .step::before { inset-inline-start: 17px; inset-block-start: 40px; }
+      .step-heading { flex-wrap: wrap; padding-block-start: 2px; }
+      .step-heading h3 { flex-basis: 100%; order: 3; }
+      .step-count { order: 1; line-height: 1.85; }
+      .pass { order: 2; margin-block-start: 0; }
+      .findings-header { padding: var(--space-3); }
+      .finding { padding: var(--space-3); }
+      .masthead { padding-block: var(--space-4); }
+    }
+
+    @media screen and (max-width: 640px) {
+      /* on a small screen the evidence image gets the full column width so
+         text inside the shot is not squeezed */
+      .step > .evidence, .step > .supplement { margin-inline-start: calc(-1 * var(--spine)); }
+      .step .supplement { padding-inline-start: var(--space-2); }
+      .step .supplement .evidence { margin-inline-start: 0; }
+      figcaption { padding: 6px 12px; }
+      .preview::after { inset-block-end: 8px; inset-inline-end: 8px; font-size: 12px; padding: 1px 10px; }
+      .overlay:target { padding: 8px 10px 10px; overflow-x: auto; justify-items: start; }
+      /* the top bar keeps the width of the screen, not the width of the image
+         being panned. A long file name is truncated, otherwise the close
+         button would slide off screen. */
+      .overlay-bar {
+        row-gap: 8px;
+        /* exactly the screen width, no overflow (the screen has a 10px edge) */
+        inline-size: calc(100vw - 20px);
+        max-inline-size: calc(100vw - 20px);
+        box-sizing: border-box;
+        background: var(--scrim);
+        padding-inline: 4px;
+      }
+      .overlay-heading { flex: 1 1 12rem; }
+      .overlay-tools { flex: 0 0 auto; }
+      .overlay-close { flex: 0 0 auto; }
+      /* narrow screen: the shot is wider than the screen, so give it the
+         full height and let the reader pan sideways. Shrinking the shot to
+         fit the width would shrink the text in it until it cannot be read. */
+      .overlay-img { block-size: 100%; inline-size: auto; max-inline-size: none; }
+      .overlay-bar { position: sticky; inset-inline-start: 0; }
+      /* on a narrow screen the lists have to stay readable, one column */
+      .decision-summary ol, .step-map ol { grid-template-columns: minmax(0, 1fr); }
+      .contents-title { font-size: 13px; }
+    }
+
+    @media screen and (max-width: 400px) {
+      :root { --pad: 16px; }
+      .result-panel, .findings-header { padding: var(--space-3) var(--space-2); }
+      .finding { padding: var(--space-2); }
+      .contents { column-gap: var(--space-2); }
+    }
+
+    @page { size: A4 landscape; margin: 10mm; }
+    @media print {
+      html { overflow: visible; }
+      html:has(.overlay:target) { overflow: visible; }
+      body { background: #ffffff; font-size: 11pt; line-height: 1.6; }
+      .document { max-inline-size: none; margin: 0; border: 0; }
+      .skip-link { display: none; }
+      /* on paper the reader sees only the small images, no overlay at all */
+      .overlay, .overlay:target { display: none !important; }
+      .preview::after { display: none; }
+      .preview { cursor: default; }
+      .preview img { max-block-size: 65mm; }
+      .masthead {
+        padding: 0 0 4mm;
+        background: none;
+        color: var(--foreground);
+        border-block-end: 0.8mm solid var(--chrome);
+      }
+      .masthead .eyebrow, .overline, .title-block p { color: var(--muted-foreground); }
+      .header-line { border-block-end: 0; padding-block-end: 0; }
+      .overline { margin-block-start: 3mm; font-size: 9pt; }
+      h1 { font-size: 28pt; }
+      h2 { font-size: 20pt; }
+      h3 { font-size: 13pt; }
+      .eyebrow, .supplement-label { font-size: 10pt; }
+      .title-block { margin-block-start: 1mm; }
+      .title-block p { font-size: 13pt; margin-block-start: 2mm; }
+      .masthead-meta { margin-block-start: 3mm; gap: 2mm; }
+      .chip { border-color: var(--border); color: var(--foreground); font-size: 9pt; padding: 0 3mm; }
+      .chip code { color: var(--foreground); }
+      /* when printing, the menu has to wrap so it is not cut off by the
+         paper edge */
+      .contents { flex-wrap: wrap; overflow: visible; padding: 3mm 0 0; gap: 2mm; }
+      .contents a { min-block-size: 0; padding: 0 2mm; font-size: 9pt; }
+      .contents-title { font-size: 9pt; }
+      .pass-pill { font-size: 9pt; padding: 0 3mm; }
+      .pass-pill.is-fail { background: var(--failed-soft); border-color: var(--failed-line); color: var(--failed); }
+      main { padding: 0; }
+      #summary { margin-block-start: 5mm; }
+      .result-panel { padding: 5mm; gap: 8mm; border-radius: 0; }
+      .verdict { font-size: 34pt; }
+      .result-count { font-size: 12pt; margin-block-start: 2mm; }
+      .segments { margin-block-start: 2mm; gap: 1mm; }
+      .segments span { block-size: 2mm; }
+      .result-copy h2 { font-size: 15pt; margin-block-end: 2mm; }
+      .metadata { gap: 2mm; margin-block-start: 5mm; }
+      .metadata > div { grid-template-columns: 25mm minmax(0, 1fr); gap: 4mm; }
+      .summary-note { margin-block-start: 4mm; }
+      .section { margin-block-start: 8mm; }
+      .paths { gap: 6mm; margin-block-start: 4mm; }
+      .path { padding: 3mm 4mm; border-radius: 0; }
+      .path h3 { font-size: 13pt; }
+      .section-intro { margin-block: 2mm 5mm; }
+      .step { padding-inline-start: 14mm; }
+      .step + .step { margin-block-start: 6mm; }
+      .step::before { inset-inline-start: 4mm; inset-block-start: 9mm; inset-block-end: -6mm; inline-size: 0.4mm; }
+      .step-number {
+        inline-size: 8mm;
+        block-size: 8mm;
+        font-size: 11pt;
+        border-width: 0.5mm;
+        background: var(--chrome);
+        border-color: var(--chrome);
+        color: var(--on-chrome);
+      }
+      .step-heading { min-block-size: 8mm; padding-block-start: 1mm; margin-block-end: 3mm; gap: 4mm; }
+      .step-count { font-size: 9pt; line-height: 2; }
+      .pass { font-size: 9pt; padding: 0 2.5mm; margin-block-start: 0.5mm; }
+      .pass.fail { color: var(--failed); background: var(--failed-soft); border-color: var(--failed); }
+      .pass.blocked { color: var(--warning); background: var(--warning-soft); border-color: var(--warning); }
+      .step-note { font-size: 9pt; margin-block: 0 2mm; }
+      .step-note-label { min-inline-size: 20mm; font-size: 8pt; }
+      .evidence { margin-block: 0 5mm; border-radius: 0; box-shadow: none; break-inside: avoid; }
+      figcaption { font-size: 9pt; padding: 1.5mm 3mm; gap: 1mm 4mm; }
+      figcaption a { min-block-size: 0; padding: 0 2mm; border-radius: 0; }
+      figcaption a code { font-size: 8.5pt; }
+      .supplement { margin-block: 5mm; }
+      .step .supplement { padding-inline-start: 4mm; }
+      .findings-header { padding: 4mm 5mm; border-radius: 0; }
+      .finding-index { gap: 1mm 6mm; margin-block-start: 2mm; }
+      .finding-index a { min-block-size: 0; padding: 0 2mm; }
+      .finding { margin-block-start: 4mm; padding: 3mm 4mm; border-radius: 0; }
+      .finding h3 { font-size: 13pt; margin-block-end: 2mm; }
+      .finding-copy, .notes { max-inline-size: none; }
+      .finding .evidence { margin-block-start: 3mm; }
+      .notes li + li { margin-block-start: 3mm; }
+      footer { margin-block-start: 6mm; padding: 3mm 0 0; font-size: 9pt; }
+      a { color: inherit; }
+      .header-line, .overline, .title-block, .masthead-meta, .result-panel,
+      .evidence, .finding, .path, .step-number, .progress, .contents a { animation: none; }
+      .evidence, .finding, .path { opacity: 1; transform: none; }
+      h2, h3, .step-heading, .supplement-label { break-after: avoid; }
+      .result-panel, .path, .finding-copy, .findings-header, .notes li { break-inside: avoid; }
+      p { orphans: 3; widows: 3; }
+      #paths, #findings, #notes { break-before: page; }
+    }
+  
