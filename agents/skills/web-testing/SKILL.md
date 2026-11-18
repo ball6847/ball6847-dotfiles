@@ -1,6 +1,6 @@
 ---
 name: web-testing
-description: Use when testing or verifying a web application or web flow in a real browser: run an end-to-end test, smoke test, or QA pass, check a feature against its spec or requirements, capture screenshots as evidence, or produce an HTML test report. Enforces agent-browser as the only browser tool, one screenshot per step that is read back before continuing, and a hard freeze on database writes and code changes while the test runs.
+description: "Use when testing or verifying a web application or web flow in a real browser: run an end-to-end test, smoke test, or QA pass, check a feature against its spec or requirements, capture screenshots as evidence, or produce an HTML test report. Enforces agent-browser as the only browser tool, one screenshot per step that is read back before continuing, and a hard freeze on database writes and code changes while the test runs."
 ---
 
 # Web Testing
