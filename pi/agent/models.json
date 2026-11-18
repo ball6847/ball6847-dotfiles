@@ -842,6 +842,11 @@
             "image"
           ],
           "maxTokens": 32768
+        },
+        {
+          "id": "gemma-4-26b-a4b",
+          "reasoning": true,
+          "contextWindow": 131072
         }
       ]
     },
