@@ -200,6 +200,15 @@
       "skillFolderHash": "ff5b74d9d1d4bdba8ae60208e14c562533e0d708",
       "installedAt": "2026-11-08T15:05:07.015Z",
       "updatedAt": "2026-11-08T15:05:07.015Z"
+    },
+    "dont-make-me-think": {
+      "source": "davesheffer/dont-make-me-think-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/davesheffer/dont-make-me-think-skill.git",
+      "skillPath": "skills/dont-make-me-think/SKILL.md",
+      "skillFolderHash": "bcf335cd709182ce8b31aa7287a2ca4aa405199a",
+      "installedAt": "2026-11-18T04:18:47.334Z",
+      "updatedAt": "2026-11-18T04:18:47.334Z"
     }
   },
   "dismissed": {
