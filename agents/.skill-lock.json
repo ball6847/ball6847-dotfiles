@@ -209,6 +209,15 @@
       "skillFolderHash": "bcf335cd709182ce8b31aa7287a2ca4aa405199a",
       "installedAt": "2026-11-18T04:18:47.334Z",
       "updatedAt": "2026-11-18T04:18:47.334Z"
+    },
+    "ux-writing": {
+      "source": "content-designer/ux-writing-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/content-designer/ux-writing-skill.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "98cacde4ba2dd10ed28df43a8d53eef1e321c539",
+      "installedAt": "2026-11-18T09:37:19.551Z",
+      "updatedAt": "2026-11-18T09:37:19.551Z"
     }
   },
   "dismissed": {
