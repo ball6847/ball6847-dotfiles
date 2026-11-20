@@ -227,6 +227,15 @@
       "skillFolderHash": "64e4a3435623fc682c9c80e005dba3d1ffd87654",
       "installedAt": "2026-11-20T02:38:37.139Z",
       "updatedAt": "2026-11-20T02:38:37.139Z"
+    },
+    "inference-optimisation": {
+      "source": "sybil-solutions/inference-optimisation-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/sybil-solutions/inference-optimisation-skill.git",
+      "skillPath": "skills/inference-optimisation/SKILL.md",
+      "skillFolderHash": "388abcadb495066299b114884c8ceea7105ab396",
+      "installedAt": "2026-11-20T14:06:24.915Z",
+      "updatedAt": "2026-11-20T14:06:24.915Z"
     }
   },
   "dismissed": {
