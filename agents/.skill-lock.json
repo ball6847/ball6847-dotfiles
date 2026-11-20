@@ -218,6 +218,15 @@
       "skillFolderHash": "98cacde4ba2dd10ed28df43a8d53eef1e321c539",
       "installedAt": "2026-11-18T09:37:19.551Z",
       "updatedAt": "2026-11-18T09:37:19.551Z"
+    },
+    "better-layout": {
+      "source": "jakubkrehel/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/jakubkrehel/skills.git",
+      "skillPath": "skills/better-layout/SKILL.md",
+      "skillFolderHash": "64e4a3435623fc682c9c80e005dba3d1ffd87654",
+      "installedAt": "2026-11-20T02:38:37.139Z",
+      "updatedAt": "2026-11-20T02:38:37.139Z"
     }
   },
   "dismissed": {
