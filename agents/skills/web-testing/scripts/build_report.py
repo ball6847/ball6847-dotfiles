@@ -2,22 +2,23 @@
 """Build a self-contained HTML test report from a JSON manifest.
 
 The manifest describes the run: the verdict, the metadata, the steps, the
-findings and the notes. Every step may carry screenshots. The script copies
-the screenshots next to the report, writes report.html and keeps the fonts and
-the stylesheet local so the report opens from disk with no network access.
+findings and the notes. Every step may carry screenshots. The script embeds
+every screenshot and the font in the HTML, so one file opens from disk with
+no network access and no folder beside it.
 
 Usage:
-    python3 build_report.py <manifest.json> [output-dir]
+    python3 build_report.py <manifest.json> [output-path]
 
-The manifest schema is documented in references/manifest.md.
+The output path may be a directory, which gets report.html, or a path ending
+in .html. The manifest schema is documented in references/manifest.md.
 """
 
 from __future__ import annotations
 
+import base64
 import html
 import json
 import re
-import shutil
 import sys
 from pathlib import Path
 
@@ -98,7 +99,7 @@ class ShotIndex:
                 "height": height,
                 "caption": shot.get("caption", ""),
                 "alt": shot.get("alt", shot.get("caption", "")),
-                "file": Path(src).name,
+                "file": Path(shot.get("path", src)).name,
             }
         )
         return len(self.entries)
@@ -123,8 +124,8 @@ def figure_html(index: ShotIndex, shot: dict, indent: str) -> str:
         f'height="{size_height}" alt="{esc(alt)}" loading="lazy">\n'
         f"{indent}  </a>\n"
         f'{indent}  <figcaption><span>{esc(caption)}</span>'
-        f'<a href="{esc(src)}" aria-label="Open the original full size file: {esc(caption)}">'
-        f'<code translate="no">{esc(Path(src).name)}</code></a></figcaption>\n'
+        f'<a href="{esc(src)}" aria-label="Open full size: {esc(caption)}">'
+        f'<code translate="no">{esc(Path(shot.get("path", src)).name)}</code></a></figcaption>\n'
         f"{indent}</figure>"
     )
 
@@ -238,39 +239,46 @@ def build_overlays(index: ShotIndex) -> str:
     return "\n".join(blocks)
 
 
-def copy_screenshots(manifest: dict, out_dir: Path) -> None:
-    """Copy every referenced screenshot into the report folder."""
+def embed_screenshots(manifest: dict, manifest_path: Path) -> None:
+    """Replace every screenshot file with an inline PNG data URI.
+
+    The report must open from file:// with no broken image links. A relative
+    link would resolve against wherever the HTML file is saved, which is not
+    the evidence folder. Keeping the bytes in the HTML makes the report a
+    single portable file.
+    """
     shots_dir = manifest.get("screenshots_dir")
     shots_root = Path(shots_dir).expanduser() if shots_dir else None
-    dest_dir = out_dir / "screenshots"
-    copied: dict[str, str] = {}
+    if shots_root is not None and not shots_root.is_absolute():
+        shots_root = manifest_path.parent / shots_root
+    embedded: dict[str, str] = {}
 
     def resolve(name: str) -> Path:
         candidate = Path(name).expanduser()
-        if candidate.is_absolute() and candidate.exists():
+        if not candidate.is_absolute():
+            candidate = manifest_path.parent / candidate
+        if candidate.exists():
             return candidate
         if shots_root and (shots_root / name).exists():
             return shots_root / name
-        return candidate
+        return candidate if not shots_root else shots_root / name
 
     def store(name: str) -> str:
-        if name in copied:
-            return copied[name]
+        if name in embedded:
+            return embedded[name]
         source = resolve(name)
         if not source.exists():
-            raise SystemExit(f"screenshot not found: {name}")
-        dest_dir.mkdir(parents=True, exist_ok=True)
-        target = dest_dir / source.name
-        if source.resolve() != target.resolve():
-            shutil.copy2(source, target)
-        copied[name] = f"screenshots/{target.name}"
-        return copied[name]
+            raise SystemExit(f"screenshot not found: {source}")
+        encoded = base64.b64encode(source.read_bytes()).decode("ascii")
+        embedded[name] = f"data:image/png;base64,{encoded}"
+        return embedded[name]
 
     for group in (manifest.get("steps", []), manifest.get("findings", [])):
         for item in group:
             for shot in item.get("screenshots", []):
+                source = resolve(shot["file"])
                 shot["src"] = store(shot["file"])
-                shot["path"] = str(resolve(shot["file"]).resolve())
+                shot["path"] = str(source.resolve())
 
 
 def build_step_index(steps: list[dict]) -> str:
@@ -329,13 +337,19 @@ def main() -> int:
         return 2
 
     manifest_path = Path(sys.argv[1]).expanduser().resolve()
-    out_dir = Path(sys.argv[2]).expanduser().resolve() if len(sys.argv) > 2 else manifest_path.parent
+    if len(sys.argv) > 2:
+        output = Path(sys.argv[2]).expanduser().resolve()
+    else:
+        output = manifest_path.parent / "report.html"
+    if output.suffix.lower() != ".html":
+        output = output / "report.html"
+    out_dir = output.parent
     out_dir.mkdir(parents=True, exist_ok=True)
 
     with manifest_path.open(encoding="utf-8") as handle:
         manifest = json.load(handle)
 
-    copy_screenshots(manifest, out_dir)
+    embed_screenshots(manifest, manifest_path)
 
     steps = manifest.get("steps", [])
     findings = manifest.get("findings", [])
@@ -439,9 +453,13 @@ def main() -> int:
     if manifest.get("accent"):
         css = apply_accent(css, manifest["accent"])
 
-    fonts_dir = out_dir / "fonts"
-    fonts_dir.mkdir(exist_ok=True)
-    shutil.copy2(ASSETS / "inter-latin-var.woff2", fonts_dir / "inter-latin-var.woff2")
+    # A report must be one portable file, so the font travels inside the CSS.
+    font_data = base64.b64encode((ASSETS / "inter-latin-var.woff2").read_bytes()).decode("ascii")
+    css = css.replace(
+        'url("fonts/inter-latin-var.woff2")',
+        f'url("data:font/woff2;base64,{font_data}")',
+        1,
+    )
 
     title = manifest.get("title", "Test report")
     subtitle = manifest.get("subtitle", "")
@@ -516,7 +534,7 @@ def main() -> int:
 {paths_block}      <section class="section" id="steps" aria-labelledby="steps-title">
         <p class="eyebrow">Evidence from the run</p>
         <h2 id="steps-title">All {total} steps</h2>
-        <p class="section-intro">Every step states its result and shows the screenshots taken at that point. Click a file name under an image to open the original full size file.</p>
+        <p class="section-intro">Every step states its result and shows the screenshots taken at that point. Click a file name under an image to open it full size.</p>
 
         <nav class="step-map" aria-label="Step index">
           <ol>
@@ -651,9 +669,8 @@ def main() -> int:
 </html>
 """
 
-    report_path = out_dir / "report.html"
-    report_path.write_text(document, encoding="utf-8")
-    print(f"wrote {report_path}")
+    output.write_text(document, encoding="utf-8")
+    print(f"wrote {output}")
     print(f"  steps: {total}, passed: {passed}, failed: {failed}, findings: {decided}")
     print(f"  images: {len(index)}")
     return 0

@@ -13,7 +13,7 @@ A test run that a reader can trust has three properties:
 2. **The run was not tampered with.** While the test is running, neither the database nor the code changes. If the test needs one of those to continue, the run stops and says so instead of quietly fixing the problem and reporting a pass.
 3. **The result follows the spec.** If a requirement document exists, the requirement decides what "pass" means. Behaviour that differs from the document is a failure, even when the behaviour looks reasonable.
 
-The report at the end is an HTML file with the screenshots as evidence. The template lives in `assets/`, the generator is `scripts/build_report.py`.
+The report at the end is one self-contained HTML file. The screenshots and the font are embedded as data URIs, and the file lives in `.artifacts/web-testing-skill/[feature]-report.html`. The template lives in `assets/`, the generator is `scripts/build_report.py`.
 
 ## The rules, in order of how often they bite
 
@@ -37,6 +37,8 @@ scripts/preflight.sh [base-url]
 ```
 
 The script checks that the command is on PATH, that the browser starts and that the target answers. It also prints the path of the agent-browser skill when there is one.
+
+No screenshot server is needed at the end of the run. The report embeds its images.
 
 If the command is missing, stop and report that. Do not install it silently and do not fall back to a different browser tool.
 
@@ -195,18 +197,34 @@ The manifest is JSON. `references/manifest.md` has the full schema and a worked 
 
 ### 3.2 Build it
 
+Pick a short kebab-case name for the feature from the card or the request. `managed runtime` becomes `managed-runtime`, `OAuth` becomes `oauth`. Create the artifact folder, then build straight to the final file:
+
+```bash
+FEATURE=managed-runtime
+mkdir -p "$REPO_ROOT/.artifacts/web-testing-skill"
+python3 scripts/build_report.py ./manifest.json "$REPO_ROOT/.artifacts/web-testing-skill/$FEATURE-report.html"
+```
+
+`$REPO_ROOT` is the repository root. Replace `managed-runtime` with the name you picked. The generator embeds every screenshot and the font in the HTML as data URIs. The finished report is one self-contained file and needs no manifest, PNGs or font folder beside it.
+
+For a local draft, pass a directory instead and keep the old layout:
+
 ```bash
 python3 scripts/build_report.py ./manifest.json ./out
 ```
 
-That writes `out/report.html`, copies the screenshots into `out/screenshots/` and the font into `out/fonts/`. The report is self contained: open the file from disk, no server and no network.
+That writes `out/report.html` with the images and the font embedded. A missing screenshot stops the build with the file path in the error.
 
 ### 3.3 Check the report before handing it over
 
-Open it in a browser and look at it. Then verify:
+Open the finished file from a `file://` URL and look at it. Then verify:
 
 - The verdict matches the counts
 - Every screenshot in the manifest is in the report
+- The report has no relative image paths: `grep -c "screenshots/" path/to/report.html` prints `0`
+- The report has no font folder reference: `grep -c "fonts/" path/to/report.html` prints `0`
+- The file can be moved or copied alone and still render from `file://`
+- Images are visible in the `file://` view, including the full screen overlay
 - Clicking a thumbnail opens the full screen image over the whole viewport
 - The top bar of the full screen image names the shot, not just the file name
 - Esc closes it and the focus returns to the thumbnail
@@ -234,8 +252,8 @@ Colour rules for the report, they are not the same as the product's colours:
 | Path | What it is |
 | --- | --- |
 | `assets/report.css` | The report stylesheet, self contained |
-| `assets/inter-latin-var.woff2` | The report font, copied next to the output |
-| `scripts/build_report.py` | Manifest to `report.html` |
+| `assets/inter-latin-var.woff2` | The report font, embedded in the HTML as a data URI |
+| `scripts/build_report.py` | Manifest to a self-contained `report.html`. Finished reports go to `.artifacts/web-testing-skill/[feature]-report.html` |
 | `scripts/preflight.sh` | Checks the tool, the browser and the target before the run |
 | `references/manifest.md` | The manifest schema, with a full example |
 | `references/report-checklist.md` | The checks to run on the finished report |

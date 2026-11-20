@@ -7,6 +7,10 @@ Run these before handing the report over. Each one has caught a real defect.
 - The verdict in the banner matches the counts in the legend
 - Every step in the manifest is in the report, in the same order
 - Every screenshot in the manifest is in the report
+- No relative image paths remain: `grep -c "screenshots/" path/to/report.html` prints `0`
+- No font folder reference remains: `grep -c "fonts/" path/to/report.html` prints `0`
+- The report opens from a `file://` URL with the images visible
+- The file can be moved or copied alone and still render from `file://`
 - The step index at the top of the steps section lists every step and jumps to it
 - The "Needs a decision" block lists every finding and jumps to it
 - The nav links reach the sections they name

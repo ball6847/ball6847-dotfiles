@@ -1,10 +1,16 @@
 # Manifest schema
 
-The manifest is a JSON file. `scripts/build_report.py` reads it and writes `report.html`.
+The manifest is a JSON file. `scripts/build_report.py` reads it and writes one self-contained `report.html` with the screenshots and the font embedded as data URIs.
+
+Pick a short kebab-case name for the feature and build straight to the artifact path:
 
 ```bash
-python3 scripts/build_report.py ./manifest.json ./out
+FEATURE=managed-runtime
+mkdir -p "$REPO_ROOT/.artifacts/web-testing-skill"
+python3 scripts/build_report.py ./manifest.json "$REPO_ROOT/.artifacts/web-testing-skill/$FEATURE-report.html"
 ```
+
+Pass a directory instead of an `.html` path to write `report.html` into that directory. Both forms embed the screenshots and the font in the HTML.
 
 ## Top level
 
@@ -50,7 +56,7 @@ A step with `status` `fail` or `blocked` is counted in the failed total and the 
 - `caption` is the label under the image and the title in the full screen bar. Write it so a reader knows what they are looking at without opening it
 - `alt` describes the image itself. It is read aloud by a screen reader and used when the image cannot be shown
 
-The generator copies every file into `out/screenshots/` and rewrites the path.
+The generator reads every file and embeds it as a `data:image/png;base64,...` URI. The font is embedded the same way. The report then opens from `file://` with no image or font folder beside it. A missing file stops the build with the file path in the error.
 
 ## Findings
 
