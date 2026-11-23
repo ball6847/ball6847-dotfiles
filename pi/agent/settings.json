@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "1.6.0",
-  "defaultProvider": "minimax",
-  "defaultModel": "MiniMax-M3.1-Flash",
+  "defaultProvider": "zenmux",
+  "defaultModel": "tencent/hy4-flash",
   "defaultThinkingLevel": "high",
   "thinkingBudgets": {
     "minimal": 1024,
