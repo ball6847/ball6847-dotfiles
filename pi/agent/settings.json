@@ -58,7 +58,8 @@
     "qoder/Qwen4-Max",
     "zenmux/tencent/hy4-flash",
     "zenmux/tencent/hy4",
-    "qoder/Sonus"
+    "qoder/Sonus",
+    "empiriolabs/muse-glimmer-30b"
   ],
   "extensionChangelogVersions": {
     "{\"source\":\"git:github.com/ball6847/pi-diff@main\",\"scope\":\"user\"}": "0.8.0",

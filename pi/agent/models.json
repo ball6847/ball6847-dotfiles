@@ -881,6 +881,55 @@
         }
       }
     },
+    "openrouter": {
+      "models": [
+        {
+          "type": "chat",
+          "name": "Thinking Machines: Inkling 2 Mini",
+          "api": "openai-completions",
+          "baseUrl": "https://openrouter.ai/api/v1",
+          "provider": "openrouter",
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "minimal",
+            "low": "low",
+            "medium": "medium",
+            "high": "high",
+            "xhigh": "xhigh",
+            "max": "max"
+          },
+          "input": [
+            "text",
+            "image"
+          ],
+          "cost": {
+            "input": 1e-7,
+            "output": 4e-7,
+            "cacheRead": 2e-8,
+            "cacheWrite": 0
+          },
+          "contextWindow": 1048576,
+          "maxTokens": 65536,
+          "compat": {
+            "thinkingFormat": "openrouter",
+            "supportsStrictMode": true,
+            "sendSessionAffinityHeaders": true
+          },
+          "inputLimits": {
+            "images": {
+              "resize": {
+                "maxWidth": 2000,
+                "maxHeight": 2000,
+                "maxBytes": 4718592,
+                "jpegQuality": 80
+              }
+            }
+          },
+          "id": "thinkingmachines/inkling-2-mini"
+        }
+      ]
+    },
     "ant-ling": {
       "api": "openai-completions",
       "baseUrl": "https://api.ant-ling.com/v1",
