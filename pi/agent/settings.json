@@ -68,6 +68,6 @@
     "{\"source\":\"npm:pi-loop-mode\",\"scope\":\"user\"}": "2.5.4",
     "{\"source\":\"npm:pi-prefix-cache-compaction\",\"scope\":\"user\"}": "0.6.1",
     "{\"source\":\"npm:@aliou/pi-synthetic\",\"scope\":\"user\"}": "0.31.0",
-    "{\"source\":\"npm:pi-cache-optimizer\",\"scope\":\"user\"}": "2.10.7"
+    "{\"source\":\"npm:pi-cache-optimizer\",\"scope\":\"user\"}": "2.10.8"
   }
 }
