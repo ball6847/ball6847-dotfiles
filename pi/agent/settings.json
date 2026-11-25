@@ -24,19 +24,7 @@
   "quietStartup": true,
   "shellCommandPrefix": "[ -f \"$HOME/.lzshrc\" ] && source \"$HOME/.lzshrc\"",
   "skills": [
-    "-skills/qa-test-planner/SKILL.md",
-    "-skills/opencode-ensemble/SKILL.md",
-    "-skills/open-ralph-wiggum/SKILL.md",
-    "-skills/maar/SKILL.md",
-    "-skills/bmad-orchestrator/SKILL.md",
-    "-skills/api-design-guide/SKILL.md",
-    "-skills/golang-error-handling/SKILL.md",
-    "-skills/golang-grpc/SKILL.md",
-    "-skills/golang-naming/SKILL.md",
-    "-skills/golang-performance/SKILL.md",
-    "-skills/golang-safety/SKILL.md",
-    "-skills/golang-security/SKILL.md",
-    "-skills/svelte-core-bestpractices/SKILL.md"
+    "!**/.agents/skills/**"
   ],
   "clearOnStart": true,
   "hideThinkingBlock": false,

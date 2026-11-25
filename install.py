@@ -550,6 +550,7 @@ def default_specs() -> list:
     specs.append(LinkSpec(source="config/ghostty", platforms=("linux", "macos")))
     specs.append(LinkSpec(source="config/ghostty", target="$APPDATA/ghostty", platforms=("windows",)))
     specs.append(LinkSpec(source=".agents/skills", target=".claude/skills", in_home=True))
+    specs.append(LinkSpec(source=".agents/skills", target=".pi/agent/skills", in_home=True))
     specs.append(
         LinkSpec(
             source=".config/agent-of-empires",
