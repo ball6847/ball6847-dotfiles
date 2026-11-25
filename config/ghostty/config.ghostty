@@ -1,5 +1,9 @@
 font-family = "M+1Code Nerd Font Med"
 font-family-bold = "M+1Code Nerd Font"
 font-size = 11
+config-file = ?platform.ghostty
 adjust-cell-height = 30%
 adjust-cell-width = 20%
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor

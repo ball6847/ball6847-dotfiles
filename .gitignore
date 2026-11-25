@@ -16,8 +16,8 @@ arms_cache
 # Gitleaks local scan reports
 gitleaks-report.*
 
-# Rio per-OS deployed config (created by link-rio.sh)
 config/rio/config.toml
+config/ghostty/platform.ghostty
 
 # Python bytecode
 __pycache__/

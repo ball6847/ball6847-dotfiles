@@ -128,17 +128,17 @@
 </head>
 <body>
   <div class="frame">
-    <p class="eyebrow">Design · UML class · dotfiles installer</p>
+    <p class="eyebrow">Reference · UML class · dotfiles installer</p>
     <h1>One Python installer for Linux, macOS and Windows</h1>
     <p class="lede">
-      Proposed object model for the port of <span class="mono">install.sh</span> +
-      <span class="mono">install.ps1</span> to a single cross-platform entry point.
-      Three layers, separated by contract: <em>strategy</em> (how a link is made),
-      <em>orchestration</em> (what the installer does), <em>services</em> (state, filesystem, reporting).
-      Every OS difference lives behind one interface, <span class="mono">Linker</span>.
+      Object model for <span class="mono">install.py</span>. Three layers are
+      separated by contract: <em>strategy</em> (how a link is made),
+      <em>orchestration</em> (what the installer does), <em>services</em>
+      (state, filesystem, reporting). Every OS difference in link creation lives behind
+      <span class="mono">Linker</span>; per-OS config selection is data-driven through
+      <span class="mono">VariantLinkSpec</span> and <span class="mono">VariantLinkTask</span>.
     </p>
 
-    <!-- ===================== FIGURE 1 ===================== -->
     <h2>1 · Strategy layer — how a link is made</h2>
     <p class="caption">
       The only place that knows about symlinks, junctions and copies.
@@ -171,21 +171,13 @@
 
           <rect width="100%" height="100%" fill="#f5f5f5"/>
 
-          <!-- relationships (drawn before boxes) -->
-          <!-- WindowsLinker inherits Linker -->
           <path d="M 500,260 L 500,160" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig1-triangle)"/>
-          <!-- PosixLinker inherits Linker -->
           <path d="M 170,260 L 170,228 Q 170,220 178,220 L 412,220 Q 420,220 420,212 L 420,160" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig1-triangle)"/>
-          <!-- CopyLinker inherits Linker -->
           <path d="M 830,260 L 830,208 Q 830,200 822,200 L 568,200 Q 560,200 560,192 L 560,160" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig1-triangle)"/>
-          <!-- LinkerFactory creates a Linker -->
           <path d="M 40,506 L 32,506 Q 24,506 24,498 L 24,108 Q 24,100 32,100 L 340,100" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig1-open)"/>
-          <!-- Linker returns a LinkResult -->
           <path d="M 640,100 L 976,100 Q 984,100 984,108 L 984,508 Q 984,516 976,516 L 960,516" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig1-open)"/>
-          <!-- LinkerFactory reads the manifest spec -->
           <path d="M 300,506 L 370,506" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig1-open)"/>
 
-          <!-- labels -->
           <rect x="254" y="80" width="52" height="13" rx="2" fill="#f5f5f5"/>
           <text x="280" y="90" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">CREATES</text>
 
@@ -195,69 +187,61 @@
           <rect x="308" y="486" width="54" height="13" rx="2" fill="#f5f5f5"/>
           <text x="335" y="496" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">READS</text>
 
-          <!-- class: Linker (abstract, focal) -->
           <rect x="340" y="48" width="300" height="112" rx="6" fill="rgba(191,69,32,0.04)" stroke="#bf4520" stroke-width="1"/>
           <rect x="340" y="48" width="300" height="40" rx="6" fill="rgba(191,69,32,0.10)"/>
           <rect x="340" y="80" width="300" height="8" fill="rgba(191,69,32,0.10)"/>
           <line x1="340" y1="88" x2="640" y2="88" stroke="rgba(191,69,32,0.40)" stroke-width="1"/>
           <text x="490" y="72" fill="#2d3142" font-size="12" font-weight="600" font-style="italic" font-family="'Geist', sans-serif" text-anchor="middle">Linker</text>
-          <text x="356" y="108" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec: LinkSpec): LinkResult</text>
-          <text x="356" y="128" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ supports(spec: LinkSpec): bool</text>
+          <text x="356" y="108" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec, source, target): LinkResult</text>
+          <text x="356" y="128" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ is_current(source, target): bool</text>
           <text x="356" y="148" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ describe(): str</text>
 
-          <!-- class: PosixLinker -->
           <rect x="40" y="260" width="260" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="40" y1="300" x2="300" y2="300" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="40" y1="320" x2="300" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="170" y="284" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">PosixLinker</text>
-          <text x="56" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- relative_targets: bool</text>
-          <text x="56" y="340" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec: LinkSpec): LinkResult</text>
+          <text x="56" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name = "posix-symlink"</text>
+          <text x="56" y="340" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec, source, target): LinkResult</text>
 
-          <!-- class: WindowsLinker -->
           <rect x="370" y="260" width="260" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="370" y1="300" x2="630" y2="300" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="370" y1="340" x2="630" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="500" y="284" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">WindowsLinker</text>
-          <text x="386" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- junction_for_dirs: bool</text>
-          <text x="386" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- needs_privilege: bool</text>
-          <text x="386" y="360" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec: LinkSpec): LinkResult</text>
+          <text x="386" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- fallback: Linker</text>
+          <text x="386" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name = "windows-junction"</text>
+          <text x="386" y="360" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec, source, target): LinkResult</text>
 
-          <!-- class: CopyLinker -->
           <rect x="700" y="260" width="260" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="700" y1="300" x2="960" y2="300" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="700" y1="320" x2="960" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="830" y="284" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">CopyLinker</text>
-          <text x="716" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- overwrite: bool</text>
-          <text x="716" y="340" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ link(spec: LinkSpec): LinkResult</text>
+          <text x="716" y="314" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name = "copy"</text>
+          <text x="716" y="340" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ is_current(source, target): bool</text>
 
-          <!-- class: LinkerFactory -->
           <rect x="40" y="460" width="260" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="40" y1="500" x2="300" y2="500" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="40" y1="520" x2="300" y2="520" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="170" y="484" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LinkerFactory</text>
-          <text x="56" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- probe_symlink: bool</text>
-          <text x="56" y="540" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ create(profile: Profile): Linker</text>
+          <text x="56" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ create(profile, fs, force_copy): Linker</text>
+          <text x="56" y="540" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ can_symlink(): bool</text>
 
-          <!-- class: LinkSpec -->
           <rect x="370" y="460" width="260" height="132" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="370" y1="500" x2="630" y2="500" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="370" y1="564" x2="630" y2="564" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="500" y="484" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LinkSpec</text>
-          <text x="386" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- source: Path</text>
-          <text x="386" y="534" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- target: Path</text>
-          <text x="386" y="554" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- platforms: frozenset[str]</text>
-          <text x="386" y="582" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ resolve(root: Path): Path</text>
+          <text x="386" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- source: str</text>
+          <text x="386" y="534" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- target: str</text>
+          <text x="386" y="554" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- platforms: tuple</text>
+          <text x="386" y="582" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ applies_to(platform): bool</text>
 
-          <!-- class: LinkResult -->
           <rect x="700" y="460" width="260" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="700" y1="500" x2="960" y2="500" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="700" y1="544" x2="960" y2="544" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="830" y="484" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LinkResult</text>
-          <text x="716" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- status: Status</text>
+          <text x="716" y="514" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- status: LinkStatus</text>
           <text x="716" y="534" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- message: str</text>
           <text x="716" y="562" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ ok: bool</text>
 
-          <!-- legend -->
           <line x1="40" y1="620" x2="960" y2="620" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
           <text x="40" y="636" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND · RELATIONSHIPS</text>
 
@@ -282,18 +266,18 @@
       </div>
     </figure>
 
-    <!-- ===================== FIGURE 2 ===================== -->
-    <h2>2 · Orchestration layer — what the installer does</h2>
+    <h2>2 · Orchestration layer — tasks</h2>
     <p class="caption">
       <span class="mono">Installer</span> owns an ordered list of tasks and knows nothing about
-      symlinks. Each task is a small object with one job; adding a step means adding a class,
-      not editing a 90-line function.
+      symlinks. <span class="mono">LinkTask</span> handles normal manifest entries.
+      <span class="mono">VariantLinkTask</span> handles per-OS selector entries. Cleanup and
+      git-reset tasks are listed in the inventory.
     </p>
     <figure>
       <div class="scroll">
         <svg viewBox="0 0 1100 680" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig2-title fig2-desc">
           <title id="fig2-title">Orchestration layer class diagram</title>
-          <desc id="fig2-desc">Installer composes the abstract InstallTask and an InstallContext; LinkTask and CleanupTask specialise InstallTask; InstallContext is passed to every task.</desc>
+          <desc id="fig2-desc">Installer composes InstallTask and InstallContext; LinkTask and VariantLinkTask specialise InstallTask; InstallContext is passed to every task.</desc>
           <defs>
             <marker id="fig2-triangle" markerWidth="16" markerHeight="12" refX="15" refY="6" orient="auto" markerUnits="userSpaceOnUse">
               <polygon points="0 0, 16 6, 0 12" fill="#f5f5f5" stroke="#bf4520" stroke-width="1"/>
@@ -314,19 +298,12 @@
 
           <rect width="100%" height="100%" fill="#f5f5f5"/>
 
-          <!-- relationships (drawn before boxes) -->
-          <!-- Installer composes InstallTask -->
           <path d="M 280,104 L 620,104" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig2-diamond-filled)" marker-end="url(#fig2-open)"/>
-          <!-- Installer composes InstallContext -->
           <path d="M 160,160 L 160,232 Q 160,240 168,240 L 432,240 Q 440,240 440,248 L 440,470" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig2-diamond-filled)"/>
-          <!-- LinkTask inherits InstallTask -->
           <path d="M 720,280 L 720,180" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig2-triangle)"/>
-          <!-- CleanupTask inherits InstallTask -->
           <path d="M 960,280 L 960,232 Q 960,224 952,224 L 868,224 Q 860,224 860,216 L 860,180" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig2-triangle)"/>
-          <!-- InstallContext flows into InstallTask -->
-          <path d="M 500,470 L 500,448 Q 500,440 508,440 L 572,440 Q 580,440 580,432 L 580,208 Q 580,200 588,200 L 632,200 Q 640,200 640,192 L 640,180" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig2-open)"/>
+          <path d="M 560,520 L 832,520 Q 840,520 840,512 L 840,232 Q 840,224 832,224 L 768,224 Q 760,224 760,216 L 760,180" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig2-open)"/>
 
-          <!-- labels -->
           <rect x="424" y="84" width="52" height="13" rx="2" fill="#f5f5f5"/>
           <text x="450" y="94" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">OWNS</text>
 
@@ -335,19 +312,17 @@
           <rect x="584" y="80" width="28" height="13" rx="2" fill="#f5f5f5"/>
           <text x="598" y="90" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1..*</text>
 
-          <rect x="470" y="320" width="102" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="521" y="330" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">EXECUTES WITH</text>
+          <rect x="730" y="384" width="102" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="781" y="394" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">EXECUTES WITH</text>
 
-          <!-- class: Installer -->
           <rect x="40" y="48" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="40" y1="88" x2="280" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="40" y1="108" x2="280" y2="108" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="160" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Installer</text>
           <text x="56" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- tasks: list[InstallTask]</text>
           <text x="56" y="128" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ run(): InstallReport</text>
-          <text x="56" y="148" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ add(task: InstallTask): void</text>
+          <text x="56" y="148" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- _label(result): str</text>
 
-          <!-- class: InstallTask (abstract, focal) -->
           <rect x="620" y="48" width="300" height="132" rx="6" fill="rgba(191,69,32,0.04)" stroke="#bf4520" stroke-width="1"/>
           <rect x="620" y="48" width="300" height="40" rx="6" fill="rgba(191,69,32,0.10)"/>
           <rect x="620" y="80" width="300" height="8" fill="rgba(191,69,32,0.10)"/>
@@ -355,35 +330,32 @@
           <line x1="620" y1="108" x2="920" y2="108" stroke="rgba(191,69,32,0.40)" stroke-width="1"/>
           <text x="770" y="72" fill="#2d3142" font-size="12" font-weight="600" font-style="italic" font-family="'Geist', sans-serif" text-anchor="middle">InstallTask</text>
           <text x="636" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name: str</text>
-          <text x="636" y="126" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx: InstallContext): StepResult</text>
-          <text x="636" y="146" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ applies_to(profile: Profile): bool</text>
+          <text x="636" y="126" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): LinkResult</text>
+          <text x="636" y="146" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">«abstract»</text>
 
-          <!-- class: LinkTask -->
           <rect x="620" y="280" width="200" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="620" y1="320" x2="820" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="620" y1="340" x2="820" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="720" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LinkTask</text>
           <text x="636" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- spec: LinkSpec</text>
-          <text x="636" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): StepResult</text>
+          <text x="636" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): LinkResult</text>
 
-          <!-- class: CleanupTask -->
-          <rect x="860" y="280" width="200" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <rect x="860" y="280" width="200" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="860" y1="320" x2="1060" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="860" y1="340" x2="1060" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="960" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">CleanupTask</text>
-          <text x="876" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- rule: str</text>
-          <text x="876" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): StepResult</text>
+          <line x1="860" y1="364" x2="1060" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="960" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">VariantLinkTask</text>
+          <text x="876" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- spec: VariantLinkSpec</text>
+          <text x="876" y="354" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">…</text>
+          <text x="876" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): LinkResult</text>
 
-          <!-- class: InstallContext -->
           <rect x="320" y="470" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
           <line x1="320" y1="510" x2="560" y2="510" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <line x1="320" y1="554" x2="560" y2="554" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
           <text x="440" y="494" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">InstallContext</text>
           <text x="336" y="528" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- repo: Path</text>
-          <text x="336" y="546" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- home: Path</text>
-          <text x="336" y="572" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ manifest: Manifest</text>
+          <text x="336" y="546" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- profile: PlatformProfile</text>
+          <text x="336" y="572" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ config_dir_for(app): Path</text>
 
-          <!-- legend -->
           <line x1="40" y1="620" x2="1060" y2="620" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
           <text x="40" y="636" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND · RELATIONSHIPS</text>
 
@@ -408,18 +380,23 @@
       </div>
     </figure>
 
-    <!-- ===================== FIGURE 3 ===================== -->
-    <h2>3 · Service layer — state, filesystem, reporting</h2>
+    <h2>3 · Per-OS variant data</h2>
     <p class="caption">
-      Plain, injectable collaborators. <span class="mono">FileSystem</span> is the test seam: swap it for
-      an in-memory fake and the whole installer runs without touching a real home directory.
+      <span class="mono">VariantLinkSpec</span> carries the per-OS source map and selector
+      filename as data. <span class="mono">VariantLinkTask</span> resolves the current platform
+      and delegates to <span class="mono">Linker</span>. <span class="mono">Manifest</span> owns
+      both normal <span class="mono">LinkSpec</span> entries and
+      <span class="mono">VariantLinkSpec</span> entries.
     </p>
     <figure>
       <div class="scroll">
         <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig3-title fig3-desc">
-          <title id="fig3-title">Service layer class diagram</title>
-          <desc id="fig3-desc">Manifest filters specs by PlatformProfile and uses BackupManager; FileSystem backs BackupManager; Reporter emits an InstallReport.</desc>
+          <title id="fig3-title">Per-OS variant class diagram</title>
+          <desc id="fig3-desc">VariantLinkTask specialises InstallTask and uses VariantLinkSpec; Manifest owns both VariantLinkSpec and LinkSpec entries.</desc>
           <defs>
+            <marker id="fig3-triangle" markerWidth="16" markerHeight="12" refX="15" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+              <polygon points="0 0, 16 6, 0 12" fill="#f5f5f5" stroke="#bf4520" stroke-width="1"/>
+            </marker>
             <marker id="fig3-triangle-ink" markerWidth="16" markerHeight="12" refX="15" refY="6" orient="auto" markerUnits="userSpaceOnUse">
               <polygon points="0 0, 16 6, 0 12" fill="#f5f5f5" stroke="#2d3142" stroke-width="1"/>
             </marker>
@@ -436,92 +413,66 @@
 
           <rect width="100%" height="100%" fill="#f5f5f5"/>
 
-          <!-- relationships (drawn before boxes) -->
-          <!-- Manifest filters by PlatformProfile -->
-          <path d="M 280,104 L 340,104" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig3-open)"/>
-          <!-- Manifest uses BackupManager -->
-          <path d="M 160,48 L 160,32 Q 160,24 168,24 L 752,24 Q 760,24 760,32 L 760,48" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig3-open)"/>
-          <!-- FileSystem backs BackupManager -->
-          <path d="M 580,356 L 592,356 Q 600,356 600,348 L 600,228 Q 600,220 608,220 L 752,220 Q 760,220 760,212 L 760,184" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig3-open)"/>
-          <!-- Reporter emits InstallReport -->
-          <path d="M 160,412 L 160,472 Q 160,480 168,480 L 752,480 Q 760,480 760,472 L 760,440" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig3-diamond-filled)"/>
+          <path d="M 530,280 L 530,180" fill="none" stroke="#bf4520" stroke-width="1" marker-end="url(#fig3-triangle)"/>
+          <path d="M 400,336 L 300,336" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig3-open)"/>
+          <path d="M 170,180 L 170,280" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig3-diamond-filled)"/>
+          <path d="M 300,80 L 300,32 Q 300,24 308,24 L 862,24 Q 870,24 870,32 L 870,280" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig3-diamond-filled)"/>
 
-          <!-- labels -->
-          <rect x="282" y="112" width="56" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="310" y="122" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">FILTERS BY</text>
+          <rect x="324" y="316" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="350" y="326" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">USES</text>
 
-          <rect x="404" y="30" width="52" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="430" y="40" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">USES</text>
+          <rect x="144" y="220" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="170" y="230" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">OWNS</text>
 
-          <rect x="540" y="270" width="52" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="566" y="280" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">BACKED BY</text>
+          <rect x="560" y="4" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="586" y="14" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">OWNS</text>
 
-          <rect x="430" y="458" width="52" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="456" y="467" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">EMITS</text>
+          <rect x="40" y="48" width="260" height="132" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="40" y1="88" x2="300" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="40" y1="152" x2="300" y2="152" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="170" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Manifest</text>
+          <text x="56" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- specs: tuple[LinkSpec]</text>
+          <text x="56" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- variants: tuple[VariantLinkSpec]</text>
+          <text x="56" y="142" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ for_platform(p): list</text>
+          <text x="56" y="172" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ variants_for(excluded): list</text>
 
-          <rect x="172" y="458" width="12" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="178" y="467" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
-          <rect x="736" y="458" width="12" height="13" rx="2" fill="#f5f5f5"/>
-          <text x="742" y="467" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+          <rect x="400" y="48" width="300" height="132" rx="6" fill="rgba(191,69,32,0.04)" stroke="#bf4520" stroke-width="1"/>
+          <rect x="400" y="48" width="300" height="40" rx="6" fill="rgba(191,69,32,0.10)"/>
+          <rect x="400" y="80" width="300" height="8" fill="rgba(191,69,32,0.10)"/>
+          <line x1="400" y1="88" x2="700" y2="88" stroke="rgba(191,69,32,0.40)" stroke-width="1"/>
+          <line x1="400" y1="108" x2="700" y2="108" stroke="rgba(191,69,32,0.40)" stroke-width="1"/>
+          <text x="550" y="72" fill="#2d3142" font-size="12" font-weight="600" font-style="italic" font-family="'Geist', sans-serif" text-anchor="middle">InstallTask</text>
+          <text x="416" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name: str</text>
+          <text x="416" y="126" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): LinkResult</text>
+          <text x="416" y="146" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">«abstract»</text>
 
-          <!-- class: Manifest -->
-          <rect x="40" y="48" width="240" height="136" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="40" y1="88" x2="280" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="40" y1="152" x2="280" y2="152" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="160" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Manifest</text>
-          <text x="56" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- specs: list[LinkSpec]</text>
-          <text x="56" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- platform: str</text>
-          <text x="56" y="142" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- source: Path</text>
-          <text x="56" y="172" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ for_platform(p: str): list</text>
+          <rect x="40" y="280" width="260" height="152" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="40" y1="320" x2="300" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="40" y1="404" x2="300" y2="404" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="170" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">VariantLinkSpec</text>
+          <text x="56" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- app: str</text>
+          <text x="56" y="354" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- selector: str</text>
+          <text x="56" y="374" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- sources: dict[str, str]</text>
+          <text x="56" y="394" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- targets: dict[str, str]</text>
+          <text x="56" y="422" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ resolve(ctx): tuple</text>
 
-          <!-- class: PlatformProfile -->
-          <rect x="340" y="48" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="340" y1="88" x2="580" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="340" y1="128" x2="580" y2="128" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="460" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">PlatformProfile</text>
-          <text x="356" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- os: str</text>
-          <text x="356" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- config_dir: Path</text>
-          <text x="356" y="150" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ rio_config_dir(): Path</text>
+          <rect x="400" y="280" width="260" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="400" y1="320" x2="660" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="400" y1="364" x2="660" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="530" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">VariantLinkTask</text>
+          <text x="416" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- spec: VariantLinkSpec</text>
+          <text x="416" y="354" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">…</text>
+          <text x="416" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ execute(ctx): LinkResult</text>
 
-          <!-- class: BackupManager -->
-          <rect x="640" y="48" width="240" height="136" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="640" y1="88" x2="880" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="640" y1="132" x2="880" y2="132" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="760" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">BackupManager</text>
-          <text x="656" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- backup_dir: Path</text>
-          <text x="656" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- stamp: str</text>
-          <text x="656" y="152" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ backup(target: Path): Path</text>
-          <text x="656" y="172" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ is_current(spec): bool</text>
+          <rect x="740" y="280" width="260" height="132" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="740" y1="320" x2="1000" y2="320" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="740" y1="384" x2="1000" y2="384" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="870" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">LinkSpec</text>
+          <text x="756" y="334" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- source: str</text>
+          <text x="756" y="354" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- target: str</text>
+          <text x="756" y="374" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- platforms: tuple</text>
+          <text x="756" y="402" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ applies_to(platform): bool</text>
 
-          <!-- class: Reporter -->
-          <rect x="40" y="300" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="40" y1="340" x2="280" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="40" y1="364" x2="280" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="160" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Reporter</text>
-          <text x="56" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- verbose: bool</text>
-          <text x="56" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ info(msg: str): None</text>
-          <text x="56" y="402" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ warn(msg: str): None</text>
-
-          <!-- class: FileSystem -->
-          <rect x="340" y="300" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="340" y1="340" x2="580" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="340" y1="364" x2="580" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="460" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">FileSystem</text>
-          <text x="356" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- dry_run: bool</text>
-          <text x="356" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ symlink(src, dst): None</text>
-          <text x="356" y="402" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ junction(src, dst): None</text>
-
-          <!-- class: InstallReport -->
-          <rect x="640" y="300" width="240" height="140" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
-          <line x1="640" y1="340" x2="880" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <line x1="640" y1="408" x2="880" y2="408" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
-          <text x="760" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">InstallReport</text>
-          <text x="656" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- created: int</text>
-          <text x="656" y="378" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- skipped: int</text>
-          <text x="656" y="398" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- failed: int</text>
-          <text x="656" y="428" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ summary(): str</text>
-
-          <!-- legend -->
           <line x1="40" y1="560" x2="960" y2="560" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
           <text x="40" y="576" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND · RELATIONSHIPS</text>
 
@@ -546,11 +497,134 @@
       </div>
     </figure>
 
-    <!-- ===================== INVENTORY ===================== -->
-    <h2>4 · Full class inventory</h2>
+    <h2>4 · Service layer — state, filesystem, reporting</h2>
     <p class="caption">
-      Sixteen classes. Nine of them are dataclasses or three-line ABCs — the object count is cheap;
-      the value is that each one has exactly one reason to change.
+      Plain, injectable collaborators. <span class="mono">FileSystem</span> is the test seam: swap it for
+      an in-memory fake and the whole installer runs without touching a real home directory.
+    </p>
+    <figure>
+      <div class="scroll">
+        <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig4-title fig4-desc">
+          <title id="fig4-title">Service layer class diagram</title>
+          <desc id="fig4-desc">Manifest filters specs by PlatformProfile and uses BackupManager; FileSystem backs BackupManager; Reporter emits an InstallReport.</desc>
+          <defs>
+            <marker id="fig4-triangle-ink" markerWidth="16" markerHeight="12" refX="15" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+              <polygon points="0 0, 16 6, 0 12" fill="#f5f5f5" stroke="#2d3142" stroke-width="1"/>
+            </marker>
+            <marker id="fig4-diamond-filled" markerWidth="18" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+              <polygon points="0 5, 9 0, 18 5, 9 10" fill="#2d3142"/>
+            </marker>
+            <marker id="fig4-diamond-hollow" markerWidth="18" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+              <polygon points="0 5, 9 0, 18 5, 9 10" fill="#f5f5f5" stroke="#2d3142" stroke-width="1"/>
+            </marker>
+            <marker id="fig4-open" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L9,4 L0,8" fill="none" stroke="#4f5d75" stroke-width="1"/>
+            </marker>
+          </defs>
+
+          <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+          <path d="M 280,104 L 340,104" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig4-open)"/>
+          <path d="M 160,48 L 160,32 Q 160,24 168,24 L 752,24 Q 760,24 760,32 L 760,48" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig4-open)"/>
+          <path d="M 580,356 L 592,356 Q 600,356 600,348 L 600,228 Q 600,220 608,220 L 752,220 Q 760,220 760,212 L 760,184" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig4-open)"/>
+          <path d="M 160,412 L 160,472 Q 160,480 168,480 L 752,480 Q 760,480 760,472 L 760,440" fill="none" stroke="#4f5d75" stroke-width="1" marker-start="url(#fig4-diamond-filled)"/>
+
+          <rect x="282" y="112" width="56" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="310" y="122" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">FILTERS BY</text>
+
+          <rect x="404" y="30" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="430" y="40" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">USES</text>
+
+          <rect x="540" y="270" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="566" y="280" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">BACKED BY</text>
+
+          <rect x="430" y="458" width="52" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="456" y="467" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">EMITS</text>
+
+          <rect x="172" y="458" width="12" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="178" y="467" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+          <rect x="736" y="458" width="12" height="13" rx="2" fill="#f5f5f5"/>
+          <text x="742" y="467" fill="#2d3142" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+
+          <rect x="40" y="48" width="240" height="136" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="40" y1="88" x2="280" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="40" y1="152" x2="280" y2="152" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="160" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Manifest</text>
+          <text x="56" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- specs: tuple[LinkSpec]</text>
+          <text x="56" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- variants: tuple[VariantLinkSpec]</text>
+          <text x="56" y="142" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ for_platform(p): list</text>
+          <text x="56" y="172" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ variants_for(excluded): list</text>
+
+          <rect x="340" y="48" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="340" y1="88" x2="580" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="340" y1="128" x2="580" y2="128" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="460" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">PlatformProfile</text>
+          <text x="356" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- name: str</text>
+          <text x="356" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- config_dir: Path</text>
+          <text x="356" y="150" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ detect(home): PlatformProfile</text>
+
+          <rect x="640" y="48" width="240" height="136" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="640" y1="88" x2="880" y2="88" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="640" y1="132" x2="880" y2="132" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="760" y="72" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">BackupManager</text>
+          <text x="656" y="102" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- backup_dir: Path</text>
+          <text x="656" y="122" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- home: Path</text>
+          <text x="656" y="152" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ backup(target): Path</text>
+          <text x="656" y="172" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">…</text>
+
+          <rect x="40" y="300" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="40" y1="340" x2="280" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="40" y1="364" x2="280" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="160" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Reporter</text>
+          <text x="56" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- verbose: bool</text>
+          <text x="56" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ info(msg): None</text>
+          <text x="56" y="402" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ warn(msg): None</text>
+
+          <rect x="340" y="300" width="240" height="112" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="340" y1="340" x2="580" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="340" y1="364" x2="580" y2="364" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="460" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">FileSystem</text>
+          <text x="356" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- dry_run: bool</text>
+          <text x="356" y="382" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ symlink(src, dst): None</text>
+          <text x="356" y="402" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ copy(src, dst): list</text>
+
+          <rect x="640" y="300" width="240" height="140" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+          <line x1="640" y1="340" x2="880" y2="340" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <line x1="640" y1="408" x2="880" y2="408" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+          <text x="760" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">InstallReport</text>
+          <text x="656" y="358" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- ran: int</text>
+          <text x="656" y="378" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">- failed: int</text>
+          <text x="656" y="398" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ ok: bool</text>
+          <text x="656" y="428" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">+ summary(): str</text>
+
+          <line x1="40" y1="560" x2="960" y2="560" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+          <text x="40" y="576" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND · RELATIONSHIPS</text>
+
+          <line x1="40" y1="592" x2="68" y2="592" stroke="#2d3142" stroke-width="1" marker-end="url(#fig4-triangle-ink)"/>
+          <text x="76" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Inheritance</text>
+
+          <line x1="188" y1="592" x2="216" y2="592" stroke="#2d3142" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#fig4-triangle-ink)"/>
+          <text x="224" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Realization</text>
+
+          <line x1="336" y1="592" x2="364" y2="592" stroke="#2d3142" stroke-width="1" marker-start="url(#fig4-diamond-filled)"/>
+          <text x="372" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Composition · owns</text>
+
+          <line x1="484" y1="592" x2="512" y2="592" stroke="#2d3142" stroke-width="1" marker-start="url(#fig4-diamond-hollow)"/>
+          <text x="520" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Aggregation · has</text>
+
+          <line x1="632" y1="592" x2="660" y2="592" stroke="#4f5d75" stroke-width="1" marker-end="url(#fig4-open)"/>
+          <text x="668" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Association</text>
+
+          <line x1="780" y1="592" x2="808" y2="592" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#fig4-open)"/>
+          <text x="816" y="596" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Dependency · uses</text>
+        </svg>
+      </div>
+    </figure>
+
+    <h2>5 · Full class inventory</h2>
+    <p class="caption">
+      Classes in <span class="mono">install.py</span>.
+      Dataclasses and small ABCs keep the object count cheap; each class has one reason to change.
     </p>
     <table>
       <thead>
@@ -562,26 +636,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td class="name">Linker</td><td class="layer">Strategy</td><td>Contract for creating a link. The only OS-dependent seam.</td><td class="mono">link(spec) → LinkResult · supports(spec) → bool</td></tr>
-        <tr><td class="name">PosixLinker</td><td class="layer">Strategy</td><td>Relative symlink on Linux/macOS. Keeps the repo portable.</td><td class="mono">relative_targets: bool</td></tr>
-        <tr><td class="name">WindowsLinker</td><td class="layer">Strategy</td><td>Junction for directories, true symlink for files, copy fallback when no privilege.</td><td class="mono">junction_for_dirs · needs_privilege</td></tr>
-        <tr><td class="name">CopyLinker</td><td class="layer">Strategy</td><td>Last-resort copy when the host forbids symlinks. Reports drift.</td><td class="mono">overwrite: bool</td></tr>
-        <tr><td class="name">LinkerFactory</td><td class="layer">Strategy</td><td>Probes the host once, returns the strongest usable strategy.</td><td class="mono">create(profile) → Linker</td></tr>
-        <tr><td class="name">LinkSpec</td><td class="layer">Value</td><td>One linkable entry: source, target, platform filter, kind.</td><td class="mono">source · target · platforms · resolve(root)</td></tr>
+        <tr><td class="name">Linker</td><td class="layer">Strategy</td><td>Contract for creating a link. The only OS-dependent seam.</td><td class="mono">link(spec, source, target) · is_current · describe</td></tr>
+        <tr><td class="name">PosixLinker</td><td class="layer">Strategy</td><td>Relative symlink on Linux/macOS. Keeps the repo portable.</td><td class="mono">name = "posix-symlink"</td></tr>
+        <tr><td class="name">WindowsLinker</td><td class="layer">Strategy</td><td>Junction for directories, true symlink for files, copy fallback when no privilege.</td><td class="mono">fallback: Linker</td></tr>
+        <tr><td class="name">CopyLinker</td><td class="layer">Strategy</td><td>Last-resort copy when the host forbids symlinks. Reports drift.</td><td class="mono">is_current(source, target)</td></tr>
+        <tr><td class="name">LinkerFactory</td><td class="layer">Strategy</td><td>Probes the host once, returns the strongest usable strategy.</td><td class="mono">create(profile, fs, force_copy) · can_symlink</td></tr>
+        <tr><td class="name">LinkSpec</td><td class="layer">Value</td><td>One linkable entry: source, target, platform filter.</td><td class="mono">source · target · platforms · applies_to</td></tr>
         <tr><td class="name">LinkResult</td><td class="layer">Value</td><td>Outcome of one link attempt: created / already-current / skipped / failed.</td><td class="mono">status · message · ok</td></tr>
-        <tr><td class="name">Installer</td><td class="layer">Orchestration</td><td>Runs the task list in order and collects the report.</td><td class="mono">tasks · add(task) · run() → InstallReport</td></tr>
-        <tr><td class="name">InstallTask</td><td class="layer">Orchestration</td><td>Abstract step. Each step is a class, not a branch in a big function.</td><td class="mono">name · execute(ctx) · applies_to(profile)</td></tr>
-        <tr><td class="name">LinkTask</td><td class="layer">Orchestration</td><td>Links one manifest entry; backs up the previous file first.</td><td class="mono">spec</td></tr>
-        <tr><td class="name">CleanupTask</td><td class="layer">Orchestration</td><td>Removes nested self-symlinks, unlinks legacy opencode.json.</td><td class="mono">rule</td></tr>
-        <tr><td class="name">GitResetTask</td><td class="layer">Orchestration</td><td>Restores <span class="mono">config/kitty</span> from git (replaces the bash checkout line).</td><td class="mono">path</td></tr>
-        <tr><td class="name">RioTask</td><td class="layer">Orchestration</td><td>Links the per-OS rio config: <span class="mono">~/.config/rio</span> vs <span class="mono">%LOCALAPPDATA%\rio</span>.</td><td class="mono">config_dir</td></tr>
-        <tr><td class="name">InstallContext</td><td class="layer">Orchestration</td><td>Shared state handed to every task: repo, home, manifest, linker, reporter.</td><td class="mono">repo · home · manifest</td></tr>
-        <tr><td class="name">Manifest</td><td class="layer">Service</td><td>Single source of truth for the ~40 linked paths, filtered per platform.</td><td class="mono">specs · for_platform(p) → list</td></tr>
-        <tr><td class="name">PlatformProfile</td><td class="layer">Service</td><td>OS facts: home, config dir, rio config dir, which paths apply.</td><td class="mono">os · config_dir · rio_config_dir()</td></tr>
-        <tr><td class="name">BackupManager</td><td class="layer">Service</td><td>Moves the previous file into <span class="mono">~/.dotfiles_old</span>; knows if a link is already current.</td><td class="mono">backup_dir · backup(target) · is_current(spec)</td></tr>
+        <tr><td class="name">Installer</td><td class="layer">Orchestration</td><td>Runs the task list in order and collects the report.</td><td class="mono">tasks · run() → InstallReport</td></tr>
+        <tr><td class="name">InstallTask</td><td class="layer">Orchestration</td><td>Abstract step. Each step is a class, not a branch in a big function.</td><td class="mono">name · execute(ctx)</td></tr>
+        <tr><td class="name">LinkTask</td><td class="layer">Orchestration</td><td>Links one manifest entry; backs up the previous file first.</td><td class="mono">spec: LinkSpec</td></tr>
+        <tr><td class="name">NestedLinkCleanupTask</td><td class="layer">Orchestration</td><td>Removes nested self-symlinks under config directories.</td><td class="mono">execute(ctx)</td></tr>
+        <tr><td class="name">LegacyOpencodeTask</td><td class="layer">Orchestration</td><td>Unlinks legacy opencode.json.</td><td class="mono">execute(ctx)</td></tr>
+        <tr><td class="name">GitResetTask</td><td class="layer">Orchestration</td><td>Restores <span class="mono">config/kitty</span> from git.</td><td class="mono">path</td></tr>
+        <tr><td class="name">VariantLinkSpec</td><td class="layer">Value</td><td>Per-OS source map, target map, and selector filename as data.</td><td class="mono">app · selector · sources · targets · resolve</td></tr>
+        <tr><td class="name">VariantLinkTask</td><td class="layer">Orchestration</td><td>Resolves the current platform for a VariantLinkSpec and links the selector.</td><td class="mono">spec: VariantLinkSpec · execute</td></tr>
+        <tr><td class="name">InstallContext</td><td class="layer">Orchestration</td><td>Shared state handed to every task: repo, home, profile, manifest, linker, reporter.</td><td class="mono">repo · home · profile · config_dir_for</td></tr>
+        <tr><td class="name">Manifest</td><td class="layer">Service</td><td>Single source of truth for linked paths and per-OS variants, filtered per platform.</td><td class="mono">specs · variants · for_platform(p) · variants_for(excluded)</td></tr>
+        <tr><td class="name">PlatformProfile</td><td class="layer">Service</td><td>OS facts: name, home, config dir, local config dir.</td><td class="mono">name · config_dir · detect</td></tr>
+        <tr><td class="name">BackupManager</td><td class="layer">Service</td><td>Moves the previous file into <span class="mono">~/.dotfiles_old</span>.</td><td class="mono">backup_dir · backup(target)</td></tr>
         <tr><td class="name">FileSystem</td><td class="layer">Service</td><td>Injectable filesystem seam — fake it and the installer runs headless in tests.</td><td class="mono">symlink · junction · copy · move</td></tr>
-        <tr><td class="name">Reporter</td><td class="layer">Service</td><td>Console output, dry-run mode, warnings for skipped items.</td><td class="mono">info · warn · summary</td></tr>
-        <tr><td class="name">InstallReport</td><td class="layer">Value</td><td>Counts and failures at the end of the run; drives the exit code.</td><td class="mono">created · skipped · failed · summary()</td></tr>
+        <tr><td class="name">Reporter</td><td class="layer">Service</td><td>Console output, dry-run mode, warnings for skipped items.</td><td class="mono">info · detail · warn · error</td></tr>
+        <tr><td class="name">InstallReport</td><td class="layer">Value</td><td>Counts and failures at the end of the run; drives the exit code.</td><td class="mono">ran · failed · ok · summary</td></tr>
       </tbody>
     </table>
 
@@ -591,9 +667,9 @@
       tested alone.
     </p>
 
-    <h2>5 · File layout</h2>
+    <h2>6 · File layout</h2>
     <p class="caption">
-      The model ships as one file, <span class="mono">install.py</span> (630 lines, standard library only).
+      The model ships as one file, <span class="mono">install.py</span> (standard library only).
       Sections run top to bottom in the same order as the figures, so the file reads like the diagram.
     </p>
     <table>
@@ -601,18 +677,17 @@
         <tr>
           <th>Section</th>
           <th>Contents</th>
-          <th>Lines</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td class="name">value objects</td><td><span class="mono">LinkStatus</span>, <span class="mono">LinkSpec</span>, <span class="mono">LinkResult</span>, <span class="mono">PlatformProfile</span>, <span class="mono">InstallReport</span></td><td class="mono">19–80</td></tr>
-        <tr><td class="name">filesystem</td><td><span class="mono">FileSystem</span> plus the junction and privilege helpers</td><td class="mono">81–185</td></tr>
-        <tr><td class="name">link strategies</td><td><span class="mono">Linker</span>, <span class="mono">PosixLinker</span>, <span class="mono">WindowsLinker</span>, <span class="mono">CopyLinker</span>, <span class="mono">LinkerFactory</span></td><td class="mono">186–285</td></tr>
-        <tr><td class="name">services</td><td><span class="mono">BackupManager</span>, <span class="mono">Reporter</span>, <span class="mono">Manifest</span></td><td class="mono">286–337</td></tr>
-        <tr><td class="name">tasks</td><td><span class="mono">InstallContext</span>, <span class="mono">InstallTask</span> and the four concrete steps</td><td class="mono">338–467</td></tr>
-        <tr><td class="name">orchestration</td><td><span class="mono">Installer</span></td><td class="mono">468–500</td></tr>
-        <tr><td class="name">manifest</td><td><span class="mono">default_specs()</span>, <span class="mono">build_tasks()</span></td><td class="mono">501–573</td></tr>
-        <tr><td class="name">entry point</td><td><span class="mono">build_parser()</span>, <span class="mono">main()</span></td><td class="mono">574–630</td></tr>
+        <tr><td class="name">value objects</td><td><span class="mono">LinkStatus</span>, <span class="mono">LinkSpec</span>, <span class="mono">VariantLinkSpec</span>, <span class="mono">LinkResult</span>, <span class="mono">PlatformProfile</span>, <span class="mono">InstallReport</span></td></tr>
+        <tr><td class="name">filesystem</td><td><span class="mono">FileSystem</span> plus the junction and privilege helpers</td></tr>
+        <tr><td class="name">link strategies</td><td><span class="mono">Linker</span>, <span class="mono">PosixLinker</span>, <span class="mono">WindowsLinker</span>, <span class="mono">CopyLinker</span>, <span class="mono">LinkerFactory</span></td></tr>
+        <tr><td class="name">services</td><td><span class="mono">BackupManager</span>, <span class="mono">Reporter</span>, <span class="mono">Manifest</span></td></tr>
+        <tr><td class="name">tasks</td><td><span class="mono">InstallContext</span>, <span class="mono">InstallTask</span>, <span class="mono">LinkTask</span>, <span class="mono">VariantLinkTask</span>, cleanup tasks, <span class="mono">GitResetTask</span></td></tr>
+        <tr><td class="name">orchestration</td><td><span class="mono">Installer</span></td></tr>
+        <tr><td class="name">manifest</td><td><span class="mono">default_specs()</span>, <span class="mono">default_variants()</span>, <span class="mono">build_tasks()</span></td></tr>
+        <tr><td class="name">entry point</td><td><span class="mono">build_parser()</span>, <span class="mono">main()</span></td></tr>
       </tbody>
     </table>
 
@@ -623,7 +698,7 @@
     </p>
 
     <footer>
-      dotfiles · installer class model · draft for review · skin: default editorial (paper #f5f5f5 · ink #2d3142 · accent #bf4520)
+      dotfiles · installer class model · skin: default editorial (paper #f5f5f5 · ink #2d3142 · accent #bf4520)
     </footer>
   </div>
 </body>

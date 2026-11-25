@@ -38,6 +38,28 @@ class LinkSpec:
 
 
 @dataclass(frozen=True)
+class VariantLinkSpec:
+    name: str
+    app: str
+    selector: str
+    sources: dict
+    targets: dict
+
+    def resolve(self, ctx: InstallContext) -> tuple:
+        platform = ctx.profile.name
+        source = ctx.repo / "config" / self.app / self.sources[platform]
+        variables = {
+            "config_dir": ctx.config_dir_for(self.app),
+            "local_config_dir": ctx.profile.local_config_dir,
+            "appdata": _env_path("APPDATA", ctx.home / "AppData" / "Roaming"),
+        }
+        target_dir = Path(self.targets[platform].format(**variables))
+        if ctx.fs.same(target_dir, source.parent):
+            target_dir = source.parent
+        return source, target_dir / self.selector
+
+
+@dataclass(frozen=True)
 class LinkResult:
     status: LinkStatus
     message: str = ""
@@ -328,11 +350,20 @@ class Reporter:
 
 
 class Manifest:
-    def __init__(self, specs: Sequence[LinkSpec]) -> None:
+    def __init__(
+        self,
+        specs: Sequence[LinkSpec],
+        variants: Sequence[VariantLinkSpec] = (),
+    ) -> None:
         self.specs = tuple(specs)
+        self.variants = tuple(variants)
 
     def for_platform(self, platform: str) -> list:
         return [spec for spec in self.specs if spec.applies_to(platform)]
+
+    def variants_for(self, excluded_apps: Sequence[str] = ()) -> list:
+        excluded = set(excluded_apps)
+        return [spec for spec in self.variants if spec.app not in excluded]
 
 
 # --- tasks -------------------------------------------------------------------
@@ -443,26 +474,18 @@ class GitResetTask(InstallTask):
         return LinkResult(LinkStatus.CURRENT, "restored " + self.path)
 
 
-class RioTask(InstallTask):
-    def __init__(self) -> None:
-        super().__init__("link rio config")
+class VariantLinkTask(InstallTask):
+    def __init__(self, spec: VariantLinkSpec) -> None:
+        super().__init__(spec.name)
+        self.spec = spec
 
     def execute(self, ctx: InstallContext) -> LinkResult:
-        repo_config = ctx.repo / "config" / "rio"
-        if ctx.profile.name == "windows":
-            source = repo_config / "windows.toml"
-            config_dir = ctx.profile.local_config_dir / "rio"
-        else:
-            source = repo_config / ("macos.toml" if ctx.profile.name == "macos" else "linux.toml")
-            config_dir = ctx.config_dir_for("rio")
+        source, target = self.spec.resolve(ctx)
         if not source.exists():
             return LinkResult(LinkStatus.SKIPPED, "source missing: {}".format(source))
-        if ctx.fs.same(config_dir, repo_config):
-            target = repo_config / "config.toml"
-        else:
-            target = config_dir / "config.toml"
-        ctx.fs.mkdir(config_dir)
-        return ctx.linker.link(LinkSpec("config/rio/config.toml"), source, target)
+        link_spec = LinkSpec(str(source.relative_to(ctx.repo)))
+        ctx.fs.mkdir(target.parent)
+        return ctx.linker.link(link_spec, source, target)
 
 
 # --- orchestration -----------------------------------------------------------
@@ -499,6 +522,41 @@ class Installer:
 
 
 # --- manifest ----------------------------------------------------------------
+
+
+def default_variants() -> list:
+    return [
+        VariantLinkSpec(
+            name="link rio config",
+            app="rio",
+            selector="config.toml",
+            sources={
+                "linux": "linux.toml",
+                "macos": "macos.toml",
+                "windows": "windows.toml",
+            },
+            targets={
+                "linux": "{config_dir}",
+                "macos": "{config_dir}",
+                "windows": "{local_config_dir}/rio",
+            },
+        ),
+        VariantLinkSpec(
+            name="link ghostty platform config",
+            app="ghostty",
+            selector="platform.ghostty",
+            sources={
+                "linux": "linux.ghostty",
+                "macos": "macos.ghostty",
+                "windows": "windows.ghostty",
+            },
+            targets={
+                "linux": "{config_dir}",
+                "macos": "{config_dir}",
+                "windows": "{appdata}/ghostty",
+            },
+        ),
+    ]
 
 
 def default_specs() -> list:
@@ -563,12 +621,12 @@ def default_specs() -> list:
 
 
 def build_tasks(ctx: InstallContext, include_rio: bool = True) -> list:
+    excluded = () if include_rio else ("rio",)
     tasks = [LinkTask(spec) for spec in ctx.manifest.for_platform(ctx.profile.name)]
     tasks.append(NestedLinkCleanupTask())
     tasks.append(LegacyOpencodeTask())
     tasks.append(GitResetTask())
-    if include_rio:
-        tasks.append(RioTask())
+    tasks += [VariantLinkTask(spec) for spec in ctx.manifest.variants_for(excluded)]
     return tasks
 
 
@@ -598,7 +656,7 @@ def main(argv: Sequence[str] = None) -> int:
     fs = FileSystem(dry_run=args.dry_run)
     factory = LinkerFactory()
     linker = factory.create(profile, fs, force_copy=args.copy_mode)
-    manifest = Manifest(default_specs())
+    manifest = Manifest(default_specs(), default_variants())
     backup = BackupManager(fs, home, home / ".dotfiles_old")
     xdg = os.environ.get("XDG_CONFIG_HOME")
     ctx = InstallContext(
