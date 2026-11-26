@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.6.0",
+  "lastChangelogVersion": "1.6.1",
   "defaultProvider": "zenmux",
   "defaultModel": "tencent/hy4-flash",
   "defaultThinkingLevel": "high",
