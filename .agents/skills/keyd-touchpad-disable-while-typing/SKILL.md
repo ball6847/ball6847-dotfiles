@@ -77,17 +77,20 @@ journalctl -u keyd --no-pager | tail -40
 ### 3. Add the libinput quirk
 
 Inspect `/etc/libinput/local-overrides.quirks` first. Do not overwrite other
-quirks. Append this block if the section is not already there.
+quirks. Append this block if the section is not already there. On libinput
+1.31, `MatchUdevType=keyboard` is required; a `MatchName`-only block may verify
+with the quirk CLI yet fail to pair in GNOME.
 
 ```bash
 sudo install -d -m 0755 /etc/libinput
 sudo touch /etc/libinput/local-overrides.quirks
-if sudo grep -q '^\[Keyd Virtual Keyboard\]$' /etc/libinput/local-overrides.quirks; then
+if sudo grep -q '^\[Serial Keyboards\]$' /etc/libinput/local-overrides.quirks; then
   echo 'Section already exists. Inspect it before adding another block.'
 else
   sudo tee -a /etc/libinput/local-overrides.quirks >/dev/null <<'EOF'
 
-[Keyd Virtual Keyboard]
+[Serial Keyboards]
+MatchUdevType=keyboard
 MatchName=keyd*keyboard
 AttrKeyboardIntegration=internal
 EOF
@@ -97,12 +100,13 @@ fi
 The canonical block is:
 
 ```ini
-[Keyd Virtual Keyboard]
+[Serial Keyboards]
+MatchUdevType=keyboard
 MatchName=keyd*keyboard
 AttrKeyboardIntegration=internal
 ```
 
-If the section exists with different values, replace its three lines with the
+If the section exists with different values, replace its four lines with the
 canonical block.
 
 ### 4. Recreate the virtual keyboard
@@ -144,6 +148,17 @@ grep -A8 -i 'keyd virtual keyboard' /proc/bus/input/devices
 cat /etc/libinput/local-overrides.quirks
 ```
 
+Verify the quirk on the virtual keyboard itself. Install `libinput-tools` if
+`libinput` is missing. Use the `eventN` from the `H: Handlers=` line in the
+`keyd virtual keyboard` block.
+
+```bash
+libinput quirks validate
+libinput quirks list /dev/input/eventN
+```
+
+Expected output includes `AttrKeyboardIntegration=internal`.
+
 Then test in a graphical session. Hold any key for about one second and swipe
 the touchpad during that time. The pointer should not move.
 
@@ -170,7 +185,10 @@ echo "$XDG_SESSION_TYPE"
 
    Confirm you are testing in the same graphical session that owns the
    touchpad. Restart keyd after changing the quirk. Log out and back in if the
-   compositor cached the old device properties.
+   compositor cached the old device properties. On libinput 1.31, verify the
+   quirk has `MatchUdevType=keyboard`; a `MatchName`-only block can still print
+   `AttrKeyboardIntegration=internal` from the quirk CLI but not pair the
+   keyboard in an already-running GNOME session.
 
 4. `gsettings` reports no schema
 
