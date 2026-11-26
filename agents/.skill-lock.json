@@ -262,6 +262,69 @@
       "skillFolderHash": "daaaceac55b83384dc3685c3b946699b9bc29331",
       "installedAt": "2026-11-24T13:45:46.604Z",
       "updatedAt": "2026-11-24T13:45:46.604Z"
+    },
+    "playwright-ci": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "ci/SKILL.md",
+      "skillFolderHash": "141d48ac55ae827e4ea8c38117dd1de47afec2c8",
+      "installedAt": "2026-11-26T12:34:14.645Z",
+      "updatedAt": "2026-11-26T12:34:14.645Z"
+    },
+    "playwright-cli": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "playwright-cli/SKILL.md",
+      "skillFolderHash": "f090e7f2a50d52cb00eaddad09fb2ed914badcb5",
+      "installedAt": "2026-11-26T12:34:14.647Z",
+      "updatedAt": "2026-11-26T12:34:14.647Z"
+    },
+    "playwright-core": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "core/SKILL.md",
+      "skillFolderHash": "f8310c6ae2da9cb0cef530a715ce1231e386dee1",
+      "installedAt": "2026-11-26T12:34:14.648Z",
+      "updatedAt": "2026-11-26T12:34:14.648Z"
+    },
+    "playwright-frontend": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "frontend/SKILL.md",
+      "skillFolderHash": "3e90eb07a208b6feaf1ee5974eec45006ae0324e",
+      "installedAt": "2026-11-26T12:34:14.649Z",
+      "updatedAt": "2026-11-26T12:34:14.649Z"
+    },
+    "playwright-migration": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "migration/SKILL.md",
+      "skillFolderHash": "443da45c78aa901ed97d23bd3bf44baf4ca77a23",
+      "installedAt": "2026-11-26T12:34:14.650Z",
+      "updatedAt": "2026-11-26T12:34:14.650Z"
+    },
+    "playwright-pom": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "pom/SKILL.md",
+      "skillFolderHash": "d09b6a981bbf4983192b73f417c7a2951aa42a52",
+      "installedAt": "2026-11-26T12:34:14.651Z",
+      "updatedAt": "2026-11-26T12:34:14.651Z"
+    },
+    "playwright-qa": {
+      "source": "testdino-hq/playwright-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/testdino-hq/playwright-skill.git",
+      "skillPath": "qa/SKILL.md",
+      "skillFolderHash": "d118ee2d76cd1a84783402c03e163b3a7808f8cf",
+      "installedAt": "2026-11-26T12:34:14.653Z",
+      "updatedAt": "2026-11-26T12:34:14.653Z"
     }
   },
   "dismissed": {
@@ -280,9 +343,6 @@
     "kimi-code-cli",
     "opencode",
     "warp",
-    "zed",
-    "qoder",
-    "mistral-vibe",
-    "qwen-code"
+    "zed"
   ]
 }
